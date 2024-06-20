@@ -1,5 +1,5 @@
 import WaterItem from "../WaterItem/WaterItem";
-import css from "./WaterList.modal.css";
+import css from "./WaterList.module.css";
 
 const WaterList = () => {
 	return (

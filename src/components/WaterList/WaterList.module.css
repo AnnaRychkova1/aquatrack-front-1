@@ -4,9 +4,8 @@
 	align-items: flex-start;
 	justify-content: center;
 	column-gap: 0.5rem;
-	overflow-x: scroll;
+	overflow-x: auto;
 	overflow-y: hidden;
-	/* scroll-padding-bottom: 6px; */
 }
 .list::-webkit-scrollbar {
 	height: 0.5rem;
@@ -14,11 +13,11 @@
 }
 
 .list::-webkit-scrollbar-track {
-	background-color: #ffffff;
+	background-color: var(--main-white);
 	border-radius: 0.56rem;
 }
 
 .list::-webkit-scrollbar-thumb {
-	background-color: #323f47;
+	background-color: var(--main-text);
 	border-radius: 0.56rem;
 }

@@ -1,6 +1,6 @@
 .wrapper {
-	background-color: #f0eff4;
-	color: #323f47;
+	background-color: var(--background-color);
+	color: var(--main-text);
 	font-size: 1.5rem;
 	font-weight: bold;
 	padding: 1.25rem;
@@ -9,7 +9,6 @@
 
 .cardHeader {
 	display: flex;
-
 	justify-content: space-between;
 	margin-bottom: 1.5rem;
 }
@@ -31,10 +30,13 @@
 	border: 0px;
 	/* border: none;
     border-radius: 5px;
-    padding: 10px 20px;
-    cursor: pointer;
+    padding: 10px 20px;   
     transition: all 0.3s; */
 }
 .cardIconPlus {
-	background-color: red;
+	display: block;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--accent-color);
+	border-radius: 50%;
 }
