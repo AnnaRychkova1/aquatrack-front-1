@@ -7,7 +7,7 @@ const DailyInfo = () => {
 				<p className={css.cardTitle}>Today</p>
 				<button className={css.cardButton} type="button">
 					<svg className={css.cardIconPlus} width="30" height="30">
-						<use href="../DI/plus.svg"></use>
+						<use href="/src/assets/images/svg/sprite.svg#plus"></use>
 					</svg>
 					<span>Add water</span>
 				</button>
