@@ -1,13 +1,15 @@
 import { Helmet } from "react-helmet-async";
+import WelcomeSection from "../../components/WelcomeSection/WelcomeSection";
+import AdvantagesSection from "../../components/AdvantagesSection/AdvantagesSection";
 
 const Home = () => {
   return (
     <div>
       <Helmet>
-        <title>Home page</title>
+        <title>Home</title>
       </Helmet>
-      <h1>Home</h1>
-      <p>Content for home page</p>
+      <WelcomeSection />
+      <AdvantagesSection />
     </div>
   );
 };
