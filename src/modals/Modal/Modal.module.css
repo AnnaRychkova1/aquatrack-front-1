@@ -33,3 +33,7 @@
 .modalBody {
   padding: 20px;
 }
+
+.iconClose {
+  fill: red;
+}

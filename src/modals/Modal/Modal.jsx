@@ -40,7 +40,12 @@ const UniversalModal = ({ children }) => {
         shouldCloseOnOverlayClick={true}
       >
         <button className={css.modalCloseButton} onClick={closeModal}>
-          <Iconsvg iconName="close" width="28" height="28" />
+          <Iconsvg
+            width="28"
+            height="28"
+            iconName="close"
+            className={css.iconClose}
+          />
         </button>
         <div className={css.modalBody}>{children}</div>
       </Modal>
