@@ -45,8 +45,7 @@ button {
   display: block;
 }
 
-button:hover,
-button:focus {
+button:hover {
   background-color: var(--accent-color);
 }
 
