@@ -1,0 +1,21 @@
+.dayBtn {
+  text-align: center;
+  background-color: white;
+  font-weight: 700;
+  border-radius: 30px;
+  border: none;
+  height: 38px;
+  width: 38px;
+}
+.profit {
+  font-size: 12px;
+  color: #2f2f2f96;
+}
+
+.profitLow {
+  background-color: #323f4738;
+}
+
+.dayBtn:hover {
+  scale: 1.1;
+}
