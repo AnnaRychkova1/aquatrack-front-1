@@ -1,0 +1,40 @@
+.wrapper {
+	background-color: #f0eff4;
+	color: #323f47;
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding: 1.25rem;
+	margin-bottom: 2.5rem;
+}
+
+.cardHeader {
+	display: flex;
+
+	justify-content: space-between;
+	margin-bottom: 1.5rem;
+}
+
+/* .cardTitle {
+	font-size: 1.5rem;
+	font-weight: bold;
+} */
+
+.cardButton {
+	display: flex;
+	column-gap: 0.625rem;
+	background-color: inherit;
+	color: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	padding: 0px;
+	margin: 0px;
+	border: 0px;
+	/* border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: all 0.3s; */
+}
+.cardIconPlus {
+	background-color: red;
+}
