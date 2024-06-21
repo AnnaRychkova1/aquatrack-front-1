@@ -29,9 +29,8 @@
 	font-weight: inherit;
 	padding: 0px;
 	border: 0px;
-	/* 
-    transition: all 0.3s; */
 }
+
 .cardIcon {
 	display: flex;
 	justify-content: center;
@@ -40,9 +39,18 @@
 	height: 30px;
 	background-color: var(--accent-color);
 	border-radius: 50%;
-	fill: var(--main-text);
 	stroke: var(--main-text);
+	transition-property: background-color, stroke;
+	transition-duration: 250ms;
+	transition-timing-function: ease;
 }
+
+.cardButton:hover .cardIcon,
+.cardButton:focus .cardIcon {
+	background-color: var(--main-text);
+	stroke: var(--main-white);
+}
+
 .cardButtonTitle {
 	font-weight: 700;
 	font-size: 1rem;

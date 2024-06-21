@@ -23,7 +23,7 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
-	align-content: space-between;
+	row-gap: 0.375rem;
 	flex-grow: 1;
 }
 .volume {
@@ -40,21 +40,31 @@
 }
 .waterButtons {
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	align-content: space-between;
+	row-gap: 0.5rem;
 	width: 0.875rem;
-	height: 100%;
+	height: 0.875rem;
 }
 .button {
 	background-color: transparent;
 	border: 0px;
 	padding: 0;
 	width: 0.875rem;
+	height: 0.875rem;
 }
 .waterButtonSvg {
 	stroke: var(--main-text);
+	stroke-width: 1.3px;
+	transition-property: stroke;
+	transition-duration: 250ms;
+	transition-timing-function: ease;
+}
+
+.button:hover .waterButtonSvg,
+.button:focus .waterButtonSvg {
+	stroke: var(--accent-color);
 }
 
 @media screen and (min-width: 768px) {
@@ -81,12 +91,16 @@
 		line-height: 187%;
 	}
 	.waterButtons {
+		row-gap: 0.875rem;
 		width: 1rem;
+		height: 1rem;
 	}
 	.button {
 		width: 1rem;
+		height: 1rem;
 	}
 	.waterButtonSvg {
 		transform: scale(1.143);
+		stroke-width: 1.8px;
 	}
 }
