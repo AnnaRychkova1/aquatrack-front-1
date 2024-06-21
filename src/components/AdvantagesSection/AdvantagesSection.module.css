@@ -115,7 +115,14 @@
 
 @media only screen and (min-width: 768px) {
     .advantages_main {
+        background-image: url(../../assets//images/png/girl_with_bottle_1x_tablet.png);
         padding: 283px 32px 32px;
+    }
+
+    @media only screen and (min-resolution: 192dpi) {
+        .advantages_main {
+            background-image: url(../../assets//images//png/girl_with_bottle_2x_tablet.png);
+        }
     }
 
     .advantages_users {
@@ -159,9 +166,16 @@
 
 @media only screen and (min-width: 1440px) {
     .advantages_main {
+        background-image: url(../../assets//images/png/girl_with_bottle_1x_desktop.png);
         padding: 537px 32px 64px;
         margin: 0;
         /* max-width: 608px; */
+    }
+
+    @media only screen and (min-resolution: 192dpi) {
+        .advantages_main {
+            background-image: url(../../assets//images//png/girl_with_bottle_2x_desktop.png);
+        }
     }
 
     .advantagesGroup_habits {
