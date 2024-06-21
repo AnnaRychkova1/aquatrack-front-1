@@ -1,6 +1,6 @@
 .waterCard {
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-items: center;
 	min-width: 9.3125rem;
 	height: 4.625rem;
@@ -8,32 +8,35 @@
 	background-color: var(--main-white);
 	padding: 1.125rem 0.875rem;
 	margin-bottom: 1.5rem;
-	/* column-gap: 0.625rem; */
+	column-gap: 0.625rem;
 }
 .waterglass {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	align-content: center;
 	background-color: transparent;
+	min-width: 38px;
 }
 .waterInfo {
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 	align-content: space-between;
-	width: 100%;
-	height: 100%;
+	flex-grow: 1;
 }
 .volume {
 	font-weight: 700;
 	font-size: 0.875rem;
 	line-height: 100%;
+	text-wrap: nowrap;
 }
 .time {
 	font-weight: 400;
 	font-size: 0.75rem;
 	line-height: 100%;
+	text-wrap: nowrap;
 }
 .waterButtons {
 	display: flex;
@@ -41,30 +44,32 @@
 	justify-content: center;
 	align-items: center;
 	align-content: space-between;
-
+	width: 0.875rem;
 	height: 100%;
 }
 .button {
 	background-color: transparent;
 	border: 0px;
+	padding: 0;
+	width: 0.875rem;
+}
+.waterButtonSvg {
+	stroke: var(--main-text);
 }
 
-@media screen and (max-width: 320px) {
-}
-@media screen and (min-width: 375px) {
-}
 @media screen and (min-width: 768px) {
 	.waterCard {
 		min-width: 12rem;
 		height: 5.375rem;
 		padding: 1.25rem;
 		margin-bottom: 1.5rem;
-		/* column-gap: 0.625rem; */
+		column-gap: 1.25rem;
 	}
-	.waterInfo {
-		display: flex;
-		flex-direction: column;
+
+	.waterglass {
+		transform: scale(1.158);
 	}
+
 	.volume {
 		font-weight: 700;
 		font-size: 0.9375rem;
@@ -75,7 +80,13 @@
 		font-size: 0.75rem;
 		line-height: 187%;
 	}
-}
-@media screen and (min-width: 1440px) {
-	/* .volume .time same as 768 */
+	.waterButtons {
+		width: 1rem;
+	}
+	.button {
+		width: 1rem;
+	}
+	.waterButtonSvg {
+		transform: scale(1.143);
+	}
 }

@@ -5,7 +5,7 @@ const DailyInfo = () => {
 		<div className={css.wrapper}>
 			<div className={css.cardHeader}>
 				<h3 className={css.cardTitle}>Today</h3>
-				<button className={css.cardButton} type="button">
+				<button className={css.cardButton} type="button" aria-label="Add water">
 					<svg className={css.cardIcon} width="30" height="30">
 						{/* <use className={css.cardIconPlus} href="/src/assets/images/svg/sprite.svg#plus"></use> */}
 						<path fill="none" d="M15 9.64307V20.3574" stroke="#323F47" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
