@@ -1,8 +1,6 @@
 .wrapper {
 	background-color: var(--background-color);
 	color: var(--main-text);
-	font-size: 1.5rem;
-	font-weight: bold;
 	padding: 1.25rem;
 	margin-bottom: 2.5rem;
 }
@@ -13,10 +11,12 @@
 	margin-bottom: 1.5rem;
 }
 
-/* .cardTitle {
-	font-size: 1.5rem;
-	font-weight: bold;
-} */
+.cardTitle {
+	font-weight: 700;
+	font-size: 1.25rem;
+	line-height: 120%;
+	letter-spacing: -0.01em;
+}
 
 .cardButton {
 	display: flex;
@@ -42,4 +42,30 @@
 	border-radius: 50%;
 	fill: var(--main-text);
 	stroke: var(--main-text);
+}
+.cardButtonTitle {
+	font-weight: 700;
+	font-size: 1rem;
+	line-height: 150%;
+	letter-spacing: -0.01em;
+	text-align: center;
+}
+
+@media screen and (max-width: 320px) {
+}
+@media screen and (min-width: 375px) {
+}
+@media screen and (min-width: 768px) {
+	.wrapper {
+		padding: 2rem;
+	}
+	.cardTitle {
+		font-size: 1.75rem;
+		line-height: 114%;
+	}
+}
+@media screen and (min-width: 1440px) {
+	.wrapper {
+		margin-bottom: 4.5rem;
+	}
 }

@@ -2,7 +2,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	min-width: 9.3rem;
+	min-width: 9.3125rem;
 	height: 4.625rem;
 	border-radius: 1rem;
 	background-color: var(--main-white);
@@ -26,12 +26,13 @@
 	height: 100%;
 }
 .volume {
+	font-weight: 700;
 	font-size: 0.875rem;
 	line-height: 100%;
 }
 .time {
-	font-size: 0.75rem;
 	font-weight: 400;
+	font-size: 0.75rem;
 	line-height: 100%;
 }
 .waterButtons {
@@ -46,4 +47,35 @@
 .button {
 	background-color: transparent;
 	border: 0px;
+}
+
+@media screen and (max-width: 320px) {
+}
+@media screen and (min-width: 375px) {
+}
+@media screen and (min-width: 768px) {
+	.waterCard {
+		min-width: 12rem;
+		height: 5.375rem;
+		padding: 1.25rem;
+		margin-bottom: 1.5rem;
+		/* column-gap: 0.625rem; */
+	}
+	.waterInfo {
+		display: flex;
+		flex-direction: column;
+	}
+	.volume {
+		font-weight: 700;
+		font-size: 0.9375rem;
+		line-height: 149%;
+	}
+	.time {
+		font-weight: 400;
+		font-size: 0.75rem;
+		line-height: 187%;
+	}
+}
+@media screen and (min-width: 1440px) {
+	/* .volume .time same as 768 */
 }
