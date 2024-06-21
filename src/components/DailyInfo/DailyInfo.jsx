@@ -6,8 +6,10 @@ const DailyInfo = () => {
 			<div className={css.cardHeader}>
 				<p className={css.cardTitle}>Today</p>
 				<button className={css.cardButton} type="button">
-					<svg className={css.cardIconPlus} width="30" height="30">
-						<use href="/src/assets/images/svg/sprite.svg#plus" width="10.71" height="10.71"></use>
+					<svg className={css.cardIcon} width="30" height="30">
+						{/* <use className={css.cardIconPlus} href="/src/assets/images/svg/sprite.svg#plus"></use> */}
+						<path fill="none" d="M15 9.64307V20.3574" stroke="#323F47" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+						<path fill="none" d="M9.64286 15H20.3571" stroke="#323F47" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 					</svg>
 					<span>Add water</span>
 				</button>

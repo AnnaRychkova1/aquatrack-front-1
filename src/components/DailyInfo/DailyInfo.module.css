@@ -20,23 +20,26 @@
 
 .cardButton {
 	display: flex;
+	justify-content: flex-start;
+	align-items: center;
 	column-gap: 0.625rem;
 	background-color: inherit;
 	color: inherit;
 	font-size: inherit;
 	font-weight: inherit;
 	padding: 0px;
-	margin: 0px;
 	border: 0px;
-	/* border: none;
-    border-radius: 5px;
-    padding: 10px 20px;   
+	/* 
     transition: all 0.3s; */
 }
-.cardIconPlus {
-	display: block;
+.cardIcon {
+	display: flex;
 	justify-content: center;
 	align-items: center;
+	width: 30px;
+	height: 30px;
 	background-color: var(--accent-color);
 	border-radius: 50%;
+	fill: var(--main-text);
+	stroke: var(--main-text);
 }

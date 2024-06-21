@@ -2,11 +2,10 @@ import DailyInfo from "../DailyInfo/DailyInfo";
 const AdvantagesSection = () => {
 	return (
 		<>
-			<section>AdvantagesSection</section>;
+			<section>AdvantagesSection</section>
 			<section>
 				<DailyInfo />
 			</section>
-			;
 		</>
 	);
 };
