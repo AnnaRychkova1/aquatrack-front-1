@@ -4,17 +4,13 @@
 // };
 // export default Logo;
 
-// import { Link } from "react-router-dom";
-// import css from "./Logo.module.css";
-
-// export const Logo = () => {
-//   <Link to="/" className={css.logoFont}>
-//     AQUATRACK
-//   </Link>;
-// };
-
 import { Link } from "react-router-dom";
+import css from "./Logo.module.css";
 
 export const Logo = () => {
-  return <Link to="/">AQUATRACK</Link>;
+  return (
+    <Link to="/" className={css.logoFont}>
+      AQUATRACK
+    </Link>
+  );
 };
