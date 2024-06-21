@@ -10,7 +10,8 @@
     border-radius: 30px;
     background-color: #F0EFF4;
     padding: 209px 16px 32px;
-    background-image: url(../../assets/img/baner@1x.jpg);
+    background-image: url(../../assets//images//png/girl_with_bottle_1x_mobile.png);
+    /* background-image: url(../../assets/img/baner@1x.jpg); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -18,7 +19,7 @@
 
 @media only screen and (min-resolution: 192dpi) {
     .advantages_main {
-        background-image: url(../../assets/img/baner@2x.jpg);
+        background-image: url(../../assets//images//png/girl_with_bottle_2x_mobile.png);
     }
 }
 
@@ -160,7 +161,7 @@
     .advantages_main {
         padding: 537px 32px 64px;
         margin: 0;
-        max-width: 608px;
+        /* max-width: 608px; */
     }
 
     .advantagesGroup_habits {
