@@ -35,5 +35,6 @@
 }
 
 .iconClose {
-  fill: red;
+  stroke: var(--second-text);
+  /* fill: blue; */
 }
