@@ -1,12 +1,7 @@
- /* --main-text: #323f47;
- --second-text: #2f2f2f;
- --accent-color: #9be1a0;
- --background-color: #f0eff4;
- --main-white: #fff;
-  */
+ 
  .welcomeBox {
      border-radius: 30px;
-     background-color: #F0EFF4;
+     background-color: var(--background-color);
      padding: 24px 16px;
  }
 
@@ -38,7 +33,7 @@
      line-height: 100%;
      letter-spacing: -0.01em;
      margin: 16px 0 32px 0;
-     color: #323F47;
+     color: var(--main-text);
  }
 
  @media only screen and (min-width: 768px) {
@@ -72,7 +67,7 @@
      line-height: 129%;
      letter-spacing: -0.01em;
      text-align: center;
-     color: #323F47;
+     color: var(--main-text);
      transition: cubic-bezier(0.4, 0, 0.2, 1);
  }
 
@@ -85,22 +80,22 @@
  }
 
  .welcomeButton_tracker {
-     background-color: #9be1a0;
+     background-color: var(--accent-color);
  }
 
  .welcomeButton_tracker:hover,
  .welcomeButton_tracker:focus {
-     background-color: #9BE1A0;
+     background-color: var(--accent-color);
  }
 
  .welcomeButton_sign {
-     border: 1px solid #323F47;
+     border: 1px solid var(--main-text);
  }
 
  .welcomeButton_sign:hover,
  .welcomeButton_sign:focus {
-     border: 1px solid #9BE1A0;
-     color: #9BE1A0;
+     border: 1px solid var(--accent-color);
+     color: var(--accent-color);
  }
 
  @media only screen and (min-width: 1440px) {

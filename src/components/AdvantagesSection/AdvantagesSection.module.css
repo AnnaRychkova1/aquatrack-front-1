@@ -1,14 +1,7 @@
-/* --main-text: #323f47;
- --second-text: #2f2f2f;
- --accent-color: #9be1a0;
- --background-color: #f0eff4;
- --main-white: #fff;
-  */
-
 .advantages_main {
     margin-top: 16px;
     border-radius: 30px;
-    background-color: #F0EFF4;
+    background-color: var(--background-color);
     padding: 209px 16px 32px;
     background-image: url(../../assets//images//png/girl_with_bottle_1x_mobile.png);
     background-size: cover;
@@ -25,7 +18,7 @@
 .advantages_users {
     /* max-width: 132px; */
     max-width: 155px;
-    background-color: #FFFFFF;
+    background-color: var(--main-white);
     display: flex;
     gap: 4px;
     margin-bottom: 8px;
@@ -43,12 +36,25 @@
     left: 14px;
     gap: 0px;
     border: 2px 2px 2px 2px;
+    /* border-color: var(--main-white);; */
+
 }
 
 .advantages_point {
     width: 26.4px;
     height: 28px;
+    position: relative;
+    border-color: var(--main-white);
 
+}
+
+.advantages_point:nth-child(1) {
+    z-index: 3;
+
+}
+
+.advantages_point:nth-child(2) {
+    z-index: 2;
 }
 
 .advantages_point:not(:first-child) {
@@ -63,7 +69,7 @@
 }
 
 .textSpan {
-    color: #9BE1A0;
+    color: var(--accent-color);
 }
 
 .advantagesGroup_habits {
@@ -80,7 +86,6 @@
 .advantages_habits {
     padding: 9px 12px;
     border-radius: 30px;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -89,7 +94,7 @@
 
 .ellipse {
     border-radius: 50%;
-    background-color: #9BE1A0;
+    background-color: var(--accent-color);
     width: 8px;
     height: 8px;
 }
@@ -103,23 +108,20 @@
 }
 
 .advantages_habits:nth-child(1) {
-    background: #323f47;
-    color: #FFFFFF;
+    background: var(--main-text);
+    color: var(--main-white);
 }
 
 .advantages_habits:nth-child(2) {
-    background: #9be1a0;
-    color: #323F47;
+    background: var(--accent-color);
+    color: var(--main-text);
 }
 
 .advantages_habits:nth-child(3) {
-    background: #FFFFFF;
+    background: var(--main-white);
     color: #323F47;
 }
 
-
-/* -------- */
-/*  ------- */
 
 @media only screen and (min-width: 768px) {
     .advantages_main {

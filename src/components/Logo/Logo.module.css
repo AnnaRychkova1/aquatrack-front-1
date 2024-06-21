@@ -1,5 +1,5 @@
 .logoFont {
-    color: #323f47;
+    color: var(--main-text);
     font-weight: bold;
     font-size: 18px;
 
