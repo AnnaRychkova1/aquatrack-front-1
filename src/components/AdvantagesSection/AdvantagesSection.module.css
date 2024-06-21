@@ -11,7 +11,6 @@
     background-color: #F0EFF4;
     padding: 209px 16px 32px;
     background-image: url(../../assets//images//png/girl_with_bottle_1x_mobile.png);
-    /* background-image: url(../../assets/img/baner@1x.jpg); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -38,9 +37,18 @@
     display: flex;
 }
 
+.user {
+    border-radius: 50%;
+    top: 10px;
+    left: 14px;
+    gap: 0px;
+    border: 2px 2px 2px 2px;
+}
+
 .advantages_point {
-    width: 28px;
+    width: 26.4px;
     height: 28px;
+
 }
 
 .advantages_point:not(:first-child) {

@@ -5,9 +5,9 @@
 // export default AdvantagesSection;
 
 import css from "./AdvantagesSection.module.css";
-import user_1 from "../../assets/images/png/user-1.png";
-import user_2 from "../../assets/images/png/user-2.png";
-import user_3 from "../../assets/images/png/user-3.png";
+import user_1 from "../../assets/images/png/user1.png";
+import user_2 from "../../assets/images/png/user2.png";
+import user_3 from "../../assets/images/png/user3.png";
 export const AdvantagesSection = () => {
   return (
     <div className={css.advantages_main}>
