@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background-color: rgba(221, 239, 239, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,29 +12,35 @@
 }
 
 .modalContent {
-  background: white;
-  padding: 20px;
-  border-radius: 5px;
   position: relative;
-  max-width: 500px;
-  width: 100%;
+  width: fit-content;
+  border-radius: 15px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 .modalCloseButton {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
   background: none;
   border: none;
-  font-size: 24px;
   cursor: pointer;
-}
-
-.modalBody {
-  padding: 20px;
+  width: 24px;
+  height: 24px;
 }
 
 .iconClose {
-  stroke: var(--second-text);
-  /* fill: blue; */
+  width: 14px;
+  height: 14px;
+}
+
+@media only screen and (min-width: 768px) {
+  .modalCloseButton {
+    width: 28px;
+    height: 28px;
+  }
+  .iconClose {
+    width: 18px;
+    height: 18px;
+  }
 }

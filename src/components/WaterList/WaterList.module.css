@@ -1,0 +1,35 @@
+.list {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: flex-start;
+	column-gap: 0.5rem;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+.list::-webkit-scrollbar {
+	height: 0.5rem;
+	border-radius: 0.56rem;
+}
+
+.list::-webkit-scrollbar-track {
+	background-color: var(--main-white);
+	border-radius: 0.56rem;
+}
+
+.list::-webkit-scrollbar-thumb {
+	background-color: var(--main-text);
+	border-radius: 0.56rem;
+}
+
+@media screen and (min-width: 768px) {
+	.list {
+		column-gap: 2rem;
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	.list {
+		column-gap: 1rem;
+	}
+}
