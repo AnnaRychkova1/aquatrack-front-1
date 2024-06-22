@@ -14,11 +14,11 @@
 
 // export default WelcomeSection;
 
-import { Link } from "react-router-dom";
-import  Logo  from "../Logo/Logo";
-import css from "./WelcomeSection.module.css";
+import { Link } from 'react-router-dom';
+import Logo from '../Logo/Logo';
+import css from './WelcomeSection.module.css';
 
-export const WelcomeSection = () => {
+const WelcomeSection = () => {
   return (
     <div className={css.welcomeBox}>
       <Logo />
@@ -38,3 +38,5 @@ export const WelcomeSection = () => {
     </div>
   );
 };
+
+export default WelcomeSection;
