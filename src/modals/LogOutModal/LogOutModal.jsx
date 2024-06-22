@@ -20,6 +20,7 @@ const LogOutModal = ({ isOpen, closeModal }) => {
   //     console.error('An error occurred when sending the request', error);
   //   }
   // };
+
   return (
     <UniversalModal isOpen={isOpen} closeModal={closeModal}>
       <div className={css.LogOutModal}>
@@ -35,7 +36,11 @@ const LogOutModal = ({ isOpen, closeModal }) => {
             Log out
           </button>
 
-          <button className={css.buttonCancel} type="button">
+          <button
+            className={css.buttonCancel}
+            type="button"
+            // onClick={onClose}
+          >
             Cancel
           </button>
         </div>
