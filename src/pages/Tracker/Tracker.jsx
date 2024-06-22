@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import Logo from "../../components/Logo/Logo";
 import UniversalModal from "../../modals/Modal/Modal";
+import UserPanel from "../../components/UserMenu/UserMenu";
 
 const Tracker = () => {
   return (
@@ -13,6 +14,7 @@ const Tracker = () => {
       <UniversalModal>
         <h2>Модальне Вікно</h2>
       </UniversalModal>
+      <UserPanel />
     </>
   );
 };
