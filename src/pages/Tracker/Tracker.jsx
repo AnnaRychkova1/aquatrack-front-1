@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import Logo from '../../components/Logo/Logo';
+import DailyInfo from '../../components/DailyInfo/DailyInfo';
 
 // import UniversalModal from '../../modals/Modal/Modal';
 
@@ -10,7 +11,7 @@ const Tracker = () => {
         <title>Tracker</title>
       </Helmet>
       <Logo />
-      <h2>Tracker Page</h2>
+      <DailyInfo />
       {/* <UniversalModal /> */}
     </>
   );
