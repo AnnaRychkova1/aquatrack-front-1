@@ -1,14 +1,17 @@
-import Logo from "../Logo/Logo";
-import { Navigation } from "../Navigation/Navigation";
+import Logo from '../Logo/Logo';
+import css from './WelcomeSection.module.css';
+import { Navigation } from '../Navigation/Navigation';
 
 const WelcomeSection = () => {
   return (
-    <section>
+    <div className={css.welcomeBox}>
       <Logo />
-      <h1>Home page</h1>
-      <p>WelcomeSection</p>
-      <Navigation />
-    </section>
+      <div>
+        <p className={css.welcomePhrase}>Record daily water intake and track</p>
+        <h1 className={css.welcomeName}>Water consumption tracker</h1>
+        <Navigation />
+      </div>
+    </div>
   );
 };
 
