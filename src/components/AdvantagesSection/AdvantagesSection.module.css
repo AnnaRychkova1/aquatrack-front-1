@@ -30,13 +30,54 @@
     display: flex;
 }
 
-.user {
+/* .user {
     border-radius: 50%;
     top: 10px;
     left: 14px;
     gap: 0px;
     border: 2px 2px 2px 2px;
-    /* border-color: var(--main-white);; */
+   
+} */
+
+.user {
+    width: 26.4px;
+    height: 28px;
+    border-radius: 50%;
+    top: 10px;
+    left: 14px;
+    gap: 0;
+    /* border: 2px solid; */
+    /* Приклад: 2px solid; змінити при необхідності */
+    /* position: relative; */
+    /* Додано для використання top та left */
+    background-size: cover;
+    background-position: center;
+}
+
+.user1 {
+    background-image: url("../../assets/images/png/customer-1.png");
+}
+
+.user2 {
+    background-image: url("../../assets/images/png/customer-2.png");
+}
+
+.user3 {
+    background-image: url("../../assets/images/png/customer-3.png");
+}
+
+@media only screen and (min-resolution: 192dpi) {
+    .user1 {
+        background-image: url(../../assets/images/png/customer-1@2x.png);
+    }
+
+    .user2 {
+        background-image: url(../../assets/images/png/customer-2@2x.png);
+    }
+
+    .user3 {
+        background-image: url(../../assets/images/png/customer3@2x.png);
+    }
 
 }
 
@@ -50,7 +91,6 @@
 
 .advantages_point:nth-child(1) {
     z-index: 3;
-
 }
 
 .advantages_point:nth-child(2) {
@@ -65,7 +105,7 @@
     font-weight: 700;
     font-size: 12px;
     line-height: 117%;
-    color: #323F47;
+    color: var(--main-text);
 }
 
 .textSpan {
@@ -129,9 +169,42 @@
         padding: 283px 32px 32px;
     }
 
+    .user1 {
+        background-image: url("../../assets/images/png/customertablet-1.png");
+        width: 47px;
+        height: 47px;
+
+    }
+
+    .user2 {
+        background-image: url("../../assets/images/png/customertablet-2.png");
+        width: 47px;
+        height: 47px;
+    }
+
+    .user3 {
+        background-image: url("../../assets/images/png/customertablet-3.png");
+        width: 47px;
+        height: 47px;
+    }
+
     @media only screen and (min-resolution: 192dpi) {
-        .advantages_main {
-            background-image: url(../../assets//images//png/girl_with_bottle_2x_tablet.png);
+        .user1 {
+            background-image: url(../../assets/images/png/customertablet-1@2x.png);
+        }
+
+        .user2 {
+            background-image: url(../../assets/images/png/customertablet-2@2x.png);
+        }
+
+        .user3 {
+            background-image: url(../../assets/images/png/customertablet-3@2x.png);
+        }
+
+        @media only screen and (min-resolution: 192dpi) {
+            .advantages_main {
+                background-image: url(../../assets//images//png/girl_with_bottle_2x_tablet.png);
+            }
         }
     }
 
@@ -190,5 +263,37 @@
 
     .advantagesGroup_habits {
         margin-left: 366px;
+    }
+
+    .user1 {
+        background-image: url("../../assets/images/png/customerbig-1.png");
+        width: 47px;
+        height: 47px;
+    }
+
+    .user2 {
+        background-image: url("../../assets/images/png/customerbig-2.png");
+        width: 47px;
+        height: 47px;
+    }
+
+    .user3 {
+        background-image: url("../../assets/images/png/customerbig-3.png");
+        width: 47px;
+        height: 47px;
+    }
+
+    @media only screen and (min-resolution: 192dpi) {
+        .user1 {
+            background-image: url(../../assets/images/png/customerbig-1@2x.png);
+        }
+
+        .user2 {
+            background-image: url(../../assets/images/png/customerbig-2@2x.png);
+        }
+
+        .user3 {
+            background-image: url(../../assets/images/png/customerbig-3@2x.png);
+        }
     }
 }
