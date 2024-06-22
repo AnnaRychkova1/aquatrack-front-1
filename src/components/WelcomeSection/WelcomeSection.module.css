@@ -1,0 +1,113 @@
+ 
+ .welcomeBox {
+     border-radius: 30px;
+     background-color: var(--background-color);
+     padding: 24px 16px;
+ }
+
+ @media only screen and (min-width: 768px) {
+     .welcomeBox {
+         padding: 32px;
+     }
+ }
+
+
+ .welcomePhrase {
+     font-size: 14px;
+     line-height: 129%;
+     letter-spacing: 0.06em;
+     margin-top: 74px;
+ }
+
+ @media only screen and (min-width: 768px) {
+     .welcomePhrase {
+         margin-top: 50px;
+         margin-left: 32px;
+         font-size: 16px;
+         line-height: 150%;
+     }
+ }
+
+ .welcomeName {
+     font-size: 38px;
+     line-height: 100%;
+     letter-spacing: -0.01em;
+     margin: 16px 0 32px 0;
+     color: var(--main-text);
+ }
+
+ @media only screen and (min-width: 768px) {
+     .welcomeName {
+         margin-left: 32px;
+         font-size: 64px;
+     }
+ }
+
+ .welcomeButton_block {
+     display: flex;
+     gap: 10px;
+     margin-bottom: 51px;
+ }
+
+ @media only screen and (min-width: 768px) {
+     .welcomeButton_block {
+         margin-left: 32px;
+         margin-bottom: 20px;
+         gap: 16px;
+     }
+ }
+
+ .welcomeButton_block>a {
+     border-radius: 30px;
+     padding: 14px 19px;
+     font-family: "Poppins",
+         sans-serif;
+     font-weight: 700;
+     font-size: 14px;
+     line-height: 129%;
+     letter-spacing: -0.01em;
+     text-align: center;
+     color: var(--main-text);
+     transition: cubic-bezier(0.4, 0, 0.2, 1);
+ }
+
+ @media only screen and (min-width: 768px) {
+     .welcomeButton_block>a {
+         padding: 18px 40px;
+         font-size: 16px;
+         line-height: 150%;
+     }
+ }
+
+ .welcomeButton_tracker {
+     background-color: var(--accent-color);
+ }
+
+ .welcomeButton_tracker:hover,
+ .welcomeButton_tracker:focus {
+     background-color: var(--accent-color);
+ }
+
+ .welcomeButton_sign {
+     border: 1px solid var(--main-text);
+ }
+
+ .welcomeButton_sign:hover,
+ .welcomeButton_sign:focus {
+     border: 1px solid var(--accent-color);
+     color: var(--accent-color);
+ }
+
+ @media only screen and (min-width: 1440px) {
+     .welcomeBox {
+         max-width: 608px;
+     }
+
+     .welcomeButton_blok {
+         margin-bottom: 156px;
+     }
+
+     .welcomePhrase {
+         margin-top: 132px;
+     }
+ }
