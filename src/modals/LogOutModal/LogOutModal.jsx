@@ -4,9 +4,8 @@ import css from './LogOutModal.module.css';
 const LogOutModal = ({ onLogOut, onClose }) => {
   const handleLogOut = async () => {
     try {
-      // видалення сесії користувача
       const response = await fetch('/api/logout', {
-        method: 'POST',
+        method: 'POST', // видалення сесії користувача
       });
 
       if (response.ok) {
