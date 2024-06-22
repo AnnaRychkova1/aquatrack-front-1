@@ -1,9 +1,6 @@
 import { Helmet } from 'react-helmet-async';
-import Logo from '../../components/Logo/Logo';
-import UserPanel from '../../components/UserMenu/UserMenu';
-import DailyInfo from '../../components/DailyInfo/DailyInfo';
-
-// import UniversalModal from '../../modals/Modal/Modal';
+import WaterMainInfo from '../../components/WaterMainInfo/WaterMainInfo';
+import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
 
 const Tracker = () => {
   return (
@@ -11,9 +8,8 @@ const Tracker = () => {
       <Helmet>
         <title>Tracker</title>
       </Helmet>
-      <Logo />
-      <UserPanel />
-      <DailyInfo />
+      <WaterMainInfo />
+      <WaterDetailedInfo />
     </>
   );
 };
