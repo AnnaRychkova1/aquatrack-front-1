@@ -16,7 +16,6 @@
 }
 
 .advantages_users {
-    /* max-width: 132px; */
     max-width: 155px;
     background-color: var(--main-white);
     display: flex;
@@ -30,14 +29,6 @@
     display: flex;
 }
 
-/* .user {
-    border-radius: 50%;
-    top: 10px;
-    left: 14px;
-    gap: 0px;
-    border: 2px 2px 2px 2px;
-   
-} */
 
 .user {
     width: 26.4px;
@@ -46,10 +37,6 @@
     top: 10px;
     left: 14px;
     gap: 0;
-    /* border: 2px solid; */
-    /* Приклад: 2px solid; змінити при необхідності */
-    /* position: relative; */
-    /* Додано для використання top та left */
     background-size: cover;
     background-position: center;
 }
