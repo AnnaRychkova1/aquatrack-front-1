@@ -3,7 +3,7 @@
     border-radius: 30px;
     background-color: var(--background-color);
     padding: 209px 16px 32px;
-    background-image: url(../../assets//images//png/girl_with_bottle_1x_mobile.png);
+    background-image: url("../../assets//images//png/girl_with_bottle_1x_mobile.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -11,7 +11,7 @@
 
 @media only screen and (min-resolution: 192dpi) {
     .advantages_main {
-        background-image: url(../../assets//images//png/girl_with_bottle_2x_mobile.png);
+        background-image: url("../../assets//images//png/girl_with_bottle_2x_mobile.png");
     }
 }
 
@@ -55,15 +55,15 @@
 
 @media only screen and (min-resolution: 192dpi) {
     .user1 {
-        background-image: url(../../assets/images/png/customer-1@2x.png);
+        background-image: url("../../assets/images/png/customer-1@2x.png");
     }
 
     .user2 {
-        background-image: url(../../assets/images/png/customer-2@2x.png);
+        background-image: url("../../assets/images/png/customer-2@2x.png");
     }
 
     .user3 {
-        background-image: url(../../assets/images/png/customer3@2x.png);
+        background-image: url("../../assets/images/png/customer3@2x.png");
     }
 
 }
@@ -152,7 +152,7 @@
 
 @media only screen and (min-width: 768px) {
     .advantages_main {
-        background-image: url(../../assets//images/png/girl_with_bottle_1x_tablet.png);
+        background-image: url("../../assets//images/png/girl_with_bottle_1x_tablet.png");
         padding: 283px 32px 32px;
     }
 
@@ -177,20 +177,20 @@
 
     @media only screen and (min-resolution: 192dpi) {
         .user1 {
-            background-image: url(../../assets/images/png/customertablet-1@2x.png);
+            background-image: url("../../assets/images/png/customertablet-1@2x.png");
         }
 
         .user2 {
-            background-image: url(../../assets/images/png/customertablet-2@2x.png);
+            background-image: url("../../assets/images/png/customertablet-2@2x.png");
         }
 
         .user3 {
-            background-image: url(../../assets/images/png/customertablet-3@2x.png);
+            background-image: url("../../assets/images/png/customertablet-3@2x.png");
         }
 
         @media only screen and (min-resolution: 192dpi) {
             .advantages_main {
-                background-image: url(../../assets//images//png/girl_with_bottle_2x_tablet.png);
+                background-image: url("../../assets//images//png/girl_with_bottle_2x_tablet.png");
             }
         }
     }
@@ -236,7 +236,7 @@
 
 @media only screen and (min-width: 1440px) {
     .advantages_main {
-        background-image: url(../../assets//images/png/girl_with_bottle_1x_desktop.png);
+        background-image: url("../../assets//images/png/girl_with_bottle_1x_desktop.png");
         padding: 537px 32px 64px;
         margin: 0;
         /* max-width: 608px; */
@@ -244,7 +244,7 @@
 
     @media only screen and (min-resolution: 192dpi) {
         .advantages_main {
-            background-image: url(../../assets//images//png/girl_with_bottle_2x_desktop.png);
+            background-image: url("../../assets//images//png/girl_with_bottle_2x_desktop.png");
         }
     }
 
@@ -272,15 +272,15 @@
 
     @media only screen and (min-resolution: 192dpi) {
         .user1 {
-            background-image: url(../../assets/images/png/customerbig-1@2x.png);
+            background-image: url("../../assets/images/png/customerbig-1@2x.png");
         }
 
         .user2 {
-            background-image: url(../../assets/images/png/customerbig-2@2x.png);
+            background-image: url("../../assets/images/png/customerbig-2@2x.png");
         }
 
         .user3 {
-            background-image: url(../../assets/images/png/customerbig-3@2x.png);
+            background-image: url("../../assets/images/png/customerbig-3@2x.png");
         }
     }
 }
