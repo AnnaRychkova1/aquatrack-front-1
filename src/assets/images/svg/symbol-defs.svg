@@ -18,7 +18,7 @@
 <path fill="none" stroke="#323f47" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.5556" d="M20 24l-8-8 8-8"></path>
 </symbol>
 
-<symbol id="edit" viewBox="0 0 14 14">
+<symbol id="edit" stroke="#323f47" viewBox="0 0 14 14">
 <path fill="none" d="M9.9165 1.74997C10.0697 1.59676 10.2516 1.47523 10.4518 1.39232C10.652 1.3094 10.8665 1.26672 11.0832 1.26672C11.2998 1.26672 11.5144 1.3094 11.7146 1.39232C11.9147 1.47523 12.0966 1.59676 12.2498 1.74997C12.403 1.90318 12.5246 2.08507 12.6075 2.28524C12.6904 2.48542 12.7331 2.69997 12.7331 2.91664C12.7331 3.13331 12.6904 3.34786 12.6075 3.54803C12.5246 3.74821 12.403 3.9301 12.2498 4.08331L4.37484 11.9583L1.1665 12.8333L2.0415 9.62497L9.9165 1.74997Z" stroke-linecap="round" stroke-linejoin="round" />
 </symbol>
 
@@ -67,8 +67,8 @@
 </symbol>
 
 <symbol id="trash" viewBox="0 0 14 14">
-<path fill="none" d="M5.25 1.75H8.75" stroke-linecap="round" stroke-linejoin="round" />
-<path fill="none" d="M1.75 3.5H12.25M11.0833 3.5L10.6742 9.63625C10.6129 10.5569 10.5822 11.0172 10.3833 11.3663C10.2083 11.6735 9.94422 11.9206 9.62597 12.0748C9.26448 12.25 8.80314 12.25 7.88045 12.25H6.11955C5.19686 12.25 4.73552 12.25 4.37403 12.0748C4.05577 11.9206 3.79172 11.6735 3.61666 11.3663C3.41781 11.0172 3.38713 10.5569 3.32575 9.63625L2.91667 3.5" stroke-linecap="round" stroke-linejoin="round" />
+<path fill="none" stroke="#323f47" d="M5.25 1.75H8.75" stroke-linecap="round" stroke-linejoin="round" />
+<path fill="none" stroke="#323f47" d="M1.75 3.5H12.25M11.0833 3.5L10.6742 9.63625C10.6129 10.5569 10.5822 11.0172 10.3833 11.3663C10.2083 11.6735 9.94422 11.9206 9.62597 12.0748C9.26448 12.25 8.80314 12.25 7.88045 12.25H6.11955C5.19686 12.25 4.73552 12.25 4.37403 12.0748C4.05577 11.9206 3.79172 11.6735 3.61666 11.3663C3.41781 11.0172 3.38713 10.5569 3.32575 9.63625L2.91667 3.5" stroke-linecap="round" stroke-linejoin="round" />
 </symbol>
 
 <symbol id="upload" viewBox="0 0 32 32">
@@ -83,8 +83,8 @@
 </symbol>
 
 <symbol id="plus_dark" viewBox="0 0 30 30">
-<path fill="none" d="M15 9.64307V20.3574" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-<path fill="none" d="M9.64286 15H20.3571" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+<path fill="none" stroke="#323f47" d="M15 9.64307V20.3574" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+<path fill="none" stroke="#323f47" d="M9.64286 15H20.3571" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
 </symbol>
 
 </defs>

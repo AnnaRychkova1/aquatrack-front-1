@@ -4,21 +4,21 @@
 import UniversalModal from '../Modal/Modal';
 import css from './DeleteWaterModal.module.css';
 
-const DeleteWaterModal = ({ onClose }) => {
+const DeleteWaterModal = ({ isOpen, closeModal }) => {
   // const dispatch = useDispatch();
 
-  const handleDelete = async () => {
-    try {
-      // await dispatch(deleteWater());
-      // dispatch(updateWaters());
-      onClose();
-    } catch (error) {
-      alert(error);
-    }
-  };
+  // const handleDelete = async () => {
+  //   try {
+  //     // await dispatch(deleteWater());
+  //     // dispatch(updateWaters());
+  //     onClose();
+  //   } catch (error) {
+  //     alert(error);
+  //   }
+  // };
 
   return (
-    <UniversalModal>
+    <UniversalModal isOpen={isOpen} closeModal={closeModal}>
       <div className={css.deleteWaterModal}>
         <p className={css.title}>Delete entry</p>
 
@@ -29,12 +29,12 @@ const DeleteWaterModal = ({ onClose }) => {
           <button
             className={css.buttonDelete}
             type="button"
-            onClick={handleDelete}
+            // onClick={handleDelete}
           >
             Delete
           </button>
 
-          <button className={css.buttonCancel} type="button" onClick={onClose}>
+          <button className={css.buttonCancel} type="button">
             Cancel
           </button>
         </div>

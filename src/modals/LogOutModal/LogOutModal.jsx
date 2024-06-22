@@ -1,8 +1,9 @@
 import UniversalModal from '../Modal/Modal';
 import css from './LogOutModal.module.css';
 
-const LogOutModal = ({ onLogOut, onClose }) => {
-  const handleLogOut = async () => {
+const LogOutModal = ({ isOpen, closeModal }) => {
+  
+   const handleLogOut = async () => {
     try {
       const response = await fetch('/api/logout', {
         method: 'POST', // видалення сесії користувача
@@ -20,9 +21,8 @@ const LogOutModal = ({ onLogOut, onClose }) => {
       console.error('An error occurred when sending the request', error);
     }
   };
-
   return (
-    <UniversalModal>
+    <UniversalModal isOpen={isOpen} closeModal={closeModal}>
       <div className={css.LogOutModal}>
         <p className={css.title}>Log out</p>
 

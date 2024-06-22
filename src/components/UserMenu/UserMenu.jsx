@@ -13,17 +13,17 @@
 //     </>
 //   );
 // };
-import { useEffect, useState } from "react";
-//import UniversalModal from "../../modals/Modal/Modal.jsx";
-import UserMenuModal from "./UserMenuModals/Modal.jsx";
+import { useEffect, useState } from 'react';
+// import LogOutModal from '../../modals/LogOutModal/LogOutModal.jsx';
+// import UserSettingsModal from '../../modals/UserSettingsModal/UserSettingsModal.jsx';
 const UserMenu = ({ userData }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [userName, setUserName] = useState("User");
+  const [userName, setUserName] = useState('User');
   const [avatarUrl, setAvatarUrl] = useState(null);
   const isSignedIn = true;
   useEffect(() => {
     if (userData) {
-      setUserName(userData.name || "User");
+      setUserName(userData.name || 'User');
       setAvatarUrl(userData.avatar || null);
     }
   }, [userData]);
@@ -45,17 +45,22 @@ const UserMenu = ({ userData }) => {
             </button>
             {isOpen && (
               <div>
-                <UserMenuModal word={"settings"}>
-                  <button>Log out</button>
-                </UserMenuModal>
-                <UserMenuModal word={"Log out"}>
-                  <button>Log out</button>
-                </UserMenuModal>
+                {/* <UserMenuModal word={"settings"}> */}
+                {/* <button onClick={openSettingModal}>Settings</button> */}
+                {/* </UserMenuModal> */}
+                {/* <UserMenuModal word={"Log out"}> */}
+                {/* <button onClick={openLogOutModal}>Log out</button> */}
+                {/* </UserMenuModal> */}
               </div>
             )}
           </div>
         </div>
       )}
+      {/* <UserSettingsModal
+        isOpen={isSettingModalOpen}
+        closeModal={closeSettingModal}
+      />
+      <LogOutModal isOpen={isLogOutModalOpen} closeModal={closeLogOutModal} /> */}
     </>
   );
 };

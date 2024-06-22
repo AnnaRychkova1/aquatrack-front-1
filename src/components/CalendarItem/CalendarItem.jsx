@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
-import css from "./CalendarItem.module.css";
-import { selectMonth, selectMonthWater } from "../../redux/water/selectors";
-import { selectUser } from "../../redux/auth/selectors";
-import { chooseDay } from "../../redux/water/operations";
-import clsx from "clsx";
+import { useDispatch, useSelector } from 'react-redux';
+import css from './CalendarItem.module.css';
+import { selectMonth, selectMonthWater } from '../../redux/water/selectors';
+import { selectUser } from '../../redux/auth/selectors';
+import { chooseDay } from '../../redux/water/operations';
+import clsx from 'clsx';
 
-export default function CalendarItem({ day, profit = 0 }) {
+const CalendarItem = ({ day, profit = 0 }) => {
   const monthWater = useSelector(selectMonthWater);
   const month = useSelector(selectMonth);
   const dayNorma = useSelector(selectUser).dailyWaterNorm;
@@ -21,15 +21,15 @@ export default function CalendarItem({ day, profit = 0 }) {
       profit = 100;
     }
   }
-  const lowProfit = (profit) => {
+  const lowProfit = profit => {
     return clsx(css.dayBtn, profit < 100 && css.profitLow);
   };
 
   function handleClick() {
     if (day < 9) {
-      dispatch(chooseDay("0" + day + "." + month));
+      dispatch(chooseDay('0' + day + '.' + month));
     } else {
-      dispatch(chooseDay(day + "." + month));
+      dispatch(chooseDay(day + '.' + month));
     }
   }
 
@@ -41,4 +41,6 @@ export default function CalendarItem({ day, profit = 0 }) {
       <span className={css.profit}>{profit.toFixed(0)} %</span>
     </>
   );
-}
+};
+
+export default CalendarItem;
