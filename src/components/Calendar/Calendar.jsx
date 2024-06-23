@@ -7,7 +7,7 @@ import {
 } from 'date-fns';
 import css from './Calendar.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectMonthWater } from '../../redux/selectors';
+import { getMonthWater, selectMonthWater } from '../../redux/selectors.js';
 import { useEffect } from 'react';
 import { getMonthWater } from '../../redux/water/operations.js';
 

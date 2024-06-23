@@ -71,3 +71,19 @@ export const getDayWater = createAsyncThunk(
     }
   }
 );
+
+export const getMonthWater = createAsyncThunk(
+  'water/getMonthWater',
+
+  async (month, thunkAPI) => {
+    try {
+      const unixMonthStartDate = getUnixDay(month);
+      const response = await axiosInstance.get(
+        `/water/month/${unixMonthStartDate}`
+      );
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
