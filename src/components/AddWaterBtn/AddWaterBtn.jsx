@@ -9,27 +9,26 @@ const AddWaterBtn = () => {
   // const openAddWaterModal = () => setIsAddWaterModalOpen(true);
   // const closeAddWaterModal = () => setIsAddWaterModalOpen(false);
   return (
-    <div>
-      <button
-        // onClick={openAddWaterModal}
-        className={css.cardButton}
-        type="button"
-        aria-label="Add water"
-      >
-        <Iconsvg
-          width="30"
-          height="30"
-          iconName="plus_dark"
-          styles={css.cardIcon}
-        />
-        <span className={css.cardButtonTitle}>Add water</span>
-      </button>
-      {/* <WaterModal
-        isOpen={isAddWaterModalOpen}
-        closeModal={closeAddWaterModal}
-      /> */}
-    </div>
+    <button
+      // onClick={openAddWaterModal}
+      className={css.cardButton}
+      type="button"
+      aria-label="Add water"
+    >
+      <Iconsvg
+        width="30"
+        height="30"
+        iconName="plus_dark"
+        styles={css.cardIcon}
+      />
+      <span className={css.cardButtonTitle}>Add water</span>
+    </button>
   );
 };
 
 export default AddWaterBtn;
+
+/* <WaterModal
+        isOpen={isAddWaterModalOpen}
+        closeModal={closeAddWaterModal}
+      /> */
