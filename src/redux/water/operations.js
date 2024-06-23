@@ -58,3 +58,16 @@ export const updateWaters = createAsyncThunk(
     }
   }
 );
+
+export const getDayWater = createAsyncThunk(
+  'water/getDayWater',
+  async (date, thunkAPI) => {
+    try {
+      const response = await axiosInstance.get(`/water/day/${date}`);
+
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
