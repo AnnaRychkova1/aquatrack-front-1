@@ -1,35 +1,35 @@
-import DeleteWaterModal from '../../modals/DeleteWaterModal/DeleteWaterModal';
-import WaterModal from '../../modals/WaterModal/WaterModal';
+// import DeleteWaterModal from '../../modals/DeleteWaterModal/DeleteWaterModal';
+// import WaterModal from '../../modals/WaterModal/WaterModal';
 import Iconsvg from '../Icon/Icon';
 import css from './WaterItem.module.css';
-import { useState } from 'react';
+// import { useState } from 'react';
 
-const WaterItem = () => {
-  const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+const WaterItem = ({ id, volume, time }) => {
+  // const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
+  // const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
-  const openWaterModal = () => setIsWaterModalOpen(true);
-  const closeWaterModal = () => setIsWaterModalOpen(false);
+  // const openWaterModal = () => setIsWaterModalOpen(true);
+  // const closeWaterModal = () => setIsWaterModalOpen(false);
 
-  const openDeleteModal = () => setIsDeleteModalOpen(true);
-  const closeDeleteModal = () => setIsDeleteModalOpen(false);
-
+  // const openDeleteModal = () => setIsDeleteModalOpen(true);
+  // const closeDeleteModal = () => setIsDeleteModalOpen(false);
+  console.log(id);
   return (
     <div className={css.waterCard}>
       <Iconsvg
         width="38"
         height="38"
         iconName="mage_water-glass-fill"
-        styles={css.waterglass}
+        className={css.waterglass}
       />
 
       <div className={css.waterInfo}>
-        <p className={css.volume}>250 ml</p>
-        <p className={css.time}>10:20 AM</p>
+        <p className={css.volume}>{volume}</p>
+        <p className={css.time}>{time}</p>
       </div>
       <div className={css.waterButtons}>
         <button
-          onClick={openWaterModal}
+          // onClick={openWaterModal}
           className={css.button}
           type="button"
           aria-label="Edit water value"
@@ -38,11 +38,11 @@ const WaterItem = () => {
             width="14"
             height="14"
             iconName="edit"
-            styles={css.waterButtonSvg}
+            className={css.waterButtonSvg}
           />
         </button>
         <button
-          onClick={openDeleteModal}
+          // onClick={openDeleteModal}
           className={css.button}
           type="button"
           aria-label="Delete item"
@@ -51,15 +51,15 @@ const WaterItem = () => {
             width="14"
             height="14"
             iconName="trash"
-            styles={css.waterButtonSvg}
+            className={css.waterButtonSvg}
           />
         </button>
       </div>
-      <WaterModal isOpen={isWaterModalOpen} closeModal={closeWaterModal} />
+      {/* <WaterModal isOpen={isWaterModalOpen} closeModal={closeWaterModal} />
       <DeleteWaterModal
         isOpen={isDeleteModalOpen}
         closeModal={closeDeleteModal}
-      />
+      /> */}
     </div>
   );
 };
