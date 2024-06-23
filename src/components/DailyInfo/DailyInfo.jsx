@@ -39,7 +39,7 @@ const DailyInfo = () => {
     <div className={css.wrapper}>
       <div className={css.cardHeader}>
         <ChooseDate formattedDate={formattedDate} />
-        <AddWaterBtn />
+        <AddWaterBtn buttonStyle={css.cardIcon} iconStyle={css.cardIcon} />
       </div>
       <WaterList />
       <button onClick={handleChangeDate}>Previous day</button>
