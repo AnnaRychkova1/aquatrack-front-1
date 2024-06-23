@@ -5,7 +5,7 @@ const MonthInfo = () => {
   return (
     <div>
       <CalendarPagination />
-      <Calendar />
+      {/* <Calendar /> */}
     </div>
   );
 };
