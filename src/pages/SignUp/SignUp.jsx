@@ -23,16 +23,29 @@
 
 import css from './SignUpPage.module.css';
 
-import { SignUpForm } from '../../components/SignUpForm/SignUpForm';
-import { AdvantagesSection } from '../../components/AdvantagesSection/AdvantagesSection';
+import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import AdvantagesSection from '../../components/AdvantagesSection/AdvantagesSection';
 
-export default function SignUpPage() {
+import React from 'react';
+import { Helmet } from 'react-helmet-async';
+import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import AdvantagesSection from '../../components/AdvantagesSection/AdvantagesSection';
+import css from './SignUpPage.module.css';
+
+const SignUp = () => {
   return (
-    <div className={css.signUpPageWrapper}>
-      <SignUpForm />
-      <div className={css.AdvantagesSection_up}>
-        <AdvantagesSection />
+    <>
+      <Helmet>
+        <title>SignUp</title>
+      </Helmet>
+      <div className={css.signUpPageWrapper}>
+        <SignUpForm />
+        <div className={css.AdvantagesSection_up}>
+          <AdvantagesSection />
+        </div>
       </div>
-    </div>
+    </>
   );
-}
+};
+
+export default SignUp;

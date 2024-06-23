@@ -5,16 +5,16 @@
 // export default SignUpForm;
 
 import { Link } from 'react-router-dom';
-import { Logo } from '../Logo';
+import Logo from '../Logo/Logo';
 import css from './SignUpForm.module.css';
 import React from 'react';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { registerUser, loginUser } from '../../redux/user/userOperations';
+import { register, loginIn } from '../../redux/users/operations';
 import { useState } from 'react';
-import sprite from '../../assets/sprite.svg';
+import sprite from '../../assets/images/svg/symbol-defs.svg';
 import toast from 'react-hot-toast';
 
 const schema = yup.object().shape({
@@ -30,7 +30,8 @@ const schema = yup.object().shape({
     .string()
     .oneOf([yup.ref('password'), null], 'Passwords must match'),
 });
-export function SignUpForm() {
+
+const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const {
     register,
@@ -60,19 +61,17 @@ export function SignUpForm() {
           className={css.form}
           onSubmit={handleSubmit(async data => {
             try {
-              const resultAction = await dispatch(registerUser(data)).then(
-                res => {
-                  if (res.type === 'auth/register/rejected')
-                    throw new Error(res.payload);
-                  dispatch(loginUser(data));
-                  toast.success('You were successfully signed up!');
-                }
-              );
+              const resultAction = await dispatch(register(data)).then(res => {
+                if (res.type === 'auth/register/rejected')
+                  throw new Error(res.payload);
+                dispatch(loginIn(data));
+                toast.success('You were successfully signed up!');
+              });
 
-              if (registerUser.fulfilled.match(resultAction)) {
+              if (register.fulfilled.match(resultAction)) {
                 toast.success('You were successfully signed up!');
                 reset();
-              } else if (registerUser.rejected.match(resultAction)) {
+              } else if (register.rejected.match(resultAction)) {
                 toast.error('Something went wrong. Please try again.');
               }
             } catch (error) {
@@ -118,7 +117,7 @@ export function SignUpForm() {
                 <use
                   width={20}
                   height={20}
-                  xlinkHref={`${sprite}#icon-eye-off`}
+                  xlinkHref={`${sprite}#eye-off`}
                 ></use>
               </svg>
             )}
@@ -128,11 +127,7 @@ export function SignUpForm() {
                 className={css.eyeIconOff}
                 onClick={() => setShowPassword(!showPassword)}
               >
-                <use
-                  width={20}
-                  height={20}
-                  xlinkHref={`${sprite}#icon-eye`}
-                ></use>
+                <use width={20} height={20} xlinkHref={`${sprite}#eye`}></use>
               </svg>
             )}
           </div>
@@ -161,7 +156,7 @@ export function SignUpForm() {
                 <use
                   width={20}
                   height={20}
-                  xlinkHref={`${sprite}#icon-eye-off`}
+                  xlinkHref={`${sprite}#eye-off`}
                 ></use>
               </svg>
             )}
@@ -171,11 +166,7 @@ export function SignUpForm() {
                 className={css.eyeIconOff}
                 onClick={() => setShowPassword(!showPassword)}
               >
-                <use
-                  width={20}
-                  height={20}
-                  xlinkHref={`${sprite}#icon-eye`}
-                ></use>
+                <use width={20} height={20} xlinkHref={`${sprite}#eye`}></use>
               </svg>
             )}
           </div>
@@ -193,4 +184,6 @@ export function SignUpForm() {
       </div>
     </div>
   );
-}
+};
+
+export default SignUpForm;
