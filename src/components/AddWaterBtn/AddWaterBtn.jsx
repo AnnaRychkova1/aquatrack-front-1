@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import WaterModal from '../../modals/WaterModal/WaterModal';
+// import { useState } from 'react';
+// import WaterModal from '../../modals/WaterModal/WaterModal';
 import Iconsvg from '../Icon/Icon';
 import css from './AddWaterBtn.module.css';
 
 const AddWaterBtn = () => {
-  const [isAddWaterModalOpen, setIsAddWaterModalOpen] = useState(false);
+  // const [isAddWaterModalOpen, setIsAddWaterModalOpen] = useState(false);
 
-  const openAddWaterModal = () => setIsAddWaterModalOpen(true);
-  const closeAddWaterModal = () => setIsAddWaterModalOpen(false);
+  // const openAddWaterModal = () => setIsAddWaterModalOpen(true);
+  // const closeAddWaterModal = () => setIsAddWaterModalOpen(false);
   return (
     <div>
       <button
-        onClick={openAddWaterModal}
+        // onClick={openAddWaterModal}
         className={css.cardButton}
         type="button"
         aria-label="Add water"
@@ -24,10 +24,10 @@ const AddWaterBtn = () => {
         />
         <span className={css.cardButtonTitle}>Add water</span>
       </button>
-      <WaterModal
+      {/* <WaterModal
         isOpen={isAddWaterModalOpen}
         closeModal={closeAddWaterModal}
-      />
+      /> */}
     </div>
   );
 };
