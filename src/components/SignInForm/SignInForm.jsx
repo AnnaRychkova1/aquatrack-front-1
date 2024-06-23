@@ -11,8 +11,6 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-//import { loginUser } from '../../redux/users/operations';
-
 import { loginIn } from '../../redux/users/operations';
 import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
@@ -94,9 +92,8 @@ const SignInForm = () => {
               className={`${css.input} ${errors.password ? css.error : ''}`}
               required={true}
               type={showPassword ? 'text' : 'password'}
-              type={'password'}
               {...register('password')}
-              placeholder="Enter your Password"
+              placeholder="Enter your password"
             />
             {errors.password && (
               <span className={css.errors}>{errors.password.message}</span>
@@ -143,53 +140,3 @@ const SignInForm = () => {
   );
 };
 export default SignInForm;
-
-// import React from 'react';
-// import '../SignInForm/SignInForm.module.css';
-
-// const SignInForm = () => {
-//   return (
-//     <div className={css.loginContainer}>
-//       <div className={css.formContainer}>
-//         <h1 className={css.title}>Sign In</h1>
-//         <form className={css.form}>
-//           <label className={css.label}>Email</label>
-//           <div className={css.input_field}>
-//             <input
-//               className={css.input}
-//               type="email"
-//               placeholder="Enter your email"
-//               autoComplete="on"
-//             />
-//           </div>
-//           <label className={css.label}>Password</label>
-//           <div className={css.input_field}>
-//             <input
-//               className={css.input}
-//               type="password"
-//               placeholder="Enter your Password"
-//             />
-//             <svg className={css.icon_eye}>
-//               <use
-//                 width={20}
-//                 height={20}
-//                 // xlinkHref={`${sprite}#icon-eye-off`}
-//               ></use>
-//             </svg>
-//           </div>
-//           <button className={css.button} type="submit">
-//             Sign In
-//           </button>
-//         </form>
-//         <p className={css.description}>
-//           Don’t have an account?&nbsp;
-//           {/* <NavLink className="link" to={"/signup"}>
-//             Sign Up
-//           </NavLink> */}
-//         </p>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default SignInForm;

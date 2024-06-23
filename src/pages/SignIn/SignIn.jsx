@@ -35,7 +35,6 @@ const SignIn = () => {
       <Helmet>
         <title>SignIn</title>
       </Helmet>
-      <Logo />
       <div className={css.generalSignInForm}>
         <SignInForm />
         <div className={css.AdvantagesSection_plus}>
