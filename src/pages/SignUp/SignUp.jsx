@@ -7,7 +7,7 @@ const SignUp = () => {
   return (
     <>
       <Helmet>
-        <title>SignIn</title>
+        <title>SignUp</title>
       </Helmet>
       <Logo />
       <SignUpForm />
