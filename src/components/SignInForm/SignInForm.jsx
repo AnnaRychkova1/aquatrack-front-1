@@ -106,7 +106,7 @@ const SignInForm = () => {
                 <use
                   width={20}
                   height={20}
-                  xlinkHref={`${sprite}#icon-eye-off`}
+                  xlinkHref={`${sprite}#eye-off`}
                 ></use>
               </svg>
             )}
@@ -116,11 +116,7 @@ const SignInForm = () => {
                 className={css.eyeIconOff}
                 onClick={() => setShowPassword(!showPassword)}
               >
-                <use
-                  width={20}
-                  height={20}
-                  xlinkHref={`${sprite}#icon-eye`}
-                ></use>
+                <use width={20} height={20} xlinkHref={`${sprite}#eye`}></use>
               </svg>
             )}
           </div>

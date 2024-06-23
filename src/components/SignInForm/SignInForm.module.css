@@ -122,7 +122,8 @@
      font-weight: 700;
      line-height: 18px;
      letter-spacing: -0.01em;
-     color: --second-text;
+     /* color: --second-text; */
+     color: #2f2f2f;
  }
 
  .errors {
