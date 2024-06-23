@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { getNewDay } from '../../helps/getNewDay.js';
 
 export const fetchWaters = createAsyncThunk(
   'waters/fetchWaters',
@@ -77,9 +78,9 @@ export const getMonthWater = createAsyncThunk(
 
   async (month, thunkAPI) => {
     try {
-      const unixMonthStartDate = getUnixDay(month);
+      const newMonthStartDate = getNewDay(month);
       const response = await axiosInstance.get(
-        `/water/month/${unixMonthStartDate}`
+        `/water/month/${newMonthStartDate}`
       );
       return response.data;
     } catch (error) {

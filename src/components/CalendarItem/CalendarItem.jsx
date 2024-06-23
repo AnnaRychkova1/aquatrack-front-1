@@ -1,5 +1,8 @@
 import toast from 'react-hot-toast';
-import { selectQuantity, selectDateWater } from '../../redux/selectors';
+import {
+  selectQuantity,
+  selectDateWater,
+} from '../../redux/water/selectors.js';
 import { getDayWater } from '../../redux/water/operations.js';
 import css from './CalendarItem.module.css';
 import { useDispatch, useSelector } from 'react-redux';
