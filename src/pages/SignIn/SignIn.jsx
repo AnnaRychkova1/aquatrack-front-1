@@ -19,7 +19,7 @@
 //   );
 // };
 
-// export default SignIn;
+//export default SignIn;
 
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
@@ -27,7 +27,7 @@ import { Link } from 'react-router-dom';
 import Logo from '../../components/Logo/Logo';
 import SignInForm from '../../components/SignInForm/SignInForm';
 import AdvantagesSection from '../../components/AdvantagesSection/AdvantagesSection';
-import css from './SignInPage.module.css';
+import css from '../SignIn/SignInPage.module.css';
 
 const SignIn = () => {
   return (

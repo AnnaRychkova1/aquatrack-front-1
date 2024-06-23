@@ -1,6 +1,12 @@
+ /* --main-text: #323f47;
+ --second-text: #2f2f2f;
+ --accent-color: #9be1a0;
+ --background-color: #f0eff4;
+ --main-white: #fff; */
+
 .loginContainer {
     border-radius: 30px;
-    background-color: #f0eff4;
+    background-color:--background-color;
     padding: 24px 16px;
 }
 
@@ -15,7 +21,7 @@
     letter-spacing: -0.01em;
     text-align: left;
     margin-bottom: 32px;
-    color: #323f47;
+    color: --main-text;
 }
 
 .form {
@@ -50,13 +56,13 @@
     border: 1px solid #2f2f2f33;
     opacity: 0px;
     outline: none;
-    background-color: #f0eff4;
+    background-color:--background-color;
 }
 
 .icon_eye,
 .eyeIconOff {
     fill: none;
-    stroke: #2f2f2f;
+    stroke: --second-text;
     position: absolute;
     top: 16px;
     right: 16px;
@@ -82,21 +88,21 @@
     height: 50px;
     border-radius: 30px;
     border: none;
-    color: #323f47;
+    color: --main-text;
     font-size: 14px;
     font-weight: 700;
     line-height: 18px;
-    background-color: #9be1a0;
+    background-color: --accent-color;
     margin-top: 16px;
     cursor: pointer;
     opacity: 0px;
 
-    transition: var(--animation);
+    /* transition: var(--animation); */
 }
 
 .button:hover,
 .button:focus {
-    background: #87d28d;
+    background: --accent-color;
 }
 
 .description {
@@ -115,7 +121,7 @@
     font-weight: 700;
     line-height: 18px;
     letter-spacing: -0.01em;
-    color: #2f2f2f;
+    color: --second-text;
 }
 
 .errors {
