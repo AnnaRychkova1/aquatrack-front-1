@@ -42,6 +42,11 @@
 <path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M16 6.667v18.667"></path>
 <path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M6.667 16h18.667"></path>
 </symbol>
+<symbol id="plus_white" viewBox="0 0 32 32">
+<path fill="none" stroke="#fff" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M16 6.667v18.667"></path>
+<path fill="none" stroke="#fff" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M6.667 16h18.667"></path>
+</symbol>
+
 <symbol id="minus" viewBox="0 0 32 32">
 <path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.6667" d="M6.667 16h18.667"></path>
 </symbol>
@@ -61,6 +66,9 @@
 <symbol id="close" viewBox="0 0 32 32">
 <path fill="none" stroke="#323f47" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.4286" d="M24 8l-16 16"></path>
 <path fill="none" stroke="#323f47" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.4286" d="M8 8l16 16"></path>
+</symbol>
+<symbol id="water-progress-bar" viewBox="0 0 100 20">
+  <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold"></text>
 </symbol>
 </defs>
 </svg>

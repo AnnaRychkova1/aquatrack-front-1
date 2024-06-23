@@ -1,0 +1,73 @@
+.infoContainer {
+  position: relative;
+  border-radius: 30px;
+
+  width: 343px;
+  height: 415px;
+  background-color: var(--accent-color);
+  margin: 0 auto;
+  /* padding-top: 40px; */
+
+  /* display: block; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgInfoContainer {
+  background-image: url("../../assets/images/png/transparent_bottle_for_water_1x_mobile.png");
+  background-position: center;
+  background-size: cover;
+  width: 262px;
+  height: 335px;
+  /* height: 100%; */
+  background-repeat: no-repeat;
+  margin: 0 auto;
+}
+@media (min-resolution: 192dpi) {
+  .imgInfoContainer {
+    background-image: url("../../assets/images/png/transparent_bottle_for_water_2x_mobile.png");
+  }
+}
+
+/*Tablet*/
+@media only screen and (min-width: 768px) {
+  .infoContainer {
+    border-radius: 30px;
+    width: 704px;
+    height: 578px;
+  }
+
+  .imgInfoContainer {
+    background-image: url("../../assets/images/png/transparent_bottle_for_water_1x_tablet.png");
+    width: 374px;
+    height: 477px;
+  }
+  @media (min-resolution: 192dpi) {
+    .imgInfoContainer {
+      background-image: url("../../assets/images/png/transparent_bottle_for_water_2x_tablet.png");
+    }
+  }
+}
+
+/*Desktop*/
+@media only screen and (min-width: 1440px) {
+  .infoContainer {
+    border-radius: 30px;
+    width: 672px;
+    height: 736px;
+    margin: 0;
+  }
+
+  .imgInfoContainer {
+    background-image: url("../../assets/images/png/transparent_bottle_for_water_1x_desktop.png");
+    width: 472px;
+    height: 604px;
+  }
+  @media (min-resolution: 192dpi) {
+    .imgInfoContainer {
+      background-image: url("../../assets/images/png/transparent_bottle_for_water_2x_desktop.png");
+    }
+  }
+}
