@@ -14,14 +14,12 @@
   background: var(--main-white);
 }
 .dailyNorma {
-  /* font-family: var(--font-family); */
   font-weight: 700;
   font-size: 14px;
   line-height: 100%;
   color: var(--main);
 }
 .textDailyNorma {
-  /* font-family: var(--font-family); */
   font-weight: 400;
   font-size: 10px;
   line-height: 100%;
@@ -31,20 +29,20 @@
 /*Tablet*/
 @media only screen and (min-width: 768px) {
   .contDailyNorma {
-    /* border-radius: 15px; */
+    position: absolute;
+    top: 26%;
+    left: 5%;
     padding: 14px 18px;
     width: 129px;
     height: 78px;
   }
   .dailyNorma {
-    /* font-family: var(--font-family); */
     font-weight: 700;
     font-size: 15px;
     line-height: 149%;
     /* color: var(--main);; */
   }
   .textDailyNorma {
-    /* font-family: var(--font-family); */
     /* font-weight: 400; */
     font-size: 12px;
     line-height: 187%;
@@ -54,24 +52,23 @@
 
 /*Desktop*/
 @media only screen and (min-width: 1440px) {
-  /* .contDailyNorma {
-  border-radius: 15px;
-padding: 14px 18px;
-width: 129px;
-height: 78px;
+  .contDailyNorma {
+    position: absolute;
+    top: 19%;
+    left: 10%;
+    .dailyNorma {
+      font-family: var(--font-family);
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 149%;
+      color: var(--main);
+    }
+    .textDailyNorma {
+      font-family: var(--font-family);
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 187%;
+      color: rgba(47, 47, 47, 0.6);
+    }
   }
-  .dailyNorma {
-    font-family: var(--font-family);
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 149%;
-    color: var(--main);;
-  }
-  .textDailyNorma {
-    font-family: var(--font-family);
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 187%;
-    color: rgba(47, 47, 47, 0.6);
-  } */
 }
