@@ -1,0 +1,26 @@
+.generalSignInForm {
+    padding: 16px;
+    margin: 0 auto;
+    max-width: 343px;
+}
+
+@media only screen and (min-width: 768px) {
+    .generalSignInForm {
+        padding: 32px;
+        max-width: 704px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .generalSignInForm {
+        display: flex;
+        gap: 32px;
+        max-width: 1376px;
+    }
+}
+
+@media only screen and (max-width: 1439px) {
+    .AdvantagesSection_plus {
+        display: none;
+    }
+}
