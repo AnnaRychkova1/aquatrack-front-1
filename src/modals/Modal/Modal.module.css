@@ -29,15 +29,20 @@
   height: 24px;
 }
 
-.modalBody {
-  /* position: relative;
-  top: 50%;
-  left: 50%; */
+.modalCloseButton:hover .iconClose {
+  stroke: var(--accent-color);
 }
 
 .iconClose {
   width: 14px;
   height: 14px;
+  stroke: var(--main-text);
+}
+
+.modalBody {
+  /* position: relative;
+  top: 50%;
+  left: 50%; */
 }
 
 @media only screen and (min-width: 768px) {
