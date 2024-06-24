@@ -98,6 +98,10 @@
         <symbol id="water-progress-bar" viewBox="0 0 100 20">
   <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" fill="white" fontSize="12" fontWeight="bold"></text>
 </symbol>
+<symbol id="plus_white" viewBox="0 0 30 30">
+			<path fill="none" d="M15 9.64307V20.3574" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+			<path fill="none" d="M9.64286 15H20.3571" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+		</symbol>
 	</defs>
 
 </svg>

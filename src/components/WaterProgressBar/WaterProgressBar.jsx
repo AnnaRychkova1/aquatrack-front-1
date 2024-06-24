@@ -1,6 +1,6 @@
-import css from "./WaterProgressBar.module.css";
-import Iconsvg from "../../Icon/Icon";
-import { useState, useEffect } from "react";
+import css from './WaterProgressBar.module.css';
+import Iconsvg from '../Icon/Icon';
+import { useState, useEffect } from 'react';
 
 const WaterProgressBar = () => {
   const [completed, setCompleted] = useState(50);
@@ -8,15 +8,15 @@ const WaterProgressBar = () => {
   useEffect(() => {
     const fetchProgressData = async () => {
       try {
-        const response = await fetch("/api/progress");
+        const response = await fetch('/api/progress');
         const data = await response.json();
-        if (data && typeof data.completed === "number") {
+        if (data && typeof data.completed === 'number') {
           setCompleted(data.completed);
         } else {
-          console.error("Invalid data format:", data);
+          console.error('Invalid data format:', data);
         }
       } catch (error) {
-        console.error("Error fetching progress data:", error);
+        console.error('Error fetching progress data:', error);
       }
     };
 
