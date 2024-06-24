@@ -1,10 +1,4 @@
 .deleteWaterModal {
-  /* position: fixed;
-  top: 50%;
-  left: 50%; */
-
-  transform: translate(-50%, -50%);
-
   border-radius: 15px;
   padding: 40px 20px;
   max-width: 344px;
@@ -101,7 +95,6 @@
     font-size: 16px;
     line-height: 1.5;
     padding: 18px 67px;
-    /* width: 170px; */
     margin-top: 24px;
   }
 }
