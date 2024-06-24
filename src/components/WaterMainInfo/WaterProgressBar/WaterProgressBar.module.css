@@ -1,0 +1,111 @@
+.contBar {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background: var(--main-white);
+  border-radius: 15px;
+  padding: 12px;
+  width: 198px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.textBar {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 100%;
+  color: var(--main);
+  margin-bottom: 6px;
+}
+
+.waterProgressBarWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.waterProgressBar {
+  width: 100%;
+  height: 15px;
+  background: var(--background-color); /* Основний фон */
+  border-radius: 10px;
+  margin-bottom: 5px;
+}
+
+.waterProgressBarFiller {
+  height: 100%;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Центрування SVG */
+  background: var(--accent-color); /* Колір заповненої частини */
+  transition: width 0.5s ease-in-out;
+}
+
+.waterProgressBarContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.waterProgressBarLabel {
+  margin-left: 8px;
+  color: var(--background-color);
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.progressLabels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.progressLabelLeft,
+.progressLabelMid,
+.progressLabelRight {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 187%;
+  color: rgba(47, 47, 47, 0.6);
+}
+
+.progressLabelMid {
+  flex-grow: 1; /* Рівномірне розподіл простору між мітками */
+  text-align: center;
+}
+
+/*Tablet*/
+@media only screen and (min-width: 768px) {
+  .contBar {
+    position: absolute;
+    top: 53%;
+    left: 30%;
+    padding: 20px;
+    width: 295px;
+    height: 106px;
+  }
+  .textBar {
+    font-size: 15px;
+    line-height: 149%;
+  }
+  .progressLabelLeft,
+  .progressLabelMid,
+  .progressLabelRight {
+    font-size: 12px;
+  }
+}
+
+/*Desktop*/
+@media only screen and (min-width: 1440px) {
+  .contBar {
+    position: absolute;
+    top: 57%;
+    left: 27%;
+  }
+}
