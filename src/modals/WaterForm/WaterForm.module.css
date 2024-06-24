@@ -1,0 +1,187 @@
+.waterForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 15px;
+  padding: 40px 20px;
+  max-width: 343px;
+  width: 100%;
+  background-color: var(--main-white);
+  border: none;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.subtitle,
+.title,
+.valueLabel {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--main-text);
+}
+
+.title {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-size: 16px;
+  line-height: 1.25;
+  margin-top: 24px;
+}
+
+.amountWaterLabel,
+.timeLabel {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: var(--second-text);
+}
+
+.amountWaterLabel {
+  margin-top: 20px;
+}
+
+.timeLabel {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.btnBox {
+  display: flex;
+  gap: 8px;
+  position: relative;
+  margin-top: 8px;
+}
+
+.input1 {
+  font-family: 'Poppins', sans-serif;
+  border-radius: 30px;
+  padding: 10px 20px;
+  width: 100px;
+  background: var(--main-text);
+  color: var(--main-white);
+  font-size: 16px;
+  outline: none;
+}
+
+.ml {
+  color: var(--main-white);
+  position: absolute;
+  top: 12px;
+  right: 57%;
+  font-size: 14px;
+}
+
+.btnReduce,
+.btnZoom {
+  border-radius: 30px;
+  border: 1.5px solid var(--main-text);
+  width: 40px;
+  height: 40px;
+  stroke: var(--main-text);
+  background-color: var(--main-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.valueLabel {
+  font-size: 16px;
+  line-height: 1.25;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.inputTime,
+.input2 {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  padding: 14px 16px;
+  width: 300px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: var(--second-text);
+  transition: all 300ms ease-in-out;
+  outline: none;
+}
+
+.input2:hover,
+.input2:focus,
+.inputTime:focus,
+.inputTime:hover {
+  border-color: var(--accent-color);
+}
+
+.btnSave {
+  margin-top: 24px;
+  border-radius: 30px;
+  padding: 14px 40px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: var(--main-text);
+  border: none;
+  transition: all 300ms ease-in-out;
+  background: var(--accent-color);
+}
+
+.btnSave:hover,
+.btnSave:focus {
+  background: #87d28d;
+}
+
+@media (min-width: 768px) {
+  .waterForm {
+    padding: 40px;
+    max-width: 518px;
+    height: 555px;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 1.14;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+
+  .amountWaterLabel,
+  .timeLabel {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .ml {
+    top: 12px;
+    right: 70%;
+    font-size: 16px;
+  }
+
+  .inputTime,
+  .input2 {
+    width: 438px;
+  }
+
+  .btnSave {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 18px 50px;
+  }
+
+  .valueLabel {
+    font-size: 18px;
+    line-height: 1.33;
+  }
+}
