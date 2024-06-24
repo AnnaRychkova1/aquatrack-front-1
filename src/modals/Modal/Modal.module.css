@@ -19,7 +19,7 @@
 }
 
 .modalCloseButton {
-  position: fixed;
+  position: absolute;
   top: 20px;
   right: 20px;
   background: none;
@@ -29,6 +29,11 @@
   height: 24px;
 }
 
+.modalBody {
+  /* position: relative;
+  top: 50%;
+  left: 50%; */
+}
 .iconClose {
   width: 14px;
   height: 14px;
