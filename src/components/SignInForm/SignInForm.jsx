@@ -11,7 +11,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { loginIn } from '../../redux/users/operations';
+import { logIn } from '../../redux/users/operations';
 import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
 import toast from 'react-hot-toast';
@@ -54,12 +54,12 @@ const SignInForm = () => {
           className={css.form}
           onSubmit={handleSubmit(async data => {
             try {
-              const resultAction = await dispatch(loginIn(data));
+              const resultAction = await dispatch(logIn(data));
 
-              if (loginUser.fulfilled.match(resultAction)) {
+              if (logIn.fulfilled.match(resultAction)) {
                 toast.success('You were successfully signed in!');
                 reset();
-              } else if (loginUser.rejected.match(resultAction)) {
+              } else if (logIn.rejected.match(resultAction)) {
                 toast.error('Something went wrong. Please try again.');
               }
             } catch (error) {
