@@ -23,7 +23,7 @@
 
 import css from './SignUpPage.module.css';
 
-import SignUpForm from '../../components/SignUpForm/SignUpForm';
+import SignUpForm from '..//../components/SignUpForm/SignUpForm';
 import AdvantagesSection from '../../components/AdvantagesSection/AdvantagesSection';
 
 import React from 'react';
