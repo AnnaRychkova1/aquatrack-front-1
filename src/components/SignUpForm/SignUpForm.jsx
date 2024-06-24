@@ -12,7 +12,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { register, loginIn } from '../../redux/users/operations';
+import { register, logIn } from '../../redux/users/operations';
 import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
 import toast from 'react-hot-toast';
@@ -64,7 +64,7 @@ const SignUpForm = () => {
               const resultAction = await dispatch(register(data)).then(res => {
                 if (res.type === 'auth/register/rejected')
                   throw new Error(res.payload);
-                dispatch(loginIn(data));
+                dispatch(logIn(data));
                 toast.success('You were successfully signed up!');
               });
 
@@ -104,7 +104,7 @@ const SignUpForm = () => {
               className={`${css.input} ${errors.password ? css.error : ''}`}
               type={showPassword ? 'text' : 'password'}
               {...register('password')}
-              placeholder="Enter your Password"
+              placeholder="Enter your password"
             />
             {errors.password && (
               <span className={css.errors}>{errors.password.message}</span>
@@ -140,7 +140,7 @@ const SignUpForm = () => {
               }`}
               type={showPassword ? 'text' : 'password'}
               {...register('repeatPassword')}
-              placeholder="Repeat Password"
+              placeholder="Repeat password"
             />
             {errors.repeatPassword && (
               <span className={css.errors}>

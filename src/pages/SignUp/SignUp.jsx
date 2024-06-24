@@ -25,12 +25,8 @@ import css from './SignUpPage.module.css';
 
 import SignUpForm from '..//../components/SignUpForm/SignUpForm';
 import AdvantagesSection from '../../components/AdvantagesSection/AdvantagesSection';
-
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import SignUpForm from '../../components/SignUpForm/SignUpForm';
-import AdvantagesSection from '../../components/AdvantagesSection/AdvantagesSection';
-import css from './SignUpPage.module.css';
 
 const SignUp = () => {
   return (
