@@ -2,6 +2,7 @@
   border-radius: 15px;
   padding: 40px 20px;
   max-width: 344px;
+  min-width: 320px;
   width: 100%;
   background-color: var(--main-white);
   border: none;
@@ -70,7 +71,7 @@
   .LogOutModal {
     padding: 40px;
     max-width: 516px;
-    width: 100%;
+    min-width: 516px;
   }
 
   .title {
@@ -94,7 +95,15 @@
   .buttonCancel {
     font-size: 16px;
     line-height: 1.5;
-    padding: 18px 67px;
     margin-top: 24px;
+    width: 175px;
+  }
+
+  .buttonLogOut {
+    padding: 18px 57px;
+  }
+
+  .buttonCancel {
+    padding: 18px 59px;
   }
 }
