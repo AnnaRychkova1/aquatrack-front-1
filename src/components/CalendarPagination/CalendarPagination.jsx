@@ -1,7 +1,13 @@
-import toast from 'react-hot-toast';
+// import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
+import { selectDate } from '../../redux/date/selectors';
 
 const CalendarPagination = () => {
-  return <div>CalendarPagination</div>;
+  const storeMonth = new Date(useSelector(selectDate));
+  const formattedMonth = `${storeMonth.toLocaleDateString('en-GB', {
+    month: 'long',
+  })}`;
+  return <div>{formattedMonth}</div>;
 };
 
 export default CalendarPagination;

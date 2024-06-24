@@ -1,11 +1,27 @@
-import Calendar from '../Calendar/Calendar';
+// import Calendar from '../Calendar/Calendar';
+import Calendar_1 from '../Calendar_1/Calendar_1';
 import CalendarPagination from '../CalendarPagination/CalendarPagination';
+import Icon from '../Icon/Icon';
+import css from './MonthInfo.module.css';
 
 const MonthInfo = () => {
   return (
-    <div>
-      <CalendarPagination />
-      {/* <Calendar /> */}
+    <div className={css.wrapper}>
+      <div className={css.header}>
+        <h3>Month</h3>
+        <div className={css.pagination}>
+          <CalendarPagination />
+          <Icon
+            width="38"
+            height="38"
+            iconName="pie-chart-1"
+            className={css.icon}
+          />
+        </div>
+
+        {/* <Calendar /> */}
+      </div>
+      <Calendar_1 />
     </div>
   );
 };

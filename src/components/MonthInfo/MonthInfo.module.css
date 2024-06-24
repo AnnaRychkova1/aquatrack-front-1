@@ -1,0 +1,17 @@
+.wrapper {
+  background-color: var(--background-color);
+  color: var(--main-text);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  /* margin-bottom: 1.5rem; */
+}
+.pagination {
+  display: flex;
+  justify-content: space-between;
+}
+/* .css.icon {
+  display: block;
+} */
