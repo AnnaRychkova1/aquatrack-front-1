@@ -49,7 +49,7 @@ const UniversalModal = ({ children, isOpen, closeModal }) => {
     >
       {/* <div className={css.modalContent}> */}
       <button className={css.modalCloseButton} onClick={closeModal}>
-        <Iconsvg iconName="close" className={css.iconClose} />
+        <Iconsvg  iconName="close" className={css.iconClose} />
       </button>
       <div className={css.modalBody}>{children}</div>
       {/* </div> */}
