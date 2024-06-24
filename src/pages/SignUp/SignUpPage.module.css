@@ -8,22 +8,22 @@
     .signUpPageWrapper {
         padding: 32px;
         max-width: 704px;
+
     }
 }
 
 .signUpPageContainer {
     max-width: 343px;
-
     margin: 0 auto;
     padding: 24px 16px;
     border-radius: 30px;
-    background-color: #f0eff4;
+    background-color: blue;
+    /* background-color: var(--background-color); */
 }
 
 @media only screen and (min-width: 768px) {
     .signUpPageContainer {
         max-width: 640px;
-
         padding: 32px;
     }
 }
@@ -35,7 +35,6 @@
     }
 }
 
-/* ----- */
 
 @media only screen and (min-width: 1440px) {
     .signUpPageWrapper {

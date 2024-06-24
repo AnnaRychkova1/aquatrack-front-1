@@ -1,6 +1,13 @@
+/* --main-text: #323f47;
+--second-text: #2f2f2f;
+--accent-color: #9be1a0;
+--background-color: #f0eff4;
+--main-white: #fff; */
+
 .loginContainer {
     border-radius: 30px;
-    background-color: #f0eff4;
+    background-color: blue;
+    /* background-color: var(--background-color); */
     padding: 24px 16px;
 }
 
@@ -15,7 +22,7 @@
     letter-spacing: -0.01em;
     text-align: left;
     margin-bottom: 32px;
-    color: #323f47;
+    color: var(--main-text);
 }
 
 .form {
@@ -31,7 +38,7 @@
     line-height: 18px;
     letter-spacing: -0.01em;
     text-align: left;
-    color: #2f2f2f;
+    color: var(--second-text);
     margin-bottom: 8px;
 }
 
@@ -50,17 +57,16 @@
     border: 1px solid #2f2f2f33;
     opacity: 0px;
     outline: none;
-    background-color: #f0eff4;
+    background-color: var(--background-color);
 }
 
 .icon_eye,
 .eyeIconOff {
     fill: none;
-    stroke: #2f2f2f;
+    stroke: var(--second-text);
     position: absolute;
     top: 16px;
     right: 16px;
-
     width: 20px;
     height: 20px;
 }
@@ -82,16 +88,15 @@
     height: 50px;
     border-radius: 30px;
     border: none;
-    color: #323f47;
+    color: var(--main-text);
     font-size: 14px;
     font-weight: 700;
     line-height: 18px;
-    background-color: #9be1a0;
+    background-color: var(--accent-color);
     margin-top: 16px;
     cursor: pointer;
     opacity: 0px;
-
-    transition: var(--animation);
+    /* transition: var(--animation); */
 }
 
 .button:hover,
@@ -115,7 +120,7 @@
     font-weight: 700;
     line-height: 18px;
     letter-spacing: -0.01em;
-    color: #2f2f2f;
+    color: var(--second-text);
 }
 
 .errors {
@@ -123,7 +128,6 @@
     line-height: 18px;
     letter-spacing: -0.01em;
     text-align: left;
-
     color: #ef5050;
 }
 
