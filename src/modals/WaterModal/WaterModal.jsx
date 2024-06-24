@@ -1,8 +1,9 @@
-
 import { useState } from 'react';
-import styles from './WaterModal.module.css';
+import WaterForm from '../../components/WaterForm/WaterForm';
+import UniversalModal from '../Modal/Modal';
+import styles from './WaterModal.module.css'
 
-const WaterModal = ({ initialAmount, initialTime, onSave, onClose }) => {
+const WaterModal = ({ isOpen, closeModal,initialAmount, initialTime, onSave }) => {
   const [amount, setAmount] = useState(initialAmount || 50);
   const [time, setTime] = useState(initialTime || '7:00');
   const [value, setValue] = useState(initialAmount || 50);
@@ -17,15 +18,16 @@ const WaterModal = ({ initialAmount, initialTime, onSave, onClose }) => {
 
   const handleSave = () => {
     onSave({ amount, time, value });
-    onClose();
+    closeModal();
   };
-
   return (
-    <div className={styles.modal}>
+    
+    <UniversalModal isOpen={isOpen} closeModal={closeModal}>
       <div className={styles.modalContent}>
-        <button className={styles.closeButton} onClick={onClose}>×</button>
-        <h2>{initialAmount ? 'Edit the entered amount of water' : 'Add water'}</h2>
-        <div className={styles.field}>
+      <h2>{initialAmount ? 'Edit the entered amount of water' : 'Add water'}</h2>
+
+      <WaterForm />
+<div className={styles.field}>
           <label>Amount of water:</label>
           <div className={styles.amountControl}>
             <button onClick={() => handleAmountChange(-50)}>-</button>
@@ -50,11 +52,9 @@ const WaterModal = ({ initialAmount, initialTime, onSave, onClose }) => {
           />
         </div>
         <button className={styles.saveButton} onClick={handleSave}>Save</button>
-      </div>
     </div>
+    </UniversalModal>
   );
 };
 
-
 export default WaterModal;
-

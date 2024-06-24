@@ -1,19 +1,18 @@
-import { Helmet } from "react-helmet-async";
-import Logo from "../../components/Logo/Logo";
-import UniversalModal from "../../modals/Modal/Modal";
+import { Helmet } from 'react-helmet-async';
+import WaterMainInfo from '../../components/WaterMainInfo/WaterMainInfo';
+import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
+import css from './Tracker.module.css';
 
 const Tracker = () => {
   return (
-    <>
+    <div className={css.trackContainer}>
       <Helmet>
         <title>Tracker</title>
       </Helmet>
-      <Logo />
-      <h2>Tracker Page</h2>
-      <UniversalModal>
-        <h2>Модальне Вікно</h2>
-      </UniversalModal>
-    </>
+
+      <WaterMainInfo />
+      <WaterDetailedInfo />
+    </div>
   );
 };
 

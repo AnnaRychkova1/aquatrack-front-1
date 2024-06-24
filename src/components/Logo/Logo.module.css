@@ -1,0 +1,14 @@
+.logoFont {
+  /* position: absolute;
+  top: 26%;
+  left: 4%; */
+  color: var(--main-text);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+@media only screen and (min-width: 768px) {
+  .logoFont {
+    font-size: 24px;
+  }
+}
