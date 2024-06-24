@@ -1,10 +1,8 @@
 .list {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-  column-gap: 1.125rem;
-  row-gap: 1.25rem;
+  width: 303px;
+  gap: 20px 18px;
 }
 .item {
   display: flex;
@@ -15,6 +13,7 @@
 }
 @media screen and (min-width: 768px) {
   .list {
+    width: 640px;
     gap: 15px 48px;
   }
   .item {
@@ -24,6 +23,7 @@
 @media screen and (min-width: 1440px) {
   .list {
     gap: 15px 43px;
+    width: 608px;
   }
   .item {
     width: calc((100% - 7 * 43px) / 8);

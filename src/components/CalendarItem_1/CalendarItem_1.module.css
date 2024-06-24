@@ -11,8 +11,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 28px;
+  height: 28px;
   font-weight: 700;
   font-size: 0.875rem;
   line-height: 129%;
@@ -28,8 +28,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 28px;
+  height: 28px;
   font-weight: 700;
   font-size: 0.875rem;
   line-height: 129%;
@@ -44,8 +44,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 1.75rem;
-  height: 1.75rem;
+  width: 28px;
+  height: 28px;
   font-weight: 700;
   font-size: 0.875rem;
   line-height: 129%;
@@ -58,8 +58,25 @@
 }
 
 .dayPercent {
+  margin: 0;
   font-weight: 400;
   font-size: 0.625rem;
-  line-height: 100%;
   color: rgba(47, 47, 47, 0.6);
+}
+@media screen and (min-width: 768px) {
+  .dayNumberFull {
+    font-size: 16px;
+    width: 38px;
+    height: 38px;
+  }
+  .dayNumberPart {
+    font-size: 16px;
+    width: 38px;
+    height: 38px;
+  }
+  .dayNumberCurrent {
+    font-size: 16px;
+    width: 38px;
+    height: 38px;
+  }
 }

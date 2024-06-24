@@ -1,12 +1,17 @@
 .wrapper {
   background-color: var(--background-color);
   color: var(--main-text);
+  width: 303px;
+  height: 348px;
 }
-
 .header {
   display: flex;
   justify-content: space-between;
   /* margin-bottom: 1.5rem; */
+}
+.title {
+  margin-bottom: 24px;
+  font-size: 20px;
 }
 .pagination {
   display: flex;
@@ -15,3 +20,18 @@
 /* .css.icon {
   display: block;
 } */
+@media screen and (min-width: 768px) {
+  .wrapper {
+    width: 640px;
+    height: 361px;
+  }
+  .title {
+    font-size: 28px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .wrapper {
+    width: 608px;
+    height: 361px;
+  }
+}
