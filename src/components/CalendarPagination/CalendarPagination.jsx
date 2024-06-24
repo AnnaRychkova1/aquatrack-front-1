@@ -1,13 +1,65 @@
 // import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { selectDate } from '../../redux/date/selectors';
+import { paginationDate } from '../../redux/date/selectors';
+import { changePaginationDate } from '../../redux/date/slice';
+import css from './CalendarPagination.module.css';
+import Icon from '../Icon/Icon';
 
 const CalendarPagination = () => {
-  const storeMonth = new Date(useSelector(selectDate));
-  const formattedMonth = `${storeMonth.toLocaleDateString('en-GB', {
+  const dispatch = useDispatch();
+  const storeDate = new Date(useSelector(paginationDate));
+
+  const getPreviousMounth = date => {
+    const currentDate = new Date(date);
+    currentDate.setMonth(currentDate.getMonth() - 1);
+      return currentDate;
+  };
+
+  const getNextMounth = date => {
+    const currentDate = new Date(date);
+    currentDate.setMonth(currentDate.getMonth() + 1);
+      return currentDate;
+  };
+
+    const handlePreviousMounth = () => {
+    const previousMounth = getPreviousMounth(storeDate);
+    dispatch(changePaginationDate(new Date(previousMounth).toISOString()));
+  };
+
+  const handleNextMounth = () => {
+    const nextMounth = getNextMounth(storeDate);
+    dispatch(changePaginationDate(new Date(nextMounth).toISOString()));
+  };
+
+  const formattedMonth = `${storeDate.toLocaleDateString('en-GB', {
     month: 'long',
   })}`;
-  return <div>{formattedMonth}</div>;
+
+  const formattedYear = `${storeDate.toLocaleDateString('en-GB', {
+    year: 'numeric',
+  })}`;
+  return (
+    <div className={css.container}>
+      <button type="button" className={css.button} onClick={handlePreviousMounth}>
+          <Icon
+            width="18"
+            height="18"
+            iconName="chevron-left"
+            className={css.icon}
+          />
+      </button>
+      <div className={css.dateInfo}>{formattedMonth}, {formattedYear}</div>
+      <button type="button" className={css.button} onClick={handleNextMounth}>
+          <Icon
+            width="18"
+            height="18"
+            iconName="chevron-right"
+            className={css.icon}
+          />
+      </button>
+    </div>
+  );
 };
 
 export default CalendarPagination;
