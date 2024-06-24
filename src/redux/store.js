@@ -15,14 +15,15 @@ import { authReducer } from '../redux/users/slice.js';
 //import { waterReducer } from './water/waterSlice.js';
 
 const userPersistConfig = {
-  key: 'user',
+  key: 'auth',
   storage,
-  whitelist: [],
+  whitelist: ['token'],
 };
 
 export const store = configureStore({
   reducer: {
-    user: persistReducer(userPersistConfig, authReducer),
+    auth: persistReducer(userPersistConfig, authReducer),
+    // user: persistReducer(userPersistConfig, authReducer),
     // water: persistReducer(waterPersistConfig, waterReducer),
   },
   middleware: getDefaultMiddleware =>
