@@ -3,11 +3,11 @@ import axios from 'axios';
 import { getNewDay } from '../../helps/getNewDay.js';
 
 export const fetchWaters = createAsyncThunk(
-  'waters/fetchWaters',
+  'water/fetchWaters',
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        'https://aquatrack-back-1.onrender.com/waters'
+        'https://aquatrack-back-1.onrender.com/api/water'
       );
       return response.data;
     } catch (error) {
@@ -17,11 +17,11 @@ export const fetchWaters = createAsyncThunk(
 );
 
 export const addWater = createAsyncThunk(
-  'waters/addWater',
+  'water/addWater',
   async (water, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        'https://aquatrack-back-1.onrender.com/waters',
+        'https://aquatrack-back-1.onrender.com/api/water',
         water
       );
       return response.data;
@@ -32,11 +32,11 @@ export const addWater = createAsyncThunk(
 );
 
 export const deleteWater = createAsyncThunk(
-  'waters/deleteWater',
+  'water/deleteWater',
   async (waterId, { rejectWithValue }) => {
     try {
       await axios.delete(
-        `https://aquatrack-back-1.onrender.com/waters/${waterId}`
+        `https://aquatrack-back-1.onrender.com/api/water/${waterId}`
       );
       return waterId;
     } catch (error) {
@@ -46,7 +46,7 @@ export const deleteWater = createAsyncThunk(
 );
 
 export const updateWaters = createAsyncThunk(
-  'waters/update',
+  'water/update',
   async (water, { rejectWithValue }) => {
     try {
       const response = await axios.post(

@@ -1,21 +1,26 @@
-// import { useDispatch } from 'react-redux';
-// import { deleteWater, updateWaters } from '../../redux/water/operations';
+import { useDispatch } from 'react-redux';
+import {
+  deleteWater,
+  //  updateWaters
+} from '../../redux/water/operations';
 
 import UniversalModal from '../Modal/Modal';
 import css from './DeleteWaterModal.module.css';
+import { toast } from 'react-toastify';
 
-const DeleteWaterModal = ({ isOpen, closeModal }) => {
-  // const dispatch = useDispatch();
+const DeleteWaterModal = ({ isOpen, closeModal, waterId }) => {
+  const dispatch = useDispatch();
 
-  // const handleDelete = async () => {
-  //   try {
-  //     // await dispatch(deleteWater());
-  //     // dispatch(updateWaters());
-  //     onClose();
-  //   } catch (error) {
-  //     alert(error);
-  //   }
-  // };
+  const handleDelete = async () => {
+    try {
+      await dispatch(deleteWater(waterId));
+      toast.success('Запис видалено успішно');
+      closeModal();
+    } catch (error) {
+      toast.error('Помилка при видаленні');
+      console.error('Помилка при видаленні:', error);
+    }
+  };
 
   return (
     <UniversalModal isOpen={isOpen} closeModal={closeModal}>
@@ -29,12 +34,16 @@ const DeleteWaterModal = ({ isOpen, closeModal }) => {
           <button
             className={css.buttonDelete}
             type="button"
-            // onClick={handleDelete}
+            onClick={handleDelete}
           >
             Delete
           </button>
 
-          <button className={css.buttonCancel} type="button">
+          <button
+            className={css.buttonCancel}
+            type="button"
+            onClick={() => closeModal()}
+          >
             Cancel
           </button>
         </div>
