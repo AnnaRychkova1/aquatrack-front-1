@@ -1,8 +1,9 @@
 .wrapper {
   background-color: var(--background-color);
   color: var(--main-text);
+  width: 303px;
+  height: 348px;
 }
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -11,25 +12,10 @@
   align-items: center;
   /* margin-bottom: 1.5rem; */
 }
-
-.title {
-    font-weight: 700;
-    font-size: 28px;
-    line-height: 32px;
-    letter-spacing: -1%;
-}
-
 .pagination {
   display: flex;
   justify-content: space-between;
 }
-
-.icon {
-  display: flex;
-  border: none;
-  padding: 0;
-  justify-content: center;
-  align-items: center;
-  height: 32px;
-  margin-left: 22px;
-}
+/* .css.icon {
+  display: block;
+} */

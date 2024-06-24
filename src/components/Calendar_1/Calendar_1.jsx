@@ -6,7 +6,7 @@ const Calendar_1 = () => {
     <ul className={css.list}>
       {days.map(day => {
         return (
-          <li key={day.Number}>
+          <li className={css.item} key={day.Number}>
             <CalendarItem_1 day={day.Number} percent={day.Percent} />
           </li>
         );
