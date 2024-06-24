@@ -26,32 +26,32 @@ export const register = createAsyncThunk(
   }
 );
 
-export const logIn = createAsyncThunk(
-  'auth/login',
-  async (credentials, thunkAPI) => {
-    try {
-      const res = await axios.post('/users/login', credentials);
-      setAuthHeader(res.data.token);
-      return res.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 // export const logIn = createAsyncThunk(
 //   'auth/login',
-//   async ({ email, password }, thunkAPI) => {
+//   async (credentials, thunkAPI) => {
 //     try {
-//       const res = await axios.post('/users/login', { email, password });
-//       SetAuthHeader(res.data.accessToken);
-
+//       const res = await axios.post('/users/login', credentials);
+//       setAuthHeader(res.data.token);
 //       return res.data;
 //     } catch (error) {
 //       return thunkAPI.rejectWithValue(error.message);
 //     }
 //   }
 // );
+
+export const logIn = createAsyncThunk(
+  'auth/login',
+  async ({ email, password }, thunkAPI) => {
+    try {
+      const res = await axios.post('/users/login', { email, password });
+      SetAuthHeader(res.data.accessToken);
+
+      return res.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
 
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
@@ -91,7 +91,7 @@ export const refreshUser = createAsyncThunk(
 //   axios.defaults.headers.common.Authorization = '';
 // };
 
-// axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+// axios.defaults.baseURL = 'https://aquatrack-back-1.onrender.com/';
 
 // axios.interceptors.response.use(
 //   res => res,

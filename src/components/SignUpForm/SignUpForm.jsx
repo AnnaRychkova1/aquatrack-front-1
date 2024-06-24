@@ -53,8 +53,8 @@ const SignUpForm = () => {
   password.current = watch('password', '');
 
   return (
-    <div className={css.wrapper}>
-      <Logo />
+    <div className={css.loginContainer}>
+      {<Logo />}
       <div className={css.formContainer}>
         <p className={css.title}>Sign Up</p>
         <form

@@ -34,9 +34,9 @@ const SignUp = () => {
       <Helmet>
         <title>SignUp</title>
       </Helmet>
-      <div className={css.signUpPageWrapper}>
+      <div className={css.generalSignInForm}>
         <SignUpForm />
-        <div className={css.AdvantagesSection_up}>
+        <div className={css.AdvantagesSection_plus}>
           <AdvantagesSection />
         </div>
       </div>

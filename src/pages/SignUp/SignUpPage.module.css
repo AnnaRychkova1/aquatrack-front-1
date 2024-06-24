@@ -1,51 +1,27 @@
-.signUpPageWrapper {
-    padding: 16px;
-    margin: 0 auto;
+.generalSignInForm {
     max-width: 343px;
+    margin: 0 auto;
+
 }
 
 @media only screen and (min-width: 768px) {
-    .signUpPageWrapper {
+    .generalSignInForm {
         padding: 32px;
         max-width: 704px;
-
-    }
-}
-
-.signUpPageContainer {
-    max-width: 343px;
-    margin: 0 auto;
-    padding: 24px 16px;
-    border-radius: 30px;
-    background-color: blue;
-    /* background-color: var(--background-color); */
-}
-
-@media only screen and (min-width: 768px) {
-    .signUpPageContainer {
-        max-width: 640px;
-        padding: 32px;
     }
 }
 
 @media only screen and (min-width: 1440px) {
-    .signUpPageContainer {
-        max-width: 608px;
-        margin: 0;
-    }
-}
-
-
-@media only screen and (min-width: 1440px) {
-    .signUpPageWrapper {
+    .generalSignInForm {
         display: flex;
         gap: 32px;
         max-width: 1376px;
+
     }
 }
 
 @media only screen and (max-width: 1439px) {
-    .AdvantagesSection_up {
+    .AdvantagesSection_plus {
         display: none;
     }
 }

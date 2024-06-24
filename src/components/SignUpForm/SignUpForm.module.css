@@ -1,13 +1,6 @@
-/* --main-text: #323f47;
---second-text: #2f2f2f;
---accent-color: #9be1a0;
---background-color: #f0eff4;
---main-white: #fff; */
-
 .loginContainer {
     border-radius: 30px;
-    background-color: blue;
-    /* background-color: var(--background-color); */
+    background-color: var(--background-color);
     padding: 24px 16px;
 }
 
@@ -47,7 +40,6 @@
     flex-direction: column;
     justify-content: center;
     margin-bottom: 16px;
-
     position: relative;
 }
 
@@ -96,7 +88,6 @@
     margin-top: 16px;
     cursor: pointer;
     opacity: 0px;
-    /* transition: var(--animation); */
 }
 
 .button:hover,
@@ -180,6 +171,7 @@
     .loginContainer {
         max-width: 608px;
         width: 100%;
+
     }
 
     .formContainer {
