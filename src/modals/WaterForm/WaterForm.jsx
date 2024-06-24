@@ -149,29 +149,3 @@ export default WaterForm;
 // };
 
 // export default WaterForm;
-
-// import UniversalModal from '../Modal/Modal';
-// import { useForm, Controller } from 'react-hook-form';
-// import { yupResolver } from '@hookform/resolvers/yup';
-// import * as yup from 'yup';
-
-// const schema = yup.object().shape({
-//   waterAmount: yup.number().required('Обовʼязкове поле'),
-//   time: yup.string().required('Обовʼязкове поле'),
-// });
-
-// const [time, setTime] = useState(initialTime || '7:00');
-
-// const handleSave = () => {
-//   onSave({ amount, time, value });
-//   onClose();
-// };
-
-// const { handleSubmit, control, errors } = useForm({
-//   resolver: yupResolver(schema),
-// });
-
-// const onSubmit = data => {
-//   onSave(data);
-//   closeModal();
-// };
