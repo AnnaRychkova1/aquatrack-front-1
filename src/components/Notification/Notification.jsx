@@ -1,19 +1,20 @@
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
 
-const Notification = ({ message }) => {
-  toast(
-    { message },
-    {
-      position: 'top-right',
-      autoClose: 5000,
-      hideProgressBar: false,
+const Notification = ({ type, message }) => {
+  // type valid methods are: info, success, warning, error
+  useEffect(() => {
+    toast[type](message, {
+      position: 'top-center',
+      autoClose: 3000,
+      hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-    }
-  );
+    });
+  }, [type, message]);
   return (
     <div>
       <ToastContainer />
@@ -21,44 +22,4 @@ const Notification = ({ message }) => {
   );
 };
 
-// const App = () => {
-//   const notify = () => toast('This is a notification!');
-
-//   return (
-//     <div>
-//       <h1>Notification System</h1>
-//       <button onClick={notify}>Show Notification</button>
-//       <ToastContainer />
-//     </div>
-//   );
-// };
-
-// export default Notification;
-
-// import React from 'react';
-// import axios from './api/axios';
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
-
-// const App = () => {
-//     const fetchData = async () => {
-//         try {
-//             const response = await axios.get('/data');
-//             toast.success('Data fetched successfully!');
-//             console.log(response.data);
-//         } catch (error) {
-//             toast.error('Error fetching data');
-//             console.error(error);
-//         }
-//     };
-
-//     return (
-//         <div>
-//             <h1>Data Fetch Example</h1>
-//             <button onClick={fetchData}>Fetch Data</button>
-//             <ToastContainer />
-//         </div>
-//     );
-// };
-
-// export default App;
+export default Notification;
