@@ -6,8 +6,7 @@
 
  .loginContainer {
      border-radius: 30px;
-     background-color: #EEEEEE;
-     /* background-color: --background-color; */
+     background-color: var(--background-color);
      padding: 24px 16px;
  }
 
@@ -38,7 +37,7 @@
      line-height: 18px;
      letter-spacing: -0.01em;
      text-align: left;
-     color: #2f2f2f;
+     color: var(--second-text);
      margin-bottom: 8px;
  }
 
@@ -57,17 +56,16 @@
      border: 1px solid #2f2f2f33;
      opacity: 0px;
      outline: none;
-     background-color: --background-color;
+     background-color: var(--background-color);
  }
 
  .icon_eye,
  .eyeIconOff {
      fill: none;
-     stroke: --second-text;
+     stroke: var(--second-text);
      position: absolute;
      top: 16px;
      right: 16px;
-
      width: 20px;
      height: 20px;
  }
@@ -89,12 +87,11 @@
      height: 50px;
      border-radius: 30px;
      border: none;
-     color: --main-text;
+     color: var(--main-text);
      font-size: 14px;
      font-weight: 700;
      line-height: 18px;
-     background-color: #9be1a0;
-     /* background-color: --accent-color; */
+     background-color: var(--accent-color);
      margin-top: 16px;
      cursor: pointer;
      opacity: 0px;
@@ -102,8 +99,7 @@
 
  .button:hover,
  .button:focus {
-     background-color: #9be1a0;
-     /* background: --accent-color; */
+     background-color: var(--accent-color)
  }
 
  .description {
@@ -122,8 +118,7 @@
      font-weight: 700;
      line-height: 18px;
      letter-spacing: -0.01em;
-     /* color: --second-text; */
-     color: #2f2f2f;
+     color: var(--second-text);
  }
 
  .errors {
@@ -131,7 +126,6 @@
      line-height: 18px;
      letter-spacing: -0.01em;
      text-align: left;
-
      color: #ef5050;
  }
 
