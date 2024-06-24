@@ -236,6 +236,29 @@ const SignUpForm = () => {
   const password = React.useRef({});
   password.current = watch('password', '');
 
+  // const SignUpForm = () => {
+  //   const dispatch = useDispatch();
+
+  //   const handleRegister = values => {
+  //     dispatch(
+  //       register({
+  //         email: values.email,
+  //         password: values.password,
+  //       })
+  //     );
+  //   };
+
+  //   const formik = useFormik({
+  //     initialValues: {
+  //       email: '',
+  //       password: '',
+  //     },
+  //     validationSchema: RegisterSchema,
+  //     onSubmit: values => {
+  //       handleRegister(values);
+  //     },
+  //   });
+
   return (
     <div className={css.loginContainer}>
       <Logo />
