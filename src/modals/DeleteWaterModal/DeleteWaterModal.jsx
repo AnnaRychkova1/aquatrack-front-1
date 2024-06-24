@@ -1,9 +1,5 @@
 import { useDispatch } from 'react-redux';
-import {
-  deleteWater,
-  //  updateWaters
-} from '../../redux/water/operations';
-
+import { deleteWater } from '../../redux/water/operations';
 import UniversalModal from '../Modal/Modal';
 import css from './DeleteWaterModal.module.css';
 import { toast } from 'react-toastify';
