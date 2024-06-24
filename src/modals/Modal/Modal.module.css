@@ -20,13 +20,12 @@
 
 .modalCloseButton {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 20px;
   background: none;
   border: none;
   cursor: pointer;
-  width: 24px;
-  height: 24px;
+  padding: 0px;
 }
 
 .modalCloseButton:hover .iconClose {
@@ -34,27 +33,14 @@
 }
 
 .iconClose {
-  /* width: 24px;
-  height: 24px; */
-  width: 12px;
-  height: 12px;
-  stroke-width: 25;
-  /* stroke: var(--main-text); */
-}
-
-.modalBody {
-  /* position: relative;
-  top: 50%;
-  left: 50%; */
+  width: 24px;
+  height: 24px;
+  stroke: var(--main-text);
 }
 
 @media only screen and (min-width: 768px) {
-  .modalCloseButton {
+  .iconClose {
     width: 28px;
     height: 28px;
-  }
-  .iconClose {
-    width: 14px;
-    height: 14px;
   }
 }
