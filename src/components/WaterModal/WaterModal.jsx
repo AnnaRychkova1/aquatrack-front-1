@@ -1,13 +1,4 @@
-// import WaterForm from './WaterForm';
-// import UniversalModal from '../Modal/Modal';
 
-// const WaterModal = ({ isOpen, closeModal }) => {
-//   return (
-//     <UniversalModal isOpen={isOpen} closeModal={closeModal}>
-//       <WaterForm />
-//     </UniversalModal>
-//   );
-// };
 import { useState } from 'react';
 import styles from './WaterModal.module.css';
 
