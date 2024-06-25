@@ -4,24 +4,24 @@
   left: 50%;
   transform: translate(-50%, -50%); */
 
-  border-radius: 15px;
-  padding: 40px 20px;
-  max-width: 343px;
+  /* border-radius: 15px; */
+  /* padding: 40px 20px; */
+  /* max-width: 343px; */
   width: 100%;
-  background-color: var(--main-white);
-  border: none;
-  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  /* background-color: var(--main-white); */
+  /* border: none; */
+  /* box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1); */
 }
-
+/* 
 .subtitle,
-.title,
+.title, */
 .valueLabel {
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--main-text);
 }
-
+/* 
 .title {
   font-size: 20px;
   line-height: 1.2;
@@ -31,7 +31,7 @@
   font-size: 16px;
   line-height: 1.25;
   margin-top: 24px;
-}
+} */
 
 .amountWaterLabel,
 .timeLabel {
@@ -141,13 +141,13 @@
 }
 
 @media (min-width: 768px) {
-  .waterForm {
+  /* .waterForm {
     padding: 40px;
     max-width: 518px;
     height: 555px;
-  }
+  } */
 
-  .title {
+  /* .title {
     font-size: 28px;
     line-height: 1.14;
   }
@@ -155,7 +155,7 @@
   .subtitle {
     font-size: 18px;
     line-height: 1.33;
-  }
+  } */
 
   .amountWaterLabel,
   .timeLabel {
@@ -185,3 +185,4 @@
     line-height: 1.33;
   }
 }
+
