@@ -1,9 +1,3 @@
-// const SignInForm = () => {
-//   return <div>SignInForm</div>;
-// };
-
-// export default SignInForm;
-
 import css from './SignInForm.module.css';
 import { NavLink } from 'react-router-dom';
 import Logo from '../Logo/Logo';
