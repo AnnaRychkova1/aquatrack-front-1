@@ -31,6 +31,7 @@ const UniversalModal = ({ children, isOpen, closeModal }) => {
       className={css.modalContent}
       overlayClassName={css.modalBackdrop}
       shouldCloseOnOverlayClick={true}
+      // contentLabel="Example Modal"
     >
       <button className={css.modalCloseButton} onClick={closeModal}>
         <Iconsvg iconName="close" className={css.iconClose} />
