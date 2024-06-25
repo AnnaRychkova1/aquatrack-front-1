@@ -3,7 +3,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
 
 const Notification = ({ type, message }) => {
-  // type valid methods are: info, success, warning, error
   useEffect(() => {
     toast[type](message, {
       position: 'top-center',
@@ -23,3 +22,7 @@ const Notification = ({ type, message }) => {
 };
 
 export default Notification;
+
+// Приклад використання
+// <Notification type="success" message="There is your message" />;
+// Можливі варіанти type: info, success, warning, error
