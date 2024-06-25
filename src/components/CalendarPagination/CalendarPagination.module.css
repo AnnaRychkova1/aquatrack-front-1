@@ -2,17 +2,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
     height: 32px;
 }
 
 .dateInfo {
-    display: inline-block;
+    display: flex;
     margin: 0;
+    width: 124px;
+    justify-content: center;
     font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 14px;
+    line-height: 18px;
     letter-spacing: -1%;
+    color: var(--main-text);
 }
 
 .button {
@@ -21,4 +24,13 @@
     padding: 0;
     justify-content: center;
     align-items: center;
+    color: var(--main-text);
+}
+
+@media only screen and (min-width: 768px) {
+    .dateInfo {
+        width: 140px;
+        font-size: 16px;
+        line-height: 24px;
+    }
 }
