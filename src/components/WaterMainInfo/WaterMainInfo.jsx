@@ -1,17 +1,26 @@
-import WaterDailyNorma from './WaterDailyNorma/WaterDailyNorma';
-import WaterProgressBar from './WaterProgressBar/WaterProgressBar';
+import WaterDailyNorma from '../WaterDailyNorma/WaterDailyNorma';
+import WaterProgressBar from '../WaterProgressBar/WaterProgressBar';
 import css from './WaterMainInfo.module.css';
-import AddWaterMainInfoBtn from './AddWaterMainInfoBtn/AddWaterMainInfoBtn';
-import LogoTracker from './LogoTracker/LogoTracker';
+import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
+import Logo from '../Logo/Logo';
 
 const WaterMainInfo = () => {
   return (
     <div className={css.trackContainerItem}>
-      <LogoTracker />
+      <div className={css.logoContainer}>
+        <Logo />
+      </div>
+
       <div className={css.imgInfoContainer}></div>
       <WaterDailyNorma />
       <WaterProgressBar />
-      <AddWaterMainInfoBtn />
+      <div className={css.contBtn}>
+        <AddWaterBtn
+          buttonStyle={css.btn}
+          iconStyle={css.icon}
+          textStyle={css.textBtn}
+        />
+      </div>
     </div>
   );
 };

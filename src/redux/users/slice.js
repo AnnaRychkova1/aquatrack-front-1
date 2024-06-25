@@ -7,6 +7,11 @@ const authSlice = createSlice({
     user: {
       name: null,
       email: null,
+      // gender: null,
+      // avatar: null,
+      // weight: null,
+      // sportsActivity: null,
+      // waterRate: null,
     },
     token: null,
     isLoggedIn: false,
