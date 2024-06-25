@@ -21,9 +21,6 @@ const WaterProgressBar = () => {
     };
 
     fetchProgressData();
-
-    // const interval = setInterval(fetchProgressData, 5000);
-    // return () => clearInterval(interval);
   }, []);
 
   return (
@@ -38,12 +35,7 @@ const WaterProgressBar = () => {
             }}
           >
             <div className={css.waterProgressBarContent}>
-              <Iconsvg
-                width={24}
-                height={24}
-                iconName="water-progress-bar"
-                // className="custom-class"
-              />
+              <Iconsvg width={24} height={24} iconName="water-progress-bar" />
               <span className={css.waterProgressBarLabel}>
                 {`${completed}%`}
               </span>
@@ -61,36 +53,3 @@ const WaterProgressBar = () => {
 };
 
 export default WaterProgressBar;
-
-// const WaterProgressBar = () => {
-//   const [completed, setCompleted] = useState(null);
-//   const [error, setError] = useState(null);
-
-//   useEffect(() => {
-//     const fetchProgressData = async () => {
-//       try {
-//         const response = await fetch('/api/progress');
-//         if (!response.ok) {
-//           throw new Error(`HTTP error! status: ${response.status}`);
-//         }
-//         const data = await response.json();
-//         if (data && typeof data.completed === 'number') {
-//           setCompleted(data.completed);
-//         } else {
-//           console.error('Invalid data format:', data);
-//         }
-//       } catch (error) {
-//         console.error('Error fetching progress data:', error);
-//         setError(error.message);
-//       }
-//     };
-
-//     fetchProgressData();
-
-//     const interval = setInterval(fetchProgressData, 5000);
-//     return () => clearInterval(interval);
-//   }, []);
-
-//   if (error) {
-//     return <div>Error fetching progress data: {error}</div>;
-//   }

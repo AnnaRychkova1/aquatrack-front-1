@@ -2,7 +2,6 @@
   position: absolute;
   top: 5%;
   left: 5%;
-
   margin-bottom: 5px;
 }
 
@@ -13,9 +12,6 @@
   padding: 16px;
   width: 100%;
   min-width: 320px;
-  /* max-width: 375px; */
-
-  /* width: 343px; */
   height: 415px;
   background-color: var(--accent-color);
   margin: 0;
@@ -104,11 +100,8 @@
 .icon {
   width: 16px;
   height: 16px;
-
   stroke: var(--main-white);
   margin-right: 8px;
-  /* background-color: var(--main-text); */
-  /* stroke: var(--accent-color); */
 }
 
 .textBtn {
