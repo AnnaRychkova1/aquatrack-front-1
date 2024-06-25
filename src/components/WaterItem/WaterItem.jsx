@@ -4,7 +4,7 @@ import Iconsvg from '../Icon/Icon';
 import css from './WaterItem.module.css';
 import { useState } from 'react';
 
-const WaterItem = ({ id, volume, time }) => {
+const WaterItem = ({ id, volume, time, isEditable }) => {
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -34,6 +34,7 @@ const WaterItem = ({ id, volume, time }) => {
             className={css.button}
             type="button"
             aria-label="Edit water value"
+            disabled={!isEditable}
           >
             <Iconsvg
               width="14"
@@ -47,6 +48,7 @@ const WaterItem = ({ id, volume, time }) => {
             className={css.button}
             type="button"
             aria-label="Delete item"
+            disabled={!isEditable}
           >
             <Iconsvg
               width="14"

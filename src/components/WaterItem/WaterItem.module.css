@@ -68,6 +68,15 @@
   stroke: var(--accent-color);
 }
 
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.button:disabled .waterButtonSvg {
+  stroke: var(--main-text);
+}
+
 @media screen and (min-width: 768px) {
   .waterCard {
     min-width: 12rem;

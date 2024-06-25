@@ -19,9 +19,12 @@
   letter-spacing: -0.01em;
   text-align: center;
   color: var(--main-text);
-  /* padding: 0.3125rem 0.625rem; */
   border-radius: 1.875rem;
-  background-color: var(--main-white);
+  background-color: var(--background-color);
+  border: none;
+  transition-property: stroke;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 
 .dayNumberPart {
@@ -36,9 +39,12 @@
   letter-spacing: -0.01em;
   text-align: center;
   color: var(--main-text);
-  /* padding: 0.3125rem 0.625rem; */
   border-radius: 1.875rem;
   background-color: rgba(50, 63, 71, 0.2);
+  border: none;
+  transition-property: stroke;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 .dayNumberCurrent {
   display: flex;
@@ -52,9 +58,25 @@
   letter-spacing: -0.01em;
   text-align: center;
   color: var(--accent-color);
-  /* padding: 0.3125rem 0.625rem; */
   border-radius: 1.875rem;
   background-color: var(--main-text);
+  border: none;
+  transition-property: border;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+
+.dayNumberFull:hover,
+.dayNumberFull:focus,
+.dayNumberPart:hover,
+.dayNumberPart:focus {
+  color: var(--accent-color);
+  background-color: var(--main-text);
+}
+
+.dayNumberCurrent:hover,
+.dayNumberCurrent:focus {
+  border: 1px solid var(--main-white);
 }
 
 .dayPercent {
