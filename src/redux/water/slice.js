@@ -7,7 +7,7 @@ import {
 } from './operations.js';
 
 const watersSlice = createSlice({
-  name: 'waters',
+  name: 'water',
   initialState: {
     date: null,
     totalDayWater: 0,
@@ -49,7 +49,7 @@ const watersSlice = createSlice({
       })
       .addCase(deleteWater.fulfilled, (state, action) => {
         state.items = state.items.filter(
-          contact => contact.id !== action.payload
+          water => water.id !== action.payload
         );
         state.loading = false;
       })
@@ -69,7 +69,7 @@ const watersSlice = createSlice({
 export const wetersReducer = watersSlice.reducer;
 export const selectWaters = state => state.waters.items;
 
-export const selectFilteredWaterss = createSelector(
+export const selectFilteredWaters = createSelector(
   state => state.waters.items,
   state => state.filters.name,
   (items, name) => {

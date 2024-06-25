@@ -5,6 +5,7 @@ import { changeDate } from '../../redux/date/slice';
 import ChooseDate from '../ChooseDate/ChooseDate';
 import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import WaterList from '../WaterList/WaterList';
+import Notification from '../Notification/Notification';
 import css from './DailyInfo.module.css';
 
 const DailyInfo = () => {
@@ -47,6 +48,7 @@ const DailyInfo = () => {
       </div>
       <WaterList />
       <button onClick={handleChangeDate}>Previous day</button>
+      <Notification type="success" message="You chose today" />
     </div>
   );
 };

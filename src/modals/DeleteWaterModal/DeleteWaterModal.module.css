@@ -1,12 +1,8 @@
 .deleteWaterModal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
   border-radius: 15px;
   padding: 40px 20px;
   max-width: 344px;
+  min-width: 320px;
   width: 100%;
   background-color: var(--main-white);
   border: none;
@@ -41,7 +37,6 @@
   font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.01em;
-  text-align: center;
   color: var(--main-text);
   border-radius: 30px;
   padding: 14px 0;
@@ -75,7 +70,7 @@
   .deleteWaterModal {
     padding: 40px;
     max-width: 516px;
-    width: 100%;
+    min-width: 516px;
   }
 
   .title {
@@ -99,10 +94,8 @@
   .buttonCancel {
     font-size: 16px;
     line-height: 1.5;
-    padding: 18px 67px;
-    /* width: 170px; */
+    padding: 18px 59px;
     margin-top: 24px;
+    width: 178px;
   }
 }
-
-

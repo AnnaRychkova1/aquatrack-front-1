@@ -9,6 +9,7 @@ const Tracker = () => {
       <Helmet>
         <title>Tracker</title>
       </Helmet>
+
       <WaterMainInfo />
       <WaterDetailedInfo />
     </div>
