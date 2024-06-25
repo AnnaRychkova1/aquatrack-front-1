@@ -6,7 +6,7 @@ const UserPanel = () => {
     <>
       <UserMenu />
       {/* UserMenu треба прибрати, нема такого компонента */}
-      <h2></h2>
+      {/* <h2></h2> */}
       <UserBar />
     </>
   );

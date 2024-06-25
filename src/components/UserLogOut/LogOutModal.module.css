@@ -107,3 +107,14 @@
     padding: 18px 59px;
   }
 }
+.iconCloseButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: none;
+  background-color: inherit;
+}
+.iconClose {
+  width: 28px;
+  height: 28px;
+}
