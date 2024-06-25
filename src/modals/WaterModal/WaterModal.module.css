@@ -44,14 +44,14 @@
   margin: 0 10px;
   font-size: 1.2rem;
 }
-
+/* 
 input[type='time'],
 input[type='number'] {
   width: 100%;
   padding: 8px;
   margin-top: 5px;
   font-size: 1rem;
-}
+} */
 
 .saveButton {
   background: #66bb6a;

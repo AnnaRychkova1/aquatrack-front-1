@@ -26,44 +26,70 @@ const WaterModal = ({
     onSave({ amount, time, value });
     closeModal();
   };
-  return (
-    <UniversalModal isOpen={isOpen} closeModal={closeModal}>
-      <div className={styles.modalWrap}>
-        <h2>
-          {initialAmount ? 'Edit the entered amount of water' : 'Add water'}
-        </h2>
+  const { t } = useTranslation();/** */
+  //   return (
+  //     <UniversalModal isOpen={isOpen} closeModal={closeModal}>
+  //       <div className={styles.modalWrap}>
+  //         <h2>
+  //           {initialAmount ? 'Edit the entered amount of water' : 'Add water'}
+  //         </h2>
 
-        <WaterForm />
-        <div className={styles.field}>
-          <label>Amount of water:</label>
-          <div className={styles.amountControl}>
-            <button onClick={() => handleAmountChange(-50)}>-</button>
-            <span>{amount} ml</span>
-            <button onClick={() => handleAmountChange(50)}>+</button>
-          </div>
-        </div>
-        <div className={styles.field}>
-          <label>Recording time:</label>
-          <input
-            type="time"
-            value={time}
-            onChange={e => setTime(e.target.value)}
-          />
-        </div>
-        <div className={styles.field}>
-          <label>Enter the value of the water used:</label>
-          <input
-            type="number"
-            value={value}
-            onChange={e => setValue(parseInt(e.target.value))}
-          />
-        </div>
-        <button className={styles.saveButton} onClick={handleSave}>
-          Save
-        </button>
+  //         <WaterForm />
+  //         <div className={styles.field}>
+  //           <label>Amount of water:</label>
+  //           <div className={styles.amountControl}>
+  //             <button onClick={() => handleAmountChange(-50)}>-</button>
+  //             <span>{amount} ml</span>
+  //             <button onClick={() => handleAmountChange(50)}>+</button>
+  //           </div>
+  //         </div>
+  //         <div className={styles.field}>
+  //           <label>Recording time:</label>
+  //           <input
+  //             type="time"
+  //             value={time}
+  //             onChange={e => setTime(e.target.value)}
+  //           />
+  //         </div>
+  //         <div className={styles.field}>
+  //           <label>Enter the value of the water used:</label>
+  //           <input
+  //             type="number"
+  //             value={value}
+  //             onChange={e => setValue(parseInt(e.target.value))}
+  //           />
+  //         </div>
+  //         <button className={styles.saveButton} onClick={handleSave}>
+  //           Save
+  //         </button>
+  //       </div>
+  //     </UniversalModal>
+  //   );
+  // };
+
+  // export default WaterModal;
+
+  
+
+
+return (
+  <UniversalModal isOpen={isOpen} closeModal={closeModal}>
+    <WaterModal
+     {operationType === 'add' ? (
+      <div>
+        <h2 className={css.title}> {t('modals.addWater')}</h2>
+        <h3 className={css.subtitle}> {t('modals.chooseValue')}</h3>
       </div>
-    </UniversalModal>
-  );
+    ) : (
+      <div>
+        <h2 className={css.title}> {t('modals.editWater')}</h2>
+        <h3 className={css.subtitle}> {t('modals.correctData')}:</h3>
+      </div>
+    )}>
+      <WaterForm />
+    </WaterModal>
+  </UniversalModal>
+);
 };
 
 export default WaterModal;
