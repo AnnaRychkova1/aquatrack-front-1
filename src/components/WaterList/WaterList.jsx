@@ -14,9 +14,7 @@ const WaterList = ({ selectDay }) => {
 
   // Фільтруємо масив dbClone по даті зі стору
   const filteredDbClone = dbClone.filter(item => {
-    console.log(item.date);
     const dbDate = new Date(item.date);
-    console.log(dbDate);
     return (
       dbDate.getDate() === selectDay.getDate() &&
       dbDate.getMonth() === selectDay.getMonth() &&

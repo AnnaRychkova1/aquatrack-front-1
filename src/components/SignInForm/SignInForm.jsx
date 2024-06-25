@@ -9,6 +9,7 @@ import { logIn } from '../../redux/users/operations';
 import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
 import toast from 'react-hot-toast';
+import Notification from '../Notification/Notification';
 
 const schema = yup.object().shape({
   email: yup
@@ -51,13 +52,25 @@ const SignInForm = () => {
               const resultAction = await dispatch(logIn(data));
 
               if (logIn.fulfilled.match(resultAction)) {
-                toast.success('You were successfully signed in!');
+                // toast.success('You were successfully signed in!');
+                <Notification
+                  type="success"
+                  message="You were successfully signed in!"
+                />;
                 reset();
               } else if (logIn.rejected.match(resultAction)) {
-                toast.error('Something went wrong. Please try again.');
+                // toast.error('Something went wrong. Please try again.');
+                <Notification
+                  type="error"
+                  message="Something went wrong. Please try again."
+                />;
               }
             } catch (error) {
-              toast.error('Unexpected error. Please try again.');
+              // toast.error('Unexpected error. Please try again.');
+              <Notification
+                type="error"
+                message="Unexpected error. Please try again."
+              />;
             }
           })}
         >

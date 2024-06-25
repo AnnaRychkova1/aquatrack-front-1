@@ -1,24 +1,21 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import {
-  refreshToken,
   requestLogin,
   requestLogout,
   requestRegister,
   requestResendVerify,
-  requestResetPassword,
-  requestForgotPassword,
+  // refreshToken,
+  // requestResetPassword,
+  // requestForgotPassword,
   requestSendVerify,
-  setAuthHeader,
-  clearAuthHeader,
 } from '../../services/userApi.js';
 
+//SignUp
 export const userRegister = createAsyncThunk(
-  'auth/register',
+  'users/register',
   async (formData, thunkAPI) => {
     try {
       const res = await requestRegister(formData);
-
-      setAuthHeader(res.token);
       return res;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
@@ -26,27 +23,12 @@ export const userRegister = createAsyncThunk(
   }
 );
 
+//SignIn
 export const logIn = createAsyncThunk(
-  'auth/login',
+  'users/login',
   async (formData, thunkAPI) => {
     try {
       const res = await requestLogin(formData);
-
-      setAuthHeader(res.token);
-      return res;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
-
-export const tokenRefresh = createAsyncThunk(
-  'auth/refresh',
-  async (formData, thunkAPI) => {
-    try {
-      const res = await refreshToken(formData);
-
-      setAuthHeader(res.token);
       return res;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
@@ -55,20 +37,30 @@ export const tokenRefresh = createAsyncThunk(
 );
 
 export const logOut = createAsyncThunk(
-  'auth/logout',
+  'users/logout',
   async (formData, thunkAPI) => {
     try {
       await requestLogout(formData);
-
-      clearAuthHeader();
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
     }
   }
 );
 
+// export const tokenRefresh = createAsyncThunk(
+//   'users/refresh',
+//   async (formData, thunkAPI) => {
+//     try {
+//       const res = await refreshToken(formData);
+//       return res;
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
+
 export const sendVerify = createAsyncThunk(
-  'auth/verify',
+  'users/verify',
   async ({ verificationToken, formData }, thunkAPI) => {
     try {
       const res = await requestSendVerify(verificationToken, formData);
@@ -81,7 +73,7 @@ export const sendVerify = createAsyncThunk(
 );
 
 export const resendVerify = createAsyncThunk(
-  'auth/re-verify',
+  'users/re-verify',
   async (formData, thunkAPI) => {
     try {
       const res = await requestResendVerify(formData);
@@ -93,28 +85,28 @@ export const resendVerify = createAsyncThunk(
   }
 );
 
-export const forgotPassword = createAsyncThunk(
-  'auth/forgot-password',
-  async (formData, thunkAPI) => {
-    try {
-      const res = await requestForgotPassword(formData);
+// export const forgotPassword = createAsyncThunk(
+//   'users/forgot-password',
+//   async (formData, thunkAPI) => {
+//     try {
+//       const res = await requestForgotPassword(formData);
 
-      return res;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
+//       return res;
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
 
-export const resetPassword = createAsyncThunk(
-  'auth/reset-password',
-  async (formData, thunkAPI) => {
-    try {
-      const res = await requestResetPassword(formData);
+// export const resetPassword = createAsyncThunk(
+//   'users/reset-password',
+//   async (formData, thunkAPI) => {
+//     try {
+//       const res = await requestResetPassword(formData);
 
-      return res;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
+//       return res;
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
