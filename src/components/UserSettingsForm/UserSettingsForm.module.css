@@ -1,0 +1,168 @@
+.settingsWrapper {
+  padding: 40px;
+  margin: 0;
+  max-width: 920px;
+  max-height: 996px;
+  /* transform: translate(0, 64px); */
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 15px;
+  /* overflow: hidden; */
+  /* margin-top: 64px; */
+}
+/* .settingsModal {
+  padding: 40px;
+  position: relative;
+  top: 64px;
+   transform: translate(0, 64px); 
+  margin: 0 auto;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 15px;
+} */
+.settingTitle {
+  margin-bottom: 20px;
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 114%;
+  letter-spacing: -0.01em;
+  color: #323f47;
+}
+.settingForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
+/* .settingsModal {
+  padding: 40px;
+  margin: 0 auto;
+  max-width: 920px;
+  width: 90%; /* Додано для адаптації на маленьких екранах 
+  max-height: 996px;
+  height: 996px; /* Встановлено максимальну висоту для модального вікна 
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 64px); /* Центрування модального вікна 
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 15px;
+  overflow: hidden; /* Забезпечте, щоб вміст не виходив за межі модального вікна 
+} */
+
+/* .settingForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+  overflow-y: auto; 
+  max-height: 916px;
+  overflow-y: auto;
+  max-height: calc(996px - 80px); 
+} */
+.settingsAvatarContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.settingsAvatarImage {
+  border-radius: 100%;
+  width: 100px;
+  height: 100px;
+  border: 1px solid #323f47;
+}
+.settingsAvatarLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+  transition: all 250ms;
+}
+.settingsAvatarLabel:hover {
+  color: #6e6e6e;
+}
+.settingsAvatarLabel:active {
+  transform: scale(1.03);
+}
+.iconUpload {
+  width: 20px;
+  height: 21px;
+  fill: #2f2f2f;
+}
+.iconUpload:hover {
+  fill: #6e6e6e;
+}
+.settingsAvatarInput {
+}
+.settingsFormContent {
+  width: 840px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.settingsFormData {
+}
+.settingsGenders {
+}
+.settingsGenderTitle {
+}
+.settingsGender {
+}
+.settingsGenderText {
+}
+.settingsName {
+}
+.settingsNameTitle {
+}
+.settingsNameText {
+}
+.settingsEmail {
+}
+.settingsEmailTitle {
+}
+.settingsEmailText {
+}
+.settingsDailyNorma {
+}
+.settingsDailyNormaTitle {
+}
+.settingsDailyNormaText {
+}
+.settingsDailyNormaContent {
+}
+
+.settingsParams {
+}
+
+.settingsWeight {
+}
+.settingsWeightTitle {
+}
+.settingsWeightText {
+}
+
+.settingsTime {
+}
+.settingsTimeTitle {
+}
+.settingsTimeText {
+}
+.settingsLiters {
+}
+.settingsLitersTitle {
+}
+.settingsLitersText {
+}
+
+.settingsButton {
+}
