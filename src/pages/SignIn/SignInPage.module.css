@@ -1,12 +1,12 @@
 .generalSignInForm {
-    padding: 16px;
+    /* padding: 16px; */
     margin: 0 auto;
     max-width: 343px;
 }
 
 @media only screen and (min-width: 768px) {
     .generalSignInForm {
-        padding: 32px;
+        /* padding: 32px; */
         max-width: 704px;
     }
 }
