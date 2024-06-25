@@ -55,9 +55,9 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await axios.post(
-        //  ('/users/signup', credentials);
-        'https://aquatrack-back-1.onrender.com/users',
-        credentials
+        ('/users/signup', credentials)
+        // 'https://aquatrack-back-1.onrender.com/users',
+        // credentials
       );
       setAuthHeader(res.data.token);
       return res.data;
