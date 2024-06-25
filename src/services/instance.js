@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://aquatrack-back-1.onrender.com/';
+const API_URL = 'https://aquatrack-back-1.onrender.com/api/';
 
 const instance = axios.create({
   baseURL: API_URL,

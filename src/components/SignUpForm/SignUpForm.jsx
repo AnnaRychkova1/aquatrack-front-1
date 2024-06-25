@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
-import css from './SignUpForm.module.css';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
 import { userRegister } from '../../redux/users/operations';
+import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
+import css from './SignUpForm.module.css';
 
 const schema = yup.object().shape({
   email: yup
@@ -20,11 +20,19 @@ const schema = yup.object().shape({
     .min(6, 'Password must contain at least 6 characters'),
   repeatPassword: yup
     .string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match'),
+    .oneOf([yup.ref('password'), null], 'Passwords must match')
+    .required('Repeat Password field is required'),
 });
 
 const SignUpForm = () => {
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    repeatPassword: '',
+  });
+
   const {
     register,
     handleSubmit,
@@ -32,13 +40,19 @@ const SignUpForm = () => {
     reset,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: formData,
+    mode: 'onChange',
   });
 
-  const dispatch = useDispatch();
-
-  const onSubmit = formData => {
-    dispatch(userRegister(formData));
+  const onSubmit = data => {
+    const { repeatPassword, ...userData } = data; // Exclude repeatPassword
+    dispatch(userRegister(userData));
     reset();
+    setFormData({
+      email: '',
+      password: '',
+      repeatPassword: '',
+    });
   };
 
   return (
@@ -50,16 +64,15 @@ const SignUpForm = () => {
           <label className={css.label}>Email</label>
           <div className={css.input_field}>
             <input
-              required={true}
               className={`${css.input} ${errors.email ? css.error : ''}`}
               type="email"
-              {...register('email', {
-                pattern: {
-                  value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                  message: 'Please enter valid email',
-                },
-              })}
+              {...register('email')}
               placeholder="Enter your email"
+              autoComplete="on"
+              onChange={e =>
+                setFormData({ ...formData, email: e.target.value })
+              }
+              value={formData.email}
             />
             {errors.email && (
               <span className={css.errors}>{errors.email.message}</span>
@@ -68,11 +81,14 @@ const SignUpForm = () => {
           <label className={css.label}>Password</label>
           <div className={css.input_field}>
             <input
-              required={true}
               className={`${css.input} ${errors.password ? css.error : ''}`}
               type={showPassword ? 'text' : 'password'}
               {...register('password')}
               placeholder="Enter your password"
+              onChange={e =>
+                setFormData({ ...formData, password: e.target.value })
+              }
+              value={formData.password}
             />
             {errors.password && (
               <span className={css.errors}>{errors.password.message}</span>
@@ -91,13 +107,16 @@ const SignUpForm = () => {
           <label className={css.label}>Repeat Password</label>
           <div className={css.input_field}>
             <input
-              required={true}
               className={`${css.input} ${
                 errors.repeatPassword ? css.error : ''
               }`}
               type={showPassword ? 'text' : 'password'}
               {...register('repeatPassword')}
               placeholder="Repeat password"
+              onChange={e =>
+                setFormData({ ...formData, repeatPassword: e.target.value })
+              }
+              value={formData.repeatPassword}
             />
             {errors.repeatPassword && (
               <span className={css.errors}>

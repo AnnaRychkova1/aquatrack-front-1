@@ -10,7 +10,9 @@ export const clearAuthHeader = () => {
 
 //SignUp
 export const requestRegister = async formData => {
-  const { data } = await instance.post('/users/register', formData);
+  const { data } = await instance.post('/users/register', formData, {
+    withCredentials: true, // Дозволити передачу cookies
+  });
   setAuthHeader(data.token);
   return data;
 };
