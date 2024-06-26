@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import { userRegister } from '../../redux/users/operations';
 import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
-import Notification from '../Notification/Notification';
 import css from './SignUpForm.module.css';
 
 const schema = yup.object().shape({
@@ -77,7 +76,7 @@ const SignUpForm = () => {
               value={formData.email}
             />
             {errors.email && (
-              <Notification type="error" message={errors.email.message} />
+              <span className={css.errors}>{errors.email.message}</span>
             )}
           </div>
           <label className={css.label}>Password</label>
@@ -93,7 +92,7 @@ const SignUpForm = () => {
               value={formData.password}
             />
             {errors.password && (
-              <Notification type="error" message={errors.password.message} />
+              <span className={css.errors}>{errors.password.message}</span>
             )}
             <svg
               className={showPassword ? css.eyeIconOff : css.icon_eye}
@@ -121,10 +120,9 @@ const SignUpForm = () => {
               value={formData.repeatPassword}
             />
             {errors.repeatPassword && (
-              <Notification
-                type="error"
-                message={errors.repeatPassword.message}
-              />
+              <span className={css.errors}>
+                {errors.repeatPassword.message}
+              </span>
             )}
             <svg
               className={showRepeatPassword ? css.eyeIconOff : css.icon_eye}
