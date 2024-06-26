@@ -1,7 +1,7 @@
 //import { useEffect, useState } from 'react';
 import UserBar from '../UserBar/UserBar';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../redux/users/selectors.js';
+// import { useSelector } from 'react-redux';
+// import { selectUser } from '../../redux/users/selectors.js';
 //import UserMenu from '../UserMenu/UserMenu.jsx';
 
 const UserPanel = () => {
