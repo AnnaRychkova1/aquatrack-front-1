@@ -50,7 +50,7 @@ export const updateWater = createAsyncThunk(
   async (water, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        'https://aquatrack-back-1.onrender.com/waters',
+        'https://aquatrack-back-1.onrender.com/water',
         water
       );
       return response.data;
