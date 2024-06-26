@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { userRegister } from '../../redux/users/operations';
 import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
+import Notification from '../Notification/Notification';
 import css from './SignUpForm.module.css';
 
 const schema = yup.object().shape({
@@ -41,7 +42,7 @@ const SignUpForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: formData,
-    mode: 'onChange',
+    mode: 'onBlur',
   });
 
   const onSubmit = data => {
@@ -75,7 +76,8 @@ const SignUpForm = () => {
               value={formData.email}
             />
             {errors.email && (
-              <span className={css.errors}>{errors.email.message}</span>
+              // <span className={css.errors}>{errors.email.message}</span>
+              <Notification type="error" message={errors.email.message} />
             )}
           </div>
           <label className={css.label}>Password</label>
@@ -91,7 +93,8 @@ const SignUpForm = () => {
               value={formData.password}
             />
             {errors.password && (
-              <span className={css.errors}>{errors.password.message}</span>
+              // <span className={css.errors}>{errors.password.message}</span>
+              <Notification type="error" message={errors.password.message} />
             )}
             <svg
               className={showPassword ? css.eyeIconOff : css.icon_eye}
@@ -119,9 +122,13 @@ const SignUpForm = () => {
               value={formData.repeatPassword}
             />
             {errors.repeatPassword && (
-              <span className={css.errors}>
-                {errors.repeatPassword.message}
-              </span>
+              // <span className={css.errors}>
+              //   {errors.repeatPassword.message}
+              // </span>
+              <Notification
+                type="error"
+                message={errors.repeatPassword.message}
+              />
             )}
             <svg
               className={showPassword ? css.eyeIconOff : css.icon_eye}

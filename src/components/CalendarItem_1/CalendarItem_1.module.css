@@ -20,7 +20,7 @@
   text-align: center;
   color: var(--main-text);
   border-radius: 1.875rem;
-  background-color: var(--background-color);
+  background-color: var(--main-white);
   border: none;
   transition-property: stroke;
   transition-duration: 250ms;

@@ -1,32 +1,30 @@
 import instance from './instance';
 
-export const setAuthHeader = token => {
+export const setToken = token => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-export const clearAuthHeader = () => {
+export const clearToken = () => {
   instance.defaults.headers.common.Authorization = '';
 };
 
 //SignUp
 export const requestRegister = async formData => {
-  const { data } = await instance.post('/users/register', formData, {
-    withCredentials: true, // Дозволити передачу cookies
-  });
-  setAuthHeader(data.token);
+  const { data } = await instance.post('/users/register', formData, {});
+  setToken(data.token);
   return data;
 };
 
 //SignIn
 export const requestLogin = async formData => {
   const { data } = await instance.post('/users/login', formData);
-  setAuthHeader(data.token);
+  setToken(data.token);
   return data;
 };
 
 export const requestLogout = async formData => {
   const { data } = await instance.post('/users/logout', formData);
-  clearAuthHeader();
+  clearToken();
   return data;
 };
 
