@@ -2,25 +2,10 @@ import css from './WaterProgressBar.module.css';
 import Iconsvg from '../Icon/Icon';
 import { useEffect, useState } from 'react';
 // import { useSelector } from 'react-redux';
-// import { selectDate } from '../../redux/date/selectors';
-
-// import {
-//   selectQuantity,
-//   selectDateWater,
-// } from '../../redux/water/selectors.js'; /*для отримання даних про кількість води і дату води.*/
-// import { getDayWater } from '../../redux/water/operations.js'; /* для отримання даних про воду для певного дня.*/
+// import { selectUser } from '../../redux/water/selectors.js';
 
 const WaterProgressBar = () => {
-  //   const dayWater = useSelector(selectDateWater);
-  //   const dayNorma = useSelector(selectQuantity);
-
-  //   // Дата зі стору
-  //   const storeDate = new Date(useSelector(selectDate));
-  //   const storeDay = storeDate.getDate();
-
-  //   // Дата з календаря
-  //   const сalendarDate = new Date(day);
-  //   const сalendarDay = сalendarDate.getDate();
+  //const daylyNorm = useSelector(selectUser).waterDrink;
 
   const [completed, setCompleted] = useState(50);
 
