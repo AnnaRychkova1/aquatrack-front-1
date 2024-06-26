@@ -2,6 +2,7 @@
     border-radius: 30px;
     background-color: var(--background-color);
     padding: 24px 16px;
+
 }
 
 .formContainer {
@@ -39,7 +40,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
     position: relative;
 }
 
@@ -92,14 +93,11 @@
 
 .button:hover,
 .button:focus {
-    background: #87d28d;
+    background: var(--accent-color)
 }
 
 .description {
-    font-family: Gilroy;
     color: #2f2f2f80;
-    font-size: 14px;
-    font-weight: 400;
     line-height: 18px;
     letter-spacing: -0.01em;
     text-align: center;
@@ -175,6 +173,6 @@
     }
 
     .formContainer {
-        padding: 113px 85px 137px;
+        padding: 70px 85px 15px;
     }
 }
