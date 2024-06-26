@@ -64,7 +64,9 @@ export const getDayWater = createAsyncThunk(
   'water/getDayWater',
   async (date, thunkAPI) => {
     try {
-      const response = await axiosInstance.get(`/water/day/${date}`);
+      const response = await axios.get(
+        `https://aquatrack-back-1.onrender.com/water/day/${date}`
+      );
 
       return response.data;
     } catch (error) {
@@ -79,8 +81,8 @@ export const getMonthWater = createAsyncThunk(
   async (month, thunkAPI) => {
     try {
       const newMonthStartDate = getNewDay(month);
-      const response = await axiosInstance.get(
-        `/water/month/${newMonthStartDate}`
+      const response = await axios.get(
+        `https://aquatrack-back-1.onrender.com/water/month/${newMonthStartDate}`
       );
       return response.data;
     } catch (error) {

@@ -1,15 +1,23 @@
 .settingsWrapper {
-  padding: 40px;
+  padding: 40px 20px;
   margin: 0;
-  max-width: 920px;
-  max-height: 996px;
+  max-width: 343px;
+  /* height: 996px; */
   /* transform: translate(0, 64px); */
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
   background: #ffffff;
   border-radius: 15px;
-  /* overflow: hidden; */
+  /* overflow-y: auto; */
   /* margin-top: 64px; */
 }
+/* .settingsTitle {
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: #323f47;
+} */
 /* .settingsModal {
   padding: 40px;
   position: relative;
@@ -20,7 +28,10 @@
   background: #ffffff;
   border-radius: 15px;
 } */
-.settingTitle {
+.settingsModal {
+  /* overflow-y: scroll; */
+}
+.settingsTitle {
   margin-bottom: 20px;
   font-family: Poppins;
   font-weight: 700;
@@ -32,6 +43,7 @@
 .settingForm {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   gap: 40px;
 }
@@ -105,42 +117,178 @@
 .settingsAvatarInput {
 }
 .settingsFormContent {
-  width: 840px;
+  /* width: 840px; */
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 40px;
+  gap: 24px;
 }
 .settingsFormData {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 .settingsGenders {
 }
 .settingsGenderTitle {
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 133%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: #323f47;
+  margin-bottom: 14px;
+}
+.settingsGenderInputs {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.settingsGenderInput {
 }
 .settingsGender {
 }
-.settingsGenderText {
-}
-.settingsName {
-}
-.settingsNameTitle {
-}
-.settingsNameText {
-}
-.settingsEmail {
-}
-.settingsEmailTitle {
-}
-.settingsEmailText {
-}
-.settingsDailyNorma {
-}
-.settingsDailyNormaTitle {
-}
-.settingsDailyNormaText {
-}
-.settingsDailyNormaContent {
+.settingsGender input[type='radio'] {
+  display: none; /* Приховати оригінальні радіокнопки */
 }
 
+.settingsGenderText {
+  position: relative;
+  font-family: Poppins;
+  display: flex;
+  padding-left: 30px;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+}
+
+/* Стилі для кастомної радіокнопки */
+.settingsGenderText::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid #97e5b5; /* Колір рамки радіокнопки */
+  border-radius: 50%;
+  background: #fff; /* Колір фону радіокнопки */
+}
+
+/* Стилі для активної радіокнопки */
+.settingsGender input[type='radio']:checked + .settingsGenderText::before {
+  border: 2px solid #9be1a0; /* Колір рамки активної радіокнопки */
+}
+
+.settingsGender input[type='radio']:checked + .settingsGenderText::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #9be1a0; /* Колір точки в центрі активної радіокнопки */
+}
+.settingsUser {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+  width: 100%;
+}
+.settingsUserLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+}
+.settingsUserTitle {
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: #323f47;
+}
+.settingsUserText {
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+  padding: 14px 16px;
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+}
+.settingsUserText:focus {
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
+  outline: none;
+}
+.settingsUserText:active {
+  border: 1px solid rgba(47, 47, 47, 0.4);
+  border-radius: 15px;
+}
+.settingsDailyNorma {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+}
+.settingsDailyNormaTitle {
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: #323f47;
+}
+.settingsDailyNormaEquations {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+.settingsDailyNormaEquation {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+}
+.settingsDailyNormaEquation span {
+  font-weight: 700;
+  color: #9be1a0;
+}
+.settingsDailyNormaContent {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  padding: 16px;
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: rgba(47, 47, 47, 0.6);
+}
+.settingsDailyNormaContent span {
+  color: #9be1a0;
+}
 .settingsParams {
 }
 

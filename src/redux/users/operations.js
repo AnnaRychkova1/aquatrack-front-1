@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import {
   requestLogin,
   requestLogout,
@@ -9,6 +10,17 @@ import {
   // requestForgotPassword,
   requestSendVerify,
 } from '../../services/userApi.js';
+import Notification from '../../components/Notification/Notification.jsx';
+
+const options = {
+  position: 'top-center',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 //SignUp
 export const userRegister = createAsyncThunk(
@@ -16,8 +28,11 @@ export const userRegister = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const res = await requestRegister(formData);
+      toast.success('Registration successful!', options);
+      // Notification({ type: 'success', message: 'Registration successful!' });
       return res;
     } catch (err) {
+      Notification({ type: 'error', message: err.message });
       return thunkAPI.rejectWithValue(err.message);
     }
   }
@@ -31,7 +46,23 @@ export const logIn = createAsyncThunk(
       const res = await requestLogin(formData);
       return res;
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
+      switch (err.response?.status) {
+        case 401:
+          Notification({
+            type: 'error',
+            message: 'Email or password is wrong',
+          });
+          toast.error('Email or password is wrong', options);
+
+          break;
+        case 404:
+          Notification({ type: 'error', message: 'User not found' });
+          break;
+        default:
+          Notification({ type: 'error', message: err.message });
+
+          return thunkAPI.rejectWithValue(err.message);
+      }
     }
   }
 );
