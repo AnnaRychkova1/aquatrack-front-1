@@ -121,7 +121,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 40px;
+  gap: 24px;
 }
 .settingsFormData {
   display: flex;
@@ -156,10 +156,15 @@
 }
 .settingsGenderText {
   position: relative;
+  font-family: Poppins;
   display: flex;
   padding-left: 30px;
   cursor: pointer;
-  color: #333;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
 }
 
 /* Стилі для кастомної радіокнопки */
@@ -192,29 +197,97 @@
   border-radius: 50%;
   background: #9be1a0; /* Колір точки в центрі активної радіокнопки */
 }
-.settingsGenderText {
+.settingsUser {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
+  width: 100%;
 }
-.settingsName {
+.settingsUserLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
 }
-.settingsNameTitle {
+.settingsUserTitle {
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: #323f47;
 }
-.settingsNameText {
+.settingsUserText {
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+  padding: 14px 16px;
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
 }
-.settingsEmail {
+.settingsUserText:focus {
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
+  outline: none;
 }
-.settingsEmailTitle {
-}
-.settingsEmailText {
+.settingsUserText:active {
+  border: 1px solid rgba(47, 47, 47, 0.4);
+  border-radius: 15px;
 }
 .settingsDailyNorma {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  justify-content: center;
 }
 .settingsDailyNormaTitle {
+  font-family: Poppins;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 125%;
+  letter-spacing: -0.01em;
+  color: #323f47;
 }
-.settingsDailyNormaText {
+.settingsDailyNormaEquations {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+.settingsDailyNormaEquation {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+}
+.settingsDailyNormaEquation span {
+  font-weight: 700;
+  color: #9be1a0;
 }
 .settingsDailyNormaContent {
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  padding: 16px;
+  font-family: Poppins;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: rgba(47, 47, 47, 0.6);
 }
-
+.settingsDailyNormaContent span {
+  color: #9be1a0;
+}
 .settingsParams {
 }
 
