@@ -21,10 +21,18 @@ const WaterForm = ({
   operationType,
   closeModal,
   waterId,
-  //  volume
+  //  water,
+  // value,
+  // time
 }) => {
   const dispatch = useDispatch();
-  // const { register, handleSubmit, errors } = useForm({
+  let initialWaterAmount = operationType === 'edit' ? 250 : 50;
+  // let isTime =
+  // const { 
+  //   // register,
+  //   //  handleSubmit,
+  //     // errors 
+  //   } = useForm({
   //   validationSchema: schemaWaterForm,
   // });
 
@@ -47,7 +55,7 @@ const WaterForm = ({
     }
   };
 
-  const [number, setNumber] = useState(50);
+  const [number, setNumber] = useState(initialWaterAmount);
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
 
@@ -89,7 +97,14 @@ const WaterForm = ({
       </div>
       <p className={css.timeLabel}>Recording time:</p>
 
-      <input className={css.inputTime} type="time" value="07:00"></input>
+      <input
+        className={css.inputTime}
+        type="time"
+        name="time"
+        value="07:00"
+        // ref={register}
+        // {time}
+      />
 
       <p className={css.valueLabel}>Enter the value of the water used:</p>
 
@@ -109,6 +124,12 @@ const WaterForm = ({
 
 export default WaterForm;
 /**============================================= */
+
+// function myProps() {
+// const isEdit = operationType === 'edit';
+// const initialWaterAmount =  operationType === 'edit' ? { volume } : 50;
+// const [number, setNumber] = useState(initialWaterAmount);
+// }
 {
   /* <h3 className={css.title}>
         {operationType ? 'Edit the entered amount of water' : 'Add water'}
@@ -118,12 +139,11 @@ export default WaterForm;
       </p> */
 }
 
- // function myProps() {
-  //   const isEdit = operationType === 'edit';
-  //   const initialWaterAmount = isEdit ? { volume } : 50;
-  //   const [number, setNumber] = useState(initialWaterAmount);
-  // }
-
+// function myProps() {
+//   const isEdit = operationType === 'edit';
+//   const initialWaterAmount = isEdit ? { volume } : 50;
+//   const [number, setNumber] = useState(initialWaterAmount);
+// }
 
 // import  { useState } from 'react';
 // import { useForm } from 'react-hook-form';
@@ -195,3 +215,62 @@ export default WaterForm;
 // };
 
 // export default WaterForm;
+
+// import { useState } from 'react';
+// import WaterForm from '../../components/WaterForm/WaterForm';
+
+// initialAmount,
+// initialTime,
+// onSave,
+
+//       <div className={styles.modalWrap}>
+//         <h2>
+//           {initialAmount ? 'Edit the entered amount of water' : 'Add water'}
+//         </h2>
+
+// const [amount, setAmount] = useState(initialAmount || 50);
+// const [time, setTime] = useState(initialTime || '7:00');
+// const [value, setValue] = useState(initialAmount || 50);
+
+// const handleAmountChange = delta => {
+//   const newAmount = amount + delta;
+//   if (newAmount >= 0) {
+//     setAmount(newAmount);
+//     setValue(newAmount);
+//   }
+// };
+
+// const handleSave = () => {
+//   onSave({ amount, time, value });
+//   closeModal();
+// };
+
+//         <WaterForm />
+//         <div className={styles.field}>
+//           <label>Amount of water:</label>
+//           <div className={styles.amountControl}>
+//             <button onClick={() => handleAmountChange(-50)}>-</button>
+//             <span>{amount} ml</span>
+//             <button onClick={() => handleAmountChange(50)}>+</button>
+//           </div>
+//         </div>
+//         <div className={styles.field}>
+//           <label>Recording time:</label>
+//           <input
+//             type="time"
+//             value={time}
+//             onChange={e => setTime(e.target.value)}
+//           />
+//         </div>
+//         <div className={styles.field}>
+//           <label>Enter the value of the water used:</label>
+//           <input
+//             type="number"
+//             value={value}
+//             onChange={e => setValue(parseInt(e.target.value))}
+//           />
+//         </div>
+//         <button className={styles.saveButton} onClick={handleSave}>
+//           Save
+//         </button>
+//       </div>
