@@ -3,9 +3,23 @@ import { userRegister, logIn, logOut } from './operations.js';
 
 const INITIAL_STATE = {
   user: {
+    activeTimeSports: 0,
+    avatarURL: null,
+    createdAt: null,
     email: null,
+    gender: null,
+    name: null,
+    password: null,
+    tmpToken: null,
+    token: null,
+    updatedAt: null,
+    verificationToken: null,
+    verify: false,
+    waterDrink: 1.8,
+    weight: 0,
+    _id: null,
   },
-  token: null,
+
   isSignedIn: false,
   isLoading: false,
   isError: false,
@@ -30,18 +44,16 @@ const authSlice = createSlice({
       // REGISTER
       .addCase(userRegister.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        const { user } = action.payload;
+        state.user.email = user.email;
         state.isSignedIn = true;
       })
       //LOGIN
       .addCase(logIn.fulfilled, (state, action) => {
-        const { user, token } = action.payload || {};
-        console.log(user.user);
+        const { user } = action.payload || {};
         if (user.token) {
-          localStorage.setItem('token', token);
-          state.user = user.user;
-          state.token = user.token;
+          localStorage.setItem('token', user.token);
+          state.user = user;
           state.isSignedIn = true;
         }
         state.isLoading = false;
