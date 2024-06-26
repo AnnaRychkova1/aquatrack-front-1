@@ -25,6 +25,7 @@ const UserLogOut = ({ closeModal }) => {
   const dispatch = useDispatch();
   const onLogOut = () => {
     dispatch(logOut());
+    closeModal();
   };
   return (
     <div className={css.LogOutModal}>
