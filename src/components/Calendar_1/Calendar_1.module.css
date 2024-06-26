@@ -1,6 +1,7 @@
 .list {
   display: flex;
   flex-wrap: wrap;
+  margin: 0 auto;
   width: 303px;
   gap: 20px 18px;
 }
