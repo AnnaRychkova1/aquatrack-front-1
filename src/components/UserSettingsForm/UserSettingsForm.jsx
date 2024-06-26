@@ -238,6 +238,7 @@ const UserSettingsForm = ({ isOpen, onClose }) => {
               {errors.email && <span>{errors.email.message}</span>}
             </label>
           </div>
+
           <div className={css.settingsDailyNorma}>
             <p className={css.settingsDailyNormaTitle}>My daily norma</p>
             <div className={css.settingsDailyNormaEquations}>

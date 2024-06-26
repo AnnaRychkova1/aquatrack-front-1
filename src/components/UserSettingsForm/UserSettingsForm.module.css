@@ -154,6 +154,7 @@
 .settingsGender input[type='radio'] {
   display: none; /* Приховати оригінальні радіокнопки */
 }
+
 .settingsGenderText {
   position: relative;
   font-family: Poppins;
