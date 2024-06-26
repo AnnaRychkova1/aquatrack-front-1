@@ -11,7 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-import { authReducer } from '../redux/users/slice.js';
+import { authReducer } from './users/slice';
 import { dateReducer } from './date/slice';
 //import { waterReducer } from './water/waterSlice.js';
 

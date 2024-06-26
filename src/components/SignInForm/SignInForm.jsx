@@ -32,47 +32,24 @@ const SignInForm = () => {
     reset,
   } = useForm({
     resolver: yupResolver(schema),
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
+  const onSubmit = data => {
+    dispatch(logIn(data));
+    reset();
+  };
+
   return (
     <div className={css.loginContainer}>
       {<Logo />}
       <div className={css.formContainer}>
         <h1 className={css.title}>Sign In</h1>
-        <form
-          className={css.form}
-          onSubmit={handleSubmit(async data => {
-            try {
-              const resultAction = await dispatch(logIn(data));
-
-              if (logIn.fulfilled.match(resultAction)) {
-                // toast.success('You were successfully signed in!');
-                <Notification
-                  type="success"
-                  message="You were successfully signed in!"
-                />;
-                reset();
-              } else if (logIn.rejected.match(resultAction)) {
-                // toast.error('Something went wrong. Please try again.');
-                <Notification
-                  type="error"
-                  message="Something went wrong. Please try again."
-                />;
-              }
-            } catch (error) {
-              // toast.error('Unexpected error. Please try again.');
-              <Notification
-                type="error"
-                message="Unexpected error. Please try again."
-              />;
-            }
-          })}
-        >
+        <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
           <label className={css.label}>Email</label>
           <div className={css.input_field}>
             <input
@@ -88,7 +65,7 @@ const SignInForm = () => {
               autoComplete="on"
             />
             {errors.email && (
-              <span className={css.errors}>{errors.email.message}</span>
+              <Notification type="error" message={errors.email.message} />
             )}
           </div>
           <label className={css.label}>Password</label>
@@ -100,7 +77,7 @@ const SignInForm = () => {
               placeholder="Enter your password"
             />
             {errors.password && (
-              <span className={css.errors}>{errors.password.message}</span>
+              <Notification type="error" message={errors.password.message} />
             )}
             {!showPassword && (
               <svg
