@@ -54,8 +54,10 @@
 
 .btnBox {
   display: flex;
+  /* justify-content: center; */
+  align-items: center;
   gap: 8px;
-  position: relative;
+  /* position: relative; */
   margin-top: 8px;
 }
 
@@ -68,6 +70,17 @@
   color: var(--main-white);
   font-size: 16px;
   outline: none;
+}
+/**/
+.numberMl{
+  font-family: 'Poppins', sans-serif;
+  border-radius: 30px;
+  padding: 10px 20px;
+  background: var(--main-text);
+  color: var(--main-white);
+  font-size: 16px;
+  /* outline: none; */
+  /* font-weight: bold; */
 }
 
 .ml {
