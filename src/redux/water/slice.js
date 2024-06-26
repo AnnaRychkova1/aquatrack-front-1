@@ -48,9 +48,7 @@ const watersSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteWater.fulfilled, (state, action) => {
-        state.items = state.items.filter(
-          water => water.id !== action.payload
-        );
+        state.items = state.items.filter(water => water.id !== action.payload);
         state.loading = false;
       })
       .addCase(deleteWater.rejected, (state, action) => {

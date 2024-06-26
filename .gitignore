@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 pullrequests-list.txt
+
+# Ignore versel.json file
+versel.json
