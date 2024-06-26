@@ -30,9 +30,9 @@ const UserMenu = ({ userData }) => {
     <>
       {isSignedIn && (
         <div>
-          <h1>
+          <h2>
             Hello, <span>{userName}</span>
-          </h1>
+          </h2>
           {/* <div>
             <button onClick={toggleMenu}>
               <span>{userName}</span>
