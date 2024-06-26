@@ -28,6 +28,7 @@ const schema = yup.object().shape({
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const [showRepeatPassword, setRepeatPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -46,7 +47,7 @@ const SignUpForm = () => {
   });
 
   const onSubmit = data => {
-    const { repeatPassword, ...userData } = data; // Exclude repeatPassword
+    const { repeatPassword, ...userData } = data;
     dispatch(userRegister(userData));
     reset();
     setFormData({
@@ -76,7 +77,6 @@ const SignUpForm = () => {
               value={formData.email}
             />
             {errors.email && (
-              // <span className={css.errors}>{errors.email.message}</span>
               <Notification type="error" message={errors.email.message} />
             )}
           </div>
@@ -93,7 +93,6 @@ const SignUpForm = () => {
               value={formData.password}
             />
             {errors.password && (
-              // <span className={css.errors}>{errors.password.message}</span>
               <Notification type="error" message={errors.password.message} />
             )}
             <svg
@@ -113,7 +112,7 @@ const SignUpForm = () => {
               className={`${css.input} ${
                 errors.repeatPassword ? css.error : ''
               }`}
-              type={showPassword ? 'text' : 'password'}
+              type={showRepeatPassword ? 'text' : 'password'}
               {...register('repeatPassword')}
               placeholder="Repeat password"
               onChange={e =>
@@ -122,22 +121,21 @@ const SignUpForm = () => {
               value={formData.repeatPassword}
             />
             {errors.repeatPassword && (
-              // <span className={css.errors}>
-              //   {errors.repeatPassword.message}
-              // </span>
               <Notification
                 type="error"
                 message={errors.repeatPassword.message}
               />
             )}
             <svg
-              className={showPassword ? css.eyeIconOff : css.icon_eye}
-              onClick={() => setShowPassword(!showPassword)}
+              className={showRepeatPassword ? css.eyeIconOff : css.icon_eye}
+              onClick={() => setRepeatPassword(!showRepeatPassword)}
             >
               <use
                 width={20}
                 height={20}
-                xlinkHref={`${sprite}${showPassword ? '#eye' : '#eye-off'}`}
+                xlinkHref={`${sprite}${
+                  showRepeatPassword ? '#eye' : '#eye-off'
+                }`}
               ></use>
             </svg>
           </div>
