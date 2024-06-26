@@ -1,12 +1,12 @@
 .loginContainer {
     border-radius: 30px;
+    /* border: 1px solid red; */
     padding: 16px;
     background-color: var(--background-color);
     max-width: 343px;
     min-width: 288px;
     width: 100%;
     height: 770px;
-    /* border: 1px solid red; */
 }
 
 .formContainer {

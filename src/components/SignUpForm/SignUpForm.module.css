@@ -1,32 +1,4 @@
-/* .trackContainerItem {
-    border-radius: 30px;
-    border: 1px solid red;
-    padding: 16px;
-    background-color: var(--background-color);
-    max-width: 343px;
-    min-width: 288px;
-    width: 100%;
-    height: 770px;
-}
-
-@media only screen and (min-width: 768px) {
-    .trackContainerItem {
-        padding: 32px;
-        max-width: 100%;
-        width: 704px;
-        height: 738px;
-    }
-}
-
-@media only screen and (min-width: 1440px) {
-    .trackContainerItem {
-        padding: 32px;
-        width: 672px;
-        height: 736px;
-    }
-} */
-
-.loginContainer {
+/* .loginContainer {
     border-radius: 30px;
     padding: 16px;
     background-color: var(--background-color);
@@ -34,7 +6,6 @@
     min-width: 288px;
     width: 100%;
     height: 770px;
-    /* border: 1px solid red; */
 }
 
 .formContainer {
@@ -75,6 +46,7 @@
     justify-content: center;
     margin-bottom: 20px;
     position: relative;
+
 }
 
 .input {
@@ -122,6 +94,7 @@
     margin-top: 16px;
     cursor: pointer;
     opacity: 0px;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button:hover,
@@ -145,18 +118,19 @@
     color: var(--second-text);
 }
 
-/* .errors {
+.errors {
     font-size: 14px;
     line-height: 18px;
     letter-spacing: -0.01em;
     text-align: left;
     color: #ef5050;
-} */
+}
 
-/* .error {
+.error {
     border-color: #ef5050;
     color: #ef5050;
-} */
+
+}
 
 @media screen and (min-width: 768px) {
     .loginContainer {
@@ -213,4 +187,139 @@
     .formContainer {
         padding: 70px 85px 15px;
     }
+} */
+.loginContainer {
+    border-radius: 30px;
+    padding: 16px;
+    background-color: var(--background-color);
+    max-width: 343px;
+    min-width: 288px;
+    width: 100%;
+    height: 770px;
+}
+
+.formContainer {
+    padding: 172px 0 192px;
+
+}
+
+.signUpFields {
+    margin: 32px 0 0 0;
+}
+
+.signUpFormInput {
+    display: flex;
+    flex-direction: column;
+    height: 76px;
+    margin-bottom: 16px;
+}
+
+@media (min-width: 768px) {
+    .signUpFormInput {
+        height: 88px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+}
+
+.fieldText {
+    font-size: 14px;
+    font-family: 'Poppins-bold', sans-serif;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+}
+
+@media (min-width: 768px) {
+    .fieldText {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+.inputField {
+    height: 50px;
+    border-radius: 15px;
+    border: 1px solid rgba(47, 47, 47, 0.2);
+    outline: none;
+    padding: 16px;
+    background-color: transparent;
+    margin-top: 8px;
+}
+
+@media (min-width: 768px) {
+    .inputField {
+        height: 56px;
+        padding: 16px 52px 16px 16px;
+    }
+}
+
+.eyeIcon {
+    fill: transparent;
+    stroke: #2f2f2f;
+}
+
+.togglePasswordBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    display: none;
+    padding: 0 0 0 0;
+}
+
+@media (min-width: 768px) {
+    .togglePasswordBtn {
+        position: absolute;
+        top: 57%;
+        right: 16px;
+        display: unset;
+    }
+}
+
+.signUpBtn {
+    height: 50px;
+    width: 100%;
+    background-color: #9be1a0;
+    border: transparent;
+    border-radius: 30px;
+    margin-top: 16px;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+    font-family: 'Poppins-bold', sans-serif;
+    color: #323f47;
+}
+
+@media (min-width: 768px) {
+    .signUpBtn {
+        height: 60px;
+        margin-top: 12px;
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+.signUpBtn:hover {
+    background-color: #87d28d;
+}
+
+.errMessage {
+    color: #ef5050;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.inputFieldError {
+    border: 1px solid #ef5050;
+    color: #ef5050;
+}
+
+.inputFieldRepeatPasswordError {
+    border: 1px solid #ef5050;
+    color: #ef5050;
+}
+
+.inputFieldActivated {
+    border: 1px solid rgba(47, 47, 47, 0.4);
 }
