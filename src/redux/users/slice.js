@@ -36,15 +36,19 @@ const authSlice = createSlice({
       })
       //LOGIN
       .addCase(logIn.fulfilled, (state, action) => {
-        localStorage.setItem('token', action.payload.token);
+        const { user, token } = action.payload || {};
+        if (token) {
+          localStorage.setItem('token', token);
+          state.user = user;
+          state.token = token;
+          state.isSignedIn = true;
+        }
         state.isLoading = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.isSignedIn = true;
       })
 
       // LOGOUT
       .addCase(logOut.fulfilled, () => {
+        localStorage.removeItem('token');
         return INITIAL_STATE;
       })
 
