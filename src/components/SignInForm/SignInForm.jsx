@@ -1,10 +1,3 @@
-// const SignInForm = () => {
-//   return <div>SignInForm</div>;
-// };
-
-// export default SignInForm;
-
-import css from './SignInForm.module.css';
 import { NavLink } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import * as yup from 'yup';
@@ -14,7 +7,8 @@ import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/users/operations';
 import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
-import toast from 'react-hot-toast';
+import Notification from '../Notification/Notification';
+import css from './SignInForm.module.css';
 
 const schema = yup.object().shape({
   email: yup
@@ -28,10 +22,12 @@ const schema = yup.object().shape({
 });
 
 const SignInForm = () => {
+  const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+
   const {
     register,
     handleSubmit,
-
     formState: { errors },
     reset,
   } = useForm({
@@ -42,8 +38,6 @@ const SignInForm = () => {
       password: '',
     },
   });
-  const dispatch = useDispatch();
-  const [showPassword, setShowPassword] = useState(false);
 
   return (
     <div className={css.loginContainer}>
@@ -57,13 +51,25 @@ const SignInForm = () => {
               const resultAction = await dispatch(logIn(data));
 
               if (logIn.fulfilled.match(resultAction)) {
-                toast.success('You were successfully signed in!');
+                // toast.success('You were successfully signed in!');
+                <Notification
+                  type="success"
+                  message="You were successfully signed in!"
+                />;
                 reset();
               } else if (logIn.rejected.match(resultAction)) {
-                toast.error('Something went wrong. Please try again.');
+                // toast.error('Something went wrong. Please try again.');
+                <Notification
+                  type="error"
+                  message="Something went wrong. Please try again."
+                />;
               }
             } catch (error) {
-              toast.error('Unexpected error. Please try again.');
+              // toast.error('Unexpected error. Please try again.');
+              <Notification
+                type="error"
+                message="Unexpected error. Please try again."
+              />;
             }
           })}
         >
@@ -71,7 +77,6 @@ const SignInForm = () => {
           <div className={css.input_field}>
             <input
               className={`${css.input} ${errors.email ? css.error : ''}`}
-              required={true}
               type="email"
               {...register('email', {
                 pattern: {
@@ -90,7 +95,6 @@ const SignInForm = () => {
           <div className={css.input_field}>
             <input
               className={`${css.input} ${errors.password ? css.error : ''}`}
-              required={true}
               type={showPassword ? 'text' : 'password'}
               {...register('password')}
               placeholder="Enter your password"
