@@ -1,3 +1,4 @@
+
 //import { useEffect, useState } from 'react';
 import UserBar from '../UserBar/UserBar';
 import { useSelector } from 'react-redux';
@@ -16,11 +17,13 @@ const UserPanel = () => {
   //     //     setAvatarUrl(userData.avatar || null);
   //   }
   // }, [userData]);
+
   return (
     <>
       {isSignedIn && (
         <h2>
           Hello, <span>{userData.name}</span>
+
         </h2>
       )}
       {/* <UserMenu /> */}
