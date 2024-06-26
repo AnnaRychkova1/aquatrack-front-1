@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   requestLogin,
   requestLogout,
@@ -10,7 +12,6 @@ import {
   // requestForgotPassword,
   requestSendVerify,
 } from '../../services/userApi.js';
-import Notification from '../../components/Notification/Notification.jsx';
 
 const options = {
   position: 'top-center',
@@ -28,11 +29,11 @@ export const userRegister = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const res = await requestRegister(formData);
-      toast.success('Registration successful!', options);
-      // Notification({ type: 'success', message: 'Registration successful!' });
+      toast.success('Successfully registered', { ...options });
+      console.log(toast.isActive);
       return res;
     } catch (err) {
-      Notification({ type: 'error', message: err.message });
+      toast.error(err.message, { ...options });
       return thunkAPI.rejectWithValue(err.message);
     }
   }
@@ -44,22 +45,18 @@ export const logIn = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const res = await requestLogin(formData);
+      toast.success('Successfully login', { ...options });
       return res;
     } catch (err) {
       switch (err.response?.status) {
         case 401:
-          Notification({
-            type: 'error',
-            message: 'Email or password is wrong',
-          });
-          toast.error('Email or password is wrong', options);
-
+          toast.error('Email or password is wrong', { ...options });
           break;
         case 404:
-          Notification({ type: 'error', message: 'User not found' });
+          toast.error('User not found', { ...options });
           break;
         default:
-          Notification({ type: 'error', message: err.message });
+          toast.error(err.message, { ...options });
 
           return thunkAPI.rejectWithValue(err.message);
       }
@@ -72,7 +69,10 @@ export const logOut = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       await requestLogout(formData);
+      toast.success('Successfully logout', { ...options });
+      return;
     } catch (err) {
+      toast.error(err.message, { ...options });
       return thunkAPI.rejectWithValue(err.message);
     }
   }

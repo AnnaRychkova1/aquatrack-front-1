@@ -1,7 +1,8 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectWaterId } from '../../redux/users/selectors';
+import { logOut } from '../../redux/users/operations';
 //import Iconsvg from '../Icon/Icon';
 import css from './LogOutModal.module.css';
-import { logOut } from '../../redux/users/operations';
 
 const UserLogOut = ({ closeModal }) => {
   // const handleLogOut = async () => {
@@ -22,9 +23,11 @@ const UserLogOut = ({ closeModal }) => {
   //     console.error('An error occurred when sending the request', error);
   //   }
   // };
+  const id = useSelector(selectWaterId);
+  console.log(id);
   const dispatch = useDispatch();
   const onLogOut = () => {
-    dispatch(logOut());
+    dispatch(logOut(id));
     closeModal();
   };
   return (
