@@ -194,27 +194,30 @@ const UserSettingsForm = ({ isOpen, onClose }) => {
       </div>
       <div className={css.settingsFormContent}>
         <div className={css.settingsFormData}>
-          {' '}
-          <label className={css.settingsGenders}>
-            <span className={css.settingsGenderTitle}>
-              Your gender identity
-            </span>
-            <input
-              className={css.settingsGender}
-              type="radio"
-              value="woman"
-              {...register('gender')}
-            />
-            <span className={css.settingsGenderText}>Woman</span>
-            <input
-              className={css.settingsGender}
-              type="radio"
-              value="man"
-              {...register('gender')}
-            />
-            <span className={css.settingsGenderText}>Man</span>
-          </label>
-          {errors.gender && <span>{errors.gender.message}</span>}
+          <div className={css.settingsGenders}>
+            <p className={css.settingsGenderTitle}>Your gender identity</p>
+            <div className={css.settingsGenderInputs}>
+              <label className={css.settingsGender}>
+                <input
+                  className={css.settingsGenderInput}
+                  type="radio"
+                  value="woman"
+                  {...register('gender')}
+                />
+                <span className={css.settingsGenderText}>Woman</span>
+              </label>
+              <label className={css.settingsGender}>
+                <input
+                  className={css.settingsGenderInput}
+                  type="radio"
+                  value="man"
+                  {...register('gender')}
+                />
+                <span className={css.settingsGenderText}>Man</span>
+              </label>
+            </div>
+            {errors.gender && <span>{errors.gender.message}</span>}
+          </div>
           <label className={css.settingsName}>
             <span className={css.settingsNameTitle}>Your name</span>
             <input
