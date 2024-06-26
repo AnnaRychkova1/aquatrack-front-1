@@ -1,12 +1,45 @@
+/* .trackContainerItem {
+    border-radius: 30px;
+    border: 1px solid red;
+    padding: 16px;
+    background-color: var(--background-color);
+    max-width: 343px;
+    min-width: 288px;
+    width: 100%;
+    height: 770px;
+}
+
+@media only screen and (min-width: 768px) {
+    .trackContainerItem {
+        padding: 32px;
+        max-width: 100%;
+        width: 704px;
+        height: 738px;
+    }
+}
+
+@media only screen and (min-width: 1440px) {
+    .trackContainerItem {
+        padding: 32px;
+        width: 672px;
+        height: 736px;
+    }
+} */
+
 .loginContainer {
     border-radius: 30px;
+    padding: 16px;
     background-color: var(--background-color);
-    padding: 24px 16px;
-
+    max-width: 343px;
+    min-width: 288px;
+    width: 100%;
+    height: 770px;
+    /* border: 1px solid red; */
 }
 
 .formContainer {
     padding: 172px 0 192px;
+
 }
 
 .title {
@@ -73,7 +106,7 @@
 }
 
 .input:focus {
-    border: 1px solid #2f2f2f66;
+    border: 1px solid var(--accent-color);
     color: inherit;
 }
 
@@ -112,22 +145,25 @@
     color: var(--second-text);
 }
 
-.errors {
+/* .errors {
     font-size: 14px;
     line-height: 18px;
     letter-spacing: -0.01em;
     text-align: left;
     color: #ef5050;
-}
+} */
 
-.error {
+/* .error {
     border-color: #ef5050;
     color: #ef5050;
-}
+} */
 
 @media screen and (min-width: 768px) {
     .loginContainer {
         padding: 32px;
+        max-width: 100%;
+        width: 704px;
+        height: 960px;
     }
 
     .formContainer {
@@ -167,9 +203,11 @@
 
 @media screen and (min-width: 1440px) {
     .loginContainer {
-        max-width: 608px;
-        width: 100%;
-
+        padding: 32px;
+        width: 672px;
+        height: 736px;
+        border-radius: 30px;
+        background-color: var(--background-color);
     }
 
     .formContainer {

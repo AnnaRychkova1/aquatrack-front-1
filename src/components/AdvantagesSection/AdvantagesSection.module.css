@@ -123,7 +123,7 @@
   height: 8px;
 }
 
-.advantages_habits > p {
+.advantages_habits>p {
   font-weight: 700;
   font-size: 8px;
   line-height: 100%;
@@ -224,7 +224,7 @@
     padding: 11px 16px;
   }
 
-  .advantages_habits > p {
+  .advantages_habits>p {
     font-size: 12px;
   }
 }
@@ -235,6 +235,8 @@
     padding: 537px 32px 64px;
     margin: 0;
     /* max-width: 608px; */
+    width: 672px;
+    height: 736px;
   }
 
   @media only screen and (min-resolution: 192dpi) {
