@@ -14,6 +14,7 @@ const WaterItem = ({ id, volume, time, isEditable }) => {
   const openDeleteModal = () => setIsDeleteModalOpen(true);
   const closeDeleteModal = () => setIsDeleteModalOpen(false);
   console.log(id);
+
   return (
     <>
       <div className={css.waterCard}>
@@ -25,7 +26,10 @@ const WaterItem = ({ id, volume, time, isEditable }) => {
         />
 
         <div className={css.waterInfo}>
-          <p className={css.volume}>{volume}</p>
+          <p className={css.volume}>
+            {volume}
+            {volume > 999 ? ' L' : ' ml'}
+          </p>
           <p className={css.time}>{time}</p>
         </div>
         <div className={css.waterButtons}>
