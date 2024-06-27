@@ -1,4 +1,4 @@
-/* .loginContainer {
+.loginContainer {
     border-radius: 30px;
     padding: 16px;
     background-color: var(--background-color);
@@ -187,8 +187,9 @@
     .formContainer {
         padding: 70px 85px 15px;
     }
-} */
-.loginContainer {
+}
+
+/* .loginContainer {
     border-radius: 30px;
     padding: 16px;
     background-color: var(--background-color);
@@ -322,4 +323,4 @@
 
 .inputFieldActivated {
     border: 1px solid rgba(47, 47, 47, 0.4);
-}
+} */
