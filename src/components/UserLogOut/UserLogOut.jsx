@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectWaterId } from '../../redux/users/selectors';
+import { selectToken } from '../../redux/users/selectors';
 import { logOut } from '../../redux/users/operations';
 //import Iconsvg from '../Icon/Icon';
 import css from './LogOutModal.module.css';
@@ -23,11 +23,12 @@ const UserLogOut = ({ closeModal }) => {
   //     console.error('An error occurred when sending the request', error);
   //   }
   // };
-  const id = useSelector(selectWaterId);
-  console.log(id);
+  // const id = useSelector(selectWaterId);
+  const token = useSelector(selectToken);
   const dispatch = useDispatch();
   const onLogOut = () => {
-    dispatch(logOut(id));
+    dispatch(logOut(token));
+
     closeModal();
   };
   return (

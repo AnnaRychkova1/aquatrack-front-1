@@ -66,9 +66,10 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk(
   'users/logout',
-  async (formData, thunkAPI) => {
+  async (token, thunkAPI) => {
     try {
-      await requestLogout(formData);
+      await requestLogout(token);
+
       toast.success('Successfully logout', { ...options });
       return;
     } catch (err) {
