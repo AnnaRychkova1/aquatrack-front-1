@@ -1,16 +1,15 @@
-
 //import { useEffect, useState } from 'react';
 import UserBar from '../UserBar/UserBar';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../redux/users/selectors.js';
+// import { useSelector } from 'react-redux';
+// import { selectUser } from '../../redux/users/selectors.js';
 //import UserMenu from '../UserMenu/UserMenu.jsx';
 
 const UserPanel = () => {
   //const [userName, setUserName] = useState('User');
   //const [avatarUrl, setAvatarUrl] = useState(null);
   //const [svgPopover, setSvgPopover] = useState('chevron-down');
-  const isSignedIn = true;
-  const userData = useSelector(selectUser);
+  // const isSignedIn = true;
+  // const userData = useSelector(selectUser);
   // useEffect(() => {
   //   if (userData) {
   //     userData.name;
@@ -20,12 +19,11 @@ const UserPanel = () => {
 
   return (
     <>
-      {isSignedIn && (
+      {/* {isSignedIn && (
         <h2>
           Hello, <span>{userData.name}</span>
-
         </h2>
-      )}
+      )} */}
       {/* <UserMenu /> */}
       {/* UserMenu треба прибрати, нема такого компонента */}
       {/* <h2></h2> */}
