@@ -1,8 +1,12 @@
 import css from './WaterProgressBar.module.css';
 import Iconsvg from '../Icon/Icon';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+// import { useSelector } from 'react-redux';
+// import { selectWaterDrink } from '../../redux/users/selectors';
 
 const WaterProgressBar = () => {
+  //const daylyNorm = useSelector(selectWaterDrink);
+
   const [completed, setCompleted] = useState(50);
 
   useEffect(() => {

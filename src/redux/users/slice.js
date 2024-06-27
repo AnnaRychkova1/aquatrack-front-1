@@ -1,5 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { userRegister, logIn, logOut } from './operations.js';
+import { userRegister, logIn, logOut, uploadUserAvatar } from './operations.js';
 
 const INITIAL_STATE = {
   user: {
@@ -58,7 +58,11 @@ const authSlice = createSlice({
         localStorage.removeItem('token');
         return INITIAL_STATE;
       })
-
+      .addCase(uploadUserAvatar.fulfilled, (state, action) => {
+        state.isLoading = false;
+        const { user } = action.payload;
+        state.user.avatarURL = user.avatarURL; // Update with your actual response structure
+      })
       .addMatcher(
         isAnyOf(userRegister.pending, logIn.pending, logOut.pending),
         handlePending

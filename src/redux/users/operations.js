@@ -11,6 +11,7 @@ import {
   // requestResetPassword,
   // requestForgotPassword,
   requestSendVerify,
+  uploadUserAvatars,
 } from '../../services/userApi.js';
 
 const options = {
@@ -118,6 +119,19 @@ export const resendVerify = createAsyncThunk(
   }
 );
 
+export const uploadUserAvatar = createAsyncThunk(
+  'users/avatars',
+  async (formData, thunkAPI) => {
+    try {
+      const response = await uploadUserAvatars(formData); // Replace with your actual API function
+      toast.success('Avatar uploaded successfully', { ...options });
+      return response; // Adjust to match your API response structure
+    } catch (err) {
+      toast.error(err.message, { ...options });
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
 // export const forgotPassword = createAsyncThunk(
 //   'users/forgot-password',
 //   async (formData, thunkAPI) => {

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Iconsvg from '../Icon/Icon';
 import UserBarPopover from '../UserBarPopover/UserBarPopover';
+import { useSelector } from 'react-redux';
+import { selectAvatar, selectName } from '../../redux/users/selectors';
 
 const UserBar = ({ userData }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,11 +24,13 @@ const UserBar = ({ userData }) => {
       setIsOpen(!isOpen);
     }
   };
+  const userDataName = useSelector(selectName);
+  const userDataAvatar = useSelector(selectAvatar);
   return (
     <div>
       <button onClick={toggleMenu}>
-        <span>{userName}</span>
-        <img name={userName} src={avatarUrl} size="40" />
+        <span>{userDataName}</span>
+        <img name={userDataName} src={userDataAvatar} size="40" />
         <Iconsvg width="14" height="14" iconName={svgPopover} />
       </button>
       {isOpen && <UserBarPopover />}

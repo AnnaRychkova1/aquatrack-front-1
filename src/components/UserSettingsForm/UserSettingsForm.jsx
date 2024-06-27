@@ -78,14 +78,17 @@ import * as Yup from 'yup';
 import css from './UserSettingsForm.module.css';
 import { useEffect, useState } from 'react';
 import Iconsvg from '../Icon/Icon';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectAvatar, selectWaterDrink } from '../../redux/users/selectors';
+import { uploadUserAvatar } from '../../redux/users/operations';
+
+//const API_URL = 'https://aquatrack-back-1.onrender.com/api/';
 //import Avatar from 'react-avatar';
 //import { useDispatch, useSelector } from 'react-redux';
 //import { updateUserSettings } from '../redux/user/operations'; // Потрібно визначити цю операцію
 
 const UserSettingsSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(2, 'User name must be at least 2 characters!')
-    .max(50, 'User name must be less than 50 characters!'),
+  name: Yup.string(),
   email: Yup.string()
     .required('Email is required!')
     .email('Must be a valid email!'),
@@ -111,11 +114,19 @@ const UserSettingsSchema = Yup.object().shape({
         (value && ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type))
     ),
 });
-
-const UserSettingsForm = ({ isOpen, onClose }) => {
+// { isOpen, onClose }
+const UserSettingsForm = () => {
   // const dispatch = useDispatch();
   // const user = useSelector(state => state.user);
-  const [avatarPreview, setAvatarPreview] = useState(null);
+  const dispatch = useDispatch();
+  const userDataAvatar = useSelector(selectAvatar);
+  const userDataWaterDrink = useSelector(selectWaterDrink);
+  // const [numberValue, setNumberValue] = useState(userDataWaterDrink);
+
+  // useEffect(() => {
+  //   setNumberValue(userDataWaterDrink);
+  // }, [userDataWaterDrink]);
+  const [avatarPreview, setAvatarPreview] = useState(userDataAvatar);
   const {
     register,
     handleSubmit,
@@ -131,19 +142,21 @@ const UserSettingsForm = ({ isOpen, onClose }) => {
       activeTime: '',
       waterIntake: '',
       gender: '',
-      avatar: null,
+      avatarURL: userDataAvatar,
     },
   });
 
   const handleAvatarChange = e => {
-    const file = e.target.avatar;
-    // console.log('Selected file:', file);
-    setValue('avatar', file);
+    const file = e.target.files[0];
+    console.log(file);
     if (file) {
       const preview = URL.createObjectURL(file);
       setAvatarPreview(preview);
-      //   console.log('Generated preview URL:', preview);
+      setValue('avatarURL', file); // Встановлення значення 'avatar' як об'єкт файлу
+      dispatch(uploadUserAvatar(file));
+      console.log(preview);
     }
+    console.log('ssdfbfbdfbfd');
   };
 
   const onSubmit = values => {
@@ -178,16 +191,17 @@ const UserSettingsForm = ({ isOpen, onClose }) => {
           src={avatarPreview}
           size="80"
         />
-        <label className={css.settingsAvatarLabel}>
+        <label
+          onChange={handleAvatarChange}
+          className={css.settingsAvatarLabel}
+        >
           <Iconsvg iconName="upload" className={css.iconUpload} />
           Upload a photo
           <input
             className={css.settingsAvatarInput}
             type="file"
-            accept="image/*"
+            {...register('avatarURL')}
             style={{ display: 'none' }}
-            onChange={handleAvatarChange}
-            {...register('avatar')}
           />
         </label>
         {errors.avatar && <span>{errors.avatar.message}</span>}
@@ -262,39 +276,44 @@ const UserSettingsForm = ({ isOpen, onClose }) => {
           </div>
         </div>
         <div className={css.settingsParams}>
-          <label className={css.settingsWeight}>
-            <span className={css.settingsWeightTitle}>
-              Your weight in kilograms
-            </span>
-            <input
-              className={css.settingsWeightText}
-              type="number"
-              {...register('weight')}
-            />
-            {errors.weight && <span>{errors.weight.message}</span>}
-          </label>
-          <label className={css.settingsTime}>
-            <span className={css.settingsTimeTitle}>
-              The time of active participation in sports
-            </span>
-            <input
-              className={css.settingsTimeText}
-              type="number"
-              {...register('activeTime')}
-            />
-            {errors.activeTime && <span>{errors.activeTime.message}</span>}
-          </label>
-          <div>
+          <div className={css.settingsUserParams}>
+            <label className={css.settingsParam}>
+              <span className={css.settingsParamTitle}>
+                Your weight in kilograms
+              </span>
+              <input
+                className={css.settingsParamText}
+                type="number"
+                {...register('weight')}
+              />
+              {errors.weight && <span>{errors.weight.message}</span>}
+            </label>
+            <label className={css.settingsParam}>
+              <span className={css.settingsParamTitle}>
+                The time of active participation in sports
+              </span>
+              <input
+                className={css.settingsParamText}
+                type="number"
+                {...register('activeTime')}
+              />
+              {errors.activeTime && <span>{errors.activeTime.message}</span>}
+            </label>
+          </div>
+          <div className={css.settingsLitersParams}>
             <p className={css.settingsLitersRequired}>
               The required amount of water in liters per day:
+              <span>{userDataWaterDrink}</span>
             </p>
             <label className={css.settingsLiters}>
               <span className={css.settingsLitersTitle}>
                 Write down how much water you will drink:
               </span>
               <input
+                defaultValue={userDataWaterDrink}
                 className={css.settingsLitersText}
                 type="number"
+                //onChange={e => setNumberValue(e.target.value)}
                 {...register('waterIntake')}
               />
               {errors.waterIntake && <span>{errors.waterIntake.message}</span>}
