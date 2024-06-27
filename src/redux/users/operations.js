@@ -31,6 +31,7 @@ export const userRegister = createAsyncThunk(
     try {
       const res = await requestRegister(formData);
       toast.success('Successfully registered', { ...options });
+
       return res;
     } catch (err) {
       toast.error(err.message, { ...options });
