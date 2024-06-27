@@ -1,29 +1,39 @@
-import WaterItem from '../WaterItem/WaterItem';
-import dbClone from './db_clone.json';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+// import WaterItem from '../WaterItem/WaterItem';
+import { fetchDailyWater } from '../../redux/water/operations';
+import { selectToken } from '../../redux/users/selectors';
 import css from './WaterList.module.css';
 
-const formatTime = dateString => {
-  const date = new Date(dateString);
-  const options = { hour: 'numeric', minute: 'numeric', hour12: true };
-  return date.toLocaleTimeString('en-US', options);
-};
+// const formatTime = dateString => {
+//   const date = new Date(dateString);
+//   const options = { hour: 'numeric', minute: 'numeric', hour12: true };
+//   return date.toLocaleTimeString('en-US', options);
+// };
 
 const WaterList = ({ selectDay }) => {
-  // Отримаємо календарну дату
-  const calendarDate = new Date();
+  // Форматуємо дату в формат YYYY-MM-DD
+  const initDate = new Date(selectDay);
+  const year = initDate.getFullYear();
+  const month = String(initDate.getMonth() + 1).padStart(2, '0'); // Місяці від 0 до 11
+  const day = String(initDate.getDate()).padStart(2, '0'); // Дні від 1 до 31
 
-  // Фільтруємо масив dbClone по даті зі стору
-  const filteredDbClone = dbClone.filter(item => {
-    const dbDate = new Date(item.date);
-    return (
-      dbDate.getDate() === selectDay.getDate() &&
-      dbDate.getMonth() === selectDay.getMonth() &&
-      dbDate.getFullYear() === selectDay.getFullYear()
-    );
-  });
+  const formatDate = `${year}-${month}-${day}`;
+
+  // Отримаємо календарну дату
+  // const calendarDate = new Date();
+  // Отримуємо дані з БД
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchDailyWater({ date: formatDate, token }));
+    }
+  }, [dispatch, token, formatDate]);
+
   return (
     <ul className={css.list}>
-      {filteredDbClone.length === 0 ? (
+      {/* {filteredDbClone.length === 0 ? (
         <li className={css.emptyItem}>
           There is no data for the selected date
         </li>
@@ -44,7 +54,7 @@ const WaterList = ({ selectDay }) => {
             />
           </li>
         ))
-      )}
+      )} */}
     </ul>
   );
 };

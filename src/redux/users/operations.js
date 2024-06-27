@@ -30,7 +30,9 @@ export const userRegister = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const res = await requestRegister(formData);
-      toast.success('Successfully registered', { ...options });
+      toast.success('Successfully registered. Check your email', {
+        ...options,
+      });
 
       return res;
     } catch (err) {
