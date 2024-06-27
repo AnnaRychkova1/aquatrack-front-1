@@ -28,7 +28,12 @@ const App = () => {
         <Route path="*" element={<NotFoundPage />} />
       </Route> */}
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<HomePage />} />
+        <Route
+          index
+          element={
+            <RestrictedRoute redirectTo="/tracker" component={<HomePage />} />
+          }
+        />
         <Route
           path="/signin"
           element={
@@ -41,6 +46,7 @@ const App = () => {
             <RestrictedRoute redirectTo="/tracker" component={<SignUp />} />
           }
         />
+
         <Route
           path="/tracker"
           element={
