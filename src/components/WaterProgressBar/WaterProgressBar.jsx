@@ -2,10 +2,10 @@ import css from './WaterProgressBar.module.css';
 import Iconsvg from '../Icon/Icon';
 import { useEffect, useState } from 'react';
 // import { useSelector } from 'react-redux';
-// import { selectUser } from '../../redux/water/selectors.js';
+// import { selectWaterDrink } from '../../redux/users/selectors';
 
 const WaterProgressBar = () => {
-  //const daylyNorm = useSelector(selectUser).waterDrink;
+  //const daylyNorm = useSelector(selectWaterDrink);
 
   const [completed, setCompleted] = useState(50);
 
@@ -29,10 +29,6 @@ const WaterProgressBar = () => {
 
   return (
     <div className={css.contBar}>
-      {/* <p className={css.textBar}>
-        {storeDay === сalendarDay ? 'Today' : сalendarDay}
-      </p> */}
-
       <p className={css.textBar}>Today</p>
       <div className={css.waterProgressBarWrapper}>
         <div className={css.waterProgressBar}>
