@@ -77,7 +77,7 @@ const SignUpForm = () => {
             />
             {errors.email && (
               <span className={css.errors}>{errors.email.message}</span>
-              // <Notification type="error" message={errors.email.message} />
+              //<Notification type="error" message={errors.email.message} />
             )}
           </div>
           <label className={css.label}>Password</label>
