@@ -51,6 +51,11 @@ const SignUpForm = () => {
     // dispatch(userRegister(userData)).then(() => {
     //   navigate('/signin');
     // });
+
+    // dispatch(userRegister(userData)).then(() => {
+    //   navigate('/tracker');
+    // });
+
     dispatch(userRegister(userData));
     reset();
     setFormData({
