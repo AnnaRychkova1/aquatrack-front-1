@@ -3,7 +3,14 @@ import { userRegister, logIn, logOut } from './operations.js';
 
 const INITIAL_STATE = {
   user: {
+    id: null,
+    name: null,
     email: null,
+    gender: null,
+    weight: 0,
+    activeTimeSports: 0,
+    waterDrink: 1.8,
+    avatarURL: null,
   },
   token: null,
   isSignedIn: false,
@@ -30,18 +37,17 @@ const authSlice = createSlice({
       // REGISTER
       .addCase(userRegister.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        const { user } = action.payload;
+        state.user.email = user.email;
         state.isSignedIn = true;
       })
       //LOGIN
       .addCase(logIn.fulfilled, (state, action) => {
-        const { user, token } = action.payload || {};
-        console.log(user.user);
-        if (user.token) {
+        const { user, token } = action.payload;
+        if (token) {
           localStorage.setItem('token', token);
-          state.user = user.user;
-          state.token = user.token;
+          state.user = user;
+          state.token = token;
           state.isSignedIn = true;
         }
         state.isLoading = false;

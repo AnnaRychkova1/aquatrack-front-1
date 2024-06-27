@@ -20,6 +20,13 @@ const App = () => {
   // }, [dispatch]);
   return (
     <Routes>
+      {/* <Route path="/" element={<SharedLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="signin" element={<SignIn />} />
+        <Route path="signup" element={<SignUp />} />
+        <Route path="tracker" element={<Tracker />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route> */}
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
         <Route
@@ -37,7 +44,7 @@ const App = () => {
         <Route
           path="/tracker"
           element={
-            <PrivateRoute redirectTo="/signup" component={<Tracker />} />
+            <PrivateRoute redirectTo="/signin" component={<Tracker />} />
           }
         />
         <Route path="*" element={<NotFoundPage />} />

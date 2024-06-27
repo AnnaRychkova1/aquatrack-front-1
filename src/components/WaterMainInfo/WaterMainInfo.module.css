@@ -89,6 +89,9 @@
   height: 46px;
   background-color: var(--main-text);
   cursor: pointer;
+  transition-property: color, stroke;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 
 .btn {
@@ -98,10 +101,11 @@
 }
 
 .icon {
-  width: 16px;
-  height: 16px;
+  /* width: 16px;
+  height: 16px; */
   stroke: var(--main-white);
   margin-right: 8px;
+  transform: scale(1.42);
 }
 
 .textBtn {
@@ -110,6 +114,7 @@
   line-height: 129%;
   letter-spacing: -0.01em;
   text-align: center;
+  text-wrap: nowrap;
   color: var(--main-white);
   background-color: var(--main-text);
 }
@@ -123,7 +128,7 @@
 }
 
 /*Tablet*/
-@media only screen and (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .contBtn {
     position: absolute;
     top: 76%;
@@ -140,8 +145,9 @@
   }
 
   .icon {
-    width: 24px;
-    height: 24px;
+    /* width: 24px;
+    height: 24px; */
+    transform: scale(1.42);
     margin-right: 7px;
   }
 

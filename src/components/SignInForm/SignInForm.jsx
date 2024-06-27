@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/users/operations';
 import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
-import Notification from '../Notification/Notification';
 import css from './SignInForm.module.css';
 
 const schema = yup.object().shape({
@@ -65,7 +64,7 @@ const SignInForm = () => {
               autoComplete="on"
             />
             {errors.email && (
-              <Notification type="error" message={errors.email.message} />
+              <span className={css.errors}>{errors.email.message}</span>
             )}
           </div>
           <label className={css.label}>Password</label>
@@ -77,7 +76,7 @@ const SignInForm = () => {
               placeholder="Enter your password"
             />
             {errors.password && (
-              <Notification type="error" message={errors.password.message} />
+              <span className={css.errors}>{errors.password.message}</span>
             )}
             {!showPassword && (
               <svg
