@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import LogOutModal from '../../modals/LogOutModal/LogOutModal';
 import UserSettingsModal from '../../modals/UserSettingsModal/UserSettingsModal';
+//import Iconsvg from '../Icon/Icon';
 
 const UserBarPopover = () => {
   const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
+
   const openSettingModal = () => setIsSettingModalOpen(true);
   const closeSettingModal = () => setIsSettingModalOpen(false);
 

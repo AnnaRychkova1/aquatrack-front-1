@@ -59,7 +59,14 @@ const WaterItem = ({ id, volume, time, isEditable }) => {
           </button>
         </div>
       </div>
-      <WaterModal isOpen={isWaterModalOpen} closeModal={closeWaterModal} />
+      <WaterModal
+        isOpen={isWaterModalOpen}
+        closeModal={closeWaterModal}
+        operationType={'edit'}
+        id={id}
+        time={time}
+        volume={volume}
+      />
       <DeleteWaterModal
         isOpen={isDeleteModalOpen}
         closeModal={closeDeleteModal}

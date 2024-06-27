@@ -12,8 +12,6 @@ const MonthInfo = () => {
         <div className={css.pagination}>
           <CalendarPagination />
           <Icon
-            width="24"
-            height="24"
             iconName="pie-chart-1"
             className={css.icon}
           />

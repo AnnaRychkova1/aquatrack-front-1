@@ -1,192 +1,181 @@
- /* --main-text: #323f47;
- --second-text: #2f2f2f;
- --accent-color: #9be1a0;
- --background-color: #f0eff4;
- --main-white: #fff; */
+.loginContainer {
+    border-radius: 30px;
+    background-color: var(--background-color);
+    padding: 24px 16px;
+}
 
- .loginContainer {
-     border-radius: 30px;
-     background-color: #EEEEEE;
-     /* background-color: --background-color; */
-     padding: 24px 16px;
- }
+.formContainer {
+    padding: 172px 0 192px;
+}
 
- .formContainer {
-     padding: 172px 0 192px;
- }
+.title {
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 32px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    margin-bottom: 32px;
+    color: var(--main-text);
+}
 
- .title {
-     font-weight: 700;
-     font-size: 32px;
-     line-height: 32px;
-     letter-spacing: -0.01em;
-     text-align: left;
-     margin-bottom: 32px;
-     color: --main-text;
- }
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 16px;
+}
 
- .form {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     margin-bottom: 16px;
- }
+.label {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: var(--second-text);
+    margin-bottom: 8px;
+}
 
- .label {
-     font-weight: 700;
-     font-size: 14px;
-     line-height: 18px;
-     letter-spacing: -0.01em;
-     text-align: left;
-     color: #2f2f2f;
-     margin-bottom: 8px;
- }
+.input_field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 16px;
+    position: relative;
+}
 
- .input_field {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     margin-bottom: 16px;
+.input {
+    padding: 16px;
+    border-radius: 15px;
+    border: 1px solid #2f2f2f33;
+    opacity: 0px;
+    outline: none;
+    background-color: var(--background-color);
+}
 
-     position: relative;
- }
+.icon_eye,
+.eyeIconOff {
+    fill: none;
+    stroke: var(--second-text);
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 20px;
+    height: 20px;
+}
 
- .input {
-     padding: 16px;
-     border-radius: 15px;
-     border: 1px solid #2f2f2f33;
-     opacity: 0px;
-     outline: none;
-     background-color: --background-color;
- }
+.input::placeholder {
+    font-size: 14px;
+    line-height: 18px;
+    text-align: left;
+    letter-spacing: -0.01em;
+    color: #2f2f2f99;
+}
 
- .icon_eye,
- .eyeIconOff {
-     fill: none;
-     stroke: --second-text;
-     position: absolute;
-     top: 16px;
-     right: 16px;
+.input:focus {
+    border: 1px solid #2f2f2f66;
+    color: inherit;
+}
 
-     width: 20px;
-     height: 20px;
- }
+.button {
+    height: 50px;
+    border-radius: 30px;
+    border: none;
+    color: var(--main-text);
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    background-color: var(--accent-color);
+    margin-top: 16px;
+    cursor: pointer;
+    opacity: 0px;
+}
 
- .input::placeholder {
-     font-size: 14px;
-     line-height: 18px;
-     text-align: left;
-     letter-spacing: -0.01em;
-     color: #2f2f2f99;
- }
+.button:hover,
+.button:focus {
+    background-color: var(--accent-color);
 
- .input:focus {
-     border: 1px solid #2f2f2f66;
-     color: inherit;
- }
+}
 
- .button {
-     height: 50px;
-     border-radius: 30px;
-     border: none;
-     color: --main-text;
-     font-size: 14px;
-     font-weight: 700;
-     line-height: 18px;
-     background-color: #9be1a0;
-     /* background-color: --accent-color; */
-     margin-top: 16px;
-     cursor: pointer;
-     opacity: 0px;
- }
+.description {
+    color: #2f2f2f80;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+    text-align: center;
+}
 
- .button:hover,
- .button:focus {
-     background-color: #9be1a0;
-     /* background: --accent-color; */
- }
+.link {
+    text-decoration: underline;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+    color: var(--second-text);
+}
 
- .description {
-     font-family: Gilroy;
-     color: #2f2f2f80;
-     font-size: 14px;
-     font-weight: 400;
-     line-height: 18px;
-     letter-spacing: -0.01em;
-     text-align: center;
- }
+.errors {
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #ef5050;
+}
 
- .link {
-     text-decoration: underline;
-     font-size: 14px;
-     font-weight: 700;
-     line-height: 18px;
-     letter-spacing: -0.01em;
-     /* color: --second-text; */
-     color: #2f2f2f;
- }
+.error {
+    border-color: #ef5050;
+    color: #ef5050;
+}
 
- .errors {
-     font-size: 14px;
-     line-height: 18px;
-     letter-spacing: -0.01em;
-     text-align: left;
+@media screen and (min-width: 768px) {
+    .loginContainer {
+        padding: 32px;
+    }
 
-     color: #ef5050;
- }
+    .formContainer {
+        padding: 171px 102px 249px;
+    }
 
- .error {
-     border-color: #ef5050;
-     color: #ef5050;
- }
+    .form {
+        margin-bottom: 20px;
+    }
 
- @media screen and (min-width: 768px) {
-     .loginContainer {
-         padding: 32px;
-     }
+    .title {
+        font-size: 36px;
+        line-height: 38px;
+    }
 
-     .formContainer {
-         padding: 171px 102px 249px;
-     }
+    .label {
+        font-size: 16px;
+        line-height: 24px;
+    }
 
-     .title {
-         font-size: 36px;
-         line-height: 38px;
-     }
+    .input::placeholder {
+        font-size: 16px;
+        line-height: 24px;
+    }
 
-     .label {
-         font-size: 16px;
-         line-height: 24px;
-     }
+    .button {
+        font-size: 16px;
+        line-height: 24px;
+    }
 
-     .input::placeholder {
-         font-size: 16px;
-         line-height: 24px;
-     }
+    .description {
+        font-size: 16px;
+        line-height: 24px;
+    }
 
-     .button {
-         font-size: 16px;
-         line-height: 24px;
-     }
+    .link {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
 
-     .description {
-         font-size: 16px;
-         line-height: 24px;
-     }
+@media screen and (min-width: 1440px) {
+    .loginContainer {
+        max-width: 608px;
+        width: 100%;
+    }
 
-     .link {
-         font-size: 16px;
-         line-height: 24px;
-     }
- }
-
- @media screen and (min-width: 1440px) {
-     .loginContainer {
-         max-width: 608px;
-         width: 100%;
-     }
-
-     .formContainer {
-         padding: 113px 85px 137px;
-     }
- }
+    .formContainer {
+        padding: 113px 85px 137px;
+    }
+}

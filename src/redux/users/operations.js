@@ -1,144 +1,96 @@
-// import axios from 'axios';
-// import { createAsyncThunk } from '@reduxjs/toolkit';
-
-// axios.defaults.baseURL = 'https://aquatrack-back-1.onrender.com/';
-
-// const setAuthHeader = token => {
-//   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-// };
-
-// const clearAuthHeader = () => {
-//   axios.defaults.headers.common.Authorization = '';
-// };
-
-// export const register = createAsyncThunk(
-//   'auth/register',
-//   async (credentials, thunkAPI) => {
-//     try {
-//       const res = await axios.post(
-//          ('/users/signup', credentials)
-//       );
-//       setAuthHeader(res.data.token);
-//       return res.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-// export const logIn = createAsyncThunk(
-//   'auth/login',
-//   async (credentials, thunkAPI) => {
-//     try {
-//       const res = await axios.post(
-//         '/users/login',
-//         credentials
-//       );
-//       setAuthHeader(res.data.token);
-//       return res.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
-// export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
-//   try {
-//     await axios.post('/users/logout');
-//     clearAuthHeader();
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// });
-
-// export const refreshUser = createAsyncThunk(
-//   'auth/refresh',
-//   async (_, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const persistedToken = state.auth.token;
-//     if (!persistedToken) {
-//       return thunkAPI.rejectWithValue('Unable to fetch user');
-//     }
-//     try {
-//       setAuthHeader(persistedToken);
-//       const res = await axios.get('/users/current');
-//       return res.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.message);
-//     }
-//   }
-// );
-
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
-  refreshToken,
   requestLogin,
   requestLogout,
   requestRegister,
   requestResendVerify,
-  requestResetPassword,
-  requestForgotPassword,
+  // refreshToken,
+  // requestResetPassword,
+  // requestForgotPassword,
   requestSendVerify,
 } from '../../services/userApi.js';
-import { setAuthHeader, clearAuthHeader } from '../../services/userApi.js';
 
-export const register = createAsyncThunk(
-  'auth/register',
+const options = {
+  position: 'top-center',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
+//SignUp
+export const userRegister = createAsyncThunk(
+  'users/register',
   async (formData, thunkAPI) => {
     try {
       const res = await requestRegister(formData);
-
-      setAuthHeader(res.token);
+      toast.success('Successfully registered', { ...options });
       return res;
     } catch (err) {
+      toast.error(err.message, { ...options });
       return thunkAPI.rejectWithValue(err.message);
     }
   }
 );
 
+//SignIn
 export const logIn = createAsyncThunk(
-  'auth/login',
+  'users/login',
   async (formData, thunkAPI) => {
     try {
       const res = await requestLogin(formData);
-
-      setAuthHeader(res.token);
+      toast.success('Successfully login', { ...options });
       return res;
     } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
+      switch (err.response?.status) {
+        case 401:
+          toast.error('Email or password is wrong', { ...options });
+          break;
+        case 404:
+          toast.error('User not found', { ...options });
+          break;
+        default:
+          toast.error(err.message, { ...options });
 
-export const tokenRefresh = createAsyncThunk(
-  'auth/refresh',
-  async (formData, thunkAPI) => {
-    try {
-      const res = await refreshToken(formData);
-
-      setAuthHeader(res.token);
-      return res;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
+          return thunkAPI.rejectWithValue(err.message);
+      }
     }
   }
 );
 
 export const logOut = createAsyncThunk(
-  'auth/logout',
-  async (formData, thunkAPI) => {
+  'users/logout',
+  async (token, thunkAPI) => {
     try {
-      await requestLogout(formData);
-
-      clearAuthHeader();
+      await requestLogout(token);
+      toast.success('Successfully logout', { ...options });
+      return;
     } catch (err) {
+      toast.error(err.message, { ...options });
       return thunkAPI.rejectWithValue(err.message);
     }
   }
 );
 
+// export const tokenRefresh = createAsyncThunk(
+//   'users/refresh',
+//   async (formData, thunkAPI) => {
+//     try {
+//       const res = await refreshToken(formData);
+//       return res;
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
+
 export const sendVerify = createAsyncThunk(
-  'auth/verify',
+  'users/verify',
   async ({ verificationToken, formData }, thunkAPI) => {
     try {
       const res = await requestSendVerify(verificationToken, formData);
@@ -151,7 +103,7 @@ export const sendVerify = createAsyncThunk(
 );
 
 export const resendVerify = createAsyncThunk(
-  'auth/re-verify',
+  'users/re-verify',
   async (formData, thunkAPI) => {
     try {
       const res = await requestResendVerify(formData);
@@ -163,28 +115,28 @@ export const resendVerify = createAsyncThunk(
   }
 );
 
-export const forgotPassword = createAsyncThunk(
-  'auth/forgot-password',
-  async (formData, thunkAPI) => {
-    try {
-      const res = await requestForgotPassword(formData);
+// export const forgotPassword = createAsyncThunk(
+//   'users/forgot-password',
+//   async (formData, thunkAPI) => {
+//     try {
+//       const res = await requestForgotPassword(formData);
 
-      return res;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
+//       return res;
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
 
-export const resetPassword = createAsyncThunk(
-  'auth/reset-password',
-  async (formData, thunkAPI) => {
-    try {
-      const res = await requestResetPassword(formData);
+// export const resetPassword = createAsyncThunk(
+//   'users/reset-password',
+//   async (formData, thunkAPI) => {
+//     try {
+//       const res = await requestResetPassword(formData);
 
-      return res;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
+//       return res;
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
