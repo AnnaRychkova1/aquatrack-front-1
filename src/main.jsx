@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 // import { PersistGate } from 'redux-persist/integration/react';
 import { HelmetProvider } from 'react-helmet-async';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import 'modern-normalize';
 
 // import { store, persistor } from './redux/store.js';
@@ -18,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <BrowserRouter>
         <HelmetProvider>
           <App />
+          <ToastContainer />
         </HelmetProvider>
       </BrowserRouter>
       {/* </PersistGate> */}
