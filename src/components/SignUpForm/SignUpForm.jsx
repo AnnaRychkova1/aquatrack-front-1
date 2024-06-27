@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -26,6 +26,7 @@ const schema = yup.object().shape({
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setRepeatPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -47,6 +48,14 @@ const SignUpForm = () => {
 
   const onSubmit = data => {
     const { repeatPassword, ...userData } = data;
+    // dispatch(userRegister(userData)).then(() => {
+    //   navigate('/signin');
+    // });
+
+    // dispatch(userRegister(userData)).then(() => {
+    //   navigate('/tracker');
+    // });
+
     dispatch(userRegister(userData));
     reset();
     setFormData({

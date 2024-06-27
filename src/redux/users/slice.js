@@ -39,7 +39,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         const { user } = action.payload;
         state.user.email = user.email;
-        state.isSignedIn = true;
+        state.isSignedIn = false;
       })
       //LOGIN
       .addCase(logIn.fulfilled, (state, action) => {
