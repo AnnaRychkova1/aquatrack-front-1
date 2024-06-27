@@ -70,12 +70,12 @@ export const updateWater = createAsyncThunk(
 
 export const fetchDailyWater = createAsyncThunk(
   'water/fetchDay',
-  async (date, thunkAPI) => {
+  async ({ date, token }, thunkAPI) => {
     try {
-      const response = await requestWaterDaily(date);
-      return response.data;
+      const response = await requestWaterDaily(date, token);
+      return response;
     } catch (error) {
-      toast.error(error.message, { ...options });
+      toast.error(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

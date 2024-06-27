@@ -1,5 +1,9 @@
 import instance from './instance';
 
+export const setToken = token => {
+  instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
 export const addWaterDaily = async day => {
   const { data } = await instance.post('/water', day);
   return data;
@@ -15,9 +19,11 @@ export const deleteWaterRecord = async (id, day) => {
   return data;
 };
 
-export const requestWaterDaily = async day => {
-  console.log(day);
-  const { data } = await instance.get('/water/daily', day);
+export const requestWaterDaily = async (date, token) => {
+  setToken(token);
+  const { data } = await instance.get('/water/daily', {
+    params: { date },
+  });
   return data;
 };
 

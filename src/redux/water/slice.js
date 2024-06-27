@@ -27,7 +27,7 @@ const waterSlice = createSlice({
       })
       .addCase(fetchDailyWater.fulfilled, (state, action) => {
         // console.log(action.payload);
-        state.items = action.payload.items;
+        state.items = action.payload;
         // state.date = action.payload.date;
         // state.totalDay = action.payload.totalDay;
         state.loading = false;
