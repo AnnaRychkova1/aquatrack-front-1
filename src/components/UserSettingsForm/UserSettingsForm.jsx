@@ -194,60 +194,71 @@ const UserSettingsForm = ({ isOpen, onClose }) => {
       </div>
       <div className={css.settingsFormContent}>
         <div className={css.settingsFormData}>
-          {' '}
-          <label className={css.settingsGenders}>
-            <span className={css.settingsGenderTitle}>
-              Your gender identity
-            </span>
-            <input
-              className={css.settingsGender}
-              type="radio"
-              value="woman"
-              {...register('gender')}
-            />
-            <span className={css.settingsGenderText}>Woman</span>
-            <input
-              className={css.settingsGender}
-              type="radio"
-              value="man"
-              {...register('gender')}
-            />
-            <span className={css.settingsGenderText}>Man</span>
-          </label>
-          {errors.gender && <span>{errors.gender.message}</span>}
-          <label className={css.settingsName}>
-            <span className={css.settingsNameTitle}>Your name</span>
-            <input
-              className={css.settingsNameText}
-              type="text"
-              {...register('name')}
-            />
-            {errors.name && <span>{errors.name.message}</span>}
-          </label>
-          <label className={css.settingsEmail}>
-            <span className={css.settingsEmailTitle}>Email</span>
-            <input
-              className={css.settingsEmailText}
-              type="email"
-              {...register('email')}
-            />
-            {errors.email && <span>{errors.email.message}</span>}
-          </label>
+          <div className={css.settingsGenders}>
+            <p className={css.settingsGenderTitle}>Your gender identity</p>
+            <div className={css.settingsGenderInputs}>
+              <label className={css.settingsGender}>
+                <input
+                  className={css.settingsGenderInput}
+                  type="radio"
+                  value="woman"
+                  {...register('gender')}
+                />
+                <span className={css.settingsGenderText}>Woman</span>
+              </label>
+              <label className={css.settingsGender}>
+                <input
+                  className={css.settingsGenderInput}
+                  type="radio"
+                  value="man"
+                  {...register('gender')}
+                />
+                <span className={css.settingsGenderText}>Man</span>
+              </label>
+            </div>
+            {errors.gender && <span>{errors.gender.message}</span>}
+          </div>
+          <div className={css.settingsUser}>
+            <label className={css.settingsUserLabel}>
+              <span className={css.settingsUserTitle}>Your name</span>
+              <input
+                className={css.settingsUserText}
+                type="text"
+                {...register('name')}
+              />
+              {errors.name && <span>{errors.name.message}</span>}
+            </label>
+            <label className={css.settingsUserLabel}>
+              <span className={css.settingsUserTitle}>Email</span>
+              <input
+                className={css.settingsUserText}
+                type="email"
+                {...register('email')}
+              />
+              {errors.email && <span>{errors.email.message}</span>}
+            </label>
+          </div>
+
           <div className={css.settingsDailyNorma}>
             <p className={css.settingsDailyNormaTitle}>My daily norma</p>
-            <p className={css.settingsDailyNormaText}>
-              For woman: V=(M*0.03) + (T*0.4)
-            </p>
-            <p className={css.settingsDailyNormaText}>
-              For man: V=(M*0.04) + (T*0.6)
-            </p>
+            <div className={css.settingsDailyNormaEquations}>
+              <p className={css.settingsDailyNormaEquation}>
+                For woman: <span>V=(M*0.03) + (T*0.4)</span>
+              </p>
+              <p className={css.settingsDailyNormaEquation}>
+                For man: <span>V=(M*0.04) + (T*0.6)</span>
+              </p>
+            </div>
             <p className={css.settingsDailyNormaContent}>
-              * V is the volume of the water norm in liters per day, M is your
-              body weight, T is the time of active sports, or another type of
-              activity commensurate in terms of loads (in the absence of these,
-              you must set 0)
+              <span>*</span> V is the volume of the water norm in liters per
+              day, M is your body weight, T is the time of active sports, or
+              another type of activity commensurate in terms of loads (in the
+              absence of these, you must set 0)
             </p>
-            <p className={css.settingsDailyNormaText}>Active time in hours</p>
+            <p className={css.settingsDailyNormaText}>
+              <Iconsvg width="14" height="14" iconName={'eye-off'} />
+              Active time in hours
+            </p>
           </div>
         </div>
         <div className={css.settingsParams}>
@@ -273,21 +284,22 @@ const UserSettingsForm = ({ isOpen, onClose }) => {
             />
             {errors.activeTime && <span>{errors.activeTime.message}</span>}
           </label>
-          <label className={css.settingsLiters}>
-            <span className={css.settingsLitersTitle}>
-              The required amount of water in liters per day The required amount
-              of water in liters per day The required amount of water in liters
-              per day The required amount of water in liters per day The
-              required amount of water in liters per day The required amount of
-              water in liters per day
-            </span>
-            <input
-              className={css.settingsLitersText}
-              type="number"
-              {...register('waterIntake')}
-            />
-            {errors.waterIntake && <span>{errors.waterIntake.message}</span>}
-          </label>
+          <div>
+            <p className={css.settingsLitersRequired}>
+              The required amount of water in liters per day:
+            </p>
+            <label className={css.settingsLiters}>
+              <span className={css.settingsLitersTitle}>
+                Write down how much water you will drink:
+              </span>
+              <input
+                className={css.settingsLitersText}
+                type="number"
+                {...register('waterIntake')}
+              />
+              {errors.waterIntake && <span>{errors.waterIntake.message}</span>}
+            </label>
+          </div>
         </div>
       </div>
       <button className={css.settingsButton} type="submit">

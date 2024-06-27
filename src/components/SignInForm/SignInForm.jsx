@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/users/operations';
 import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
-import Notification from '../Notification/Notification';
 import css from './SignInForm.module.css';
 
 const schema = yup.object().shape({
@@ -32,47 +31,24 @@ const SignInForm = () => {
     reset,
   } = useForm({
     resolver: yupResolver(schema),
-    mode: 'onChange',
+    mode: 'onBlur',
     defaultValues: {
       email: '',
       password: '',
     },
   });
 
+  const onSubmit = data => {
+    dispatch(logIn(data));
+    reset();
+  };
+
   return (
     <div className={css.loginContainer}>
       {<Logo />}
       <div className={css.formContainer}>
         <h1 className={css.title}>Sign In</h1>
-        <form
-          className={css.form}
-          onSubmit={handleSubmit(async data => {
-            try {
-              const resultAction = await dispatch(logIn(data));
-
-              if (logIn.fulfilled.match(resultAction)) {
-                // toast.success('You were successfully signed in!');
-                <Notification
-                  type="success"
-                  message="You were successfully signed in!"
-                />;
-                reset();
-              } else if (logIn.rejected.match(resultAction)) {
-                // toast.error('Something went wrong. Please try again.');
-                <Notification
-                  type="error"
-                  message="Something went wrong. Please try again."
-                />;
-              }
-            } catch (error) {
-              // toast.error('Unexpected error. Please try again.');
-              <Notification
-                type="error"
-                message="Unexpected error. Please try again."
-              />;
-            }
-          })}
-        >
+        <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
           <label className={css.label}>Email</label>
           <div className={css.input_field}>
             <input
