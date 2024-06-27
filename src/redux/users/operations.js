@@ -30,7 +30,6 @@ export const userRegister = createAsyncThunk(
     try {
       const res = await requestRegister(formData);
       toast.success('Successfully registered', { ...options });
-      console.log(toast.isActive);
       return res;
     } catch (err) {
       toast.error(err.message, { ...options });
@@ -69,7 +68,6 @@ export const logOut = createAsyncThunk(
   async (token, thunkAPI) => {
     try {
       await requestLogout(token);
-
       toast.success('Successfully logout', { ...options });
       return;
     } catch (err) {

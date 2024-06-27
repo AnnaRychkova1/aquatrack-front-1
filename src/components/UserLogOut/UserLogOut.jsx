@@ -23,7 +23,7 @@ const UserLogOut = ({ closeModal }) => {
   //     console.error('An error occurred when sending the request', error);
   //   }
   // };
-  // const id = useSelector(selectWaterId);
+
   const token = useSelector(selectToken);
   const dispatch = useDispatch();
   const onLogOut = () => {

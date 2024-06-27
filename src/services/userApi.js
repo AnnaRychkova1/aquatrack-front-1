@@ -24,7 +24,6 @@ export const requestLogin = async formData => {
 
 export const requestLogout = async token => {
   setToken(token);
-  console.log(token);
   const { data } = await instance.post('/users/logout');
   clearToken(token);
   return data;
