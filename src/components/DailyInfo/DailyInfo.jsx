@@ -34,7 +34,7 @@ const DailyInfo = () => {
           textStyle={css.cardText}
         />
       </div>
-      <WaterList selectDay={storeDate} />
+      <WaterList selectDay={storeDate.toISOString()} />
     </div>
   );
 };

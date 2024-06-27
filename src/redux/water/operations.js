@@ -1,74 +1,95 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import {
+  requestWaterMonthly,
+  requestWaterDaily,
+  addWaterDaily,
+  editWaterRecord,
+  deleteWaterRecord,
+} from '../../services/waterApi';
+
+const options = {
+  position: 'top-center',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 export const addWater = createAsyncThunk(
   'water/addWater',
-  async (values, { rejectWithValue }) => {
+  async (values, thunkAPI) => {
     try {
-      const response = await axios.post(
-        'https://aquatrack-back-1.onrender.com/api/water/',
-        values
-      );
+      const response = await addWaterDaily(values);
+      toast.success('Successfully add', {
+        ...options,
+      });
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      toast.error(error.message, { ...options });
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const deleteWater = createAsyncThunk(
   'water/deleteWater',
-  async (waterId, { rejectWithValue }) => {
+  async (waterId, thunkAPI) => {
     try {
-      await axios.delete(
-        `https://aquatrack-back-1.onrender.com/api/water/:id/${waterId}`
-      );
-      return waterId;
+      const response = await deleteWaterRecord(waterId);
+      toast.success('Successfully delete', {
+        ...options,
+      });
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      toast.error(error.message, { ...options });
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const updateWater = createAsyncThunk(
   'water/update',
-  async ({ _id, amount, time }, { rejectWithValue }) => {
+  async ({ id, day }, thunkAPI) => {
     try {
-      const response = await axios.post(
-        `https://aquatrack-back-1.onrender.com/water/:id/${_id}`,
-        { amount, time }
-      );
-      return response.data;
+      const response = await editWaterRecord(id, day);
+      toast.success('Successfully edit', {
+        ...options,
+      });
+      return response;
     } catch (error) {
-      return rejectWithValue(error.message);
+      toast.error(error.message, { ...options });
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const fetchDailyWater = createAsyncThunk(
   'water/fetchDay',
-  async (date, { rejectWithValue }) => {
+  async (date, thunkAPI) => {
     try {
-      const response = await axios.get(
-        `https://aquatrack-back-1.onrender.com/api/water/daily/${date}`
-      );
+      const response = await requestWaterDaily(date);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      toast.error(error.message, { ...options });
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const fetchMonthlyWater = createAsyncThunk(
   'water/fetchWaters',
-  async (date, { rejectWithValue }) => {
+  async (date, thunkAPI) => {
     try {
-      const response = await axios.get(
-        `https://aquatrack-back-1.onrender.com/api/water/monthly/${date}`
-      );
+      const response = await requestWaterMonthly(date);
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      toast.error(error.message, { ...options });
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
