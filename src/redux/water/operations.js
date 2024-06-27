@@ -1,28 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { getNewDay } from '../../helps/getNewDay.js';
-
-export const fetchWaters = createAsyncThunk(
-  'water/fetchWaters',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(
-        'https://aquatrack-back-1.onrender.com/api/water'
-      );
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
 
 export const addWater = createAsyncThunk(
   'water/addWater',
-  async (water, { rejectWithValue }) => {
+  async (values, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        'https://aquatrack-back-1.onrender.com/api/water',
-        water
+        'https://aquatrack-back-1.onrender.com/api/water/',
+        values
       );
       return response.data;
     } catch (error) {
@@ -36,7 +21,7 @@ export const deleteWater = createAsyncThunk(
   async (waterId, { rejectWithValue }) => {
     try {
       await axios.delete(
-        `https://aquatrack-back-1.onrender.com/api/water/${waterId}`
+        `https://aquatrack-back-1.onrender.com/api/water/:id/${waterId}`
       );
       return waterId;
     } catch (error) {
@@ -47,11 +32,11 @@ export const deleteWater = createAsyncThunk(
 
 export const updateWater = createAsyncThunk(
   'water/update',
-  async (water, { rejectWithValue }) => {
+  async ({ _id, amount, time }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
-        'https://aquatrack-back-1.onrender.com/water',
-        water
+        `https://aquatrack-back-1.onrender.com/water/:id/${_id}`,
+        { amount, time }
       );
       return response.data;
     } catch (error) {
@@ -60,33 +45,30 @@ export const updateWater = createAsyncThunk(
   }
 );
 
-export const getDayWater = createAsyncThunk(
-  'water/getDayWater',
-  async (date, thunkAPI) => {
+export const fetchDailyWater = createAsyncThunk(
+  'water/fetchDay',
+  async (date, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        `https://aquatrack-back-1.onrender.com/water/day/${date}`
+        `https://aquatrack-back-1.onrender.com/api/water/daily/${date}`
       );
-
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
 
-export const getMonthWater = createAsyncThunk(
-  'water/getMonthWater',
-
-  async (month, thunkAPI) => {
+export const fetchMonthlyWater = createAsyncThunk(
+  'water/fetchWaters',
+  async (date, { rejectWithValue }) => {
     try {
-      const newMonthStartDate = getNewDay(month);
       const response = await axios.get(
-        `https://aquatrack-back-1.onrender.com/water/month/${newMonthStartDate}`
+        `https://aquatrack-back-1.onrender.com/api/water/monthly/${date}`
       );
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return rejectWithValue(error.message);
     }
   }
 );
