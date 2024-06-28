@@ -3,6 +3,7 @@
     min-width: 320px;
     max-width: 375px;
     width: 100%;
+
     border: 1px solid blue;
 }
 
@@ -11,6 +12,7 @@
         padding: 0 32px;
         width: 768px;
         max-width: 100%;
+        /* gap: 32px; */
     }
 }
 
@@ -19,5 +21,6 @@
         display: flex;
         width: 1440px;
         gap: 32px;
+
     }
 }

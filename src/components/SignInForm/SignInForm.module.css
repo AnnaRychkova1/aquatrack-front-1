@@ -1,17 +1,16 @@
 .loginContainer {
     border-radius: 30px;
     border: 1px solid red;
-    padding: 16px;
+    padding: 0 16px;
     background-color: var(--background-color);
     max-width: 343px;
     min-width: 288px;
     width: 100%;
-    height: 770px;
+    height: 780px;
 }
 
 .formContainer {
     /* padding: 172px 0 192px; */
-    /* padding: 192px 0 192px; */
     padding-top: 192px;
 }
 
@@ -137,7 +136,7 @@
     .loginContainer {
         padding: 32px;
         max-width: 100%;
-        width: 704px;
+        /* width: 704px; */
         height: 960px;
     }
 
@@ -183,6 +182,7 @@
 
 @media screen and (min-width: 1440px) {
     .loginContainer {
+
         padding: 32px;
         width: 672px;
         height: 736px;
@@ -191,6 +191,6 @@
     }
 
     .formContainer {
-        padding: 113px 85px 137px;
+        padding: 153px 85px 137px;
     }
 }

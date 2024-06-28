@@ -1,7 +1,8 @@
 .advantages_main {
   background-image: url('../../assets//images//png/girl_with_bottle_1x_mobile.png');
-  margin-top: 16px;
-  margin-bottom: 16px;
+  /* margin-top: 16px; */
+  /* margin-bottom: 16px; */
+
 
   border-radius: 30px;
   background-color: var(--background-color);
@@ -162,7 +163,7 @@
     height: 446px;
 
     padding: 283px 32px 32px;
-    margin-bottom: 32px;
+    /* margin-bottom: 32px; */
   }
 
   .user1 {
@@ -245,11 +246,7 @@
   .advantages_main {
     background-image: url('../../assets//images/png/girl_with_bottle_1x_desktop.png');
     padding: 537px 32px 132px;
-
-    margin-top: 16px;
-    /* margin-top: 0px;
-    margin-bottom: 0px; */
-
+    /* margin-top: 16px; */
     width: 672px;
     height: 736px;
   }

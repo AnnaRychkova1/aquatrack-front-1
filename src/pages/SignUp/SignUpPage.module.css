@@ -1,20 +1,25 @@
 .generalSignInForm {
-    padding: 16px;
+    padding: 0 16px;
     border: 1px solid blue;
+
+
+    /* max-width: 343px; */
 }
 
 @media only screen and (min-width: 768px) {
     .generalSignInForm {
-        padding: 32px;
-        max-width: 704px;
+        /* max-width: 768px; */
+        padding: 0 32px;
+        
     }
 }
 
 @media only screen and (min-width: 1440px) {
     .generalSignInForm {
         display: flex;
+        padding: 0 32px;
         gap: 32px;
-        max-width: 1376px;
+        /* max-width: 1376px; */
         /* 672+672+32 */
     }
 }
@@ -24,6 +29,5 @@
         display: none;
         width: 672px;
         height: 736px;
-
     }
 }
