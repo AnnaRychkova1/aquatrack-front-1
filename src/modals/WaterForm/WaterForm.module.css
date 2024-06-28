@@ -114,6 +114,12 @@
   background: #87d28d;
 }
 
+.divError {
+  height: 14px;
+  width: 303px;
+  color: red;
+}
+
 @media (min-width: 768px) {
   .amountWaterLabel,
   .timeLabel {
@@ -181,7 +187,6 @@
 /* padding: 40px 20px; */
 /* max-width: 343px; */
 
-
 /* 
 .title {
   font-size: 20px;
@@ -193,8 +198,6 @@
   line-height: 1.25;
   margin-top: 24px;
 } */
-
-
 
 /* .modalWrap {
   background: white;
