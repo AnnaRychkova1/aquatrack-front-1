@@ -1,91 +1,94 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { getNewDay } from '../../helps/getNewDay.js';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export const fetchWaters = createAsyncThunk(
-  'water/fetchWaters',
-  async (_, { rejectWithValue }) => {
-    try {
-      const response = await axios.get(
-        'https://aquatrack-back-1.onrender.com/api/water'
-      );
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
+import {
+  requestWaterMonthly,
+  requestWaterDaily,
+  addWaterDaily,
+  editWaterRecord,
+  deleteWaterRecord,
+} from '../../services/waterApi';
+
+const options = {
+  position: 'top-center',
+  autoClose: 5000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
 
 export const addWater = createAsyncThunk(
   'water/addWater',
-  async (water, { rejectWithValue }) => {
+  async ({ data, token}, thunkAPI) => {
     try {
-      const response = await axios.post(
-        'https://aquatrack-back-1.onrender.com/api/water',
-        water
-      );
+      const response = await addWaterDaily(data, token);
+      toast.success('Successfully add', {
+        ...options,
+      });
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      toast.error(error.message, { ...options });
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const deleteWater = createAsyncThunk(
   'water/deleteWater',
-  async (waterId, { rejectWithValue }) => {
+  async (waterId, thunkAPI) => {
     try {
-      await axios.delete(
-        `https://aquatrack-back-1.onrender.com/api/water/${waterId}`
-      );
-      return waterId;
+      const response = await deleteWaterRecord(waterId);
+      toast.success('Successfully delete', {
+        ...options,
+      });
+      return response.data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      toast.error(error.message, { ...options });
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
 export const updateWater = createAsyncThunk(
   'water/update',
-  async (water, { rejectWithValue }) => {
+  async ({ id, day }, thunkAPI) => {
     try {
-      const response = await axios.post(
-        'https://aquatrack-back-1.onrender.com/water',
-        water
-      );
-      return response.data;
+      const response = await editWaterRecord(id, day);
+      toast.success('Successfully edit', {
+        ...options,
+      });
+      return response;
     } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const getDayWater = createAsyncThunk(
-  'water/getDayWater',
-  async (date, thunkAPI) => {
-    try {
-      const response = await axios.get(
-        `https://aquatrack-back-1.onrender.com/water/day/${date}`
-      );
-
-      return response.data;
-    } catch (error) {
+      toast.error(error.message, { ...options });
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-export const getMonthWater = createAsyncThunk(
-  'water/getMonthWater',
-
-  async (month, thunkAPI) => {
+export const fetchDailyWater = createAsyncThunk(
+  'water/fetchDay',
+  async ({ date, token }, thunkAPI) => {
     try {
-      const newMonthStartDate = getNewDay(month);
-      const response = await axios.get(
-        `https://aquatrack-back-1.onrender.com/water/month/${newMonthStartDate}`
-      );
-      return response.data;
+      const response = await requestWaterDaily(date, token);
+      return response;
     } catch (error) {
+      toast.error(error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const fetchMonthlyWater = createAsyncThunk(
+  'water/fetchWaters',
+  async ({ month, year, token }, thunkAPI) => {
+    try {
+      const response = await requestWaterMonthly({ month, year }, token);
+      return response;
+    } catch (error) {
+      toast.error(error.message, { ...options });
       return thunkAPI.rejectWithValue(error.message);
     }
   }

@@ -1,5 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {
   requestLogin,
   requestLogout,
@@ -9,8 +11,8 @@ import {
   // requestResetPassword,
   // requestForgotPassword,
   requestSendVerify,
+  uploadUserAvatars,
 } from '../../services/userApi.js';
-import Notification from '../../components/Notification/Notification.jsx';
 
 const options = {
   position: 'top-center',
@@ -28,11 +30,13 @@ export const userRegister = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const res = await requestRegister(formData);
-      toast.success('Registration successful!', options);
-      // Notification({ type: 'success', message: 'Registration successful!' });
+      // toast.success('Successfully registered. Check your email', {
+      //   ...options,
+      // });
+
       return res;
     } catch (err) {
-      Notification({ type: 'error', message: err.message });
+      toast.error(err.message, { ...options });
       return thunkAPI.rejectWithValue(err.message);
     }
   }
@@ -44,22 +48,18 @@ export const logIn = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const res = await requestLogin(formData);
+      // toast.success('Successfully login', { ...options });
       return res;
     } catch (err) {
       switch (err.response?.status) {
         case 401:
-          Notification({
-            type: 'error',
-            message: 'Email or password is wrong',
-          });
-          toast.error('Email or password is wrong', options);
-
+          toast.error('Email or password is wrong', { ...options });
           break;
         case 404:
-          Notification({ type: 'error', message: 'User not found' });
+          toast.error('User not found', { ...options });
           break;
         default:
-          Notification({ type: 'error', message: err.message });
+          toast.error(err.message, { ...options });
 
           return thunkAPI.rejectWithValue(err.message);
       }
@@ -69,10 +69,13 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk(
   'users/logout',
-  async (formData, thunkAPI) => {
+  async (token, thunkAPI) => {
     try {
-      await requestLogout(formData);
+      await requestLogout(token);
+      toast.success('Successfully logout', { ...options });
+      return;
     } catch (err) {
+      toast.error(err.message, { ...options });
       return thunkAPI.rejectWithValue(err.message);
     }
   }
@@ -116,6 +119,19 @@ export const resendVerify = createAsyncThunk(
   }
 );
 
+export const uploadUserAvatar = createAsyncThunk(
+  'users/avatars',
+  async (formData, thunkAPI) => {
+    try {
+      const response = await uploadUserAvatars(formData); // Replace with your actual API function
+      toast.success('Avatar uploaded successfully', { ...options });
+      return response; // Adjust to match your API response structure
+    } catch (err) {
+      toast.error(err.message, { ...options });
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
 // export const forgotPassword = createAsyncThunk(
 //   'users/forgot-password',
 //   async (formData, thunkAPI) => {

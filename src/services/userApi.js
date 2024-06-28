@@ -22,9 +22,10 @@ export const requestLogin = async formData => {
   return data;
 };
 
-export const requestLogout = async formData => {
-  const { data } = await instance.post('/users/logout', formData);
-  clearToken();
+export const requestLogout = async token => {
+  setToken(token);
+  const { data } = await instance.post('/users/logout');
+  clearToken(token);
   return data;
 };
 
@@ -75,7 +76,7 @@ export const updateUserProfile = async formData => {
   return data;
 };
 
-export const uploadUserAvatar = async formData => {
+export const uploadUserAvatars = async formData => {
   const { data } = await instance.patch('/users/avatar', formData);
 
   return data;

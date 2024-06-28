@@ -21,16 +21,19 @@
 
 // export default SignUp;
 
-import css from './SignUpPage.module.css';
-
+import { Helmet } from 'react-helmet-async';
 import SignUpForm from '..//../components/SignUpForm/SignUpForm';
 import AdvantagesSection from '../../components/AdvantagesSection/AdvantagesSection';
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import { useSelector } from 'react-redux';
+import { selectIsLoading } from '../../redux/users/selectors';
+import Loader from '../../components/Loader/Loader';
+import css from './SignUpPage.module.css';
 
 const SignUp = () => {
+  const loading = useSelector(selectIsLoading);
   return (
     <>
+      {loading && <Loader />}
       <Helmet>
         <title>SignUp</title>
       </Helmet>

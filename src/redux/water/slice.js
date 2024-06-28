@@ -1,36 +1,56 @@
-import { createSlice, createSelector } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import {
-  fetchWaters,
   addWater,
   deleteWater,
-  getMonthWater,
-} from './operations.js';
+  updateWater,
+  fetchDailyWater,
+  fetchMonthlyWater,
+} from './operations';
 
-const watersSlice = createSlice({
+const waterSlice = createSlice({
   name: 'water',
   initialState: {
-    date: null,
-    totalDayWater: 0,
-    items: [],
-    monthItems: [],
+    totalDay: null, // всьoго води  за день
+    items: [], //   порція прийому води
+    monthIReception: [], //  місяць прийому води
     loading: false,
     error: null,
   },
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(fetchWaters.pending, state => {
+      // fetchDailyWater (щоденна вода)
+      .addCase(fetchDailyWater.pending, state => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchWaters.fulfilled, (state, action) => {
+      .addCase(fetchDailyWater.fulfilled, (state, action) => {
         state.items = action.payload;
         state.loading = false;
+        state.error = null;
       })
-      .addCase(fetchWaters.rejected, (state, action) => {
+      .addCase(fetchDailyWater.rejected, (state, action) => {
+        state.items = [];
         state.loading = false;
         state.error = action.payload;
       })
+
+      // fetchMonthlyWater (вода за місяць)
+      .addCase(fetchMonthlyWater.pending, state => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchMonthlyWater.fulfilled, (state, action) => {
+        state.monthIReception = action.payload;
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(fetchMonthlyWater.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+
+      // addWater (додати порцію води)
       .addCase(addWater.pending, state => {
         state.loading = true;
         state.error = null;
@@ -38,11 +58,14 @@ const watersSlice = createSlice({
       .addCase(addWater.fulfilled, (state, action) => {
         state.items.push(action.payload);
         state.loading = false;
+        state.error = null;
       })
       .addCase(addWater.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
+
+      // deleteWater (видалити порцію воду)
       .addCase(deleteWater.pending, state => {
         state.loading = true;
         state.error = null;
@@ -50,30 +73,33 @@ const watersSlice = createSlice({
       .addCase(deleteWater.fulfilled, (state, action) => {
         state.items = state.items.filter(water => water.id !== action.payload);
         state.loading = false;
+        state.error = null;
       })
       .addCase(deleteWater.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
-      .addCase(getMonthWater.fulfilled, (state, action) => {
-        state.monthItems = action.payload;
+
+      // updateWater (обновити порцію воду)
+      .addCase(updateWater.pending, state => {
+        state.loading = true;
+        state.error = null;
       })
-      .addCase(getMonthWater.rejected, state => {
-        state.error = true;
+      .addCase(updateWater.fulfilled, (state, action) => {
+        const index = state.items.findIndex(
+          water => water.id === action.payload.id
+        );
+        if (index !== -1) {
+          state.items[index] = action.payload;
+        }
+        state.loading = false;
+        state.error = null;
+      })
+      .addCase(updateWater.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
       });
   },
 });
 
-export const wetersReducer = watersSlice.reducer;
-export const selectWaters = state => state.waters.items;
-
-export const selectFilteredWaters = createSelector(
-  state => state.waters.items,
-  state => state.filters.name,
-  (items, name) => {
-    const lowercasedFilter = name ? name.toLowerCase() : '';
-    return items.filter(water =>
-      water.name.toLowerCase().includes(lowercasedFilter)
-    );
-  }
-);
+export const waterReducer = waterSlice.reducer;

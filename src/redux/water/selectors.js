@@ -1,11 +1,12 @@
-export const selectLoading = state => state.waters.loading;
+export const selectDate = state => state.water.date;
 
-export const selectFilter = state => state.waters.filter;
+export const selectTotalDay = state => state.water.totalDay;
 
-export const selectWaters = state => state.waters.items;
+export const selectWaterPortion = state => state.water.items;
 
-export const selectMonthWater = state => state.waters.monthItems;
+export const selectMonth = state => state.water.monthIReception;
 
-export const selectQuantity = state => state.user.user.desiredQuantity;
+export const selectLoading = state => state.water.loading;
 
-export const selectDateWater = state => state.waters.date;
+export const selectError = state => state.water.error;
+

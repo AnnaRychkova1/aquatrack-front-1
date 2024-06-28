@@ -1,12 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const currentDate = new Date().toISOString();
-
 const dateSlice = createSlice({
   name: 'date',
   initialState: {
-    date: currentDate,
-    paginationDate: currentDate,
+    date: new Date().toISOString(),
+    paginationDate: new Date().toISOString(),
     paginationBtnDisabled: true,
     isLoading: false,
     error: null,
@@ -24,5 +22,6 @@ const dateSlice = createSlice({
   },
 });
 
-export const { changeDate, changePaginationDate, changePaginationBtnDisabled } = dateSlice.actions;
+export const { changeDate, changePaginationDate, changePaginationBtnDisabled } =
+  dateSlice.actions;
 export const dateReducer = dateSlice.reducer;
