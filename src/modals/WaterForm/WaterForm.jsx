@@ -49,12 +49,11 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
     closeModal();
   };
 
-  
   // const onSubmit = data => {
   //   console.log(data);
   //   dispatch(addWater(data));
   //   closeModal();
-    
+
   // };
 
   return (
@@ -107,7 +106,11 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
         </form>
       ) : (
         // Форма для додавання
-        <form className={css.waterForm}>
+        <form
+          className={css.waterForm}
+          // onSubmit={handleSubmit(onSubmit)}
+          onSubmit={handleAdd(onSubmit)}
+        >
           <p className={css.amountWaterLabel}>Amount of water:</p>
           <div className={css.btnBox}>
             <button className={css.btnReduce} onClick={decrementNumber}>
@@ -129,11 +132,14 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
             </button>
           </div>
           <p className={css.timeLabel}>Recording time:</p>
+
           <input
             className={css.inputTime}
             type="time"
             name="time"
-            value="07:00"
+            // value={time}
+            // value={date}
+            // onChange={e => setIsTime(e.target.value)}
           />
           <p className={css.valueLabel}>Enter the value of the water used:</p>
           <input
@@ -144,7 +150,8 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
               setNumber(Math.min(Math.max(e.target.value, 50), 5000))
             }
           />
-          <button className={css.btnSave} type="submit" onClick={handleAdd}>
+
+          <button className={css.btnSave} type="submit">
             Save
           </button>
         </form>
