@@ -16,7 +16,11 @@ const waterSlice = createSlice({
     loading: false,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    changeTotalDay(state, action) {
+      state.totalDay = action.payload;
+    },
+  },
   extraReducers: builder => {
     builder
       // fetchDailyWater (щоденна вода)
@@ -102,4 +106,5 @@ const waterSlice = createSlice({
   },
 });
 
+export const { changeTotalDay } = waterSlice.actions;
 export const waterReducer = waterSlice.reducer;
