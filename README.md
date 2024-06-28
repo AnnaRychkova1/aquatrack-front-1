@@ -20,18 +20,16 @@
 
 
 
-<p>Цей проєкт написаний на TypeScript у поєднанні з React JS для фронтенду та Node.js для бекенду, комбінуючи ці технології для ефективної та надійної розробки.</p>
-
 ## Технології, які використовувались:
 
 **Front-end**<br />
-`TypeScript` `React` `ReduxToolkit` `ReduxPersist` `Axios` `HTML/CSS` `Formik`
+`React` `ReduxToolkit` `ReduxPersist` `Axios` `HTML/CSS` 
 `React Spring` `Swiper` `Clsx` `Chart.js` `i18next`
 
 
 
 **Back-end**<br />
-`Node.js` `Express` `Mongoose` `Swagger` `Cloudinary` `Joi` `Nodemailer` `MongoDB` `Google OAuth`
+`Node.js` `Express` `Mongoose` `Swagger` `Cloudinary` `Joi`  `MongoDB` `Google OAuth`
 
 
 
