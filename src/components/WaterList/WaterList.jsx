@@ -6,12 +6,6 @@ import { selectWaterPortion } from '../../redux/water/selectors';
 import WaterItem from '../WaterItem/WaterItem';
 import css from './WaterList.module.css';
 
-const formatTime = dateString => {
-  const date = new Date(dateString);
-  const options = { hour: 'numeric', minute: 'numeric', hour12: true };
-  return date.toLocaleTimeString('en-US', options);
-};
-
 const WaterList = ({ selectDay }) => {
   // Форматуємо дату в формат YYYY-MM-DD
   const initDate = new Date(selectDay);
@@ -48,7 +42,7 @@ const WaterList = ({ selectDay }) => {
             <WaterItem
               id={waterItem._id}
               volume={waterItem.volume}
-              time={formatTime(waterItem.date)}
+              date={waterItem.date}
               isEditable={
                 calendarDate.getDate() === new Date(waterItem.date).getDate() &&
                 calendarDate.getMonth() ===

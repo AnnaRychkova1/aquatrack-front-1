@@ -4,7 +4,13 @@ import Iconsvg from '../Icon/Icon';
 import css from './WaterItem.module.css';
 import { useState } from 'react';
 
-const WaterItem = ({ id, volume, time, isEditable }) => {
+const formatTime = dateString => {
+  const date = new Date(dateString);
+  const options = { hour: 'numeric', minute: 'numeric', hour12: true };
+  return date.toLocaleTimeString('en-US', options);
+};
+
+const WaterItem = ({ id, volume, date, isEditable }) => {
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -13,7 +19,7 @@ const WaterItem = ({ id, volume, time, isEditable }) => {
 
   const openDeleteModal = () => setIsDeleteModalOpen(true);
   const closeDeleteModal = () => setIsDeleteModalOpen(false);
-  console.log(id);
+  const time = formatTime(date);
 
   return (
     <>
@@ -68,10 +74,11 @@ const WaterItem = ({ id, volume, time, isEditable }) => {
         closeModal={closeWaterModal}
         operationType={'edit'}
         id={id}
-        time={time}
+        date={date}
         volume={volume}
       />
       <DeleteWaterModal
+        id={id}
         isOpen={isDeleteModalOpen}
         closeModal={closeDeleteModal}
       />
