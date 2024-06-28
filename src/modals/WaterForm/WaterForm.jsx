@@ -49,6 +49,14 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
     closeModal();
   };
 
+  
+  // const onSubmit = data => {
+  //   console.log(data);
+  //   dispatch(addWater(data));
+  //   closeModal();
+    
+  // };
+
   return (
     <>
       {operationType === 'edit' ? (
