@@ -29,7 +29,7 @@ const App = () => {
         <Route
           path="/signup"
           element={
-            <RestrictedRoute redirectTo="/signin" component={<SignUp />} />
+            <RestrictedRoute redirectTo="/tracker" component={<SignUp />} />
           }
         />
 
