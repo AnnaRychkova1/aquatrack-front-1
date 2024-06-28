@@ -10,8 +10,7 @@ import {
 const waterSlice = createSlice({
   name: 'water',
   initialState: {
-    date: null, // обрана дата
-    totalDay: null, // сьгодні всьго води
+    totalDay: null, // всьoго води  за день
     items: [], //   порція прийому води
     monthIReception: [], //  місяць прийому води
     loading: false,
@@ -26,17 +25,12 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchDailyWater.fulfilled, (state, action) => {
-        // console.log(action.payload);
         state.items = action.payload;
-        // state.date = action.payload.date;
-        // state.totalDay = action.payload.totalDay;
         state.loading = false;
         state.error = null;
       })
       .addCase(fetchDailyWater.rejected, (state, action) => {
         state.items = [];
-        state.date = action.meta.arg;
-        state.totalDay = null;
         state.loading = false;
         state.error = action.payload;
       })
@@ -63,7 +57,6 @@ const waterSlice = createSlice({
       })
       .addCase(addWater.fulfilled, (state, action) => {
         state.items.push(action.payload);
-        state.totalDay = action.payload.totalDay;
         state.loading = false;
         state.error = null;
       })
@@ -79,7 +72,6 @@ const waterSlice = createSlice({
       })
       .addCase(deleteWater.fulfilled, (state, action) => {
         state.items = state.items.filter(water => water.id !== action.payload);
-        state.totalDay = action.payload.totalDay;
         state.loading = false;
         state.error = null;
       })
@@ -94,8 +86,12 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(updateWater.fulfilled, (state, action) => {
-        state.items = action.payload;
-        state.totalDay = action.payload.totalDay;
+        const index = state.items.findIndex(
+          water => water.id === action.payload.id
+        );
+        if (index !== -1) {
+          state.items[index] = action.payload;
+        }
         state.loading = false;
         state.error = null;
       })

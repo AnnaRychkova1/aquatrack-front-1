@@ -1,7 +1,6 @@
 import css from './WaterForm.module.css';
 import Iconsvg from '../../components/Icon/Icon';
 import { useState } from 'react';
-import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { addWater, updateWater } from '../../redux/water/operations.js';
 // import * as yup from 'yup';
@@ -17,48 +16,13 @@ import { addWater, updateWater } from '../../redux/water/operations.js';
 //   recordingTime: yup.string().required('Recording time is required'),
 // });
 
-const WaterForm = ({
-  operationType,
-  closeModal,
-  waterId,
-  //  water,
-  // value,
-  // time
-}) => {
+const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const dispatch = useDispatch();
   let initialWaterAmount = operationType === 'edit' ? 250 : 50;
-  // let isTime =
-  // const { 
-  //   // register,
-  //   //  handleSubmit,
-  //     // errors 
-  //   } = useForm({
-  //   validationSchema: schemaWaterForm,
-  // });
-
-  // const onSubmit = data => {
-  //   console.log('Form data:', data);
-  // };
-
-  const handleSave = async () => {
-    try {
-      if (operationType === 'edit') {
-        await dispatch(updateWater(waterId));
-      } else {
-        await dispatch(addWater(waterId));
-      }
-      toast.success('Запит успішно виконано');
-      closeModal();
-    } catch (error) {
-      toast.error('Помилка при виконанні');
-      console.error('Помилка при виконанні:', error);
-    }
-  };
-
   const [number, setNumber] = useState(initialWaterAmount);
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
-
+  console.log(id);
   const incrementNumber = e => {
     e.preventDefault();
     const newNumber = Math.min(number + 50, 5000);
@@ -73,52 +37,111 @@ const WaterForm = ({
     setMinValue(Math.min(minValue, newNumber));
   };
 
+  const handleEdit = (e, formData) => {
+    e.preventDefault();
+    dispatch(updateWater(formData));
+    closeModal();
+  };
+
+  const handleAdd = (e, formData) => {
+    e.preventDefault();
+    dispatch(addWater(formData));
+    closeModal();
+  };
+
   return (
-    <form className={css.waterForm}>
-      <p className={css.amountWaterLabel}>Amount of water:</p>
-      <div className={css.btnBox}>
-        <button className={css.btnReduce} onClick={decrementNumber}>
-          <Iconsvg
-            width="18"
-            height="18"
-            iconName="minus"
-            className={css.btnSvg}
+    <>
+      {operationType === 'edit' ? (
+        // Форма для внесення змін
+        <form className={css.waterForm}>
+          <p className={css.amountWaterLabel}>Amount of water:</p>
+          <div className={css.btnBox}>
+            <button className={css.btnReduce} onClick={decrementNumber}>
+              <Iconsvg
+                width="18"
+                height="18"
+                iconName="minus"
+                className={css.btnSvg}
+              />
+            </button>
+            <span className={css.numberMl}>{number} ml</span>
+            <button className={css.btnZoom} onClick={incrementNumber}>
+              <Iconsvg
+                width="18"
+                height="18"
+                iconName="plus"
+                className={css.btnSvg}
+              />
+            </button>
+          </div>
+          <p className={css.timeLabel}>Recording time:</p>
+          {/* Додала по замовчуванню заповнення даними з картки */}
+          {/* треба змінити формат дати на час */}
+          <input
+            className={css.inputTime}
+            type={date}
+            name="time"
+            value="07:00"
           />
-        </button>
-        <span className={css.numberMl}>{number} ml</span>
-        <button className={css.btnZoom} onClick={incrementNumber}>
-          <Iconsvg
-            width="18"
-            height="18"
-            iconName="plus"
-            className={css.btnSvg}
+          <p className={css.valueLabel}>Enter the value of the water used:</p>
+          {/* Додала по замовчуванню заповнення даними з картки */}
+          <input
+            className={css.input2}
+            type="number"
+            value={volume}
+            onChange={e =>
+              setNumber(Math.min(Math.max(e.target.value, 50), 5000))
+            }
           />
-        </button>
-      </div>
-      <p className={css.timeLabel}>Recording time:</p>
-
-      <input
-        className={css.inputTime}
-        type="time"
-        name="time"
-        value="07:00"
-        // ref={register}
-        // {time}
-      />
-
-      <p className={css.valueLabel}>Enter the value of the water used:</p>
-
-      <input
-        className={css.input2}
-        type="number"
-        value={number}
-        onChange={e => setNumber(Math.min(Math.max(e.target.value, 50), 5000))}
-      />
-
-      <button className={css.btnSave} type="submit" onClick={handleSave}>
-        Save
-      </button>
-    </form>
+          <button className={css.btnSave} type="submit" onClick={handleEdit}>
+            Save
+          </button>
+        </form>
+      ) : (
+        // Форма для додавання
+        <form className={css.waterForm}>
+          <p className={css.amountWaterLabel}>Amount of water:</p>
+          <div className={css.btnBox}>
+            <button className={css.btnReduce} onClick={decrementNumber}>
+              <Iconsvg
+                width="18"
+                height="18"
+                iconName="minus"
+                className={css.btnSvg}
+              />
+            </button>
+            <span className={css.numberMl}>{number} ml</span>
+            <button className={css.btnZoom} onClick={incrementNumber}>
+              <Iconsvg
+                width="18"
+                height="18"
+                iconName="plus"
+                className={css.btnSvg}
+              />
+            </button>
+          </div>
+          <p className={css.timeLabel}>Recording time:</p>
+          <input
+            className={css.inputTime}
+            type="time"
+            name="time"
+            value="07:00"
+          />
+          <p className={css.valueLabel}>Enter the value of the water used:</p>
+          <input
+            className={css.input2}
+            type="number"
+            value={number}
+            onChange={e =>
+              setNumber(Math.min(Math.max(e.target.value, 50), 5000))
+            }
+          />
+          <button className={css.btnSave} type="submit" onClick={handleAdd}>
+            Save
+          </button>
+        </form>
+      )}
+    </>
   );
 };
 
