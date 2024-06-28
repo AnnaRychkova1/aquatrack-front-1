@@ -1,7 +1,8 @@
 .logoFont {
-  /* position: absolute;
-  top: 26%;
-  left: 4%; */
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  margin-bottom: 5px;
   color: var(--main-text);
   font-weight: bold;
   font-size: 18px;

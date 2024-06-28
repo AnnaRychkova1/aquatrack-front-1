@@ -1,5 +1,11 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { userRegister, logIn, logOut } from './operations.js';
+import {
+  userRegister,
+  logIn,
+  logOut,
+  uploadUserAvatar,
+  sendVerify,
+} from './operations.js';
 
 const INITIAL_STATE = {
   user: {
@@ -39,8 +45,18 @@ const authSlice = createSlice({
         state.isLoading = false;
         const { user } = action.payload;
         state.user.email = user.email;
-        state.isSignedIn = false;
+        state.isSignedIn = true;
       })
+
+      // VERIFY EMAIL
+      .addCase(sendVerify.fulfilled, (state, action) => {
+        state.isLoading = false;
+        const { user, token } = action.payload;
+        state.user = user;
+        state.token = token;
+        state.isSignedIn = true;
+      })
+
       //LOGIN
       .addCase(logIn.fulfilled, (state, action) => {
         const { user, token } = action.payload;
@@ -58,13 +74,27 @@ const authSlice = createSlice({
         localStorage.removeItem('token');
         return INITIAL_STATE;
       })
-
+      .addCase(uploadUserAvatar.fulfilled, (state, action) => {
+        state.isLoading = false;
+        const { user } = action.payload;
+        state.user.avatarURL = user.avatarURL; // Update with your actual response structure
+      })
       .addMatcher(
-        isAnyOf(userRegister.pending, logIn.pending, logOut.pending),
+        isAnyOf(
+          userRegister.pending,
+          logIn.pending,
+          logOut.pending,
+          sendVerify.pending
+        ),
         handlePending
       )
       .addMatcher(
-        isAnyOf(userRegister.rejected, logIn.rejected, logOut.rejected),
+        isAnyOf(
+          userRegister.rejected,
+          logIn.rejected,
+          logOut.rejected,
+          sendVerify.rejected
+        ),
         handleRejected
       );
   },

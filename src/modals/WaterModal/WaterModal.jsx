@@ -2,7 +2,14 @@ import UniversalModal from '../Modal/Modal';
 import WaterForm from '../WaterForm/WaterForm';
 import css from './WaterModal.module.css';
 
-const WaterModal = ({ isOpen, closeModal, operationType }) => {
+const WaterModal = ({
+  isOpen,
+  closeModal,
+  operationType,
+  id,
+  date,
+  volume,
+}) => {
   return (
     <UniversalModal isOpen={isOpen} closeModal={closeModal}>
       <div className={css.wrapper}>
@@ -16,7 +23,13 @@ const WaterModal = ({ isOpen, closeModal, operationType }) => {
             ? 'Correct entered data:'
             : 'Choose a value'}
         </p>
-        <WaterForm operationType={operationType} closeModal={closeModal} />
+        <WaterForm
+          id={id}
+          date={date}
+          volume={volume}
+          operationType={operationType}
+          closeModal={closeModal}
+        />
       </div>
     </UniversalModal>
   );
