@@ -1,13 +1,14 @@
 import css from './WaterForm.module.css';
 import Iconsvg from '../../components/Icon/Icon';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import {
   addWater,
   //  updateWater
 } from '../../redux/water/operations.js';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectToken } from '../../redux/users/selectors';
 
 const schemaWaterForm = yup.object().shape({
   waterAmount: yup
@@ -36,10 +37,10 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
   console.log(id);
+  const token = useSelector(selectToken);
   const {
-    // register,
-    // handleSubmit,
-    handleAdd,
+    register,
+    handleSubmit,
     // errors
   } = useForm({
     validationSchema: schemaWaterForm,
@@ -58,27 +59,77 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
     setMinValue(Math.min(minValue, newNumber));
   };
 
-  // const handleEdit = (e, formData) => {
-  //   e.preventDefault();
-  //   dispatch(updateWater(formData));
-  //   closeModal();
-  // };
-
-  // const handleAdd = (e, formData) => {
-  //   e.preventDefault();
-  //   dispatch(addWater(formData));
-  //   closeModal();
-  // };
-
   const onSubmit = data => {
+    // console.log('Привіт', data);
+    // dispatch(addWater(data));
+    dispatch(addWater({ data, token }));
     console.log(data);
-    dispatch(addWater(data));
     closeModal();
   };
 
   return (
-    <>
-      {/* {operationType === 'edit' ? (
+    <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>
+      <p className={css.amountWaterLabel}>Amount of water:</p>
+      <div className={css.btnBox}>
+        <button className={css.btnReduce} onClick={decrementNumber}>
+          <Iconsvg
+            width="18"
+            height="18"
+            iconName="minus"
+            className={css.btnSvg}
+          />
+        </button>
+        <span className={css.numberMl}>{number} ml</span>
+        <button className={css.btnZoom} onClick={incrementNumber}>
+          <Iconsvg
+            width="18"
+            height="18"
+            iconName="plus"
+            className={css.btnSvg}
+          />
+        </button>
+      </div>
+      <p className={css.timeLabel}>Recording time:</p>
+
+      <input
+        className={css.inputTime}
+        type="time"
+        name="time"
+        // value={time}
+        value={date}
+        // onChange={e => setIsTime(e.target.value)}
+        {...register('time')}
+      />
+      <p className={css.valueLabel}>Enter the value of the water used:</p>
+      <input
+        className={css.input2}
+        type="number"
+        value={volume}
+        onChange={e => setNumber(Math.min(Math.max(e.target.value, 50), 5000))}
+      />
+      <button className={css.btnSave} type="submit">
+        Save
+      </button>
+    </form>
+  );
+};
+
+export default WaterForm;
+/**============================================= */
+// const handleEdit = (e, formData) => {
+//   e.preventDefault();
+//   dispatch(updateWater(formData));
+//   closeModal();
+// };
+
+// const handleAdd = (e, formData) => {
+//   e.preventDefault();
+//   dispatch(addWater(formData));
+//   closeModal();
+// };
+
+{
+  /* {operationType === 'edit' ? (
         // Форма для внесення змін
         <form className={css.waterForm}>
           <p className={css.amountWaterLabel}>Amount of water:</p>
@@ -102,24 +153,32 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
             </button>
           </div>
           <p className={css.timeLabel}>Recording time:</p>
-          {/* Додала по замовчуванню заповнення даними з картки */}
-      {/* треба змінити формат дати на час */}
-      {/* <input
+          {/* Додала по замовчуванню заповнення даними з картки */
+}
+{
+  /* треба змінити формат дати на час */
+}
+{
+  /* <input
             className={css.inputTime}
             type={date}
             name="time"
             value="07:00"
           />
           <p className={css.valueLabel}>Enter the value of the water used:</p>
-          {/* Додала по замовчуванню заповнення даними з картки */}
-      {/* <input
+          {/* Додала по замовчуванню заповнення даними з картки */
+}
+{
+  /* <input
             className={css.input2}
             type="number"
             value={volume}
             onChange={e =>
               setNumber(Math.min(Math.max(e.target.value, 50), 5000))
-            } */}
-      {/* />
+            } */
+}
+{
+  /* />
           <button
             className={css.btnSave}
             type="submit"
@@ -127,65 +186,11 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
           >
             Save
           </button>
-        </form> */}
-      {/* ) : ( */}
-
-      <form
-        className={css.waterForm}
-        // onSubmit={handleSubmit(onSubmit)}
-        onSubmit={handleAdd(onSubmit)}
-      >
-        <p className={css.amountWaterLabel}>Amount of water:</p>
-        <div className={css.btnBox}>
-          <button className={css.btnReduce} onClick={decrementNumber}>
-            <Iconsvg
-              width="18"
-              height="18"
-              iconName="minus"
-              className={css.btnSvg}
-            />
-          </button>
-          <span className={css.numberMl}>{number} ml</span>
-          <button className={css.btnZoom} onClick={incrementNumber}>
-            <Iconsvg
-              width="18"
-              height="18"
-              iconName="plus"
-              className={css.btnSvg}
-            />
-          </button>
-        </div>
-        <p className={css.timeLabel}>Recording time:</p>
-
-        <input
-          className={css.inputTime}
-          type="time"
-          name="time"
-          // value={time}
-          // value={date}
-          // onChange={e => setIsTime(e.target.value)}
-        />
-        <p className={css.valueLabel}>Enter the value of the water used:</p>
-        <input
-          className={css.input2}
-          type="number"
-          value={volume}
-          onChange={e =>
-            setNumber(Math.min(Math.max(e.target.value, 50), 5000))
-          }
-        />
-
-        <button className={css.btnSave} type="submit">
-          Save
-        </button>
-      </form>
-      {/* )} */}
-    </>
-  );
-};
-
-export default WaterForm;
-/**============================================= */
+        </form> */
+}
+{
+  /* ) : ( */
+}
 
 // function myProps() {
 // const isEdit = operationType === 'edit';
