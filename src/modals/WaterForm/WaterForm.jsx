@@ -67,7 +67,7 @@ const WaterForm = ({
         await dispatch(updateWater(id));
       } else {
         await dispatch(
-          addWater({ data: recordingDateTime, token, volume: value })
+          addWater({ data: recordingDateTime, volume: value, token })
         );
       }
       toast.success('Запит успішно виконано');
