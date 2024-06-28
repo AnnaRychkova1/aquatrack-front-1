@@ -1,12 +1,21 @@
 .advantages_main {
-  margin-top: 16px;
+  background-image: url('../../assets//images//png/girl_with_bottle_1x_mobile.png');
+  /* margin-top: 16px; */
+  /* margin-bottom: 16px; */
+
+
   border-radius: 30px;
   background-color: var(--background-color);
+
+  width: 343px;
+  max-width: 100%;
+  height: 353px;
   padding: 209px 16px 32px;
   background-image: url('../../assets//images//png/girl_with_bottle_1x_mobile.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  border: 1px solid red;
 }
 
 @media only screen and (min-resolution: 192dpi) {
@@ -97,8 +106,7 @@
 }
 
 .advantagesGroup_habits {
-  max-width: 168px;
-  margin-left: 143px;
+  margin-left: 138px;
 }
 
 .advantagesTabs {
@@ -123,7 +131,7 @@
   height: 8px;
 }
 
-.advantages_habits > p {
+.advantages_habits>p {
   font-weight: 700;
   font-size: 8px;
   line-height: 100%;
@@ -149,7 +157,13 @@
 @media only screen and (min-width: 768px) {
   .advantages_main {
     background-image: url('../../assets//images/png/girl_with_bottle_1x_tablet.png');
+    border-radius: 30px;
+    width: 704px;
+    max-width: 100%;
+    height: 446px;
+
     padding: 283px 32px 32px;
+    /* margin-bottom: 32px; */
   }
 
   .user1 {
@@ -212,8 +226,7 @@
   }
 
   .advantagesGroup_habits {
-    max-width: 242px;
-    margin-left: 398px;
+    margin-left: 395px;
   }
 
   .advantagesTabs {
@@ -224,7 +237,7 @@
     padding: 11px 16px;
   }
 
-  .advantages_habits > p {
+  .advantages_habits>p {
     font-size: 12px;
   }
 }
@@ -232,9 +245,10 @@
 @media only screen and (min-width: 1440px) {
   .advantages_main {
     background-image: url('../../assets//images/png/girl_with_bottle_1x_desktop.png');
-    padding: 537px 32px 64px;
-    margin: 0;
-    /* max-width: 608px; */
+    padding: 537px 32px 132px;
+    /* margin-top: 16px; */
+    width: 672px;
+    height: 736px;
   }
 
   @media only screen and (min-resolution: 192dpi) {
@@ -244,7 +258,7 @@
   }
 
   .advantagesGroup_habits {
-    margin-left: 366px;
+    margin-left: 355px;
   }
 
   .user1 {

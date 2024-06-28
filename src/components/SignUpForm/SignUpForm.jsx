@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { userRegister } from '../../redux/users/operations';
 import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
+import Notification from '../Notification/Notification';
 import css from './SignUpForm.module.css';
 
 const schema = yup.object().shape({
@@ -20,14 +21,14 @@ const schema = yup.object().shape({
     .min(6, 'Password must contain at least 6 characters'),
   repeatPassword: yup
     .string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match')
+    .oneOf([yup.ref('password'), null], 'Some error password')
     .required('Repeat Password field is required'),
 });
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-  const [showRepeatPassword, setRepeatPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -47,6 +48,14 @@ const SignUpForm = () => {
 
   const onSubmit = data => {
     const { repeatPassword, ...userData } = data;
+    // dispatch(userRegister(userData)).then(() => {
+    //   navigate('/signin');
+    // });
+
+    // dispatch(userRegister(userData)).then(() => {
+    //   navigate('/tracker');
+    // });
+
     dispatch(userRegister(userData));
     reset();
     setFormData({
@@ -77,6 +86,7 @@ const SignUpForm = () => {
             />
             {errors.email && (
               <span className={css.errors}>{errors.email.message}</span>
+              //<Notification type="error" message={errors.email.message} />
             )}
           </div>
           <label className={css.label}>Password</label>
@@ -93,6 +103,7 @@ const SignUpForm = () => {
             />
             {errors.password && (
               <span className={css.errors}>{errors.password.message}</span>
+              //<Notification type="error" message={errors.password.message} />
             )}
             <svg
               className={showPassword ? css.eyeIconOff : css.icon_eye}
@@ -111,7 +122,7 @@ const SignUpForm = () => {
               className={`${css.input} ${
                 errors.repeatPassword ? css.error : ''
               }`}
-              type={showRepeatPassword ? 'text' : 'password'}
+              type={showPassword ? 'text' : 'password'}
               {...register('repeatPassword')}
               placeholder="Repeat password"
               onChange={e =>
@@ -123,17 +134,19 @@ const SignUpForm = () => {
               <span className={css.errors}>
                 {errors.repeatPassword.message}
               </span>
+              // <Notification
+              //   type="error"
+              //   message={errors.repeatPassword.message}
+              // />
             )}
             <svg
-              className={showRepeatPassword ? css.eyeIconOff : css.icon_eye}
-              onClick={() => setRepeatPassword(!showRepeatPassword)}
+              className={showPassword ? css.eyeIconOff : css.icon_eye}
+              onClick={() => setShowPassword(!showPassword)}
             >
               <use
                 width={20}
                 height={20}
-                xlinkHref={`${sprite}${
-                  showRepeatPassword ? '#eye' : '#eye-off'
-                }`}
+                xlinkHref={`${sprite}${showPassword ? '#eye' : '#eye-off'}`}
               ></use>
             </svg>
           </div>

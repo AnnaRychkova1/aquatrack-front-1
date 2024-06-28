@@ -104,7 +104,9 @@
   /* width: 16px;
   height: 16px; */
   stroke: var(--main-white);
-  margin-right: 8px;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  margin-right: 6px;
   transform: scale(1.42);
 }
 

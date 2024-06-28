@@ -8,6 +8,7 @@ const AddWaterBtn = ({ buttonStyle, iconStyle, textStyle }) => {
 
   const openAddWaterModal = () => setIsAddWaterModalOpen(true);
   const closeAddWaterModal = () => setIsAddWaterModalOpen(false);
+  const operationType = 'add';
   return (
     <>
       <button
@@ -27,6 +28,7 @@ const AddWaterBtn = ({ buttonStyle, iconStyle, textStyle }) => {
       <WaterModal
         isOpen={isAddWaterModalOpen}
         closeModal={closeAddWaterModal}
+        operationType={operationType}
       />
     </>
   );

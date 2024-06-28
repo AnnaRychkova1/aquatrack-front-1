@@ -1,63 +1,48 @@
 import css from './WaterForm.module.css';
 import Iconsvg from '../../components/Icon/Icon';
 import { useState } from 'react';
-import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
 import { addWater, updateWater } from '../../redux/water/operations.js';
-// import * as yup from 'yup';
-// import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectToken } from '../../redux/users/selectors';
 
-// const schemaWaterForm = yup.object().shape({
-//   waterAmount: yup
-//     .number()
-//     .typeError('Please enter a valid number')
-//     .min(50, 'Minimum value is 50')
-//     .max(5000, 'Maximum value is 5000')
-//     .required('Water amount is required'),
-//   recordingTime: yup.string().required('Recording time is required'),
-// });
+const isDateTimeValid = date => new Date(date) <= new Date();
+const schemaWaterForm = yup.object().shape({
+  waterAmount: yup
+    .number()
+    .typeError('Please enter a valid number')
+    .min(50, 'Minimum value is 50')
+    .max(5000, 'Maximum value is 5000')
+    .required('Water amount is required'),
+  recordingTime: yup
+    .string()
+    .required('Recording time is required')
+    .test('is-valid-datetime', 'Invalid date and time', isDateTimeValid),
+});
 
 const WaterForm = ({
   operationType,
   closeModal,
-  waterId,
-  //  water,
-  // value,
-  // time
+  id,
+  //  date,
+  // volume,
 }) => {
   const dispatch = useDispatch();
   let initialWaterAmount = operationType === 'edit' ? 250 : 50;
-  // let isTime =
-  // const { 
-  //   // register,
-  //   //  handleSubmit,
-  //     // errors 
-  //   } = useForm({
-  //   validationSchema: schemaWaterForm,
-  // });
-
-  // const onSubmit = data => {
-  //   console.log('Form data:', data);
-  // };
-
-  const handleSave = async () => {
-    try {
-      if (operationType === 'edit') {
-        await dispatch(updateWater(waterId));
-      } else {
-        await dispatch(addWater(waterId));
-      }
-      toast.success('Запит успішно виконано');
-      closeModal();
-    } catch (error) {
-      toast.error('Помилка при виконанні');
-      console.error('Помилка при виконанні:', error);
-    }
-  };
-
   const [number, setNumber] = useState(initialWaterAmount);
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
+  console.log(id);
+  const token = useSelector(selectToken);
+  const {
+    register,
+    handleSubmit,
+    // errors
+  } = useForm({
+    validationSchema: schemaWaterForm,
+  });
 
   const incrementNumber = e => {
     e.preventDefault();
@@ -73,8 +58,28 @@ const WaterForm = ({
     setMinValue(Math.min(minValue, newNumber));
   };
 
+  const onSubmit = async ({ time, value }) => {
+    const recordingDateTime = `${
+      new Date().toISOString().split('T')[0]
+    } ${time}`;
+    try {
+      if (operationType === 'edit') {
+        await dispatch(updateWater(id));
+      } else {
+        await dispatch(
+          addWater({ data: recordingDateTime, volume: value, token })
+        );
+      }
+      toast.success('Запит успішно виконано');
+      closeModal();
+    } catch (error) {
+      toast.error('Помилка при виконанні');
+      console.error('Помилка при виконанні:', error);
+    }
+  };
+
   return (
-    <form className={css.waterForm}>
+    <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>
       <p className={css.amountWaterLabel}>Amount of water:</p>
       <div className={css.btnBox}>
         <button className={css.btnReduce} onClick={decrementNumber}>
@@ -96,26 +101,27 @@ const WaterForm = ({
         </button>
       </div>
       <p className={css.timeLabel}>Recording time:</p>
-
       <input
         className={css.inputTime}
         type="time"
         name="time"
         value="07:00"
-        // ref={register}
-        // {time}
+        {...register('time')}
       />
-
+      {/* <div className={css.divError}>
+        {errors.time && <p>{errors.time.message}</p>}
+      </div> */}
       <p className={css.valueLabel}>Enter the value of the water used:</p>
-
       <input
         className={css.input2}
         type="number"
         value={number}
         onChange={e => setNumber(Math.min(Math.max(e.target.value, 50), 5000))}
       />
-
-      <button className={css.btnSave} type="submit" onClick={handleSave}>
+      {/* <div className={css.divError}>
+        {errors.waterAmount && <p>{errors.waterAmount.message}</p>}
+      </div> */}
+      <button className={css.btnSave} type="submit">
         Save
       </button>
     </form>
@@ -123,154 +129,3 @@ const WaterForm = ({
 };
 
 export default WaterForm;
-/**============================================= */
-
-// function myProps() {
-// const isEdit = operationType === 'edit';
-// const initialWaterAmount =  operationType === 'edit' ? { volume } : 50;
-// const [number, setNumber] = useState(initialWaterAmount);
-// }
-{
-  /* <h3 className={css.title}>
-        {operationType ? 'Edit the entered amount of water' : 'Add water'}
-      </h3>
-      <p className={css.subtitle}>
-        {operationType ? 'Correct entered data:' : 'Choose a value'}
-      </p> */
-}
-
-// function myProps() {
-//   const isEdit = operationType === 'edit';
-//   const initialWaterAmount = isEdit ? { volume } : 50;
-//   const [number, setNumber] = useState(initialWaterAmount);
-// }
-
-// import  { useState } from 'react';
-// import { useForm } from 'react-hook-form';
-// import * as yup from 'yup';
-
-// const schema = yup.object().shape({
-//   waterAmount: yup
-//     .number()
-//     .typeError('Please enter a valid number')
-//     .min(50, 'Minimum value is 50')
-//     .max(5000, 'Maximum value is 5000')
-//     .required('Water amount is required'),
-//   recordingTime: yup.string().required('Recording time is required'),
-// });
-
-// const WaterForm = ({ operationType }) => {
-//   const { register, handleSubmit, errors } = useForm({
-//     validationSchema: schema,
-//   });
-
-//   const [waterAmount, setWaterAmount] = useState(50);
-
-//   const onSubmit = data => {
-
-//     console.log('Form data:', data);
-//   };
-
-//   const incrementWaterAmount = () => {
-//     setWaterAmount(prevAmount => Math.min(prevAmount + 50, 5000));
-//   };
-
-//   const decrementWaterAmount = () => {
-//     setWaterAmount(prevAmount => Math.max(prevAmount - 50, 50));
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit(onSubmit)}>
-//       <h3>
-//         {operationType ? 'Edit the entered amount of water' : 'Add water'}
-//       </h3>
-//       <div>
-//         <label>Amount of water:</label>
-//         <div>
-//           <button type="button" onClick={decrementWaterAmount}>
-//             -
-//           </button>
-//           <input
-//             type="number"
-//             name="waterAmount"
-//             value={waterAmount}
-//             onChange={e => setWaterAmount(e.target.value)}
-//             ref={register}
-//           />
-//           <span>ml</span>
-//           <button type="button" onClick={incrementWaterAmount}>
-//             +
-//           </button>
-//         </div>
-//         {errors.waterAmount && <p>{errors.waterAmount.message}</p>}
-//       </div>
-//       <div>
-//         <label>Recording time:</label>
-//         <input type="time" name="recordingTime" ref={register} />
-//         {errors.recordingTime && <p>{errors.recordingTime.message}</p>}
-//       </div>
-//       <button type="submit">Save</button>
-//     </form>
-//   );
-// };
-
-// export default WaterForm;
-
-// import { useState } from 'react';
-// import WaterForm from '../../components/WaterForm/WaterForm';
-
-// initialAmount,
-// initialTime,
-// onSave,
-
-//       <div className={styles.modalWrap}>
-//         <h2>
-//           {initialAmount ? 'Edit the entered amount of water' : 'Add water'}
-//         </h2>
-
-// const [amount, setAmount] = useState(initialAmount || 50);
-// const [time, setTime] = useState(initialTime || '7:00');
-// const [value, setValue] = useState(initialAmount || 50);
-
-// const handleAmountChange = delta => {
-//   const newAmount = amount + delta;
-//   if (newAmount >= 0) {
-//     setAmount(newAmount);
-//     setValue(newAmount);
-//   }
-// };
-
-// const handleSave = () => {
-//   onSave({ amount, time, value });
-//   closeModal();
-// };
-
-//         <WaterForm />
-//         <div className={styles.field}>
-//           <label>Amount of water:</label>
-//           <div className={styles.amountControl}>
-//             <button onClick={() => handleAmountChange(-50)}>-</button>
-//             <span>{amount} ml</span>
-//             <button onClick={() => handleAmountChange(50)}>+</button>
-//           </div>
-//         </div>
-//         <div className={styles.field}>
-//           <label>Recording time:</label>
-//           <input
-//             type="time"
-//             value={time}
-//             onChange={e => setTime(e.target.value)}
-//           />
-//         </div>
-//         <div className={styles.field}>
-//           <label>Enter the value of the water used:</label>
-//           <input
-//             type="number"
-//             value={value}
-//             onChange={e => setValue(parseInt(e.target.value))}
-//           />
-//         </div>
-//         <button className={styles.saveButton} onClick={handleSave}>
-//           Save
-//         </button>
-//       </div>

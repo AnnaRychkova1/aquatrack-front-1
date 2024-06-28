@@ -1,7 +1,12 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { selectDate } from '../../redux/date/selectors';
+import { fetchMonthlyWater } from '../../redux/water/operations';
 import { paginationDate } from '../../redux/date/selectors';
+import { selectToken } from '../../redux/users/selectors';
+import { selectMonth } from '../../redux/water/selectors';
 import CalendarItem_1 from '../CalendarItem_1/CalendarItem_1';
-import days from './days.json';
+
 import css from './Calendar_1.module.css';
 const Calendar_1 = () => {
   const storePaginationDate = new Date(useSelector(paginationDate));
@@ -19,26 +24,39 @@ const Calendar_1 = () => {
     59,
     999
   );
+  // Отримуємо дату зі стору
+  const storeDate = new Date(useSelector(selectDate));
+  // Отримуємо місяця (місяці у JavaScript рахуються з 0, тому додаємо 1)
+  const month = (storeDate.getMonth() + 1).toString().padStart(2, '0');
 
-  // Фільтруємо масив days в діапазоні вибраного місяця
-  const filteredDays = days.filter(day => {
-    const date = new Date(day.data);
-    return date >= startOfMonth && date <= endOfMonth;
-  });
+  // Отримуємо року
+  const year = storeDate.getFullYear();
+
+  // Отримуємо дані з БД
+  const dispatch = useDispatch();
+  const token = useSelector(selectToken);
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchMonthlyWater({ month, year, token }));
+    }
+  }, [dispatch, month, year, token]);
+
+  // Отримуємо зі стору
+  const waterPortions = useSelector(selectMonth);
 
   return (
     <ul className={css.list}>
-      {filteredDays.length === 0 ? (
+      {/* {waterPortions.length === 0 ? (
         <li className={css.emptyItem}>
           There is no data for the selected month
         </li>
       ) : (
-        filteredDays.map(day => (
+        waterPortions.map(day => (
           <li className={css.item} key={day.data}>
             <CalendarItem_1 day={day.data} percent={day.percent} />
           </li>
         ))
-      )}
+      )} */}
     </ul>
   );
 };
