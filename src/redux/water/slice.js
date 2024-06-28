@@ -41,7 +41,7 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchMonthlyWater.fulfilled, (state, action) => {
-        state.monthIReceptio = action.payload;
+        state.monthIReception = action.payload;
         state.loading = false;
         state.error = null;
       })
