@@ -1,6 +1,7 @@
 .generalSignInForm {
     padding: 16px;
-    margin: 0 auto;
+    border: 1px solid blue;
+    /* margin: 0 auto; */
     /* max-width: 343px; */
 }
 
@@ -22,5 +23,6 @@
 @media only screen and (max-width: 1439px) {
     .AdvantagesSection_plus {
         display: none;
+        margin-top: 0px;
     }
 }

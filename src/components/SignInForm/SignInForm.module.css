@@ -1,6 +1,6 @@
 .loginContainer {
     border-radius: 30px;
-    /* border: 1px solid red; */
+    border: 1px solid red;
     padding: 16px;
     background-color: var(--background-color);
     max-width: 343px;
@@ -10,7 +10,9 @@
 }
 
 .formContainer {
-    padding: 172px 0 192px;
+    /* padding: 172px 0 192px; */
+    /* padding: 192px 0 192px; */
+    padding-top: 192px;
 }
 
 .title {
@@ -41,6 +43,7 @@
 }
 
 .input_field {
+    margin-bottom: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -98,7 +101,6 @@
 .button:hover,
 .button:focus {
     background-color: var(--accent-color);
-
 }
 
 .description {
@@ -117,7 +119,8 @@
     color: var(--second-text);
 }
 
-/* .errors {
+.errors {
+    margin-top: 5px;
     font-size: 14px;
     line-height: 18px;
     letter-spacing: -0.01em;
@@ -128,7 +131,7 @@
 .error {
     border-color: #ef5050;
     color: #ef5050;
-} */
+}
 
 @media screen and (min-width: 768px) {
     .loginContainer {
@@ -139,7 +142,8 @@
     }
 
     .formContainer {
-        padding: 171px 102px 249px;
+        /* padding: 171px 102px 249px; */
+        padding: 261px 102px 249px;
     }
 
     .form {
