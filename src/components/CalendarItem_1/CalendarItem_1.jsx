@@ -4,17 +4,19 @@ import { useDispatch } from 'react-redux';
 import { changeDate } from '../../redux/date/slice';
 import css from './CalendarItem_1.module.css';
 
-const CalendarItem_1 = ({ day, percent }) => {
+// Функція для визначення дати з dateTime у форматі 'YYYY-MM-DD'
+const extractDate = dateTime => {
+  return dateTime.split('T')[0];
+};
+
+const CalendarItem_1 = ({ date, percent }) => {
   const dispatch = useDispatch();
   // Дата зі стору
   const storeDate = new Date(useSelector(selectDate));
-  const storeDay = storeDate.getDate();
+  const storeDay = storeDate.toLocaleDateString('en-CA');
 
-  // Дата з календаря
-  const сalendarDate = new Date(day);
-  const сalendarDay = сalendarDate.getDate();
-
-  const numericPercent = parseInt(percent.replace('%', ''), 10);
+  const formatDate = new Date(date);
+  const dayOfMonth = formatDate.getDate();
 
   const handleChangeDate = data => {
     dispatch(changeDate(new Date(data).toISOString()));
@@ -22,35 +24,35 @@ const CalendarItem_1 = ({ day, percent }) => {
 
   return (
     <div className={css.dayInfo}>
-      {storeDay === сalendarDay ? (
+      {storeDay === extractDate(date) ? (
         <button
           className={css.dayNumberCurrent}
           type="button"
           aria-label="Date on the calendar"
-          onClick={() => handleChangeDate(day)}
+          onClick={() => handleChangeDate(date)}
         >
-          {сalendarDay}
+          {dayOfMonth}
         </button>
-      ) : numericPercent < 100 ? (
+      ) : percent < 100 ? (
         <button
           className={css.dayNumberPart}
           type="button"
           aria-label="Date on the calendar"
-          onClick={() => handleChangeDate(day)}
+          onClick={() => handleChangeDate(date)}
         >
-          {сalendarDay}
+          {dayOfMonth}
         </button>
       ) : (
         <button
           className={css.dayNumberFull}
           type="button"
           aria-label="Date on the calendar"
-          onClick={() => handleChangeDate(day)}
+          onClick={() => handleChangeDate(date)}
         >
-          {сalendarDay}
+          {dayOfMonth}
         </button>
       )}
-      <p className={css.dayPercent}>{percent}</p>
+      <p className={css.dayPercent}>{percent}%</p>
     </div>
   );
 };
