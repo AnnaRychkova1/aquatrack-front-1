@@ -83,10 +83,10 @@ export const fetchDailyWater = createAsyncThunk(
 
 export const fetchMonthlyWater = createAsyncThunk(
   'water/fetchWaters',
-  async (date, thunkAPI) => {
+  async ({ month, year, token }, thunkAPI) => {
     try {
-      const response = await requestWaterMonthly(date);
-      return response.data;
+      const response = await requestWaterMonthly({ month, year }, token);
+      return response;
     } catch (error) {
       toast.error(error.message, { ...options });
       return thunkAPI.rejectWithValue(error.message);

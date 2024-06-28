@@ -30,9 +30,9 @@ export const userRegister = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const res = await requestRegister(formData);
-      toast.success('Successfully registered. Check your email', {
-        ...options,
-      });
+      // toast.success('Successfully registered. Check your email', {
+      //   ...options,
+      // });
 
       return res;
     } catch (err) {
@@ -48,7 +48,7 @@ export const logIn = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const res = await requestLogin(formData);
-      toast.success('Successfully login', { ...options });
+      // toast.success('Successfully login', { ...options });
       return res;
     } catch (err) {
       switch (err.response?.status) {

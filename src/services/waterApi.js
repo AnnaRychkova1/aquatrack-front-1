@@ -28,7 +28,10 @@ export const requestWaterDaily = async (date, token) => {
   return data;
 };
 
-export const requestWaterMonthly = async day => {
-  const { data } = await instance.get('/water/monthly', day);
+export const requestWaterMonthly = async ({ month, year }, token) => {
+  setToken(token);
+  const { data } = await instance.get('/water/monthly', {
+    params: { month, year },
+  });
   return data;
 };
