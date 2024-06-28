@@ -7,10 +7,11 @@ import {
   requestLogout,
   requestRegister,
   requestResendVerify,
+  requestSendVerify,
   // refreshToken,
   // requestResetPassword,
   // requestForgotPassword,
-  requestSendVerify,
+  // requestSendVerify,
   uploadUserAvatars,
 } from '../../services/userApi.js';
 
@@ -98,6 +99,7 @@ export const sendVerify = createAsyncThunk(
   async ({ verificationToken, formData }, thunkAPI) => {
     try {
       const res = await requestSendVerify(verificationToken, formData);
+      console.log(res);
 
       return res;
     } catch (err) {
