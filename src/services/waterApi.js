@@ -4,9 +4,12 @@ export const setToken = token => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-export const addWaterDaily = async (data, token) => {
+export const addWaterDaily = async (formData, token) => {
   setToken(token);
-  const { newData } = await instance.post('/water', data);
+  console.log('Data is here', formData);
+  console.log('I am from:', token);
+
+  const { newData } = await instance.post('/water', formData);
   return newData;
 };
 
