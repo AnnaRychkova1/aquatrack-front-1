@@ -60,8 +60,8 @@ const authSlice = createSlice({
       })
       .addCase(uploadUserAvatar.fulfilled, (state, action) => {
         state.isLoading = false;
-        const { user } = action.payload;
-        state.user.avatarURL = user.avatarURL; // Update with your actual response structure
+        //const { user } = action.payload;
+        state.user.avatarURL = action.payload.avatarURL;
       })
       .addMatcher(
         isAnyOf(userRegister.pending, logIn.pending, logOut.pending),

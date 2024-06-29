@@ -77,7 +77,12 @@ export const updateUserProfile = async formData => {
 };
 
 export const uploadUserAvatars = async formData => {
-  const { data } = await instance.patch('/users/avatar', formData);
+  console.log(formData);
+  const { data } = await instance.patch('/users/avatars', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 
   return data;
 };

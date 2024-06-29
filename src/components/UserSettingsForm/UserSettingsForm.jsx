@@ -1,77 +1,3 @@
-// import { ErrorMessage, Field, Form, Formik } from 'formik';
-// import * as Yup from 'yup';
-// import Iconsvg from '../Icon/Icon';
-// //import css from "./UserSettingsForm.module.css";
-// //import { useDispatch } from "react-redux";
-// //import { apiRegisterUser } from "../redux/auth/operations";
-
-// const UserSettingsSchema = Yup.object().shape({
-//   name: Yup.string()
-//     .min(2, 'User name must be at least 2 characters!')
-//     .max(50, 'User name must be less than 50 characters!'),
-//   email: Yup.string()
-//     .required('Email is required!')
-//     .email('Must be a valid email!'),
-//   weight: Yup.number().min(0, 'Weight must be a positive number!'),
-//   gender: Yup.string()
-//     .required('Gender is required!')
-//     .oneOf(['woman', 'man'], 'Invalid gender selection!'),
-//   activeTimeSports: Yup.number().min(
-//     0,
-//     'Active time must be a positive number!'
-//   ),
-//   waterDrink: Yup.number()
-//     .required('Water Drink is required!')
-//     .min(0, 'Water Drink must be a positive number!'),
-// });
-
-// const INITIAL_FORM_DATA = {
-//   name: '',
-//   email: '',
-//   weight: 0,
-//   activeTimeSports: 0,
-//   waterDrink: 1.8,
-// };
-
-// const UserSettingsForm = ({ closeModal }) => {
-//   // const dispatch = useDispatch();
-//   // const user = useSelector((state) => state.user);
-
-//   const handleSubmit = values => {
-//     // dispatch(
-//     //   apiRegisterUser({
-//     //     name: values.name,
-//     //     email: values.email,
-//     //     password: values.password,
-//     //   })
-//     // )
-//     //   .unwrap()
-//     //   .then(() => {
-//     //     console.log("login success");
-//     //   })
-//     //   .catch(() => {
-//     //     console.log("login error");
-//     //   });
-
-//     return false;
-//   };
-
-//   return (
-//     <div>
-//       <div>
-//         <h3>Setting</h3>
-//       </div>
-//       <Formik
-//         validationSchema={UserSettingsSchema}
-//         initialValues={INITIAL_FORM_DATA}
-//         onSubmit={handleSubmit}
-//       ></Formik>
-//     </div>
-//   );
-// };
-
-//export default UserSettingsForm;
-//import { useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
@@ -81,12 +7,7 @@ import Iconsvg from '../Icon/Icon';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAvatar, selectWaterDrink } from '../../redux/users/selectors';
 import { uploadUserAvatar } from '../../redux/users/operations';
-
 //const API_URL = 'https://aquatrack-back-1.onrender.com/api/';
-//import Avatar from 'react-avatar';
-//import { useDispatch, useSelector } from 'react-redux';
-//import { updateUserSettings } from '../redux/user/operations'; // Потрібно визначити цю операцію
-
 const UserSettingsSchema = Yup.object().shape({
   name: Yup.string(),
   email: Yup.string()
@@ -94,13 +15,13 @@ const UserSettingsSchema = Yup.object().shape({
     .email('Must be a valid email!'),
   weight: Yup.number().min(0, 'Weight must be a positive number!'),
   activeTime: Yup.number().min(0, 'Active time must be a positive number!'),
-  waterIntake: Yup.number()
+  waterDrink: Yup.number()
     .required('Water intake is required!')
     .min(0, 'Water intake must be a positive number!'),
   gender: Yup.string()
     .required('Gender is required!')
     .oneOf(['woman', 'man'], 'Invalid gender selection!'),
-  avatar: Yup.mixed()
+  avatarURL: Yup.mixed()
     .test(
       'fileSize',
       'File too large',
@@ -114,23 +35,17 @@ const UserSettingsSchema = Yup.object().shape({
         (value && ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type))
     ),
 });
-// { isOpen, onClose }
 const UserSettingsForm = () => {
-  // const dispatch = useDispatch();
-  // const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const userDataAvatar = useSelector(selectAvatar);
   const userDataWaterDrink = useSelector(selectWaterDrink);
-  // const [numberValue, setNumberValue] = useState(userDataWaterDrink);
-
-  // useEffect(() => {
-  //   setNumberValue(userDataWaterDrink);
-  // }, [userDataWaterDrink]);
-  const [avatarPreview, setAvatarPreview] = useState(userDataAvatar);
+  const [avatarPreview, setAvatarPreview] = useState(null);
+  const [savedAvatarURL, setSavedAvatarURL] = useState(userDataAvatar);
   const {
     register,
     handleSubmit,
     setValue,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(UserSettingsSchema),
@@ -140,21 +55,45 @@ const UserSettingsForm = () => {
       email: '',
       weight: '',
       activeTime: '',
-      waterIntake: '',
+      waterDrink: '',
       gender: '',
       avatarURL: userDataAvatar,
     },
   });
+  const weight = watch('weight');
+  const activeTime = watch('activeTime');
+  const gender = watch('gender');
 
+  useEffect(() => {
+    if (weight && activeTime && gender) {
+      let waterDrink;
+      if (gender === 'woman') {
+        waterDrink = weight * 0.03 + activeTime * 0.4;
+      } else if (gender === 'man') {
+        waterDrink = weight * 0.04 + activeTime * 0.6;
+      }
+      setValue('waterDrink', waterDrink.toFixed(2));
+    }
+  }, [weight, activeTime, gender, setValue]);
   const handleAvatarChange = e => {
     const file = e.target.files[0];
     console.log(file);
     if (file) {
       const preview = URL.createObjectURL(file);
       setAvatarPreview(preview);
-      setValue('avatarURL', file); // Встановлення значення 'avatar' як об'єкт файлу
-      dispatch(uploadUserAvatar(file));
+      setValue('avatarURL', preview);
+      const formData = new FormData();
+      formData.append('avatar', file);
+      dispatch(uploadUserAvatar(formData))
+        .then(response => {
+          console.log('Avatar upload successful:', response);
+          setSavedAvatarURL(response.payload.avatarURL);
+        })
+        .catch(error => {
+          console.error('Error uploading avatar:', error);
+        });
       console.log(preview);
+      console.log('FormData before dispatch:', formData.get('avatar'));
     }
     console.log('ssdfbfbdfbfd');
   };
@@ -188,7 +127,7 @@ const UserSettingsForm = () => {
         <img
           className={css.settingsAvatarImage}
           // name={user.name}
-          src={avatarPreview}
+          src={avatarPreview || `http://localhost:3000/${savedAvatarURL}`}
           size="80"
         />
         <label
@@ -270,7 +209,7 @@ const UserSettingsForm = () => {
               absence of these, you must set 0)
             </p>
             <p className={css.settingsDailyNormaText}>
-              <Iconsvg width="14" height="14" iconName={'eye-off'} />
+              <Iconsvg width="14" height="14" iconName={'exclamation'} />
               Active time in hours
             </p>
           </div>
@@ -279,7 +218,7 @@ const UserSettingsForm = () => {
           <div className={css.settingsUserParams}>
             <label className={css.settingsParam}>
               <span className={css.settingsParamTitle}>
-                Your weight in kilograms
+                Your weight in kilograms:
               </span>
               <input
                 className={css.settingsParamText}
@@ -290,7 +229,7 @@ const UserSettingsForm = () => {
             </label>
             <label className={css.settingsParam}>
               <span className={css.settingsParamTitle}>
-                The time of active participation in sports
+                The time of active participation in sports:
               </span>
               <input
                 className={css.settingsParamText}
@@ -303,7 +242,7 @@ const UserSettingsForm = () => {
           <div className={css.settingsLitersParams}>
             <p className={css.settingsLitersRequired}>
               The required amount of water in liters per day:
-              <span>{userDataWaterDrink}</span>
+              <span>{userDataWaterDrink} L</span>
             </p>
             <label className={css.settingsLiters}>
               <span className={css.settingsLitersTitle}>
@@ -314,7 +253,7 @@ const UserSettingsForm = () => {
                 className={css.settingsLitersText}
                 type="number"
                 //onChange={e => setNumberValue(e.target.value)}
-                {...register('waterIntake')}
+                {...register('waterDrink')}
               />
               {errors.waterIntake && <span>{errors.waterIntake.message}</span>}
             </label>
