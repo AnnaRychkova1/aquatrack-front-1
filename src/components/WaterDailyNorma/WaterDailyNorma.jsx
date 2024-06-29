@@ -6,7 +6,7 @@ const WaterDailyNorma = () => {
   const daylyNorm = useSelector(selectWaterDrink);
   return (
     <div className={css.contDailyNorma}>
-      <p className={css.dailyNorma}>{daylyNorm ? `${daylyNorm}L` : '0L'}</p>
+      <p className={css.dailyNorma}>{daylyNorm ? `${daylyNorm} L` : '0L'}</p>
       <p className={css.textDailyNorma}>My daily norma</p>
     </div>
   );

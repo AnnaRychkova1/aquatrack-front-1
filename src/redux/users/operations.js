@@ -74,7 +74,7 @@ export const logOut = createAsyncThunk(
   async (token, thunkAPI) => {
     try {
       await requestLogout(token);
-      toast.success('Successfully logout', { ...options });
+      // toast.success('Successfully logout', { ...options });
       return;
     } catch (err) {
       toast.error(err.message, { ...options });
