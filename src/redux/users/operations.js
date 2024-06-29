@@ -127,7 +127,7 @@ export const uploadUserAvatar = createAsyncThunk(
     try {
       const response = await uploadUserAvatars(formData); // Replace with your actual API function
       toast.success('Avatar uploaded successfully', { ...options });
-      return response; // Adjust to match your API response structure
+      return response;
     } catch (err) {
       toast.error(err.message, { ...options });
       return thunkAPI.rejectWithValue(err.message);

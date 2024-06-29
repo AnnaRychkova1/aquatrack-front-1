@@ -30,7 +30,11 @@ const UserBar = ({ userData }) => {
     <div>
       <button onClick={toggleMenu}>
         <span>{userDataName}</span>
-        <img name={userDataName} src={userDataAvatar} size="40" />
+        <img
+          name={userDataName}
+          src={`http://localhost:3000/${userDataAvatar}`}
+          size="40"
+        />
         <Iconsvg width="14" height="14" iconName={svgPopover} />
       </button>
       {isOpen && <UserBarPopover />}
