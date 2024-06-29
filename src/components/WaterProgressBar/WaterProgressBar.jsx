@@ -1,31 +1,39 @@
 import css from './WaterProgressBar.module.css';
 import Iconsvg from '../Icon/Icon';
 import { useEffect, useState } from 'react';
-// import { useSelector } from 'react-redux';
-// import { selectWaterDrink } from '../../redux/users/selectors';
+import { useSelector } from 'react-redux';
+import { selectWaterDrink } from '../../redux/users/selectors';
+import { selectTotalDay } from '../../redux/water/selectors';
 
 const WaterProgressBar = () => {
-  //const daylyNorm = useSelector(selectWaterDrink);
+  const daylyNorm = useSelector(selectWaterDrink);
+  const dayWaterAll = useSelector(selectTotalDay);
+  // const dayWaterAll = [{ value: 500 }, { value: 1000 }, { value: 100 }];
 
-  const [completed, setCompleted] = useState(50);
+  const [waterAmount, setWaterAmount] = useState(0);
 
   useEffect(() => {
-    const fetchProgressData = async () => {
-      try {
-        const response = await fetch('/api/progress');
-        const data = await response.json();
-        if (data && typeof data.completed === 'number') {
-          setCompleted(data.completed);
-        } else {
-          console.error('Invalid data format:', data);
-        }
-      } catch (error) {
-        console.error('Error fetching progress data:', error);
-      }
-    };
+    if (Array.isArray(dayWaterAll)) {
+      const calculateDrinkedWater = dayWaterAll.reduce(
+        (accumulator, currentObject) => accumulator + currentObject.value,
+        0
+      );
 
-    fetchProgressData();
-  }, []);
+      let waterAmount = 0;
+      if (calculateDrinkedWater) {
+        if (daylyNorm) {
+          waterAmount = (calculateDrinkedWater * 100) / (daylyNorm * 1000);
+        } else {
+          waterAmount = 100;
+        }
+      }
+      setWaterAmount(Math.min(waterAmount, 100));
+    } else {
+      setWaterAmount(0);
+    }
+  }, [daylyNorm, dayWaterAll]);
+
+  // console.log('Water Amount:', waterAmount);
 
   return (
     <div className={css.contBar}>
@@ -35,20 +43,19 @@ const WaterProgressBar = () => {
           <div
             className={css.waterProgressBarFiller}
             style={{
-              width: `${completed}%`,
+              width: `${waterAmount}%`,
             }}
           >
             <div className={css.waterProgressBarContent}>
               <Iconsvg width={24} height={24} iconName="water-progress-bar" />
               <span className={css.waterProgressBarLabel}>
-                {`${completed}%`}
+                {`${Math.round(waterAmount)}%`}
               </span>
             </div>
           </div>
         </div>
         <div className={css.progressLabels}>
           <span className={css.progressLabelLeft}>0%</span>
-          <span className={css.progressLabelMid}>50%</span>
           <span className={css.progressLabelRight}>100%</span>
         </div>
       </div>
