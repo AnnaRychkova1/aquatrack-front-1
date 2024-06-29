@@ -19,7 +19,7 @@
 }
 @media screen and (min-width: 1440px) {
   .settingsWrapper {
-    /* max-width: 920px; */
+    max-width: 920px;
   }
 }
 /* .settingsTitle {
@@ -131,8 +131,8 @@
 .settingsFormContent {
   /* width: 840px; */
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  flex-direction: column;
+  /* align-items: center; */
   gap: 24px;
 }
 @media screen and (min-width: 768px) {
@@ -144,8 +144,12 @@
   }
 }
 @media screen and (min-width: 1440px) {
-  .settingFormss {
-    max-width: 920px;
+  .settingsFormContent {
+    /* width: 840px; */
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    gap: 40px;
   }
 }
 .settingsFormData {
@@ -192,7 +196,12 @@
   letter-spacing: -0.01em;
   color: #2f2f2f;
 }
-
+@media screen and (min-width: 768px) {
+  .settingsGenderText {
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
 /* Стилі для кастомної радіокнопки */
 .settingsGenderText::before {
   content: '';
@@ -230,6 +239,15 @@
   justify-content: center;
   width: 100%;
 }
+@media screen and (min-width: 1440px) {
+  .settingsUser {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    justify-content: center;
+    max-width: 400px;
+  }
+}
 .settingsUserLabel {
   display: flex;
   flex-direction: column;
@@ -244,6 +262,12 @@
   letter-spacing: -0.01em;
   color: #323f47;
 }
+@media screen and (min-width: 768px) {
+  .settingsUserTitle {
+    font-size: 18px;
+    line-height: 133%;
+  }
+}
 .settingsUserText {
   font-family: Poppins;
   font-weight: 400;
@@ -254,6 +278,13 @@
   padding: 14px 16px;
   border: 1px solid rgba(47, 47, 47, 0.15);
   border-radius: 15px;
+}
+@media screen and (min-width: 768px) {
+  .settingsUserText {
+    font-size: 16px;
+    line-height: 150%;
+    padding: 16px 16px;
+  }
 }
 .settingsUserText:focus {
   border: 1px solid rgba(47, 47, 47, 0.2);
@@ -278,6 +309,12 @@
   line-height: 125%;
   letter-spacing: -0.01em;
   color: #323f47;
+}
+@media screen and (min-width: 768px) {
+  .settingsDailyNormaTitle {
+    font-size: 18px;
+    line-height: 133%;
+  }
 }
 .settingsDailyNormaEquations {
   display: flex;
@@ -311,6 +348,12 @@
   letter-spacing: -0.01em;
   color: #2f2f2f;
 }
+@media screen and (min-width: 768px) {
+  .settingsDailyNormaEquation {
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
 .settingsDailyNormaEquation span {
   font-weight: 700;
   color: #9be1a0;
@@ -326,14 +369,32 @@
   letter-spacing: -0.01em;
   color: rgba(47, 47, 47, 0.6);
 }
+@media screen and (min-width: 768px) {
+  .settingsDailyNormaContent {
+    font-size: 16px;
+    line-height: 150%;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .settingsDailyNormaContent {
+    max-width: 400px;
+  }
+}
 .settingsDailyNormaContent span {
   color: #9be1a0;
 }
 .settingsDailyNormaText {
+  font-weight: 400;
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.01em;
   color: #2f2f2f;
+}
+@media screen and (min-width: 768px) {
+  .settingsDailyNormaText {
+    font-size: 16px;
+    line-height: 150%;
+  }
 }
 .settingsParams {
   display: flex;
@@ -341,10 +402,21 @@
   justify-content: center;
   gap: 24px;
 }
+@media screen and (min-width: 1440px) {
+  .settingsParams {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 86px;
+    gap: 24px;
+  }
+}
 .settingsUserParams {
+  font-weight: 400;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
   gap: 14px;
 }
 .settingsParam {
@@ -359,7 +431,11 @@
   letter-spacing: -0.01em;
   color: #2f2f2f;
 }
-.settingsParamText {
+@media screen and (min-width: 768px) {
+  .settingsParamTitle {
+    font-size: 16px;
+    line-height: 150%;
+  }
 }
 .settingsParamText {
   font-family: Poppins;
@@ -371,6 +447,13 @@
   padding: 14px 16px;
   border: 1px solid rgba(47, 47, 47, 0.15);
   border-radius: 15px;
+}
+@media screen and (min-width: 768px) {
+  .settingsParamText {
+    font-size: 16px;
+    line-height: 150%;
+    padding: 16px 16px;
+  }
 }
 .settingsParamText:focus {
   border: 1px solid rgba(47, 47, 47, 0.2);
@@ -394,16 +477,31 @@ input[type='number']::-webkit-inner-spin-button {
   gap: 14px;
 }
 .settingsLitersRequired {
+  font-weight: 400;
   font-size: 14px;
   line-height: 129%;
   letter-spacing: -0.01em;
   color: #2f2f2f;
+}
+@media screen and (min-width: 768px) {
+  .settingsLitersRequired {
+    font-size: 16px;
+    line-height: 150%;
+  }
 }
 .settingsLitersRequired span {
   font-weight: 700;
   font-size: 14px;
   line-height: 129%;
   color: #9be1a0;
+  margin-left: 5px;
+}
+@media screen and (min-width: 768px) {
+  .settingsLitersRequired span {
+    font-size: 16px;
+    line-height: 150%;
+    display: inline;
+  }
 }
 .settingsLiters {
   display: flex;
@@ -418,6 +516,12 @@ input[type='number']::-webkit-inner-spin-button {
   letter-spacing: -0.01em;
   color: #323f47;
 }
+@media screen and (min-width: 768px) {
+  .settingsLitersTitle {
+    font-size: 18px;
+    line-height: 133%;
+  }
+}
 .settingsLitersText {
 }
 .settingsLitersText {
@@ -430,6 +534,13 @@ input[type='number']::-webkit-inner-spin-button {
   padding: 14px 16px;
   border: 1px solid rgba(47, 47, 47, 0.15);
   border-radius: 15px;
+}
+@media screen and (min-width: 768px) {
+  .settingsLitersText {
+    font-size: 16px;
+    line-height: 150%;
+    padding: 16px 16px;
+  }
 }
 .settingsLitersText:focus {
   border: 1px solid rgba(47, 47, 47, 0.2);
@@ -452,6 +563,14 @@ input[type='number']::-webkit-inner-spin-button {
   background-color: #9be1a0;
   border-radius: 30px;
   transition: all 250ms;
+}
+@media screen and (min-width: 768px) {
+  .settingsButton {
+    padding: 16px 50px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+  }
 }
 .settingsButton:hover {
   background-color: #87d28d;
