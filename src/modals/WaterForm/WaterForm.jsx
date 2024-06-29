@@ -30,6 +30,7 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   console.log(date);
   /*===================================*/
   const [editTime, setEditTime] = useState('');
+  const token = useSelector(selectToken);
 
   useEffect(() => {
     const datetime = new Date();
@@ -71,17 +72,18 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
 
   const time = new Date();
   const newDate = time.toISOString();
-  const token = useSelector(selectToken);
+ 
 
   const onSubmit = async () => {
     const formData = {
-      date: newDate,
+      // date: newDate,
+      date: new Date(), 
       volume: number,
     };
 
     try {
       if (operationType === 'edit') {
-        await dispatch(updateWater({id, formData, token }));
+        await dispatch(updateWater({ formData, token }));
       } else {
         await dispatch(addWater({ formData, token }));
       }
@@ -126,7 +128,7 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
         className={css.input2}
         type="number"
         value={number}
-        onChange={e => setNumber(Math.min(Math.max(e.target.value, 0), 5000))}
+        onChange={e => setNumber(Math.min(Math.max(e.target.value, 1), 5000))}
       />
       <button className={css.btnSave} type="submit">
         Save

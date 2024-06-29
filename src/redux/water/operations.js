@@ -43,7 +43,7 @@ export const updateWater = createAsyncThunk(
   'water/update',
   async ({ formData, token }, thunkAPI) => {
     try {
-      const response = await editWaterRecord(id, formData, token);
+      const response = await editWaterRecord(formData, token);
       toast.success('Successfully edit', {
         ...options,
       });
