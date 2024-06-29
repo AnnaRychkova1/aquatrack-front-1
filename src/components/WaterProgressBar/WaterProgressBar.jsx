@@ -8,7 +8,7 @@ import { selectTotalDay } from '../../redux/water/selectors';
 const WaterProgressBar = () => {
   const daylyNorm = useSelector(selectWaterDrink);
   const dayWaterAll = useSelector(selectTotalDay);
-  // const dayWaterAll = [{ value: 500 }, { value: 1000 }, { value: 100 }];
+  // const dayWaterAll = [{ value: 50 }, { value: 500 }, { value: 100 }];
 
   const [waterAmount, setWaterAmount] = useState(0);
 
