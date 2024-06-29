@@ -8,6 +8,7 @@ import {
   requestRegister,
   requestResendVerify,
   requestSendVerify,
+  updateUserProfiles,
   // refreshToken,
   // requestResetPassword,
   // requestForgotPassword,
@@ -126,6 +127,19 @@ export const uploadUserAvatar = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await uploadUserAvatars(formData); // Replace with your actual API function
+      toast.success('Avatar uploaded successfully', { ...options });
+      return response;
+    } catch (err) {
+      toast.error(err.message, { ...options });
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+export const updateUserProfile = createAsyncThunk(
+  'users/update',
+  async (formData, thunkAPI) => {
+    try {
+      const response = await updateUserProfiles(formData); // Replace with your actual API function
       toast.success('Avatar uploaded successfully', { ...options });
       return response;
     } catch (err) {
