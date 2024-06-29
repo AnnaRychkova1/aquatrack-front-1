@@ -4,11 +4,11 @@
 <defs>
 
 <symbol id="chevron-up" viewBox="0 0 32 32">
-<path fill="none" stroke="#323f47" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M8 20l8-8 8 8"></path>
+<path fill="none" stroke="white" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M8 20l8-8 8 8"></path>
 </symbol>
 
 <symbol id="chevron-down" viewBox="0 0 32 32">
-<path fill="none" stroke="#323f47" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M8 12l8 8 8-8"></path>
+<path fill="none" stroke="white" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M8 12l8 8 8-8"></path>
 </symbol>
 
 <symbol id="chevron-right" viewBox="0 0 32 32">
