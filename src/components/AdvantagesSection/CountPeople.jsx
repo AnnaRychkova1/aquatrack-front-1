@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import css from './CountPeople.module.css';
 
 const UserCount = () => {
   const [userCount, setUserCount] = useState(null);
@@ -18,7 +19,7 @@ const UserCount = () => {
         setUserCount(data.count);
       } catch (error) {
         setError(error);
-        console.error('Error fetching user count:', error); // Додайте цей рядок для виведення додаткової інформації про помилку в консоль
+        console.error('Error fetching user count:', error);
       } finally {
         setLoading(false);
       }
@@ -28,11 +29,10 @@ const UserCount = () => {
   }, []);
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>; // Виведення самої помилки
-
+  if (error) return <p>Error: {error.message}</p>;
   return (
-    <div>
-      <h1>Number of Users: {userCount}</h1>
+    <div className={css.count_users}>
+      <h4>Our team: {userCount}people </h4>
     </div>
   );
 };

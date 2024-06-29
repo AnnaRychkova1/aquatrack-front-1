@@ -1,0 +1,10 @@
+.count_users {
+    max-width: 155px;
+    background-color: var(--main-white);
+    display: flex;
+    gap: 4px;
+    margin-bottom: 8px;
+    padding: 10px 14px;
+    border-radius: 30px;
+    margin-top: -45px;
+}
