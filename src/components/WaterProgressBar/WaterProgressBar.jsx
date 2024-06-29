@@ -4,54 +4,60 @@ import { useEffect, useState } from 'react';
 // import { calculateWaterAmount } from '../../utils/waterAmount';
 import { useSelector } from 'react-redux';
 import { selectWaterDrink } from '../../redux/users/selectors';
+// import { selectTotalDay } from '../../redux/water/selectors';
 
 // const WaterProgressBar = () => {
 //   const daylyNorm = useSelector(selectWaterDrink);
-//   const dayWaterAll = useSelector();
+//   const dayWaterAll = useSelector(selectTotalDay);
+//   // const dayWaterAll = [{ value: 500 }, { value: 100 }, { value: 500 }];
 
-//   const daylyNorm = 2;
-//   const dayWaterAll = [{ value: 500 }, { value: 1000 }, { value: 100 }];
+//   const [waterAmount, setWaterAmount] = useState(0);
 
-//   const allDrinkedWater = dayWaterAll.reduce((accumulator, currentObject) => {
-//     return accumulator + currentObject.value;
-//   }, 0);
-//   let waterAmount = 0;
+//   useEffect(() => {
+//     const calculateDrinkedWater = dayWaterAll.reduce(
+//       (accumulator, currentObject) => {
+//         return accumulator + currentObject.value;
+//       },
+//       0
+//     );
 
-//   if (allDrinkedWater) {
-//     if (daylyNorm) {
-//       waterAmount = (allDrinkedWater * 100) / (daylyNorm * 1000);
-//     } else {
-//       waterAmount = 100;
+//     let waterAmount = 0;
+//     if (calculateDrinkedWater) {
+//       if (daylyNorm) {
+//         waterAmount = (calculateDrinkedWater * 100) / (daylyNorm * 1000);
+//       } else {
+//         waterAmount = 100;
+//       }
 //     }
-//   }
-//   waterAmount = Math.min(waterAmount, 100);
-
-//   console.log('All Drinked Water:', allDrinkedWater);
+//     setWaterAmount(Math.min(waterAmount, 100));
+//   }, [daylyNorm, dayWaterAll]);
 
 const WaterProgressBar = () => {
   const daylyNorm = useSelector(selectWaterDrink);
-  // const dayWaterAll = useSelector();
-  const dayWaterAll = [{ value: 500 }, { value: 100 }, { value: 500 }];
+  // const dayWaterAll = useSelector(selectTotalDay);
+  const dayWaterAll = [{ value: 500 }, { value: 1000 }, { value: 100 }];
 
   const [waterAmount, setWaterAmount] = useState(0);
 
   useEffect(() => {
-    const calculateDrinkedWater = dayWaterAll.reduce(
-      (accumulator, currentObject) => {
-        return accumulator + currentObject.value;
-      },
-      0
-    );
+    if (Array.isArray(dayWaterAll)) {
+      const calculateDrinkedWater = dayWaterAll.reduce(
+        (accumulator, currentObject) => accumulator + currentObject.value,
+        0
+      );
 
-    let waterAmount = 0;
-    if (calculateDrinkedWater) {
-      if (daylyNorm) {
-        waterAmount = (calculateDrinkedWater * 100) / (daylyNorm * 1000);
-      } else {
-        waterAmount = 100;
+      let waterAmount = 0;
+      if (calculateDrinkedWater) {
+        if (daylyNorm) {
+          waterAmount = (calculateDrinkedWater * 100) / (daylyNorm * 1000);
+        } else {
+          waterAmount = 100;
+        }
       }
+      setWaterAmount(Math.min(waterAmount, 100));
+    } else {
+      setWaterAmount(0);
     }
-    setWaterAmount(Math.min(waterAmount, 100));
   }, [daylyNorm, dayWaterAll]);
 
   // console.log('Water Amount:', waterAmount);
@@ -86,3 +92,26 @@ const WaterProgressBar = () => {
 };
 
 export default WaterProgressBar;
+
+// const WaterProgressBar = () => {
+//   const daylyNorm = useSelector(selectWaterDrink);
+//   const dayWaterAll = useSelector();
+
+//   const daylyNorm = 2;
+//   const dayWaterAll = [{ value: 500 }, { value: 1000 }, { value: 100 }];
+
+//   const allDrinkedWater = dayWaterAll.reduce((accumulator, currentObject) => {
+//     return accumulator + currentObject.value;
+//   }, 0);
+//   let waterAmount = 0;
+
+//   if (allDrinkedWater) {
+//     if (daylyNorm) {
+//       waterAmount = (allDrinkedWater * 100) / (daylyNorm * 1000);
+//     } else {
+//       waterAmount = 100;
+//     }
+//   }
+//   waterAmount = Math.min(waterAmount, 100);
+
+//   console.log('All Drinked Water:', allDrinkedWater);
