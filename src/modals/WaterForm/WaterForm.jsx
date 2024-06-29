@@ -1,48 +1,54 @@
 import css from './WaterForm.module.css';
 import Iconsvg from '../../components/Icon/Icon';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { addWater, updateWater } from '../../redux/water/operations.js';
-// import * as yup from 'yup';
+import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from '../../redux/users/selectors';
 
-// const isDateTimeValid = date => new Date(date) <= new Date();
-// const schemaWaterForm = yup.object().shape({
-//   waterAmount: yup
-//     .number()
-//     .typeError('Please enter a valid number')
-//     .min(50, 'Minimum value is 50')
-//     .max(5000, 'Maximum value is 5000')
-//     .required('Water amount is required'),
-//   recordingTime: yup
-//     .string()
-//     .required('Recording time is required')
-//     .test('is-valid-datetime', 'Invalid date and time', isDateTimeValid),
-// });
+const isDateTimeValid = date => new Date(date) <= new Date();
+const schemaWaterForm = yup.object().shape({
+  waterAmount: yup
+    .number()
+    .typeError('Please enter a valid number')
+    .min(50, 'Minimum value is 50')
+    .max(5000, 'Maximum value is 5000')
+    .required('Water amount is required'),
+  recordingTime: yup
+    .string()
+    .required('Recording time is required')
+    .test('is-valid-datetime', 'Invalid date and time', isDateTimeValid),
+});
 
-const WaterForm = ({
-  operationType,
-  closeModal,
-  id,
-  //  date,
-  // volume,
-}) => {
+const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const dispatch = useDispatch();
-  let initialWaterAmount = operationType === 'edit' ? 250 : 50;
+  let initialWaterAmount = operationType === 'edit' ? volume : 50;
   const [number, setNumber] = useState(initialWaterAmount);
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
+  console.log(date);
+  /*===================================*/
+  const [editTime, setEditTime] = useState('');
 
-  const token = useSelector(selectToken);
+  useEffect(() => {
+    const datetime = new Date();
+    const hours = datetime.getHours();
+    const minutes = datetime.getMinutes();
+    const formattedTime = `${hours}:${minutes}`;
+    setEditTime(formattedTime);
 
+    console.log(`Час: ${hours}:${minutes}`);
+  }, [date, volume]);
+
+  /*==================================*/
   const {
-    register,
+    // register,
     handleSubmit,
     // errors
   } = useForm({
-    // validationSchema: schemaWaterForm,
+    validationSchema: schemaWaterForm,
   });
 
   const incrementNumber = e => {
@@ -59,28 +65,33 @@ const WaterForm = ({
     setMinValue(Math.min(minValue, newNumber));
   };
 
-  const onSubmit = async () => {
-    const time = new Date();
-    const date = time.toISOString();
+  const [currentTime, setCurrentTime] = useState('');
+  useEffect(() => {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const formattedTime = `${hours}:${minutes}`;
+    setCurrentTime(formattedTime);
+  }, []);
 
+  const time = new Date();
+  const newDate = time.toISOString();
+  const token = useSelector(selectToken);
+
+  const onSubmit = async () => {
     const formData = {
-      date: date,
+      date: newDate,
       volume: number,
     };
 
-    console.log(formData);
-
-    console.log('Form Data:', formData);
     try {
       if (operationType === 'edit') {
         await dispatch(updateWater(id));
       } else {
         await dispatch(addWater({ formData, token }));
       }
-      // toast.success('Запит успішно виконано');
       closeModal();
     } catch (error) {
-      toast.error('Помилка при виконанні');
       console.error('Помилка при виконанні:', error);
     }
   };
@@ -112,12 +123,9 @@ const WaterForm = ({
         className={css.inputTime}
         type="time"
         name="time"
-        value="07:00"
-        {...register('time')}
+        value={operationType === 'edit' ? date : currentTime}
+        onChange={e => setCurrentTime(e.target.value)}
       />
-      {/* <div className={css.divError}>
-        {errors.time && <p>{errors.time.message}</p>}
-      </div> */}
       <p className={css.valueLabel}>Enter the value of the water used:</p>
       <input
         className={css.input2}
@@ -125,9 +133,6 @@ const WaterForm = ({
         value={number}
         onChange={e => setNumber(Math.min(Math.max(e.target.value, 50), 5000))}
       />
-      {/* <div className={css.divError}>
-        {errors.waterAmount && <p>{errors.waterAmount.message}</p>}
-      </div> */}
       <button className={css.btnSave} type="submit">
         Save
       </button>
