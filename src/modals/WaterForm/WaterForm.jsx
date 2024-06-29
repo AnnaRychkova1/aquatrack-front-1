@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { addWater, updateWater } from '../../redux/water/operations.js';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
-// import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from '../../redux/users/selectors';
 
@@ -30,24 +29,20 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const [minValue, setMinValue] = useState(0);
   console.log(date);
   /*===================================*/
-  // const [editTime, setEditTime] = useState('');
+  const [editTime, setEditTime] = useState('');
 
-  // useEffect(() => {
-  //   const datetime = new Date();
-  //   const hours = datetime.getHours();
-  //   const minutes = datetime.getMinutes();
-  //   const formattedTime = `${hours}:${minutes}`;
-  //   setEditTime(formattedTime);
+  useEffect(() => {
+    const datetime = new Date();
+    const hours = datetime.getHours();
+    const minutes = datetime.getMinutes();
+    const formattedTime = `${hours}:${minutes}`;
+    setEditTime(formattedTime);
 
-  //   console.log(`Час: ${hours}:${minutes}`);
-  // }, [date, volume]);
+    console.log(`Час: ${hours}:${minutes}`);
+  }, [date, volume]);
 
   /*==================================*/
-  const {
-    // register,
-    handleSubmit,
-    // errors
-  } = useForm({
+  const { handleSubmit } = useForm({
     validationSchema: schemaWaterForm,
   });
 
@@ -86,7 +81,7 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
 
     try {
       if (operationType === 'edit') {
-        await dispatch(updateWater(id));
+        await dispatch(updateWater({id, formData, token }));
       } else {
         await dispatch(addWater({ formData, token }));
       }
