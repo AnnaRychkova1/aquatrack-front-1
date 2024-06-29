@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { fetchDailyWater } from '../../redux/water/operations';
 import { selectToken } from '../../redux/users/selectors';
 import { selectWaterPortion } from '../../redux/water/selectors';
+import { changeTotalDay } from '../../redux/water/slice';
 import WaterItem from '../WaterItem/WaterItem';
 import css from './WaterList.module.css';
 
@@ -27,8 +28,14 @@ const WaterList = ({ selectDay }) => {
   // Отримуємо поточну календарну дату
   const calendarDate = new Date();
 
-  // Отримуємо зі стору
+  // Отримуємо зі стору масив даних
   const waterPortions = useSelector(selectWaterPortion);
+
+  // Обчислюємо загальну кількість випитої води за день
+  const totalVolume = waterPortions.reduce((sum, item) => {
+    return sum + item.volume;
+  }, 0);
+  dispatch(changeTotalDay(totalVolume));
 
   return (
     <ul className={css.list}>
@@ -43,13 +50,15 @@ const WaterList = ({ selectDay }) => {
               id={waterItem._id}
               volume={waterItem.volume}
               date={waterItem.date}
-              isEditable={
-                calendarDate.getDate() === new Date(waterItem.date).getDate() &&
-                calendarDate.getMonth() ===
-                  new Date(waterItem.date).getMonth() &&
-                calendarDate.getFullYear() ===
-                  new Date(waterItem.date).getFullYear()
-              }
+              isEditable={true}
+
+              // isEditable={
+              //   calendarDate.getDate() === new Date(waterItem.date).getDate() &&
+              //   calendarDate.getMonth() ===
+              //     new Date(waterItem.date).getMonth() &&
+              //   calendarDate.getFullYear() ===
+              //     new Date(waterItem.date).getFullYear()
+              // }
             />
           </li>
         ))

@@ -8,8 +8,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'modern-normalize';
 
-// import { store, persistor } from './redux/store.js';
 import { store } from './redux/store.js';
+// import { store, persistor } from './redux/store.js';
 import App from './App.jsx';
 import './index.css';
 
