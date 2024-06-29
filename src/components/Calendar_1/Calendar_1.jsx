@@ -1,5 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import {
+  isSameDay,
+  getMonth,
+  getYear,
+  startOfMonth,
+  endOfMonth,
+  eachDayOfInterval,
+} from 'date-fns';
 import { selectWaterDrink } from '../../redux/users/selectors';
 import { fetchMonthlyWater } from '../../redux/water/operations';
 import { paginationDate } from '../../redux/date/selectors';
@@ -8,42 +16,19 @@ import { selectMonth } from '../../redux/water/selectors';
 import CalendarItem_1 from '../CalendarItem_1/CalendarItem_1';
 import css from './Calendar_1.module.css';
 
-// Функція для визначення дати з dateTime у форматі 'YYYY-MM-DD'
-const extractDate = dateTime => {
-  return dateTime.split('T')[0];
-};
-
-// Функція для створення масиву з 1 по останній день місяця
-function getDatesArray(dateString) {
-  const date = new Date(dateString);
-  const year = date.getFullYear();
-  const month = date.getMonth();
-
-  // Get the last day of the month
-  const lastDay = new Date(year, month + 1, 0).getDate();
-
-  const datesArray = [];
-  for (let day = 1; day <= lastDay; day++) {
-    const currentDate = new Date(year, month, day);
-    datesArray.push(currentDate.toISOString());
-  }
-
-  return datesArray;
-}
-
 const Calendar_1 = () => {
   // Отримуємо дату зі стору
   const storePaginationDate = new Date(useSelector(paginationDate));
+  //storePaginationDate  Sat Jun 29 2024 09:42:33 GMT+0300 (Восточная Европа, летнее время)
+
+  // Отримуємо денну норму зі стору
   const waterDrinkNorma = useSelector(selectWaterDrink);
 
-  // Отримуємо число місяця (місяці у JavaScript рахуються з 0, тому додаємо 1)
-  const month = (storePaginationDate.getMonth() + 1)
-    .toString()
-    .padStart(2, '0');
-  // Отримуємо рік
-  const year = storePaginationDate.getFullYear();
+  // Готуємо дані для формування запиту
+  const month = getMonth(storePaginationDate) + 1;
+  const year = getYear(storePaginationDate);
 
-  // Отримуємо дані з БД
+  // Відсилаємо запит на отримання даних за місяць з БД
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   useEffect(() => {
@@ -53,10 +38,15 @@ const Calendar_1 = () => {
   }, [dispatch, month, year, token]);
 
   // Отримуємо масив даних зі стору
-  const waterPortions = useSelector(selectMonth);
+  const waterPortions = useSelector(selectMonth); //date: '2024-05-22T00:00:00.000Z'
 
-  // Отримуємо масив дат по вибраному місяцю
-  const dateArray = getDatesArray(storePaginationDate);
+  // Отримуємо масив дат по вибраному місяцю (Mon Apr 01 2024 00:00:00 GMT+0300 (Восточная Европа, летнее время))
+  const getDatesArray = () => {
+    const start = startOfMonth(storePaginationDate);
+    const end = endOfMonth(storePaginationDate);
+    const days = eachDayOfInterval({ start, end });
+    return days;
+  };
 
   // Функція для обчислення %
   const percent = volume => {
@@ -69,20 +59,21 @@ const Calendar_1 = () => {
 
   return (
     <ul className={css.list}>
-      {dateArray.length === 0 ? (
+      {getDatesArray().length === 0 ? (
         <li className={css.emptyItem}>
           There is no data for the selected month
         </li>
       ) : (
-        dateArray.map(date => {
-          const totalVolume = waterPortions.reduce((sum, item) => {
-            return extractDate(item.date) === extractDate(date)
-              ? sum + item.volume
-              : sum;
+        getDatesArray().map(date => {
+          //  date   Fri Jun 21 2024 00:00:00 GMT+0300 (Восточная Европа, летнее время)
+          const volumePerDay = waterPortions.reduce((totalVolume, arrDate) => {
+            return isSameDay(arrDate.date, date)
+              ? totalVolume + arrDate.volume
+              : totalVolume;
           }, 0);
           return (
-            <li className={css.item} key={date}>
-              <CalendarItem_1 date={date} percent={percent(totalVolume)} />
+            <li className={css.item} key={date.toISOString()}>
+              <CalendarItem_1 date={date} percent={percent(volumePerDay)} />
             </li>
           );
         })
@@ -92,3 +83,5 @@ const Calendar_1 = () => {
 };
 
 export default Calendar_1;
+
+// toLocaleString();
