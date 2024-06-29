@@ -30,17 +30,17 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const [minValue, setMinValue] = useState(0);
   console.log(date);
   /*===================================*/
-  const [editTime, setEditTime] = useState('');
+  // const [editTime, setEditTime] = useState('');
 
-  useEffect(() => {
-    const datetime = new Date();
-    const hours = datetime.getHours();
-    const minutes = datetime.getMinutes();
-    const formattedTime = `${hours}:${minutes}`;
-    setEditTime(formattedTime);
+  // useEffect(() => {
+  //   const datetime = new Date();
+  //   const hours = datetime.getHours();
+  //   const minutes = datetime.getMinutes();
+  //   const formattedTime = `${hours}:${minutes}`;
+  //   setEditTime(formattedTime);
 
-    console.log(`Час: ${hours}:${minutes}`);
-  }, [date, volume]);
+  //   console.log(`Час: ${hours}:${minutes}`);
+  // }, [date, volume]);
 
   /*==================================*/
   const {
@@ -131,7 +131,7 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
         className={css.input2}
         type="number"
         value={number}
-        onChange={e => setNumber(Math.min(Math.max(e.target.value, 50), 5000))}
+        onChange={e => setNumber(Math.min(Math.max(e.target.value, 0), 5000))}
       />
       <button className={css.btnSave} type="submit">
         Save

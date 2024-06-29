@@ -39,6 +39,22 @@ export const addWater = createAsyncThunk(
   }
 );
 
+export const updateWater = createAsyncThunk(
+  'water/update',
+  async ({ id, formData, token }, thunkAPI) => {
+    try {
+      const response = await editWaterRecord(id, formData, token);
+      toast.success('Successfully edit', {
+        ...options,
+      });
+      return response;
+    } catch (error) {
+      toast.error(error.message, { ...options });
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const deleteWater = createAsyncThunk(
   'water/deleteWater',
   async (waterId, thunkAPI) => {
@@ -48,22 +64,6 @@ export const deleteWater = createAsyncThunk(
         ...options,
       });
       return response.data;
-    } catch (error) {
-      toast.error(error.message, { ...options });
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const updateWater = createAsyncThunk(
-  'water/update',
-  async ({ id, day }, thunkAPI) => {
-    try {
-      const response = await editWaterRecord(id, day);
-      toast.success('Successfully edit', {
-        ...options,
-      });
-      return response;
     } catch (error) {
       toast.error(error.message, { ...options });
       return thunkAPI.rejectWithValue(error.message);
