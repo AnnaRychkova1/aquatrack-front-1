@@ -33,7 +33,7 @@ const WaterItem = ({ id, volume, date, isEditable }) => {
 
         <div className={css.waterInfo}>
           <p className={css.volume}>
-            {volume}
+            {volume > 999 ? volume / 1000 : volume}
             {volume > 999 ? ' L' : ' ml'}
           </p>
           <p className={css.time}>{time}</p>

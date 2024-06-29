@@ -26,16 +26,18 @@ const WaterList = ({ selectDay }) => {
   }, [dispatch, token, formatDate]);
 
   // Отримуємо поточну календарну дату
-  const calendarDate = new Date();
+  // const calendarDate = new Date();
 
   // Отримуємо зі стору масив даних
   const waterPortions = useSelector(selectWaterPortion);
 
   // Обчислюємо загальну кількість випитої води за день
-  const totalVolume = waterPortions.reduce((sum, item) => {
-    return sum + item.volume;
-  }, 0);
-  dispatch(changeTotalDay(totalVolume));
+  useEffect(() => {
+    const totalVolume = waterPortions.reduce((sum, item) => {
+      return sum + item.volume;
+    }, 0);
+    dispatch(changeTotalDay(totalVolume));
+  }, [dispatch, waterPortions]);
 
   return (
     <ul className={css.list}>
