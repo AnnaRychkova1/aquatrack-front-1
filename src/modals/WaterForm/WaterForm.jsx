@@ -21,9 +21,13 @@ const schemaWaterForm = yup.object().shape({
     .test('is-valid-datetime', 'Invalid date and time', isDateTimeValid),
 });
 
-const WaterForm = ({ operationType, closeModal, 
+const WaterForm = ({
+  operationType,
+  closeModal,
   // id,
-   date, volume }) => {
+  date,
+  volume,
+}) => {
   const dispatch = useDispatch();
   let initialWaterAmount = operationType === 'edit' ? volume : 50;
   const [number, setNumber] = useState(initialWaterAmount);
@@ -32,7 +36,6 @@ const WaterForm = ({ operationType, closeModal,
   console.log(date);
   /*===================================*/
   // const [editTime, setEditTime] = useState('');
- 
 
   // useEffect(() => {
   //   const datetime = new Date();
@@ -72,6 +75,14 @@ const WaterForm = ({ operationType, closeModal,
     setCurrentTime(formattedTime);
   }, []);
 
+   /*==========================*/
+  // const localDate = new Date(data);
+  // const localISOTime = new Date(
+  //   localDate.getTime() - localDate.getTimezoneOffset() * 60000
+  // ).toISOString();
+  // dispatch(changeDate(localISOTime));
+  /*==========================*/
+
   const time = new Date();
   const newDate = time.toISOString();
   const token = useSelector(selectToken);
@@ -79,7 +90,6 @@ const WaterForm = ({ operationType, closeModal,
   const onSubmit = async () => {
     const formData = {
       date: newDate,
-      // date: new Date(), 
       volume: number,
     };
 
