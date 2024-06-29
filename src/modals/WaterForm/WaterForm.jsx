@@ -21,7 +21,9 @@ const schemaWaterForm = yup.object().shape({
     .test('is-valid-datetime', 'Invalid date and time', isDateTimeValid),
 });
 
-const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
+const WaterForm = ({ operationType, closeModal, 
+  // id,
+   date, volume }) => {
   const dispatch = useDispatch();
   let initialWaterAmount = operationType === 'edit' ? volume : 50;
   const [number, setNumber] = useState(initialWaterAmount);
@@ -29,18 +31,18 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const [minValue, setMinValue] = useState(0);
   console.log(date);
   /*===================================*/
-  const [editTime, setEditTime] = useState('');
-  const token = useSelector(selectToken);
+  // const [editTime, setEditTime] = useState('');
+ 
 
-  useEffect(() => {
-    const datetime = new Date();
-    const hours = datetime.getHours();
-    const minutes = datetime.getMinutes();
-    const formattedTime = `${hours}:${minutes}`;
-    setEditTime(formattedTime);
+  // useEffect(() => {
+  //   const datetime = new Date();
+  //   const hours = datetime.getHours();
+  //   const minutes = datetime.getMinutes();
+  //   const formattedTime = `${hours}:${minutes}`;
+  //   setEditTime(formattedTime);
 
-    console.log(`Час: ${hours}:${minutes}`);
-  }, [date, volume]);
+  //   console.log(`Час: ${hours}:${minutes}`);
+  // }, [date, volume]);
 
   /*==================================*/
   const { handleSubmit } = useForm({
@@ -72,12 +74,12 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
 
   const time = new Date();
   const newDate = time.toISOString();
- 
+  const token = useSelector(selectToken);
 
   const onSubmit = async () => {
     const formData = {
-      // date: newDate,
-      date: new Date(), 
+      date: newDate,
+      // date: new Date(), 
       volume: number,
     };
 
