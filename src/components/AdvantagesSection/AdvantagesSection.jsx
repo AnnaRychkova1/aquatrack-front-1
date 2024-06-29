@@ -1,8 +1,10 @@
 import css from './AdvantagesSection.module.css';
+import UserCount from './CountPeople';
 
 const AdvantagesSection = () => {
   return (
     <div className={css.advantages_main}>
+      <UserCount />
       <div className={css.advantages_users}>
         <ul className={css.advantages_usersImg}>
           <li className={css.advantages_point}>
