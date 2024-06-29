@@ -1,0 +1,75 @@
+.userPanelContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.userPanelTitle {
+  font-family: 'Gilroy', sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 100%;
+  letter-spacing: -0.01em;
+  color: #323f47;
+}
+.userPanelTitle span {
+  font-weight: 700;
+}
+.userPanelContainerBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.userPanelBtn {
+  padding: 6px 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  outline: none;
+  border-radius: 30px;
+  border: none;
+  background-color: #323f47;
+}
+.userPanelBtn img {
+  border-radius: 100%;
+  width: 38px;
+  height: 38px;
+  /* background-color: #323f47; */
+}
+.userPanelBtnIcon {
+  width: 16px;
+  height: 16px;
+}
+.userPanelBtn span {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main-white);
+}
+.userPopoverContainer {
+  position: absolute;
+  top: 100px;
+  max-width: 157px;
+  max-height: 82px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 15px;
+  padding: 14px 57px 14px 20px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+}
+.userPopoverBtn {
+  display: flex;
+}
+.userPopoverBtnIcon {
+  width: 16px;
+  height: 16px;
+}
