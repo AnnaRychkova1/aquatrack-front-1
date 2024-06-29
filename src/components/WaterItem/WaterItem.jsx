@@ -10,7 +10,7 @@ const formatTime = dateString => {
   return date.toLocaleTimeString('en-US', options);
 };
 
-const WaterItem = ({ id, volume, date, isEditable }) => {
+const WaterItem = ({ id, volume, date, isEditable, token }) => {
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -78,7 +78,7 @@ const WaterItem = ({ id, volume, date, isEditable }) => {
         volume={volume}
       />
       <DeleteWaterModal
-        id={id}
+        token={token}
         isOpen={isDeleteModalOpen}
         closeModal={closeDeleteModal}
       />

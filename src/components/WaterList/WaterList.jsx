@@ -53,7 +53,7 @@ const WaterList = ({ selectDay }) => {
               volume={waterItem.volume}
               date={waterItem.date}
               isEditable={true}
-
+              token={token}
               // isEditable={
               //   calendarDate.getDate() === new Date(waterItem.date).getDate() &&
               //   calendarDate.getMonth() ===
