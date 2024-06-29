@@ -2,25 +2,25 @@ import css from './WaterForm.module.css';
 import Iconsvg from '../../components/Icon/Icon';
 import { useState } from 'react';
 import { addWater, updateWater } from '../../redux/water/operations.js';
-import * as yup from 'yup';
+// import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from '../../redux/users/selectors';
 
-const isDateTimeValid = date => new Date(date) <= new Date();
-const schemaWaterForm = yup.object().shape({
-  waterAmount: yup
-    .number()
-    .typeError('Please enter a valid number')
-    .min(50, 'Minimum value is 50')
-    .max(5000, 'Maximum value is 5000')
-    .required('Water amount is required'),
-  recordingTime: yup
-    .string()
-    .required('Recording time is required')
-    .test('is-valid-datetime', 'Invalid date and time', isDateTimeValid),
-});
+// const isDateTimeValid = date => new Date(date) <= new Date();
+// const schemaWaterForm = yup.object().shape({
+//   waterAmount: yup
+//     .number()
+//     .typeError('Please enter a valid number')
+//     .min(50, 'Minimum value is 50')
+//     .max(5000, 'Maximum value is 5000')
+//     .required('Water amount is required'),
+//   recordingTime: yup
+//     .string()
+//     .required('Recording time is required')
+//     .test('is-valid-datetime', 'Invalid date and time', isDateTimeValid),
+// });
 
 const WaterForm = ({
   operationType,
@@ -34,14 +34,15 @@ const WaterForm = ({
   const [number, setNumber] = useState(initialWaterAmount);
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
-  console.log(id);
+
   const token = useSelector(selectToken);
+
   const {
     register,
     handleSubmit,
     // errors
   } = useForm({
-    validationSchema: schemaWaterForm,
+    // validationSchema: schemaWaterForm,
   });
 
   const incrementNumber = e => {
@@ -58,19 +59,25 @@ const WaterForm = ({
     setMinValue(Math.min(minValue, newNumber));
   };
 
-  const onSubmit = async ({ time, value }) => {
-    const recordingDateTime = `${
-      new Date().toISOString().split('T')[0]
-    } ${time}`;
+  const onSubmit = async () => {
+    const time = new Date();
+    const date = time.toISOString();
+
+    const formData = {
+      date: date,
+      volume: number,
+    };
+
+    console.log(formData);
+
+    console.log('Form Data:', formData);
     try {
       if (operationType === 'edit') {
         await dispatch(updateWater(id));
       } else {
-        await dispatch(
-          addWater({ data: recordingDateTime, volume: value, token })
-        );
+        await dispatch(addWater({ formData, token }));
       }
-      toast.success('Запит успішно виконано');
+      // toast.success('Запит успішно виконано');
       closeModal();
     } catch (error) {
       toast.error('Помилка при виконанні');
