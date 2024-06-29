@@ -16,7 +16,7 @@ const UserCount = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setUserCount(data.count);
+        setUserCount(data.userCount);
       } catch (error) {
         setError(error);
         console.error('Error fetching user count:', error);
@@ -32,7 +32,7 @@ const UserCount = () => {
   if (error) return <p>Error: {error.message}</p>;
   return (
     <div className={css.count_users}>
-      <h4>Our team: {userCount}people </h4>
+      <h4>Our team: {userCount} people </h4>
     </div>
   );
 };
