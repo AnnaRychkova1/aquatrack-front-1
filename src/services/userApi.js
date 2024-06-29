@@ -70,7 +70,7 @@ export const requestUserInfo = async () => {
   return data;
 };
 
-export const updateUserProfile = async formData => {
+export const updateUserProfiles = async formData => {
   const { data } = await instance.patch('/users/update', formData);
 
   return data;

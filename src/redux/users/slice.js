@@ -5,6 +5,7 @@ import {
   logOut,
   uploadUserAvatar,
   sendVerify,
+  updateUserProfile,
 } from './operations.js';
 
 const INITIAL_STATE = {
@@ -78,6 +79,10 @@ const authSlice = createSlice({
         state.isLoading = false;
         //const { user } = action.payload;
         state.user.avatarURL = action.payload.avatarURL;
+      })
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload.user;
       })
       .addMatcher(
         isAnyOf(
