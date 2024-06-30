@@ -81,7 +81,6 @@ const WaterItem = ({ id, volume, date, isEditable, token }) => {
       />
       <DeleteWaterModal
         id={id}
-        token={token}
         isOpen={isDeleteModalOpen}
         closeModal={closeDeleteModal}
       />
