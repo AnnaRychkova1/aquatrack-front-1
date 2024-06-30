@@ -61,7 +61,7 @@ export const deleteWater = createAsyncThunk(
       toast.success('Successfully delete', {
         ...options,
       });
-      return response.data;
+      return response;
     } catch (error) {
       toast.error(error.message, { ...options });
       return thunkAPI.rejectWithValue(error.message);

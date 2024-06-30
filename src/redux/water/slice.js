@@ -77,9 +77,9 @@ const waterSlice = createSlice({
       })
       .addCase(deleteWater.fulfilled, (state, action) => {
         console.log(action.payload);
-        state.items = state.items.filter(water => water.id !== action.payload);
+        state.items = state.items.filter(water => water._id !== action.payload);
         state.monthIReception = state.monthIReception.filter(
-          water => water.id !== action.payload
+          water => water._id !== action.payload
         );
         state.loading = false;
         state.error = null;
@@ -96,7 +96,7 @@ const waterSlice = createSlice({
       })
       .addCase(updateWater.fulfilled, (state, action) => {
         const index = state.items.findIndex(
-          water => water.id === action.payload.id
+          water => water._id === action.payload.id
         );
         if (index !== -1) {
           state.items[index] = action.payload;
