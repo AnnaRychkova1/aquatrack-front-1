@@ -76,7 +76,11 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteWater.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.items = state.items.filter(water => water.id !== action.payload);
+        state.monthIReception = state.monthIReception.filter(
+          water => water.id !== action.payload
+        );
         state.loading = false;
         state.error = null;
       })

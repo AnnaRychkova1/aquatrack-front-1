@@ -56,7 +56,6 @@ export const updateWater = createAsyncThunk(
 export const deleteWater = createAsyncThunk(
   'water/deleteWater',
   async ({ id }, thunkAPI) => {
-    console.log('Hello? i am looking for id', id);
     try {
       const response = await deleteWaterRecord(id);
       toast.success('Successfully delete', {
