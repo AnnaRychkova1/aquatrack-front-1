@@ -28,11 +28,23 @@ const UserCount = () => {
     fetchUserCount();
   }, []);
 
+  const formatUserCount = count => {
+    if (count > 10000) {
+      return `${(count / 1000).toFixed(2)} `;
+    } else {
+      return count.toString();
+    }
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
+
   return (
-    <div className={css.count_users}>
-      <h4>Our team: {userCount} people </h4>
+    <div className={css.count_Users}>
+      <p className={css.count_Text}>
+        Our <span className={css.textSpan}>team </span> now:{' '}
+        {formatUserCount(userCount)}
+      </p>
     </div>
   );
 };
