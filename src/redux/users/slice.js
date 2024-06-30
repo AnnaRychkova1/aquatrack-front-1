@@ -83,7 +83,15 @@ const authSlice = createSlice({
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload.user;
+        //state.user = action.payload.user;
+        const updatedUser = action.payload;
+        state.user = { ...state.user, ...updatedUser };
+        // state.user.name = action.payload.user.name;
+        // state.user.email = action.payload.user.email;
+        // state.user.gender = action.payload.user.gender;
+        // state.user.weight = action.payload.user.weight;
+        // state.user.activeTimeSports = action.payload.user.activeTimeSports;
+        // state.user.waterDrink = action.payload.user.waterDrink;
       })
       .addMatcher(
         isAnyOf(
