@@ -23,8 +23,6 @@ const options = {
 export const addWater = createAsyncThunk(
   'water/addWater',
   async ({ formData, token }, thunkAPI) => {
-    // console.log('addWater? i am looking for token', token);
-    // console.log('addWater? i am looking for data', formData);
     try {
       const response = await addWaterDaily(formData, token);
       toast.success('Successfully add', {
@@ -41,11 +39,9 @@ export const addWater = createAsyncThunk(
 
 export const updateWater = createAsyncThunk(
   'water/update',
-  async ({ formData, token }, thunkAPI) => {
-    console.log('update? i am looking for token', token);
-    console.log('update? i am looking for data', formData);
+  async ({ id, formData }, thunkAPI) => {
     try {
-      const response = await editWaterRecord(formData, token);
+      const response = await editWaterRecord(id, formData);
       toast.success('Successfully edit', {
         ...options,
       });

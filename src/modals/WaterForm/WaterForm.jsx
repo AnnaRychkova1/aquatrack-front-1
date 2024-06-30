@@ -21,32 +21,22 @@ const schemaWaterForm = yup.object().shape({
     .test('is-valid-datetime', 'Invalid date and time', isDateTimeValid),
 });
 
-const WaterForm = ({
-  operationType,
-  closeModal,
-  // id,
-  date,
-  volume,
-}) => {
+const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const dispatch = useDispatch();
   let initialWaterAmount = operationType === 'edit' ? volume : 50;
   const [number, setNumber] = useState(initialWaterAmount);
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
-  console.log(date);
+  // console.log(date);
+  // console.log(volume);
   /*===================================*/
-  // const [editTime, setEditTime] = useState('');
 
-  // useEffect(() => {
-  //   const datetime = new Date();
-  //   const hours = datetime.getHours();
-  //   const minutes = datetime.getMinutes();
-  //   const formattedTime = `${hours}:${minutes}`;
-  //   setEditTime(formattedTime);
-
-  //   console.log(`Час: ${hours}:${minutes}`);
-  // }, [date, volume]);
-
+  const parsedDate = new Date(date);
+  const hours = parsedDate.getHours();
+  const minutes = parsedDate.getMinutes();
+  const transferredTime = `${hours.toString().padStart(2, '0')}:${minutes
+    .toString()
+    .padStart(2, '0')}`;
   /*==================================*/
   const { handleSubmit } = useForm({
     validationSchema: schemaWaterForm,
@@ -75,7 +65,7 @@ const WaterForm = ({
     setCurrentTime(formattedTime);
   }, []);
 
-   /*==========================*/
+  /*==========================*/
   // const localDate = new Date(data);
   // const localISOTime = new Date(
   //   localDate.getTime() - localDate.getTimezoneOffset() * 60000
@@ -95,7 +85,8 @@ const WaterForm = ({
 
     try {
       if (operationType === 'edit') {
-        await dispatch(updateWater({ formData, token }));
+        await dispatch(updateWater({ id, formData }));
+        console.log(formData);
       } else {
         await dispatch(addWater({ formData, token }));
       }
@@ -132,7 +123,7 @@ const WaterForm = ({
         className={css.inputTime}
         type="time"
         name="time"
-        value={operationType === 'edit' ? date : currentTime}
+        value={operationType === 'edit' ? transferredTime : currentTime}
         onChange={e => setCurrentTime(e.target.value)}
       />
       <p className={css.valueLabel}>Enter the value of the water used:</p>
