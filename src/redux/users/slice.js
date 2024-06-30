@@ -5,6 +5,7 @@ import {
   logOut,
   uploadUserAvatar,
   sendVerify,
+  updateUserProfile,
 } from './operations.js';
 
 const INITIAL_STATE = {
@@ -17,6 +18,7 @@ const INITIAL_STATE = {
     activeTimeSports: 0,
     waterDrink: 1.8,
     avatarURL: null,
+    verify: null,
   },
   token: null,
   isSignedIn: false,
@@ -79,12 +81,16 @@ const authSlice = createSlice({
         //const { user } = action.payload;
         state.user.avatarURL = action.payload.avatarURL;
       })
+      .addCase(updateUserProfile.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload.user;
+      })
       .addMatcher(
         isAnyOf(
           userRegister.pending,
           logIn.pending,
-          logOut.pending,
-          sendVerify.pending
+          logOut.pending
+          // sendVerify.pending
         ),
         handlePending
       )
@@ -92,8 +98,8 @@ const authSlice = createSlice({
         isAnyOf(
           userRegister.rejected,
           logIn.rejected,
-          logOut.rejected,
-          sendVerify.rejected
+          logOut.rejected
+          // sendVerify.rejected
         ),
         handleRejected
       );

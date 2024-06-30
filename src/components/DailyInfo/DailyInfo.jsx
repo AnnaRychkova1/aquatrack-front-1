@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux';
+import { isSameDay, format, getDate } from 'date-fns';
 import { selectDate } from '../../redux/date/selectors';
 import ChooseDate from '../ChooseDate/ChooseDate';
 import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
@@ -6,22 +7,17 @@ import WaterList from '../WaterList/WaterList';
 import css from './DailyInfo.module.css';
 
 const DailyInfo = () => {
-  // Поточна календарна дата
-  const currentDate = new Date();
   // Дата зі стору
-  const storeDate = new Date(useSelector(selectDate));
+  const storeDate = useSelector(selectDate);
   let formattedDate;
 
   // Якщо дата зі стору = календарній даті => Today
-  if (
-    currentDate.toISOString().slice(0, 10) ===
-    storeDate.toISOString().slice(0, 10)
-  ) {
+  if (isSameDay(new Date(), storeDate)) {
     formattedDate = 'Today';
   } else {
-    formattedDate = `${storeDate.getDate()}, ${storeDate.toLocaleDateString(
-      'en-GB',
-      { month: 'long' }
+    formattedDate = `${getDate(storeDate)}, ${format(
+      new Date(storeDate),
+      'MMMM'
     )}`;
   }
   return (
