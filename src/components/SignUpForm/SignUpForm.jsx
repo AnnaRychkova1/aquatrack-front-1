@@ -67,7 +67,7 @@ const SignUpForm = () => {
 
   return (
     <div className={css.loginContainer}>
-       <Logo /> 
+      <Logo className={css.logoContainer} />
       <div className={css.formContainer}>
         <p className={css.title}>Sign Up</p>
         <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
