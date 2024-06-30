@@ -68,7 +68,10 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
   const currentDay = String(currentDate.getDate()).padStart(2, '0');
   const formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
+
   const timeFromInput = currentTime;
+  // const timeFromInput = currentTime або transferredTime;/**=======тут треба поправити==== якщо */
+  /*якщо currentTime= невизначена(або ноль)то бери transferredTime*/
   const newDate = `${formattedDate}T${timeFromInput}`;
   const token = useSelector(selectToken);
 
@@ -81,10 +84,10 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
     try {
       if (operationType === 'edit') {
         await dispatch(updateWater({ id, formData }));
-        console.log(formData);/**======================== */
+        console.log(formData); /**======================== */
       } else {
         await dispatch(addWater({ formData, token }));
-        console.log(formData);/**============ =================*/
+        console.log(formData); /**============ =================*/
       }
       closeModal();
     } catch (error) {

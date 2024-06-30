@@ -40,6 +40,7 @@ export const addWater = createAsyncThunk(
 export const updateWater = createAsyncThunk(
   'water/update',
   async ({ id, formData }, thunkAPI) => {
+    console.log('"update" i am looking for id', id);/**====== */
     try {
       const response = await editWaterRecord(id, formData);
       toast.success('Successfully edit', {
@@ -56,7 +57,7 @@ export const updateWater = createAsyncThunk(
 export const deleteWater = createAsyncThunk(
   'water/deleteWater',
   async ({ id }, thunkAPI) => {
-    console.log('Hello? i am looking for id', id);
+    console.log('"delete" i am looking for id', id);/**====== */
     try {
       const response = await deleteWaterRecord(id);
       toast.success('Successfully delete', {
