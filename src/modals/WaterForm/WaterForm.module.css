@@ -113,12 +113,12 @@
 .btnSave:focus {
   background: #87d28d;
 }
-
+/* 
 .divError {
   height: 14px;
   width: 303px;
   color: red;
-}
+} */
 
 @media (min-width: 768px) {
   .amountWaterLabel,
