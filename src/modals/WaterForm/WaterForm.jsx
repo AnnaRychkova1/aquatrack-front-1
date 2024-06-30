@@ -81,10 +81,10 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
     try {
       if (operationType === 'edit') {
         await dispatch(updateWater({ id, formData }));
-        console.log(formData);
+        console.log(formData);/**======================== */
       } else {
         await dispatch(addWater({ formData, token }));
-        console.log(formData);
+        console.log(formData);/**============ =================*/
       }
       closeModal();
     } catch (error) {
