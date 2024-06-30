@@ -18,7 +18,7 @@ const INITIAL_STATE = {
     activeTimeSports: 0,
     waterDrink: 1.8,
     avatarURL: null,
-    verify: null,
+    verify: false,
   },
   token: null,
   isSignedIn: false,

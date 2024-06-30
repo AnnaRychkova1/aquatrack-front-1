@@ -64,9 +64,9 @@ export const requestResendVerify = async formData => {
 
 // USER
 
-export const requestUserInfo = async () => {
+export const requestUserInfo = async token => {
+  setToken(token);
   const { data } = await instance.get('/users/current');
-
   return data;
 };
 

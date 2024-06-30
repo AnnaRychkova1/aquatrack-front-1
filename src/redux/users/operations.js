@@ -8,6 +8,7 @@ import {
   requestRegister,
   requestResendVerify,
   requestSendVerify,
+  requestUserInfo,
   updateUserProfiles,
   // refreshToken,
   // requestResetPassword,
@@ -94,6 +95,41 @@ export const logOut = createAsyncThunk(
 //     }
 //   }
 // );
+
+// export const getCurrentUser = createAsyncThunk(
+//   'users/current',
+
+//   // const token = localStorage.getItem('token');
+//   // if (!token) {
+//   //   return null;
+//   // }
+
+//   async thunkAPI => {
+//     try {
+//       const response = await requestUserInfo();
+//       console.log(response);
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
+
+export const getCurrentUser = createAsyncThunk(
+  'users/current',
+  async (_, thunkAPI) => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return thunkAPI.rejectWithValue('No token found');
+    }
+
+    try {
+      const response = await requestUserInfo(token);
+      return response;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
 
 export const sendVerify = createAsyncThunk(
   'users/verify',
