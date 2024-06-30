@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectAvatar,
   selectEmail,
-  //selectName,
+  selectName,
   selectWaterDrink,
 } from '../../redux/users/selectors';
 import {
@@ -21,39 +21,42 @@ const UserSettingsSchema = Yup.object().shape({
   email: Yup.string()
     .required('Email is required!')
     .email('Must be a valid email!'),
-  weight: Yup.number().min(0, 'Weight must be a positive number!'),
-  activeTimeSports: Yup.number().min(
-    0,
-    'Active time must be a positive number!'
-  ),
+  weight: Yup.number()
+    .transform(value => (isNaN(value) ? null : value))
+    .nullable()
+    .min(0, 'Weight must be a positive number!'),
+  activeTimeSports: Yup.number()
+    .transform(value => (isNaN(value) ? null : value))
+    .nullable()
+    .min(0, 'Active time must be a positive number!'),
   waterDrink: Yup.number()
     .required('Water intake is required!')
     .min(0, 'Water intake must be a positive number!'),
   gender: Yup.string()
     .required('Gender is required!')
     .oneOf(['woman', 'man'], 'Invalid gender selection!'),
-  avatarURL: Yup.mixed()
-    .test(
-      'fileSize',
-      'File too large',
-      value => !value || (value && value.size <= 1024 * 1024)
-    )
-    .test(
-      'fileFormat',
-      'Unsupported Format',
-      value =>
-        !value ||
-        (value && ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type))
-    ),
+  avatarURL: Yup.mixed(),
+  //   .test(
+  //     'fileSize',
+  //     'File too large',
+  //     value => !value || (value && value.size <= 1024 * 1024)
+  //   )
+  //   .test(
+  //     'fileFormat',
+  //     'Unsupported Format',
+  //     value =>
+  //       !value ||
+  //       (value && ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type))
+  //   ),
 });
-const UserSettingsForm = () => {
+const UserSettingsForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const userDataAvatar = useSelector(selectAvatar);
   const userDataWaterDrink = useSelector(selectWaterDrink);
-  //const userDataName = useSelector(selectName);
+  const userDataName = useSelector(selectName);
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [savedAvatarURL, setSavedAvatarURL] = useState(userDataAvatar);
-  // const [avatarFile, setAvatarFile] = useState(null);
+  const [avatarFile, setAvatarFile] = useState(null);
   const userDataEmail = useSelector(selectEmail);
   const {
     register,
@@ -65,7 +68,7 @@ const UserSettingsForm = () => {
     resolver: yupResolver(UserSettingsSchema),
     //defaultValues: { ...user },
     defaultValues: {
-      name: '',
+      name: userDataName,
       email: userDataEmail,
       weight: '',
       activeTimeSports: '',
@@ -95,24 +98,19 @@ const UserSettingsForm = () => {
     if (file) {
       const preview = URL.createObjectURL(file);
       setAvatarPreview(preview);
-      setValue('avatarURL', preview);
+      setValue('avatarURL', file);
+      setAvatarFile(file);
       const formData = new FormData();
       formData.append('avatar', file);
-      dispatch(uploadUserAvatar(formData))
-        .then(response => {
-          console.log('Avatar upload successful:', response);
-          setSavedAvatarURL(response.payload.avatarURL);
-        })
-        .catch(error => {
-          console.error('Error uploading avatar:', error);
-        });
-      console.log(preview);
-      console.log('FormData before dispatch:', formData.get('avatar'));
+      dispatch(uploadUserAvatar(formData));
+      // console.log(preview);
+      // console.log('FormData before dispatch:', formData.get('avatar'));
     }
     console.log('ssdfbfbdfbfd');
   };
-
-  const onSubmit = values => {
+  console.log('ssdfbfbdfbfd');
+  const onSubmit1 = async values => {
+    console.log('Submitting form with values:', values);
     // const formData = new FormData();
     // Object.keys(values).forEach(key => {
     //   formData.append(key, values[key]);
@@ -127,38 +125,61 @@ const UserSettingsForm = () => {
     //     console.error('Settings update error', error);
     //     alert('Error updating settings: ' + error.message); // Можна зробити більш складний notification
     //   });
-    const updatedData = {};
-    if (values.name) updatedData.name = values.name;
-    if (values.email) updatedData.email = values.email;
-    if (values.weight) updatedData.weight = values.weight;
-    if (values.activeTimeSports)
-      updatedData.activeTimeSports = values.activeTimeSports;
-    if (values.waterDrink) updatedData.waterDrink = values.waterDrink;
-    if (values.gender) updatedData.gender = values.gender;
+    // const updatedData = {};
+    // if (values.name) updatedData.name = values.name;
+    // if (values.email) updatedData.email = values.email;
+    // if (values.weight) updatedData.weight = values.weight;
+    // if (values.activeTimeSports)
+    //   updatedData.activeTimeSports = values.activeTimeSports;
+    // if (values.waterDrink) updatedData.waterDrink = values.waterDrink;
+    // if (values.gender) updatedData.gender = values.gender;
+    // setValue('name', updatedData.name);
+    // setValue('email', updatedData.email);
+    // setValue('weight', updatedData.weight);
+    // setValue('activeTimeSports', updatedData.activeTimeSports);
+    // setValue('waterDrink', updatedData.waterDrink);
+    // setValue('gender', updatedData.gender);
     // if (avatarFile) {
     //   const formData = new FormData();
     //   formData.append('avatar', avatarFile);
-    //   await dispatch(uploadUserAvatar(formData)).unwrap();
+    //   dispatch(uploadUserAvatar(formData));
     // }
-    dispatch(updateUserProfile(updatedData))
-      .then(response => {
-        console.log('Avatar upload successful:', response);
-        setSavedAvatarURL(response.payload.avatarURL);
-      })
-      .catch(error => {
-        console.error('Error uploading avatar:', error);
-      });
+    //dispatch(updateUserProfile(updatedData));
+    const updatedData = {
+      name: values.name,
+      email: values.email,
+      weight: values.weight,
+      activeTimeSports: values.activeTimeSports,
+      waterDrink: values.waterDrink,
+      gender: values.gender,
+    };
+
+    // Dispatch update action and handle success
+    try {
+      await dispatch(updateUserProfile(updatedData));
+      console.log('Profile update success');
+      // Optionally update local component state or handle UI updates here
+      closeModal(); // Close modal after successful update
+    } catch (error) {
+      console.error('Error updating profile', error);
+      // Handle error if needed
+    }
     console.log('Profile update success');
+    closeModal();
   };
+  console.log('ssdfbfbdfbfd');
   // useEffect(() => {
   //   if (!avatarPreview) {
   //     console.log('Avatar Preview:', avatarPreview);
   //   }
   // }, [avatarPreview]);
+  // const omg = () => {
+  //   console.log('OMG');
+  // };
   return (
     //<div className={css.wrapper}>
     //<div className={css.settingsModal}>
-    <form className={css.settingForm} onSubmit={handleSubmit(onSubmit)}>
+    <form className={css.settingForm} onSubmit={handleSubmit(onSubmit1)}>
       <div className={css.settingsAvatarContainer}>
         <img
           className={css.settingsAvatarImage}

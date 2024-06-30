@@ -464,8 +464,8 @@ input[type='number']::-webkit-inner-spin-button {
 }
 @media screen and (min-width: 768px) {
   .settingsLitersRequired span {
-    font-size: 16px;
-    line-height: 150%;
+    font-size: 15px;
+    line-height: 149%;
     display: inline;
   }
 }
@@ -543,21 +543,4 @@ input[type='number']::-webkit-inner-spin-button {
 }
 .settingsButton:active {
   background-color: #e6e6e6;
-}
-
-@media screen and (min-width: 768px) {
-  .listCalendar {
-    gap: 15px 48px;
-  }
-  .itemCalendar {
-    width: calc((100% - 7 * 48px) / 8);
-  }
-}
-@media screen and (min-width: 1440px) {
-  .listCalendar {
-    gap: 15px 43px;
-  }
-  .itemCalendar {
-    width: calc((100% - 7 * 43px) / 8);
-  }
 }
