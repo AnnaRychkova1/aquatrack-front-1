@@ -69,9 +69,12 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const currentDay = String(currentDate.getDate()).padStart(2, '0');
   const formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
 
-  const timeFromInput = currentTime;
-  // const timeFromInput = currentTime або transferredTime;/**=======тут треба поправити==== якщо */
-  /*якщо currentTime= невизначена(або ноль)то бери transferredTime*/
+  // const timeFromInput = currentTime; /* ???? */
+
+  const timeFromInput =
+    transferredTime === 0 || transferredTime === undefined
+      ? currentTime
+      : transferredTime;
   const newDate = `${formattedDate}T${timeFromInput}`;
   const token = useSelector(selectToken);
 
