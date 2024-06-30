@@ -63,17 +63,14 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   }, []);
 
   const currentDate = new Date();
-
   const currentYear = currentDate.getFullYear();
   const currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
   const currentDay = String(currentDate.getDate()).padStart(2, '0');
   const formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
-
   const timeFromInput =
     currentTime === undefined ? transferredTime : currentTime;
 
   const newDate = `${formattedDate}T${timeFromInput}`;
-
   const token = useSelector(selectToken);
 
   const onSubmit = async () => {
