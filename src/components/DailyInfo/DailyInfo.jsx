@@ -7,14 +7,12 @@ import WaterList from '../WaterList/WaterList';
 import css from './DailyInfo.module.css';
 
 const DailyInfo = () => {
-  // Поточна календарна дата
-  const currentDate = new Date();
   // Дата зі стору
   const storeDate = useSelector(selectDate);
   let formattedDate;
 
   // Якщо дата зі стору = календарній даті => Today
-  if (isSameDay(currentDate, storeDate)) {
+  if (isSameDay(new Date(), storeDate)) {
     formattedDate = 'Today';
   } else {
     formattedDate = `${getDate(storeDate)}, ${format(
