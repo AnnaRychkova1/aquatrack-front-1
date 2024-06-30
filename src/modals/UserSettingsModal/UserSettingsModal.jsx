@@ -10,7 +10,7 @@ const UserSettingsModal = ({ isOpen, closeModal }) => {
     >
       <div className={css.settingsWrapper}>
         <h2 className={css.settingsTitle}>Setting</h2>
-        <UserSettingsForm />
+        <UserSettingsForm closeModal={closeModal} />
       </div>
     </UniversalModal>
   );
