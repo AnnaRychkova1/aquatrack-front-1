@@ -23,8 +23,8 @@ const options = {
 export const addWater = createAsyncThunk(
   'water/addWater',
   async ({ formData, token }, thunkAPI) => {
-    console.log('addWater? i am looking for token', token);
-    console.log('addWater? i am looking for data', formData);
+    // console.log('addWater? i am looking for token', token);
+    // console.log('addWater? i am looking for data', formData);
     try {
       // await addWaterDaily(formData, token);
       const response = await addWaterDaily(formData, token);

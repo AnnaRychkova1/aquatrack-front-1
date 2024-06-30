@@ -4,7 +4,7 @@ import UniversalModal from '../Modal/Modal';
 import css from './DeleteWaterModal.module.css';
 
 const DeleteWaterModal = ({ isOpen, closeModal, id }) => {
-  
+  //  console.log(id)
   const dispatch = useDispatch();
   const handleDelete = async () => {
     try {
