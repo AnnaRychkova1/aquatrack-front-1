@@ -4,34 +4,32 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectWaterDrink } from '../../redux/users/selectors';
 import { selectTotalDay } from '../../redux/water/selectors';
+import { selectDate } from '../../redux/date/selectors';
 
 const WaterProgressBar = () => {
   const daylyNorm = useSelector(selectWaterDrink);
   const dayWaterAll = useSelector(selectTotalDay);
-  // const dayWaterAll = [{ value: 50 }, { value: 500 }, { value: 100 }];
+
+  const selectedDate = useSelector(selectDate);
+
 
   const [waterAmount, setWaterAmount] = useState(0);
+  // console.log('Day Water All:', dayWaterAll);
 
   useEffect(() => {
-    if (Array.isArray(dayWaterAll)) {
-      const calculateDrinkedWater = dayWaterAll.reduce(
-        (accumulator, currentObject) => accumulator + currentObject.value,
-        0
-      );
-
+    if (typeof dayWaterAll === 'number') {
       let waterAmount = 0;
-      if (calculateDrinkedWater) {
-        if (daylyNorm) {
-          waterAmount = (calculateDrinkedWater * 100) / (daylyNorm * 1000);
-        } else {
-          waterAmount = 100;
-        }
+
+      if (daylyNorm && dayWaterAll >= 0) {
+        waterAmount = (dayWaterAll * 100) / (daylyNorm * 1000);
+      } else {
+        waterAmount = 100;
       }
       setWaterAmount(Math.min(waterAmount, 100));
     } else {
       setWaterAmount(0);
     }
-  }, [daylyNorm, dayWaterAll]);
+  }, [daylyNorm, dayWaterAll, selectedDate]);
 
   // console.log('Water Amount:', waterAmount);
 
