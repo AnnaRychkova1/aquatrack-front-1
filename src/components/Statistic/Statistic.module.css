@@ -6,9 +6,8 @@
 }
 
 .label {
-    font-family: var(--font-regular);
     font-size: 14px;
-    color: var(--main-text-color);
+    color: var(--main-text);
 }
 
 .customSelectWrapper {
@@ -16,10 +15,21 @@
     width: 100px;
 }
 
+.customTooltip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 48px;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+}
+
 .water {
-    font-family: var(--font-regular);
-    font-size: 14px;
-    color: var(--main-text-color);
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 22px;
+    color: var(--main-text);
 }
 
 .customSelect {
@@ -27,9 +37,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px 12px;
-    font-family: var(--font-regular);
     font-size: 14px;
-    color: var(--main-text-color);
+    color: var(--main-text);
     border: 1px solid var(--text-color-transparent);
     border-radius: 4px;
     background-color: var(--background-color);

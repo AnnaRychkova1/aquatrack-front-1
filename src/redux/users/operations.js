@@ -138,6 +138,7 @@ export const uploadUserAvatar = createAsyncThunk(
 export const updateUserProfile = createAsyncThunk(
   'users/update',
   async (formData, thunkAPI) => {
+    console.log(formData);
     try {
       const response = await updateUserProfiles(formData); // Replace with your actual API function
       toast.success('Avatar uploaded successfully', { ...options });

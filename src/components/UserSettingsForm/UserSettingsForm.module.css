@@ -1,35 +1,3 @@
-.settingsWrapper {
-  padding: 40px 20px;
-  margin: 0;
-  max-width: 343px;
-  /* height: 996px; */
-  /* transform: translate(0, 64px); */
-  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-  background: #ffffff;
-  border-radius: 15px;
-  /* overflow-y: auto; */
-  /* margin-top: 64px; */
-}
-@media screen and (min-width: 768px) {
-  .settingsWrapper {
-    padding: 40px;
-    margin: 0;
-    max-width: 648px;
-  }
-}
-@media screen and (min-width: 1440px) {
-  .settingsWrapper {
-    max-width: 920px;
-  }
-}
-/* .settingsTitle {
-  font-family: Poppins;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 120%;
-  letter-spacing: -0.01em;
-  color: #323f47;
-} */
 /* .settingsModal {
   padding: 40px;
   position: relative;
@@ -40,9 +8,7 @@
   background: #ffffff;
   border-radius: 15px;
 } */
-.settingsModal {
-  /* overflow-y: scroll; */
-}
+
 .settingsTitle {
   margin-bottom: 20px;
   font-family: Poppins;
@@ -498,8 +464,8 @@ input[type='number']::-webkit-inner-spin-button {
 }
 @media screen and (min-width: 768px) {
   .settingsLitersRequired span {
-    font-size: 16px;
-    line-height: 150%;
+    font-size: 15px;
+    line-height: 149%;
     display: inline;
   }
 }
@@ -577,21 +543,4 @@ input[type='number']::-webkit-inner-spin-button {
 }
 .settingsButton:active {
   background-color: #e6e6e6;
-}
-
-@media screen and (min-width: 768px) {
-  .listCalendar {
-    gap: 15px 48px;
-  }
-  .itemCalendar {
-    width: calc((100% - 7 * 48px) / 8);
-  }
-}
-@media screen and (min-width: 1440px) {
-  .listCalendar {
-    gap: 15px 43px;
-  }
-  .itemCalendar {
-    width: calc((100% - 7 * 43px) / 8);
-  }
 }
