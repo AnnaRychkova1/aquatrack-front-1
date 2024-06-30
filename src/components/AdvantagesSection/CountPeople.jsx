@@ -40,7 +40,7 @@ const UserCount = () => {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className={css.count_Users}>
+    <div className={`${css.count_Users} ${css.desktopOnly}`}>
       <p className={css.count_Text}>
         Our <span className={css.textSpan}>team </span> now:{' '}
         {formatUserCount(userCount)}

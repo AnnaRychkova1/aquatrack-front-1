@@ -8,6 +8,7 @@
     margin-top: -45px;
 }
 
+
 .count_Text {
     font-weight: 700;
     font-size: 12px;
@@ -19,11 +20,21 @@
     color: var(--accent-color);
 }
 
+.desktopOnly {
+    display: block;
+}
+
+@media only screen and (max-width: 767px) {
+    .desktopOnly {
+        display: none;
+
+    }
+}
+
 @media only screen and (min-width: 768px) {
     .count_Users {
         max-width: 235px;
         padding: 10px 20px;
-
         width: 100%;
     }
 
