@@ -12,7 +12,6 @@ const WaterProgressBar = () => {
 
   const selectedDate = useSelector(selectDate);
 
-
   const [waterAmount, setWaterAmount] = useState(0);
   // console.log('Day Water All:', dayWaterAll);
 
