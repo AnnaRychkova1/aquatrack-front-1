@@ -21,9 +21,10 @@ export const editWaterRecord = async (id, day) => {
   return data;
 };
 
-export const deleteWaterRecord = async (id, day) => {
-  const { data } = await instance.delete(`/water/${id}`, day);
-  return data;
+export const deleteWaterRecord = async id => {
+  const response = await instance.delete(`/water/${id}`);
+  console.log(response);
+  return response.data.id;
 };
 
 // export const requestWaterDaily = async (date, token) => {

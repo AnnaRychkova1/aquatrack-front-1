@@ -45,9 +45,9 @@ const WaterList = ({ selectDay }) => {
         </li>
       ) : (
         waterPortions.map((waterItem, index) => (
-          <li className={css.item} key={`${waterItem.id}-${index}`}>
+          <li className={css.item} key={`${waterItem._id}-${index}`}>
             <WaterItem
-              id={waterItem.id}
+              id={waterItem._id}
               volume={waterItem.volume}
               date={waterItem.date}
               isEditable={true}

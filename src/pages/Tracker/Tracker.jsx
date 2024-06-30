@@ -18,22 +18,7 @@ const Tracker = () => {
   const loadingWater = useSelector(selectLoading);
   // const isVerified = useSelector(selectIsVerified);
 
-  // const dispatch = useDispatch();
-  // const user = useSelector(state => state.user.user);
-  // console.log('i find user', user);
-
-  // useEffect(() => {
-  //   dispatch(getCurrentUser());
-  // }, []);
-
-  // if (!user) {
-  //   return <div>Loading...</div>;
-  // }
-
   // console.log('I am verified?', isVerified);
-  // console.log('i am current user');
-
-  // selectUser? need to change?
   return (
     <>
       {loading && <Loader />}
