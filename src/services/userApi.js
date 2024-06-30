@@ -18,7 +18,7 @@ export const requestRegister = async formData => {
 //SignIn
 export const requestLogin = async formData => {
   const { data } = await instance.post('/users/login', formData);
-  console.log(data.token);
+  // console.log(data.token);
   localStorage.setItem('token', data.token);
   setToken(data.token);
   return data;
@@ -73,7 +73,7 @@ export const requestUserInfo = async () => {
   // setToken(token); ???
   const { data } = await instance.get('/users/current', token);
   // console.log(data);
-  console.log(data.token);
+  // console.log(data.token);
   return data;
 };
 
@@ -85,7 +85,7 @@ export const updateUserProfiles = async formData => {
 };
 
 export const uploadUserAvatars = async formData => {
-  console.log(formData);
+  // console.log(formData);
   const { data } = await instance.patch('/users/avatars', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',

@@ -6,6 +6,7 @@ import RestrictedRoute from './routs/RestrictedRoute';
 import { useDispatch } from 'react-redux';
 import { getCurrentUser } from './redux/users/operations';
 import { useAuth } from './hooks/useAuth';
+import Loader from './components/Loader/Loader';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignIn = lazy(() => import('./pages/SignIn/SignIn'));
@@ -17,12 +18,12 @@ const App = () => {
   const dispatch = useDispatch();
   const { isCurrent } = useAuth();
 
-  console.log('isCurrent', isCurrent);
-
   useEffect(() => {
     dispatch(getCurrentUser());
   }, [dispatch]);
-  return (
+  return isCurrent ? (
+    <Loader />
+  ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route

@@ -75,14 +75,13 @@ const authSlice = createSlice({
       })
 
       // CURRENT
-
       .addCase(getCurrentUser.pending, state => {
         state.isCurrent = true;
         state.isError = false;
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         const { user } = action.payload;
-        state.isCurrent = true; // update
+        state.isCurrent = false; // update
         state.user = user;
         state.isSignedIn = true;
       })
@@ -90,17 +89,6 @@ const authSlice = createSlice({
         state.isCurrent = false;
         state.isError = true;
       })
-
-      // .addCase(getCurrentUser.fulfilled, (state, action) => {
-      //   const { user, token } = action.payload;
-      //   if (token) {
-      //     localStorage.setItem('token', token);
-      //     state.user = user;
-      //     state.token = token;
-      //     state.isSignedIn = true;
-      //   }
-      //   state.isLoading = false;
-      // })
 
       // LOGOUT
       .addCase(logOut.fulfilled, () => {
@@ -125,21 +113,11 @@ const authSlice = createSlice({
         // state.user.waterDrink = action.payload.user.waterDrink;
       })
       .addMatcher(
-        isAnyOf(
-          userRegister.pending,
-          logIn.pending,
-          logOut.pending
-          // sendVerify.pending
-        ),
+        isAnyOf(userRegister.pending, logIn.pending, logOut.pending),
         handlePending
       )
       .addMatcher(
-        isAnyOf(
-          userRegister.rejected,
-          logIn.rejected,
-          logOut.rejected
-          // sendVerify.rejected
-        ),
+        isAnyOf(userRegister.rejected, logIn.rejected, logOut.rejected),
         handleRejected
       );
   },
