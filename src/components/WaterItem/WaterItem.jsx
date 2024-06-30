@@ -11,7 +11,6 @@ const formatTime = dateString => {
 };
 
 const WaterItem = ({ id, volume, date, isEditable}) => {
- 
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
