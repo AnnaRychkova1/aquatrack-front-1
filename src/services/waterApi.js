@@ -6,11 +6,8 @@ export const setToken = token => {
 
 export const addWaterDaily = async (formData, token) => {
   setToken(token);
-  console.log('Data is here', formData);
-  console.log('I am from:', token);
-
-  const { newData } = await instance.post('/water', formData);
-  return newData;
+  const response = await instance.post('/water', formData);
+  return response.data;
 };
 
 export const editWaterRecord = async (id, day) => {

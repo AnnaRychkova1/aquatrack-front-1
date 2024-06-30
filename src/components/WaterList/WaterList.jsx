@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { isSameDay } from 'date-fns';
 import { useEffect } from 'react';
 import { fetchDailyWater } from '../../redux/water/operations';
 import { selectToken } from '../../redux/users/selectors';
@@ -25,9 +26,6 @@ const WaterList = ({ selectDay }) => {
     }
   }, [dispatch, token, formatDate]);
 
-  // Отримуємо поточну календарну дату
-  // const calendarDate = new Date();
-
   // Отримуємо зі стору масив даних
   const waterPortions = useSelector(selectWaterPortion);
 
@@ -46,21 +44,14 @@ const WaterList = ({ selectDay }) => {
           There is no data for the selected date
         </li>
       ) : (
-        waterPortions.map(waterItem => (
-          <li className={css.item} key={waterItem._id}>
+        waterPortions.map((waterItem, index) => (
+          <li className={css.item} key={`${waterItem.id}-${index}`}>
             <WaterItem
-              id={waterItem._id}
+              id={waterItem.id}
               volume={waterItem.volume}
               date={waterItem.date}
               isEditable={true}
-
-              // isEditable={
-              //   calendarDate.getDate() === new Date(waterItem.date).getDate() &&
-              //   calendarDate.getMonth() ===
-              //     new Date(waterItem.date).getMonth() &&
-              //   calendarDate.getFullYear() ===
-              //     new Date(waterItem.date).getFullYear()
-              // }
+              // isEditable={isSameDay(new Date(), waterItem.date)}
             />
           </li>
         ))

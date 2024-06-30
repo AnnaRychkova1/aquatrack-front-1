@@ -18,6 +18,7 @@ const INITIAL_STATE = {
     activeTimeSports: 0,
     waterDrink: 1.8,
     avatarURL: null,
+    verify: null,
   },
   token: null,
   isSignedIn: false,
@@ -96,8 +97,8 @@ const authSlice = createSlice({
         isAnyOf(
           userRegister.pending,
           logIn.pending,
-          logOut.pending,
-          sendVerify.pending
+          logOut.pending
+          // sendVerify.pending
         ),
         handlePending
       )
@@ -105,8 +106,8 @@ const authSlice = createSlice({
         isAnyOf(
           userRegister.rejected,
           logIn.rejected,
-          logOut.rejected,
-          sendVerify.rejected
+          logOut.rejected
+          // sendVerify.rejected
         ),
         handleRejected
       );

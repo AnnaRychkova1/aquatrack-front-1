@@ -27,6 +27,14 @@
     color: var(--main-text);
 }
 
+.icon {
+    stroke: #323f47;
+}
+
+.activeIcon {
+    stroke: #A9A9A9;
+}
+
 @media only screen and (min-width: 768px) {
     .dateInfo {
         width: 140px;

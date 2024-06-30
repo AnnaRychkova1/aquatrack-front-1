@@ -5,23 +5,18 @@ const dateSlice = createSlice({
   initialState: {
     date: new Date().toISOString(),
     paginationDate: new Date().toISOString(),
-    paginationBtnDisabled: true,
-    isLoading: false,
-    error: null,
   },
   reducers: {
     changeDate(state, action) {
       state.date = action.payload;
     },
+
     changePaginationDate(state, action) {
       state.paginationDate = action.payload;
-    },
-    changePaginationBtnDisabled(state, action) {
-      state.paginationBtnDisabled = action.payload;
     },
   },
 });
 
-export const { changeDate, changePaginationDate, changePaginationBtnDisabled } =
+export const { changeDate, changePaginationDate } =
   dateSlice.actions;
 export const dateReducer = dateSlice.reducer;
