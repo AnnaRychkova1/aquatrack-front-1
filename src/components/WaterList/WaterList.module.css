@@ -1,6 +1,7 @@
 .list {
   min-width: 280px;
   width: 303px;
+  height: 106px;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -36,6 +37,7 @@
   .list {
     column-gap: 2rem;
     width: 640px;
+    height: 118px;
   }
 }
 
