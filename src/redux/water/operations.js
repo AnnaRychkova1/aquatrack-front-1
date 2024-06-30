@@ -20,11 +20,28 @@ const options = {
   progress: undefined,
 };
 
+// export const addWater = createAsyncThunk(
+//   'water/addWater',
+//   async ({ formData, token }, thunkAPI) => {
+//     try {
+//       const response = await addWaterDaily(formData, token);
+//       toast.success('Successfully add', {
+//         ...options,
+//       });
+//       console.log(response);
+//       return response;
+//     } catch (error) {
+//       toast.error(error.message, { ...options });
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
 export const addWater = createAsyncThunk(
   'water/addWater',
-  async ({ formData, token }, thunkAPI) => {
+  async ({ formData }, thunkAPI) => {
     try {
-      const response = await addWaterDaily(formData, token);
+      const response = await addWaterDaily(formData);
       toast.success('Successfully add', {
         ...options,
       });
@@ -70,11 +87,23 @@ export const deleteWater = createAsyncThunk(
   }
 );
 
+// export const fetchDailyWater = createAsyncThunk(
+//   'water/fetchDay',
+//   async ({ date, token }, thunkAPI) => {
+//     try {
+//       const response = await requestWaterDaily(date, token);
+//       return response;
+//     } catch (error) {
+//       toast.error(error.message);
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
 export const fetchDailyWater = createAsyncThunk(
   'water/fetchDay',
-  async ({ date, token }, thunkAPI) => {
+  async ({ date }, thunkAPI) => {
     try {
-      const response = await requestWaterDaily(date, token);
+      const response = await requestWaterDaily(date);
       return response;
     } catch (error) {
       toast.error(error.message);
@@ -83,11 +112,24 @@ export const fetchDailyWater = createAsyncThunk(
   }
 );
 
+// export const fetchMonthlyWater = createAsyncThunk(
+//   'water/fetchWaters',
+//   async ({ month, year, token }, thunkAPI) => {
+//     try {
+//       const response = await requestWaterMonthly({ month, year }, token);
+//       return response;
+//     } catch (error) {
+//       toast.error(error.message, { ...options });
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
 export const fetchMonthlyWater = createAsyncThunk(
   'water/fetchWaters',
-  async ({ month, year, token }, thunkAPI) => {
+  async ({ month, year }, thunkAPI) => {
     try {
-      const response = await requestWaterMonthly({ month, year }, token);
+      const response = await requestWaterMonthly({ month, year });
       return response;
     } catch (error) {
       toast.error(error.message, { ...options });

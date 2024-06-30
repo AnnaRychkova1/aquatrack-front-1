@@ -25,6 +25,7 @@ const INITIAL_STATE = {
   isSignedIn: false,
   isLoading: false,
   isError: false,
+  isCurrent: false,
 };
 
 const handlePending = state => {
@@ -74,16 +75,31 @@ const authSlice = createSlice({
 
       // CURRENT
 
-      .addCase(getCurrentUser.fulfilled, (state, action) => {
-        const { user, token } = action.payload;
-        if (token) {
-          localStorage.setItem('token', token);
-          state.user = user;
-          state.token = token;
-          state.isSignedIn = true;
-        }
-        state.isLoading = false;
+      .addCase(getCurrentUser.pending, state => {
+        state.isCurrent = true;
+        state.isError = false;
       })
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        const { user } = action.payload;
+        state.isCurrent = true; // update
+        state.user = user;
+        state.isSignedIn = true;
+      })
+      .addCase(getCurrentUser.rejected, state => {
+        state.isCurrent = false;
+        state.isError = true;
+      })
+
+      // .addCase(getCurrentUser.fulfilled, (state, action) => {
+      //   const { user, token } = action.payload;
+      //   if (token) {
+      //     localStorage.setItem('token', token);
+      //     state.user = user;
+      //     state.token = token;
+      //     state.isSignedIn = true;
+      //   }
+      //   state.isLoading = false;
+      // })
 
       // LOGOUT
       .addCase(logOut.fulfilled, () => {

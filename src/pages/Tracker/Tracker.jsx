@@ -1,8 +1,8 @@
 import { Helmet } from 'react-helmet-async';
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 import WaterMainInfo from '../../components/WaterMainInfo/WaterMainInfo';
 import WaterDetailedInfo from '../../components/WaterDetailedInfo/WaterDetailedInfo';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   selectIsLoading,
   // selectIsVerified,
@@ -11,24 +11,24 @@ import {
 import { selectLoading } from '../../redux/water/selectors';
 import Loader from '../../components/Loader/Loader';
 import css from './Tracker.module.css';
-import { getCurrentUser } from '../../redux/users/operations';
+// import { getCurrentUser } from '../../redux/users/operations';
 
 const Tracker = () => {
   const loading = useSelector(selectIsLoading);
   const loadingWater = useSelector(selectLoading);
   // const isVerified = useSelector(selectIsVerified);
 
-  const dispatch = useDispatch();
-  const user = useSelector(state => state.user.user);
-  console.log('i find user', user);
+  // const dispatch = useDispatch();
+  // const user = useSelector(state => state.user.user);
+  // console.log('i find user', user);
 
-  useEffect(() => {
-    dispatch(getCurrentUser());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getCurrentUser());
+  // }, []);
 
-  if (!user) {
-    return <div>Loading...</div>;
-  }
+  // if (!user) {
+  //   return <div>Loading...</div>;
+  // }
 
   // console.log('I am verified?', isVerified);
   // console.log('i am current user');

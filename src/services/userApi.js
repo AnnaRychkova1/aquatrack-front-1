@@ -18,6 +18,7 @@ export const requestRegister = async formData => {
 //SignIn
 export const requestLogin = async formData => {
   const { data } = await instance.post('/users/login', formData);
+  console.log(data.token);
   localStorage.setItem('token', data.token);
   setToken(data.token);
   return data;
@@ -68,9 +69,9 @@ export const requestResendVerify = async formData => {
 
 export const requestUserInfo = async () => {
   const token = localStorage.getItem('token');
-  console.log(token);
-  setToken(token);
-  const { data } = await instance.get('/users/current');
+  // console.log(token);
+  // setToken(token); ???
+  const { data } = await instance.get('/users/current', token);
   // console.log(data);
   console.log(data.token);
   return data;
