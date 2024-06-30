@@ -22,11 +22,11 @@ const UserSettingsSchema = Yup.object().shape({
     .required('Email is required!')
     .email('Must be a valid email!'),
   weight: Yup.number()
-    .transform(value => (isNaN(value) ? null : value))
+    .transform(value => (isNaN(value) ? 0 : value))
     .nullable()
     .min(0, 'Weight must be a positive number!'),
   activeTimeSports: Yup.number()
-    .transform(value => (isNaN(value) ? null : value))
+    .transform(value => (isNaN(value) ? 0 : value))
     .nullable()
     .min(0, 'Active time must be a positive number!'),
   waterDrink: Yup.number()
