@@ -1,8 +1,10 @@
 // import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { paginationDate, paginationBtnDisabled } from '../../redux/date/selectors';
-import { changePaginationDate, changePaginationBtnDisabled } from '../../redux/date/slice';
+import { paginationDate } from '../../redux/date/selectors';
+import { changePaginationDate } from '../../redux/date/slice';
+import { paginationBtnDisabled } from '../../redux/pagination/selectors';
+import { changePaginationBtnDisabled } from '../../redux/pagination/slice';
 import css from './CalendarPagination.module.css';
 import Icon from '../Icon/Icon';
 
@@ -68,7 +70,7 @@ const CalendarPagination = () => {
             width="18"
             height="18"
             iconName="chevron-right"
-            className={css.icon}
+            className={btnDisabled ? css.activeIcon : css.icon}
           />
       </button>
     </div>

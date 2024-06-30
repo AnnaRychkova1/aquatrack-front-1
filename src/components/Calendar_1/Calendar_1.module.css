@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   margin: 0 auto;
   width: 303px;
+  height: 300px;
   gap: 20px 18px;
 }
 .item {
@@ -23,6 +24,7 @@
 @media screen and (min-width: 768px) {
   .list {
     width: 640px;
+    height: 305px;
     gap: 15px 48px;
   }
   .item {

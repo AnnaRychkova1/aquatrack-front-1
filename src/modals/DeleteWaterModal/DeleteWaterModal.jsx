@@ -2,24 +2,21 @@ import { useDispatch } from 'react-redux';
 import { deleteWater } from '../../redux/water/operations';
 import UniversalModal from '../Modal/Modal';
 import css from './DeleteWaterModal.module.css';
-import { toast } from 'react-toastify';
 
-const DeleteWaterModal = ({ isOpen, closeModal, waterId }) => {
+const DeleteWaterModal = ({ isOpen, closeModal, id }) => {
+  //  console.log(id)
   const dispatch = useDispatch();
-
   const handleDelete = async () => {
     try {
-      await dispatch(deleteWater(waterId));
-      toast.success('Запис видалено успішно');
+      await dispatch(deleteWater(id));
       closeModal();
     } catch (error) {
-      toast.error('Помилка при видаленні');
       console.error('Помилка при видаленні:', error);
     }
   };
 
   return (
-    <UniversalModal isOpen={isOpen} closeModal={closeModal}>
+    <UniversalModal isOpen={isOpen} closeModal={closeModal} id={id}>
       <div className={css.deleteWaterModal}>
         <p className={css.title}>Delete entry</p>
 

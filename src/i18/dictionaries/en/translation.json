@@ -1,0 +1,161 @@
+{
+  "signin_page": {
+    "signin": "Sign in",
+    "signup": "Sign up",
+    "forgotPassword": "Forgot password?",
+    "forgot": "Forgot",
+    "account": "Don't have any account?",
+    "alreadyHave": "Already have account?"
+  },
+  "auth_form": {
+    "email": "Email",
+    "password": "Password",
+    "verfpassword": "verification mail",
+    "passwordEnter": "Enter your password",
+    "emailEnter": "Enter your email",
+    "send": "Send",
+    "resend": "Resend",
+    "changePassword": "Change password",
+    "repeatPassword": "Repeat password",
+    "provideEmail": "Provide your e-mail",
+    "back": "Back"
+  },
+  "forgot_page": {
+    "recoverPassword": "Recover password:"
+  },
+  "modals": {
+    "waterAmount": "Amount of water",
+    "recordingTime": "Recording time",
+    "enterWater": "Enter the value of water used",
+    "saveBtn": "Save",
+    "addWater": "Add water",
+    "chooseValue": "Choose a value",
+    "editWater": "Edit the entered amount of water",
+    "correctData": "Correct entered data",
+    "sureDelete": "Are you sure you want to delete the entry",
+    "delete": "Delete",
+    "cancel": "Cancel",
+    "deleteEntry": "Delete entry",
+    "logOut": "Log out",
+    "wantLeave": "Do you really want to leave",
+    "BMI": "Body mass index (BMI)",
+    "settings": "Settings",
+    "BMICalc": "BMI calc",
+    "languages": "Languages",
+    "weight": "Weight (kg)",
+    "height": "Height (cm)",
+    "ml": "ml"
+  },
+  "advantagesSection": {
+    "our": "Our",
+    "happy": "happy",
+    "customers": "customers",
+    "habitDrive": "Habit drive",
+    "viewStatistics": "View statistics",
+    "personalRateSetting": "Personal rate setting"
+  },
+  "waterDailyNorma": {
+    "dailyNorma": "My daily norma",
+    "today": "Today",
+    "l": "L"
+  },
+  "welcomeSection": {
+    "recordDaily": "Record daily water intake and track",
+    "waterTracker": "Water consumption tracker",
+    "tryTracker": "Try tracker"
+  },
+  "monthInfo": {
+    "month": "Month",
+    "statistics": "Statistics"
+  },
+  "settingsForm": {
+    "settings": "Settings",
+    "uploadPhoto": "Upload a photo",
+    "yourGender": " Your gender identity",
+    "woman": "Woman",
+    "man": "Man",
+    "yourName": "Your name",
+    "forWoman": "For woman",
+    "forMan": "For man",
+    "activeTime": "Active time in hours",
+    "yourWeight": "Your weight in kilograms",
+    "weightRequired": "Weight is required",
+    "yourHeight": "Your height in cm",
+    "heightRequired": "Height is required",
+    "activeParticipation": "The time of active participation in sports",
+    "activeTimeRequired": "Active time is required",
+    "requiredAmount": "The required amount of water in liters per day",
+    "writeWateDrink": "Write down how much water you will drink",
+    "goalRequired": "Goal is required",
+    "yourBodyMassIndex": "Your body mass index",
+    "calc": [
+      "V is the volume of the ",
+      "water norm in liters per day, M is your body weight, T is the ",
+      "time of active sports, or another type of activity commensurate ",
+      "in terms of loads (in the absence of these, you must set 0)"
+    ],
+    "currentTheme": "The current theme is"
+  },
+  "BMI": {
+    "BMIpar": [
+      "Body mass index (BMI) is a calculated value that allows you to assess",
+      "the degree of correspondence between a person's body weight and",
+      "height. Such a ratio gives us information about whether the weight is",
+      "normal, insufficient or excessive. The BMI indicator reflects the fat",
+      "reserves in the human body, which can timely signal its excess, the",
+      "risk of developing obesity and related diseases. Enter your data below",
+      "to calculate your BMI."
+    ],
+    "SevereThinness": "Severe Thinness",
+    "ModerateThinness": "Moderate Thinness",
+    "MildThinness": "Mild Thinness",
+    "Normal": "Normal",
+    "Overweight": "Overweight",
+    "ObeseClassI": "Obese Class I ",
+    "ObeseClassII": "Obese Class II",
+    "ObeseClassIII": "Obese Class III"
+  },
+  "toast": {
+    "loginSuccess": "Welcome to the AquaTrack",
+    "loginError": "Email or password is wrong or not verified",
+    "logoutSuccess": "Signout success",
+    "verificationEmailSuccess": "Verification email sent",
+    "email404": "User not found",
+    "verificationEmail418": "Current email is already verified",
+    "defaultError": "Error",
+    "recoverMailSuccess": "Recovery instructions was sent to provided email",
+    "recoverPassSuccess": "Password changed successfuly",
+    "registerEmailSuccess": "Verification email sent",
+    "registerEmailError": "Current email already in use",
+    "updateSettingSuccess": "Settings updated successfully",
+    "updateSettingError": "Failed to update settings. Please try again"
+  },
+  "popover": {
+    "settings": "Settings",
+    "bmiCalc": "BMI calc",
+    "languages": "Languages",
+    "tip": "Give me a tip",
+    "links": "Usefull links",
+    "logout": "Log out"
+  },
+  "userPanel": {
+    "welcome": "Hello"
+  },
+  "chooseDate": {
+    "today": "Today",
+    "chosen": "{{ date, dayMonth}}"
+  },
+  "calendar": {
+    "month": "Month",
+    "statistics": "Statistics",
+    "pagination": "{{ date, monthYear }}"
+  },
+  "statistics": {
+    "selectDaysRange": "Select days range",
+    "days": "days",
+    "water": "Water"
+  },
+  "switcher": {
+    "choose": "Choose your preferred language"
+  }
+}
