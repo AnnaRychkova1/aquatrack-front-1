@@ -12,7 +12,7 @@ const Tracker = () => {
   const loadingWater = useSelector(selectLoading);
   const isVerified = useSelector(selectIsVerified);
 
-  console.log('I am verified?', isVerified);
+  // console.log('I am verified?', isVerified);
   return (
     <>
       {loading && <Loader />}
