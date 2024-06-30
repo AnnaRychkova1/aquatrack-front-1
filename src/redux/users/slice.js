@@ -18,12 +18,12 @@ const INITIAL_STATE = {
     activeTimeSports: 0,
     waterDrink: 1.8,
     avatarURL: null,
+    verify: null,
   },
   token: null,
   isSignedIn: false,
   isLoading: false,
   isError: false,
-  isVerified: false,
 };
 
 const handlePending = state => {
@@ -48,7 +48,6 @@ const authSlice = createSlice({
         const { user } = action.payload;
         state.user.email = user.email;
         state.isSignedIn = true;
-        state.isVerified = false;
       })
 
       // VERIFY EMAIL
@@ -58,7 +57,6 @@ const authSlice = createSlice({
         state.user = user;
         state.token = token;
         state.isSignedIn = true;
-        state.isVerified = true;
       })
 
       //LOGIN
@@ -71,7 +69,6 @@ const authSlice = createSlice({
           state.isSignedIn = true;
         }
         state.isLoading = false;
-        state.isVerified = true;
       })
 
       // LOGOUT
@@ -92,8 +89,8 @@ const authSlice = createSlice({
         isAnyOf(
           userRegister.pending,
           logIn.pending,
-          logOut.pending,
-          sendVerify.pending
+          logOut.pending
+          // sendVerify.pending
         ),
         handlePending
       )
@@ -101,8 +98,8 @@ const authSlice = createSlice({
         isAnyOf(
           userRegister.rejected,
           logIn.rejected,
-          logOut.rejected,
-          sendVerify.rejected
+          logOut.rejected
+          // sendVerify.rejected
         ),
         handleRejected
       );
