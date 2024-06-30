@@ -10,9 +10,8 @@ const formatTime = dateString => {
   return date.toLocaleTimeString('en-US', options);
 };
 
-const WaterItem = ({ id, volume, date, isEditable, token }) => {
-  // console.log(id)
-  // console.log(token)
+const WaterItem = ({ id, volume, date, isEditable}) => {
+ 
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
