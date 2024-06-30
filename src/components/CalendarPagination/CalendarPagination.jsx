@@ -1,4 +1,3 @@
-// import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { paginationDate } from '../../redux/date/selectors';
@@ -35,9 +34,11 @@ const CalendarPagination = () => {
     const nextMounth = getNextMounth(storeDate);
     const currentBtnMonth = new Date().toLocaleDateString('en-GB', {
       month: 'long',
+      year: 'numeric',
     });
     const nextBtnMonth = new Date(nextMounth).toLocaleDateString('en-GB', {
       month: 'long',
+      year: 'numeric',
     });
 
     if (currentBtnMonth === nextBtnMonth) {
