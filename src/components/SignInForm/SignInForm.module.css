@@ -1,4 +1,5 @@
 .loginContainer {
+    position: relative;
     border-radius: 30px;
     border: 1px solid red;
     padding: 0 16px;
@@ -140,7 +141,7 @@
     }
 
     .formContainer {
-        padding: 207px 102px 207px;
+        padding: 261px 134px 261px;
     }
 
     .form {
@@ -189,6 +190,6 @@
     }
 
     .formContainer {
-        padding: 153px 85px 137px;
+        padding: 153px 134px 137px;
     }
 }

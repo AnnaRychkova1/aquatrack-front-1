@@ -1,14 +1,8 @@
-.logoContainer {
-    /* position: absolute;
-    top: 5%;
-    left: 5%;
-    margin-bottom: 5px; */
-}
-
 .loginContainer {
+    position: relative;
     border-radius: 30px;
     border: 1px solid red;
-    padding: 0 16px;
+    padding: 16px;
     background-color: var(--background-color);
     max-width: 343px;
     min-width: 288px;
@@ -147,12 +141,10 @@
         max-width: 100%;
         width: 704px;
         height: 960px;
-
-
     }
 
     .formContainer {
-        padding: 207px 102px 207px;
+        padding: 205px 134px 205px;
     }
 
     .title {
@@ -196,6 +188,7 @@
     }
 
     .formContainer {
-        padding: 90px 105px 15px;
+
+        padding: 80px 134px 120px;
     }
 }
