@@ -12,7 +12,7 @@ const schemaWaterForm = yup.object().shape({
   waterAmount: yup
     .number()
     .typeError('Please enter a valid number')
-    .min(50, 'Minimum value is 50')
+    .min(1, 'Minimum value is 1')
     .max(5000, 'Maximum value is 5000')
     .required('Water amount is required'),
   recordingTime: yup
@@ -27,9 +27,6 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const [number, setNumber] = useState(initialWaterAmount);
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
-  // console.log(date);
-  // console.log(volume);
-  /*===================================*/
 
   const parsedDate = new Date(date);
   const hours = parsedDate.getHours();
@@ -37,7 +34,7 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const transferredTime = `${hours.toString().padStart(2, '0')}:${minutes
     .toString()
     .padStart(2, '0')}`;
-  /*==================================*/
+
   const { handleSubmit } = useForm({
     validationSchema: schemaWaterForm,
   });
@@ -65,16 +62,14 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
     setCurrentTime(formattedTime);
   }, []);
 
-  /*==========================*/
-  // const localDate = new Date(data);
-  // const localISOTime = new Date(
-  //   localDate.getTime() - localDate.getTimezoneOffset() * 60000
-  // ).toISOString();
-  // dispatch(changeDate(localISOTime));
-  /*==========================*/
-
-  const time = new Date();
-  const newDate = time.toISOString();
+  const currentDate = new Date();
+  // const newDate = time.toISOString();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const currentDay = String(currentDate.getDate()).padStart(2, '0');
+  const formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
+  const timeFromInput = currentTime;
+  const newDate = `${formattedDate}T${timeFromInput}`;
   const token = useSelector(selectToken);
 
   const onSubmit = async () => {
@@ -89,6 +84,7 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
         console.log(formData);
       } else {
         await dispatch(addWater({ formData, token }));
+        console.log(formData);
       }
       closeModal();
     } catch (error) {
