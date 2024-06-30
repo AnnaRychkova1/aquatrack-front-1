@@ -78,7 +78,6 @@ const WaterItem = ({ id, volume, date, isEditable, token }) => {
         id={id}
         date={date}
         volume={volume}
-        token={token}
       />
       <DeleteWaterModal
         id={id}
