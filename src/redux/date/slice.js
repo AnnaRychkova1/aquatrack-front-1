@@ -6,13 +6,12 @@ const dateSlice = createSlice({
     date: new Date().toISOString(),
     paginationDate: new Date().toISOString(),
     paginationBtnDisabled: true,
-    isLoading: false,
-    error: null,
   },
   reducers: {
     changeDate(state, action) {
       state.date = action.payload;
     },
+
     changePaginationDate(state, action) {
       state.paginationDate = action.payload;
     },
