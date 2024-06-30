@@ -5,17 +5,12 @@
     background-color: var(--background-color);
     max-width: 343px;
     min-width: 288px;
-
-    /* max-width: 343px;
-     min-width: 288px; */
     width: 100%;
     height: 780px;
 }
 
 .formContainer {
-    /* padding: 172px 0 46px; */
     padding-top: 138px;
-
 }
 
 .title {
@@ -143,16 +138,14 @@
     .loginContainer {
         padding: 32px;
         max-width: 100%;
-        /* width: 704px; */
+        width: 704px;
         height: 960px;
 
 
     }
 
     .formContainer {
-        /* padding: 171px 102px 249px; */
-        padding: 207px 102px 249px;
-
+        padding: 207px 102px 207px;
     }
 
     .title {
@@ -188,7 +181,6 @@
 
 @media screen and (min-width: 1440px) {
     .loginContainer {
-
         padding: 32px;
         width: 672px;
         height: 736px;

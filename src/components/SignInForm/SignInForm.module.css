@@ -10,7 +10,6 @@
 }
 
 .formContainer {
-    /* padding: 172px 0 192px; */
     padding-top: 192px;
 }
 
@@ -136,13 +135,12 @@
     .loginContainer {
         padding: 32px;
         max-width: 100%;
-        /* width: 704px; */
+        width: 704px;
         height: 960px;
     }
 
     .formContainer {
-        /* padding: 171px 102px 249px; */
-        padding: 261px 102px 249px;
+        padding: 207px 102px 207px;
     }
 
     .form {
