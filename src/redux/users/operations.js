@@ -117,13 +117,13 @@ export const logOut = createAsyncThunk(
 export const getCurrentUser = createAsyncThunk(
   'users/current',
   async (_, thunkAPI) => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      return thunkAPI.rejectWithValue('No token found');
-    }
+    // const token = localStorage.getItem('token');
+    // if (!token) {
+    //   return thunkAPI.rejectWithValue('No token found');
+    // }
 
     try {
-      const response = await requestUserInfo(token);
+      const response = await requestUserInfo();
       return response;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);

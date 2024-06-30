@@ -11,21 +11,23 @@ export const clearToken = () => {
 //SignUp
 export const requestRegister = async formData => {
   const { data } = await instance.post('/users/register', formData, {});
-  setToken(data.token);
+  // setToken(data.token);
   return data;
 };
 
 //SignIn
 export const requestLogin = async formData => {
   const { data } = await instance.post('/users/login', formData);
+  localStorage.setItem('token', data.token);
   setToken(data.token);
   return data;
 };
 
 export const requestLogout = async token => {
-  setToken(token);
+  // setToken(token);
   const { data } = await instance.post('/users/logout');
   clearToken(token);
+  localStorage.removeItem('token');
   return data;
 };
 
@@ -64,9 +66,13 @@ export const requestResendVerify = async formData => {
 
 // USER
 
-export const requestUserInfo = async token => {
+export const requestUserInfo = async () => {
+  const token = localStorage.getItem('token');
+  console.log(token);
   setToken(token);
   const { data } = await instance.get('/users/current');
+  // console.log(data);
+  console.log(data.token);
   return data;
 };
 

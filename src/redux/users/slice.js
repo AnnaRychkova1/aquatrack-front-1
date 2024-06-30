@@ -6,6 +6,7 @@ import {
   uploadUserAvatar,
   sendVerify,
   updateUserProfile,
+  getCurrentUser,
 } from './operations.js';
 
 const INITIAL_STATE = {
@@ -61,6 +62,19 @@ const authSlice = createSlice({
 
       //LOGIN
       .addCase(logIn.fulfilled, (state, action) => {
+        const { user, token } = action.payload;
+        if (token) {
+          localStorage.setItem('token', token);
+          state.user = user;
+          state.token = token;
+          state.isSignedIn = true;
+        }
+        state.isLoading = false;
+      })
+
+      // CURRENT
+
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
         const { user, token } = action.payload;
         if (token) {
           localStorage.setItem('token', token);
