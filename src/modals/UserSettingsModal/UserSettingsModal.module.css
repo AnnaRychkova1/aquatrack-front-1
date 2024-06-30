@@ -1,0 +1,45 @@
+.settingsWrapper {
+  margin: 0;
+  max-width: 343px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  padding: 20px 7px 20px 20px;
+}
+
+.settingsScroll {
+  scroll-padding-left: 7px; /* Відступ від тексту в модальному вікні */
+}
+
+.settingsScroll::-webkit-scrollbar {
+  width: 6px; /* Ширина скролбару */
+  background-color: var(--main-white);
+  border-radius: 30px;
+}
+.settingsScroll::-webkit-scrollbar-track {
+  background-color: var(--main-white);
+  border-radius: 30px;
+}
+
+.settingsScroll::-webkit-scrollbar-thumb {
+  background-color: var(--background-color);
+  border-radius: 30px;
+}
+
+@media screen and (min-width: 768px) {
+  .settingsWrapper {
+    padding: 40px 16px 40px 40px;
+    margin: 0;
+    max-width: 648px;
+  }
+  .settingsScroll {
+    scroll-padding-left: 16px; /* Відступ від тексту в модальному вікні */
+  }
+  .settingsScroll::-webkit-scrollbar {
+    width: 8px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .settingsWrapper {
+    max-width: 920px;
+  }
+}
