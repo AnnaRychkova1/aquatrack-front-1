@@ -15,9 +15,6 @@ dist-ssr
 # Local environment files
 *.local
 
-# Ignore vercel.json file
-vercel.json
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
