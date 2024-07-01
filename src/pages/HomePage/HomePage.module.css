@@ -20,7 +20,6 @@
     padding: 0 32px;
     width: 768px;
     max-width: 100%;
-    /* gap: 32px; */
     width: 768px;
     max-width: 100%;
   }
@@ -31,5 +30,6 @@
     display: flex;
     width: 1440px;
     gap: 32px;
+    flex-direction: row;
   }
 }
