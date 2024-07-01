@@ -11,30 +11,9 @@
 }
 
 .formContainer {
-    padding-top: 192px;
-    /* Початкове значення */
+    padding-top: 212px;
+    padding-bottom: 150px;
     position: relative;
-    /* Зробіть контейнер відносно позиціонованим */
-}
-
-.input_field {
-    margin-bottom: 16px;
-    position: relative;
-    /* Зробіть поле введення відносно позиціонованим */
-}
-
-.errors {
-    margin-top: 5px;
-    position: absolute;
-    /* Встановіть помилки у фіксоване положення */
-    bottom: -25px;
-    /* Підігнати їх відповідно до вашого дизайну */
-    left: 0;
-    width: 100%;
-}
-
-.formContainer {
-    padding-top: 192px;
 }
 
 .title {
@@ -62,7 +41,7 @@
     text-align: left;
     color: var(--second-text);
     margin-bottom: 8px;
-    margin-top: 16px;
+    margin-top: 8px;
 }
 
 .input_field {
@@ -144,11 +123,16 @@
 
 .errors {
     margin-top: 5px;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 18px;
     letter-spacing: -0.01em;
     text-align: left;
     color: #ef5050;
+
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    width: 100%;
 
 }
 
@@ -158,29 +142,6 @@
 }
 
 @media screen and (min-width: 768px) {
-    .formContainer {
-        padding-top: 192px;
-        /* Початкове значення */
-        position: relative;
-        /* Зробіть контейнер відносно позиціонованим */
-    }
-
-    .input_field {
-        margin-bottom: 16px;
-        position: relative;
-        /* Зробіть поле введення відносно позиціонованим */
-    }
-
-    .errors {
-        margin-top: 5px;
-        position: absolute;
-        /* Встановіть помилки у фіксоване положення */
-        bottom: -25px;
-        /* Підігнати їх відповідно до вашого дизайну */
-        left: 0;
-        width: 100%;
-    }
-
     .loginContainer {
         padding: 32px;
         max-width: 100%;
@@ -189,7 +150,7 @@
     }
 
     .formContainer {
-        padding: 261px 134px 261px;
+        padding: 261px 134px 236px;
     }
 
     .form {
@@ -238,6 +199,6 @@
     }
 
     .formContainer {
-        padding: 153px 134px 137px;
+        padding: 143px 134px 117px;
     }
 }

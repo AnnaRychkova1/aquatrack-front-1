@@ -11,30 +11,8 @@
 }
 
 .formContainer {
-    padding-top: 138px;
-}
-
-.formContainer {
-    padding-top: 192px;
-    /* Початкове значення */
+    padding-top: 128px;
     position: relative;
-    /* Зробіть контейнер відносно позиціонованим */
-}
-
-.input_field {
-    margin-bottom: 16px;
-    position: relative;
-    /* Зробіть поле введення відносно позиціонованим */
-}
-
-.errors {
-    margin-top: 5px;
-    position: absolute;
-    /* Встановіть помилки у фіксоване положення */
-    bottom: -25px;
-    /* Підігнати їх відповідно до вашого дизайну */
-    left: 0;
-    width: 100%;
 }
 
 .title {
@@ -62,10 +40,12 @@
     text-align: left;
     color: var(--second-text);
     margin-bottom: 8px;
-    margin-top: 16px;
+    margin-top: 8px;
 }
 
 .input_field {
+    margin-bottom: 16px;
+    position: relative;
     margin-bottom: 5px;
     display: flex;
     flex-direction: column;
@@ -146,11 +126,15 @@
 
 .errors {
     margin-top: 5px;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 18px;
     letter-spacing: -0.01em;
     text-align: left;
     color: #ef5050;
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    width: 100%;
 }
 
 .error {
@@ -168,7 +152,7 @@
     }
 
     .formContainer {
-        padding: 205px 134px 145px;
+        padding: 190px 134px 165px;
         max-width: 100%;
     }
 
