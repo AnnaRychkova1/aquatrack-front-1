@@ -89,7 +89,6 @@ const UserSettingsForm = ({ closeModal }) => {
   }, [weight, activeTime, gender, setValue]);
   const handleAvatarChange = e => {
     const file = e.target.files[0];
-    console.log(file);
     if (file) {
       const preview = URL.createObjectURL(file);
       setAvatarPreview(preview);

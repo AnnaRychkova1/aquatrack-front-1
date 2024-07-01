@@ -10,9 +10,9 @@ import {
 const waterSlice = createSlice({
   name: 'water',
   initialState: {
-    totalDay: null, // всьoго води  за день
-    items: [], //   порція прийому води
-    monthIReception: [], //  місяць прийому води
+    totalDay: null,
+    items: [],
+    monthIReception: [],
     loading: false,
     error: null,
   },
