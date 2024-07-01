@@ -1,4 +1,5 @@
 .loginContainer {
+    position: relative;
     border-radius: 30px;
     border: 1px solid red;
     padding: 0 16px;
@@ -10,8 +11,9 @@
 }
 
 .formContainer {
-    /* padding: 172px 0 192px; */
-    padding-top: 192px;
+    padding-top: 212px;
+    padding-bottom: 150px;
+    position: relative;
 }
 
 .title {
@@ -39,6 +41,7 @@
     text-align: left;
     color: var(--second-text);
     margin-bottom: 8px;
+    margin-top: 8px;
 }
 
 .input_field {
@@ -120,11 +123,17 @@
 
 .errors {
     margin-top: 5px;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 18px;
     letter-spacing: -0.01em;
     text-align: left;
     color: #ef5050;
+
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+    width: 100%;
+
 }
 
 .error {
@@ -136,13 +145,12 @@
     .loginContainer {
         padding: 32px;
         max-width: 100%;
-        /* width: 704px; */
+        width: 704px;
         height: 960px;
     }
 
     .formContainer {
-        /* padding: 171px 102px 249px; */
-        padding: 261px 102px 249px;
+        padding: 261px 110px 236px;
     }
 
     .form {
@@ -191,6 +199,6 @@
     }
 
     .formContainer {
-        padding: 153px 85px 137px;
+        padding: 143px 110px 117px;
     }
 }
