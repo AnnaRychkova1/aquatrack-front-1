@@ -13,6 +13,9 @@ const WaterDailyNorma = () => {
       await updateUserProfiles(formData);
     };
 
+    if (daylyNorm !== null) {
+      updateDailyNorm(daylyNorm);
+    }
   }, [daylyNorm]);
 
   return (
