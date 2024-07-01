@@ -165,7 +165,7 @@ export const uploadUserAvatar = createAsyncThunk(
   'users/avatars',
   async (formData, thunkAPI) => {
     try {
-      const response = await uploadUserAvatars(formData); // Replace with your actual API function
+      const response = await uploadUserAvatars(formData);
       toast.success('Avatar uploaded successfully', { ...options });
       return response;
     } catch (err) {
@@ -178,8 +178,8 @@ export const updateUserProfile = createAsyncThunk(
   'users/update',
   async (formData, thunkAPI) => {
     try {
-      const response = await updateUserProfiles(formData); // Replace with your actual API function
-      toast.success('Avatar uploaded successfully', { ...options });
+      const response = await updateUserProfiles(formData);
+      toast.success('User update successfully', { ...options });
       return response;
     } catch (err) {
       toast.error(err.message, { ...options });
