@@ -3,11 +3,10 @@ import { lazy, useEffect } from 'react';
 import SharedLayout from './SharedLayout';
 import { PrivateRoute } from './routs/PrivateRoute';
 import RestrictedRoute from './routs/RestrictedRoute';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getCurrentUser } from './redux/users/operations';
 import { useAuth } from './hooks/useAuth';
 import Loader from './components/Loader/Loader';
-import { selectToken } from './redux/users/selectors';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignIn = lazy(() => import('./pages/SignIn/SignIn'));
@@ -18,10 +17,11 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 const App = () => {
   const dispatch = useDispatch();
   const { isCurrent } = useAuth();
-  const token = useSelector(selectToken);
+
+  // const token = useSelector(selectToken);
   useEffect(() => {
-    dispatch(getCurrentUser(token));
-  }, [dispatch, token]);
+    dispatch(getCurrentUser());
+  }, [dispatch]);
   return isCurrent ? (
     <Loader />
   ) : (
@@ -48,9 +48,7 @@ const App = () => {
 
         <Route
           path="/tracker"
-          element={
-            <PrivateRoute redirectTo="/signin" component={<Tracker />} />
-          }
+          element={<PrivateRoute redirectTo="/" component={<Tracker />} />}
         />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
