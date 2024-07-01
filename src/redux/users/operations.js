@@ -106,8 +106,7 @@ export const logOut = createAsyncThunk(
 
 //   async thunkAPI => {
 //     try {
-//       const response = await requestUserInfo();
-//       console.log(response);
+//       const response = await requestUserInfo();//
 //     } catch (err) {
 //       return thunkAPI.rejectWithValue(err.message);
 //     }
@@ -141,7 +140,6 @@ export const sendVerify = createAsyncThunk(
   async ({ verificationToken, formData }, thunkAPI) => {
     try {
       const res = await requestSendVerify(verificationToken, formData);
-      console.log(res);
 
       return res;
     } catch (err) {
@@ -179,7 +177,6 @@ export const uploadUserAvatar = createAsyncThunk(
 export const updateUserProfile = createAsyncThunk(
   'users/update',
   async (formData, thunkAPI) => {
-    console.log(formData);
     try {
       const response = await updateUserProfiles(formData); // Replace with your actual API function
       toast.success('Avatar uploaded successfully', { ...options });
