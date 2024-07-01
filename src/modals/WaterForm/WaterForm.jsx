@@ -67,11 +67,20 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
   const currentDay = String(currentDate.getDate()).padStart(2, '0');
   const formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
+  /**============================================================= */
   // const timeFromInput =
   // currentTime === undefined ? transferredTime : currentTime;
-  const timeFromInput = currentTime || transferredTime;
 
-  const newDate = `${formattedDate}T${timeFromInput}`;
+  // value={timeCreation}
+  //  value={operationType === 'edit' ? transferredTime : currentTime}
+  //  onChange={handleTimeChange}
+
+  const timeFromInput =
+    operationType === 'edit' ? transferredTime : currentTime;
+  const timeCreation = timeFromInput;
+  /**============================================================= */
+
+  const newDate = `${formattedDate}T${timeCreation}`;
   const token = useSelector(selectToken);
 
   const onSubmit = async () => {
@@ -119,7 +128,7 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
         className={css.inputTime}
         type="time"
         name="time"
-        value={operationType === 'edit' ? transferredTime : currentTime}
+        value={timeFromInput}
         onChange={e => setCurrentTime(e.target.value)}
       />
       <p className={css.valueLabel}>Enter the value of the water used:</p>
@@ -137,3 +146,6 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
 };
 
 export default WaterForm;
+// const timeFromInput = currentTime || transferredTime;
+// value={operationType === 'edit' ? transferredTime : currentTime}
+// onChange={e => setCurrentTime(e.target.value)}
