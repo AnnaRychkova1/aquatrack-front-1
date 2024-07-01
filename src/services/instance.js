@@ -11,18 +11,27 @@ const instance = axios.create({
   },
 });
 
-// instance.interceptors.request.use(
-//   config => {
-//     const token = localStorage.getItem('token');
-//     if (token) {
-//       config.headers.Authorization = `Bearer ${token}`;
-//     }
-//     return config;
-//   },
-//   error => {
-//     return Promise.reject(error);
-//   }
-// );
+export const setToken = token => {
+  instance.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+export const clearToken = () => {
+  delete instance.defaults.headers.common.Authorization;
+};
+
+instance.interceptors.request.use(
+  config => {
+    const token = localStorage.getItem('token');
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
 
 // instance.interceptors.response.use(
 //   response => response,

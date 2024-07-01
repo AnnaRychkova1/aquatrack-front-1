@@ -6,8 +6,9 @@ import { useState } from 'react';
 
 const formatTime = dateString => {
   const date = new Date(dateString);
-  const options = { hour: 'numeric', minute: 'numeric', hour12: true };
-  return date.toLocaleTimeString('en-US', options);
+  const hours = date.getUTCHours().toString().padStart(2, '0');
+  const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+  return `${hours}:${minutes}`;
 };
 
 const WaterItem = ({ id, volume, date, isEditable }) => {

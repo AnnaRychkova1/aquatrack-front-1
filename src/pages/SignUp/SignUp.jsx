@@ -27,6 +27,7 @@ import AdvantagesSection from '../../components/AdvantagesSection/AdvantagesSect
 import { useSelector } from 'react-redux';
 import { selectIsLoading } from '../../redux/users/selectors';
 import Loader from '../../components/Loader/Loader';
+import Logo from '../../components/Logo/Logo';
 import css from './SignUpPage.module.css';
 
 const SignUp = () => {

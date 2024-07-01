@@ -4,6 +4,11 @@
   margin-bottom: 51px;
 }
 
+.welcomeButton_tracker:hover,
+.welcomeButton_tracker:focus {
+  background-color: var(--accent-color);
+}
+
 @media only screen and (min-width: 768px) {
   .welcomeButton_block {
     margin-left: 32px;
