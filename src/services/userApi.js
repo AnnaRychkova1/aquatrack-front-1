@@ -1,48 +1,65 @@
-import instance from './instance';
+import instance, { setToken, clearToken } from './instance';
 
-export const setToken = token => {
-  instance.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
-
-export const clearToken = () => {
-  instance.defaults.headers.common.Authorization = '';
-};
-
-//SignUp
+// SignUp
 export const requestRegister = async formData => {
-  const { data } = await instance.post('/users/register', formData, {});
-  setToken(data.token);
+  const { data } = await instance.post('/users/register', formData);
   return data;
 };
 
-//SignIn
+// SignIn
 export const requestLogin = async formData => {
   const { data } = await instance.post('/users/login', formData);
+  localStorage.setItem('token', data.token);
   setToken(data.token);
   return data;
 };
 
+// SignOut
 export const requestLogout = async token => {
-  setToken(token);
   const { data } = await instance.post('/users/logout');
   clearToken(token);
+  localStorage.removeItem('token');
   return data;
 };
 
+// Verification Email
 export const requestSendVerify = async (verificationToken, formData) => {
   const { data } = await instance.get(
     `/users/verify/${verificationToken}`,
     formData
   );
-
   return data;
 };
 
-export const requestResendVerify = async formData => {
-  const { data } = await instance.post('/users/verify', formData);
-
+// Current
+export const requestUserInfo = async () => {
+  const { data } = await instance.get('/users/current');
   return data;
 };
+
+// Update
+export const updateUserProfiles = async formData => {
+  console.log(formData);
+  const { data } = await instance.patch('/users/update', formData);
+  console.log('I come from server', data);
+  return data;
+};
+
+// Avatar
+export const uploadUserAvatars = async formData => {
+  const { data } = await instance.patch('/users/avatars', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return data;
+};
+
+// export const requestResendVerify = async formData => {
+//   const { data } = await instance.post('/users/verify', formData);
+
+//   return data;
+// };
 
 // export const refreshToken = async formData => {
 //   const { data } = await instance.get('/users/refresh', formData);
@@ -61,29 +78,3 @@ export const requestResendVerify = async formData => {
 
 //   return data;
 // };
-
-// USER
-
-export const requestUserInfo = async () => {
-  const { data } = await instance.get('/users/current');
-
-  return data;
-};
-
-export const updateUserProfiles = async formData => {
-  console.log(formData);
-  const { data } = await instance.patch('/users/update', formData);
-  console.log(data);
-  return data;
-};
-
-export const uploadUserAvatars = async formData => {
-  console.log(formData);
-  const { data } = await instance.patch('/users/avatars', formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
-  console.log(data);
-  return data;
-};

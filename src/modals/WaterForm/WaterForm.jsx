@@ -29,8 +29,8 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const [minValue, setMinValue] = useState(0);
 
   const parsedDate = new Date(date);
-  const hours = parsedDate.getHours();
-  const minutes = parsedDate.getMinutes();
+  const hours = parsedDate.getUTCHours();
+  const minutes = parsedDate.getUTCMinutes();
   const transferredTime = `${hours.toString().padStart(2, '0')}:${minutes
     .toString()
     .padStart(2, '0')}`;
@@ -63,13 +63,17 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   }, []);
 
   const currentDate = new Date();
-  // const newDate = time.toISOString();
+
   const currentYear = currentDate.getFullYear();
   const currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
   const currentDay = String(currentDate.getDate()).padStart(2, '0');
   const formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
-  const timeFromInput = currentTime;
+
+  const timeFromInput =
+    currentTime === undefined ? transferredTime : currentTime;
+
   const newDate = `${formattedDate}T${timeFromInput}`;
+
   const token = useSelector(selectToken);
 
   const onSubmit = async () => {
@@ -81,10 +85,8 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
     try {
       if (operationType === 'edit') {
         await dispatch(updateWater({ id, formData }));
-        console.log(formData);/**======================== */
       } else {
         await dispatch(addWater({ formData, token }));
-        console.log(formData);/**============ =================*/
       }
       closeModal();
     } catch (error) {

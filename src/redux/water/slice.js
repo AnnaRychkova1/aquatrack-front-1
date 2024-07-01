@@ -76,7 +76,10 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(deleteWater.fulfilled, (state, action) => {
-        state.items = state.items.filter(water => water.id !== action.payload);
+        state.items = state.items.filter(water => water._id !== action.payload);
+        state.monthIReception = state.monthIReception.filter(
+          water => water._id !== action.payload
+        );
         state.loading = false;
         state.error = null;
       })
@@ -91,11 +94,17 @@ const waterSlice = createSlice({
         state.error = null;
       })
       .addCase(updateWater.fulfilled, (state, action) => {
-        const index = state.items.findIndex(
-          water => water.id === action.payload.id
+        const indexItems = state.items.findIndex(
+          dayCard => dayCard._id === action.payload._id
         );
-        if (index !== -1) {
-          state.items[index] = action.payload;
+        if (indexItems !== -1) {
+          state.items[indexItems] = action.payload;
+        }
+        const indexMonth = state.monthIReception.findIndex(
+          cardMonth => cardMonth._id === action.payload._id
+        );
+        if (indexMonth !== -1) {
+          state.monthIReception[indexMonth] = action.payload;
         }
         state.loading = false;
         state.error = null;

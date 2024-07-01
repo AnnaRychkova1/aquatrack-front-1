@@ -128,9 +128,9 @@ const UserSettingsForm = ({ closeModal }) => {
       // console.log(preview);
       // console.log('FormData before dispatch:', formData.get('avatar'));
     }
-    console.log('ssdfbfbdfbfd');
+    // console.log('ssdfbfbdfbfd');
   };
-  console.log('ssdfbfbdfbfd');
+  // console.log('ssdfbfbdfbfd');
   const onSubmit1 = async values => {
     console.log('Submitting form with values:', values);
     // const formData = new FormData();
@@ -190,7 +190,7 @@ const UserSettingsForm = ({ closeModal }) => {
     console.log('Profile update success');
     closeModal();
   };
-  console.log('ssdfbfbdfbfd');
+  // console.log('ssdfbfbdfbfd');
   // useEffect(() => {
   //   if (!avatarPreview) {
   //     console.log('Avatar Preview:', avatarPreview);
