@@ -14,7 +14,7 @@ import {
 
 const options = {
   position: 'top-center',
-  autoClose: 5000,
+  autoClose: 3000,
   hideProgressBar: false,
   closeOnClick: true,
   pauseOnHover: true,
@@ -162,7 +162,7 @@ export const uploadUserAvatar = createAsyncThunk(
     try {
       const response = await uploadUserAvatars(formData);
       toast.success('Avatar uploaded successfully', { ...options });
-      return response;
+      return response.avatarURL;
     } catch (err) {
       toast.error(err.message, { ...options });
       return thunkAPI.rejectWithValue(err.message);
@@ -175,7 +175,7 @@ export const updateUserProfile = createAsyncThunk(
     try {
       const response = await updateUserProfiles(formData);
       toast.success('User update successfully', { ...options });
-      return response;
+      return response.user;
     } catch (err) {
       toast.error(err.message, { ...options });
       return thunkAPI.rejectWithValue(err.message);
