@@ -15,12 +15,15 @@ const UniversalModal = ({ children, isOpen, closeModal }) => {
 
     if (isOpen) {
       document.addEventListener('keydown', handleEscape);
+      document.body.classList.add(css.modalOpen); // Блокуємо прокрутку сторінки
     } else {
       document.removeEventListener('keydown', handleEscape);
+      document.body.classList.remove(css.modalOpen); // Активуємо прокрутку сторінки
     }
 
     return () => {
       document.removeEventListener('keydown', handleEscape);
+      document.body.classList.remove(css.modalOpen);
     };
   }, [isOpen, closeModal]);
 
@@ -36,7 +39,7 @@ const UniversalModal = ({ children, isOpen, closeModal }) => {
       <button className={css.modalCloseButton} onClick={closeModal}>
         <Iconsvg iconName="close" className={css.iconClose} />
       </button>
-      <div className={css.modalBody}>{children}</div>
+      <>{children}</>
     </Modal>
   );
 };

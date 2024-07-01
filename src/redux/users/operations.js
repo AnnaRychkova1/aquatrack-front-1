@@ -6,8 +6,9 @@ import {
   requestLogin,
   requestLogout,
   requestRegister,
-  requestResendVerify,
+  // requestResendVerify,
   requestSendVerify,
+  requestUserInfo,
   updateUserProfiles,
   // refreshToken,
   // requestResetPassword,
@@ -95,12 +96,50 @@ export const logOut = createAsyncThunk(
 //   }
 // );
 
+// export const getCurrentUser = createAsyncThunk(
+//   'users/current',
+
+//   // const token = localStorage.getItem('token');
+//   // if (!token) {
+//   //   return null;
+//   // }
+
+//   async thunkAPI => {
+//     try {
+//       const response = await requestUserInfo();//
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
+
+export const getCurrentUser = createAsyncThunk(
+  'users/current',
+
+  async (token, thunkAPI) => {
+    try {
+      const response = await requestUserInfo(token);
+      return response;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+
+  // {
+  //   condition: (_, thunkAPI) => {
+  //     const state = thunkAPI.getState();
+  //     const token = state.auth.token;
+  //     if (!token) return false;
+  //     return true;
+  //   },
+  // }
+);
+
 export const sendVerify = createAsyncThunk(
   'users/verify',
   async ({ verificationToken, formData }, thunkAPI) => {
     try {
       const res = await requestSendVerify(verificationToken, formData);
-      console.log(res);
 
       return res;
     } catch (err) {
@@ -109,18 +148,18 @@ export const sendVerify = createAsyncThunk(
   }
 );
 
-export const resendVerify = createAsyncThunk(
-  'users/re-verify',
-  async (formData, thunkAPI) => {
-    try {
-      const res = await requestResendVerify(formData);
+// export const resendVerify = createAsyncThunk(
+//   'users/re-verify',
+//   async (formData, thunkAPI) => {
+//     try {
+//       const res = await requestResendVerify(formData);
 
-      return res;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
+//       return res;
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
 
 export const uploadUserAvatar = createAsyncThunk(
   'users/avatars',
@@ -138,7 +177,6 @@ export const uploadUserAvatar = createAsyncThunk(
 export const updateUserProfile = createAsyncThunk(
   'users/update',
   async (formData, thunkAPI) => {
-    console.log(formData);
     try {
       const response = await updateUserProfiles(formData); // Replace with your actual API function
       toast.success('Avatar uploaded successfully', { ...options });

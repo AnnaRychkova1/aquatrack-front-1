@@ -4,8 +4,9 @@ import {
   logIn,
   logOut,
   uploadUserAvatar,
-  sendVerify,
+  // sendVerify,
   updateUserProfile,
+  getCurrentUser,
 } from './operations.js';
 
 const INITIAL_STATE = {
@@ -18,12 +19,13 @@ const INITIAL_STATE = {
     activeTimeSports: 0,
     waterDrink: 1.8,
     avatarURL: null,
-    verify: null,
+    verify: false,
   },
   token: null,
   isSignedIn: false,
   isLoading: false,
   isError: false,
+  isCurrent: false,
 };
 
 const handlePending = state => {
@@ -50,14 +52,14 @@ const authSlice = createSlice({
         state.isSignedIn = true;
       })
 
-      // VERIFY EMAIL
-      .addCase(sendVerify.fulfilled, (state, action) => {
-        state.isLoading = false;
-        const { user, token } = action.payload;
-        state.user = user;
-        state.token = token;
-        state.isSignedIn = true;
-      })
+      // // VERIFY EMAIL
+      // .addCase(sendVerify.fulfilled, (state, action) => {
+      //   state.isLoading = false;
+      //   const { user, token } = action.payload;
+      //   state.user = user;
+      //   state.token = token;
+      //   state.isSignedIn = true;
+      // })
 
       //LOGIN
       .addCase(logIn.fulfilled, (state, action) => {
@@ -69,6 +71,25 @@ const authSlice = createSlice({
           state.isSignedIn = true;
         }
         state.isLoading = false;
+      })
+
+      // CURRENT
+      .addCase(getCurrentUser.pending, state => {
+        state.isCurrent = true;
+        state.isLoading = true;
+        state.isError = false;
+        // state.isSignedIn = true;
+      })
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        const { user } = action.payload;
+        state.isCurrent = false; // update
+        state.user = user;
+        state.isSignedIn = true;
+      })
+      .addCase(getCurrentUser.rejected, state => {
+        state.isLoading = false;
+        state.isCurrent = false;
+        state.isError = true;
       })
 
       // LOGOUT
@@ -94,21 +115,11 @@ const authSlice = createSlice({
         // state.user.waterDrink = action.payload.user.waterDrink;
       })
       .addMatcher(
-        isAnyOf(
-          userRegister.pending,
-          logIn.pending,
-          logOut.pending
-          // sendVerify.pending
-        ),
+        isAnyOf(userRegister.pending, logIn.pending, logOut.pending),
         handlePending
       )
       .addMatcher(
-        isAnyOf(
-          userRegister.rejected,
-          logIn.rejected,
-          logOut.rejected
-          // sendVerify.rejected
-        ),
+        isAnyOf(userRegister.rejected, logIn.rejected, logOut.rejected),
         handleRejected
       );
   },
