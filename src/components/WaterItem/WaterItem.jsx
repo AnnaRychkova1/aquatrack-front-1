@@ -75,8 +75,9 @@ const WaterItem = ({ id, volume, date, isEditable }) => {
         closeModal={closeWaterModal}
         operationType={'edit'}
         id={id}
-        date={date}
+        // date={date}
         volume={volume}
+        myTime={time}
       />
       <DeleteWaterModal
         id={id}

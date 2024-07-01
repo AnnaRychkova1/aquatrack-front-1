@@ -21,19 +21,26 @@ const schemaWaterForm = yup.object().shape({
     .test('is-valid-datetime', 'Invalid date and time', isDateTimeValid),
 });
 
-const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
+const WaterForm = ({
+  operationType,
+  closeModal,
+  id,
+  //  date,
+  myTime,
+  volume,
+}) => {
   const dispatch = useDispatch();
   let initialWaterAmount = operationType === 'edit' ? volume : 50;
   const [number, setNumber] = useState(initialWaterAmount);
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
 
-  const parsedDate = new Date(date);
-  const hours = parsedDate.getUTCHours();
-  const minutes = parsedDate.getUTCMinutes();
-  const transferredTime = `${hours.toString().padStart(2, '0')}:${minutes
-    .toString()
-    .padStart(2, '0')}`;
+  // const parsedDate = new Date(date);
+  // const hours = parsedDate.getUTCHours();
+  // const minutes = parsedDate.getUTCMinutes();
+  // const transferredTime = `${hours.toString().padStart(2, '0')}:${minutes
+  //   .toString()
+  //   .padStart(2, '0')}`;
 
   const { handleSubmit } = useForm({
     validationSchema: schemaWaterForm,
@@ -70,7 +77,8 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
 
   const timeFromInput =
-    currentTime === undefined ? transferredTime : currentTime;
+    // currentTime === undefined ? transferredTime : currentTime;
+    currentTime === undefined ? myTime : currentTime;
 
   const newDate = `${formattedDate}T${timeFromInput}`;
 
@@ -121,7 +129,7 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
         className={css.inputTime}
         type="time"
         name="time"
-        value={operationType === 'edit' ? transferredTime : currentTime}
+        value={operationType === 'edit' ?  myTime : currentTime}
         onChange={e => setCurrentTime(e.target.value)}
       />
       <p className={css.valueLabel}>Enter the value of the water used:</p>
