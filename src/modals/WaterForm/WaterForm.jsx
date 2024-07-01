@@ -29,8 +29,8 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const [minValue, setMinValue] = useState(0);
 
   const parsedDate = new Date(date);
-  const hours = parsedDate.getHours();
-  const minutes = parsedDate.getMinutes();
+  const hours = parsedDate.getUTCHours();
+  const minutes = parsedDate.getUTCMinutes();
   const transferredTime = `${hours.toString().padStart(2, '0')}:${minutes
     .toString()
     .padStart(2, '0')}`;
