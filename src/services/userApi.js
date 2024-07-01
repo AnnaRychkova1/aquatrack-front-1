@@ -84,6 +84,6 @@ export const uploadUserAvatars = async formData => {
       'Content-Type': 'multipart/form-data',
     },
   });
-
+  console.log(data);
   return data;
 };

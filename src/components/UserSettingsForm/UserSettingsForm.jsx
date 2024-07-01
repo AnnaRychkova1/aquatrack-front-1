@@ -8,7 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectAvatar,
   selectEmail,
+  selectIsVerified,
   selectName,
+  selectUser,
   selectWaterDrink,
 } from '../../redux/users/selectors';
 import {
@@ -52,12 +54,20 @@ const UserSettingsSchema = Yup.object().shape({
 const UserSettingsForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const userDataAvatar = useSelector(selectAvatar);
+  //const avatarURL = encodeURIComponent(userDataAvatar);
   const userDataWaterDrink = useSelector(selectWaterDrink);
   const userDataName = useSelector(selectName);
+  const userDataWeight = useSelector(state => selectUser(state).weight);
+  const userDataTimeSports = useSelector(
+    state => selectUser(state).activeTimeSports
+  );
+  const userDataGender = useSelector(state => selectUser(state).gender);
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [savedAvatarURL, setSavedAvatarURL] = useState(userDataAvatar);
   const [avatarFile, setAvatarFile] = useState(null);
+  const [updatedUserData, setUpdatedUserData] = useState(null);
   const userDataEmail = useSelector(selectEmail);
+  const isSignedIn = useSelector(selectIsVerified);
   const {
     register,
     handleSubmit,
@@ -70,10 +80,10 @@ const UserSettingsForm = ({ closeModal }) => {
     defaultValues: {
       name: userDataName,
       email: userDataEmail,
-      weight: '',
-      activeTimeSports: '',
+      weight: userDataWeight,
+      activeTimeSports: userDataTimeSports,
       waterDrink: '',
-      gender: '',
+      gender: userDataGender,
       avatarURL: userDataAvatar,
     },
   });
@@ -92,6 +102,17 @@ const UserSettingsForm = ({ closeModal }) => {
       setValue('waterDrink', waterDrink.toFixed(1));
     }
   }, [weight, activeTime, gender, setValue]);
+  // useEffect(() => {
+  //   if (updatedUserData) {
+  //     setValue('name', updatedUserData.name);
+  //     setValue('email', updatedUserData.email);
+  //     setValue('weight', updatedUserData.weight);
+  //     setValue('activeTimeSports', updatedUserData.activeTimeSports);
+  //     setValue('waterDrink', updatedUserData.waterDrink);
+  //     setValue('gender', updatedUserData.gender);
+  //     //setValue('avatarURL', `http://localhost:3000/${savedAvatarURL}`);
+  //   }
+  // }, [updatedUserData, setValue]);
   const handleAvatarChange = e => {
     const file = e.target.files[0];
     console.log(file);
@@ -103,6 +124,7 @@ const UserSettingsForm = ({ closeModal }) => {
       const formData = new FormData();
       formData.append('avatar', file);
       dispatch(uploadUserAvatar(formData));
+      setSavedAvatarURL(file);
       // console.log(preview);
       // console.log('FormData before dispatch:', formData.get('avatar'));
     }
@@ -152,18 +174,19 @@ const UserSettingsForm = ({ closeModal }) => {
       activeTimeSports: values.activeTimeSports,
       waterDrink: values.waterDrink,
       gender: values.gender,
+      verify: isSignedIn,
     };
 
     // Dispatch update action and handle success
-    try {
-      await dispatch(updateUserProfile(updatedData));
-      console.log('Profile update success');
-      // Optionally update local component state or handle UI updates here
-      closeModal(); // Close modal after successful update
-    } catch (error) {
-      console.error('Error updating profile', error);
-      // Handle error if needed
-    }
+    //dispatch(updateUserProfile(updatedData));
+    await dispatch(updateUserProfile(updatedData));
+    console.log('Profile update success');
+    // Optionally update local component state or handle UI updates here
+    closeModal(); // Close modal after successful update
+    // } catch (error) {
+    //   console.error('Error updating profile', error);
+    //   // Handle error if needed
+    // }
     console.log('Profile update success');
     closeModal();
   };
@@ -184,7 +207,7 @@ const UserSettingsForm = ({ closeModal }) => {
         <img
           className={css.settingsAvatarImage}
           // name={user.name}
-          src={avatarPreview || `http://localhost:3000/${savedAvatarURL}`}
+          src={avatarPreview || `http://localhost:3000/${userDataAvatar}`}
           size="80"
         />
         <label
