@@ -1,10 +1,13 @@
 //import { useEffect, useState } from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Iconsvg from '../Icon/Icon';
 import UserBarPopover from '../UserBarPopover/UserBarPopover';
 import { useSelector } from 'react-redux';
 import { selectAvatar, selectName } from '../../redux/users/selectors';
 import css from '../UserPanel/UserPanel.module.css';
+
+const API_URL = 'https://aquatrack-back-1.onrender.com/api/';
+
 const UserBar = ({ userData, closeModal }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [userName, setUserName] = useState('User');
@@ -70,7 +73,10 @@ const UserBar = ({ userData, closeModal }) => {
         <span>{userDataName}</span>
         <img
           name={userDataName}
-          src={`http://localhost:3000/${userDataAvatar}`}
+          src={
+            `http://localhost:3000/${userDataAvatar}` ||
+            `${API_URL}${userDataAvatar}`
+          }
           size="40"
         />
         <Iconsvg className={css.userPanelBtnIcon} iconName={svgPopover} />
