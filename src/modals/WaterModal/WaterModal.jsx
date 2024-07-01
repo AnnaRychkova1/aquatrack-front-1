@@ -1,5 +1,5 @@
 import UniversalModal from '../Modal/Modal';
-import WaterForm from '../WaterForm/WaterForm';
+import WaterForm from './WaterForm/WaterForm';
 import css from './WaterModal.module.css';
 
 const WaterModal = ({

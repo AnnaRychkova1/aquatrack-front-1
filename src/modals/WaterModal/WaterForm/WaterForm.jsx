@@ -1,11 +1,11 @@
 import css from './WaterForm.module.css';
-import Iconsvg from '../../components/Icon/Icon';
+import Iconsvg from '../../../components/Icon/Icon.jsx';
 import { useState, useEffect } from 'react';
-import { addWater, updateWater } from '../../redux/water/operations.js';
+import { addWater, updateWater } from '../../../redux/water/operations.js';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectToken } from '../../redux/users/selectors';
+import { selectToken } from '../../../redux/users/selectors.js';
 
 const isDateTimeValid = date => new Date(date) <= new Date();
 const schemaWaterForm = yup.object().shape({
