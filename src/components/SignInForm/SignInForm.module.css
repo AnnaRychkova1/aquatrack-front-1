@@ -12,6 +12,29 @@
 
 .formContainer {
     padding-top: 192px;
+    /* Початкове значення */
+    position: relative;
+    /* Зробіть контейнер відносно позиціонованим */
+}
+
+.input_field {
+    margin-bottom: 16px;
+    position: relative;
+    /* Зробіть поле введення відносно позиціонованим */
+}
+
+.errors {
+    margin-top: 5px;
+    position: absolute;
+    /* Встановіть помилки у фіксоване положення */
+    bottom: -25px;
+    /* Підігнати їх відповідно до вашого дизайну */
+    left: 0;
+    width: 100%;
+}
+
+.formContainer {
+    padding-top: 192px;
 }
 
 .title {
@@ -39,6 +62,7 @@
     text-align: left;
     color: var(--second-text);
     margin-bottom: 8px;
+    margin-top: 16px;
 }
 
 .input_field {
@@ -125,6 +149,7 @@
     letter-spacing: -0.01em;
     text-align: left;
     color: #ef5050;
+
 }
 
 .error {
@@ -133,6 +158,29 @@
 }
 
 @media screen and (min-width: 768px) {
+    .formContainer {
+        padding-top: 192px;
+        /* Початкове значення */
+        position: relative;
+        /* Зробіть контейнер відносно позиціонованим */
+    }
+
+    .input_field {
+        margin-bottom: 16px;
+        position: relative;
+        /* Зробіть поле введення відносно позиціонованим */
+    }
+
+    .errors {
+        margin-top: 5px;
+        position: absolute;
+        /* Встановіть помилки у фіксоване положення */
+        bottom: -25px;
+        /* Підігнати їх відповідно до вашого дизайну */
+        left: 0;
+        width: 100%;
+    }
+
     .loginContainer {
         padding: 32px;
         max-width: 100%;
