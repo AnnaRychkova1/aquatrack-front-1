@@ -27,7 +27,7 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   const [number, setNumber] = useState(initialWaterAmount);
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
-
+  // Отримуємо час з об'єкта `date`
   const parsedDate = new Date(date);
   const hours = parsedDate.getHours();
   const minutes = parsedDate.getMinutes();
@@ -52,7 +52,7 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
     setNumber(newNumber);
     setMinValue(Math.min(minValue, newNumber));
   };
-
+  // Встановлюємо поточний час за замовчуванням
   const [currentTime, setCurrentTime] = useState('');
   useEffect(() => {
     const now = new Date();
@@ -61,14 +61,15 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
     const formattedTime = `${hours}:${minutes}`;
     setCurrentTime(formattedTime);
   }, []);
-
+  // Отримуємо поточну дату
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
   const currentDay = String(currentDate.getDate()).padStart(2, '0');
   const formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
-  const timeFromInput =
-    currentTime === undefined ? transferredTime : currentTime;
+  // const timeFromInput =
+  // currentTime === undefined ? transferredTime : currentTime;
+  const timeFromInput = currentTime || transferredTime;
 
   const newDate = `${formattedDate}T${timeFromInput}`;
   const token = useSelector(selectToken);
