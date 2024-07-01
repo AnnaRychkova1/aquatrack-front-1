@@ -152,7 +152,7 @@
     }
 
     .formContainer {
-        padding: 190px 134px 165px;
+        padding: 190px 110px 165px;
         max-width: 100%;
     }
 
@@ -197,6 +197,6 @@
     }
 
     .formContainer {
-        padding: 80px 134px 50px;
+        padding: 80px 110px 50px;
     }
 }
