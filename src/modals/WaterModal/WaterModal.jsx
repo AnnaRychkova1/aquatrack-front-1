@@ -9,9 +9,10 @@ const WaterModal = ({
   id,
   date,
   volume,
+  myTime,
 }) => {
   return (
-    <UniversalModal isOpen={isOpen} closeModal={closeModal}>
+    <UniversalModal isOpen={isOpen} closeModal={closeModal} >
       <div className={css.wrapper}>
         <h3 className={css.title}>
           {operationType === 'edit'
@@ -29,6 +30,7 @@ const WaterModal = ({
           volume={volume}
           operationType={operationType}
           closeModal={closeModal}
+          myTime={ myTime}
         />
       </div>
     </UniversalModal>

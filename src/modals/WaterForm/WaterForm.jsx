@@ -21,19 +21,21 @@ const schemaWaterForm = yup.object().shape({
     .test('is-valid-datetime', 'Invalid date and time', isDateTimeValid),
 });
 
-const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
+const WaterForm = ({ operationType, closeModal, id, 
+  // date, 
+  volume, myTime }) => {
   const dispatch = useDispatch();
   let initialWaterAmount = operationType === 'edit' ? volume : 50;
   const [number, setNumber] = useState(initialWaterAmount);
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
   // Отримуємо час з об'єкта `date`
-  const parsedDate = new Date(date);
-  const hours = parsedDate.getUTCHours();
-  const minutes = parsedDate.getUTCMinutes();
-  const transferredTime = `${hours.toString().padStart(2, '0')}:${minutes
-    .toString()
-    .padStart(2, '0')}`;
+  // const parsedDate = new Date(date);
+  // const hours = parsedDate.getUTCHours();
+  // const minutes = parsedDate.getUTCMinutes();
+  // const transferredTime = `${hours.toString().padStart(2, '0')}:${minutes
+  //   .toString()
+  //   .padStart(2, '0')}`;
 
   const { handleSubmit } = useForm({
     validationSchema: schemaWaterForm,
@@ -75,9 +77,12 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
   //  value={operationType === 'edit' ? transferredTime : currentTime}
   //  onChange={handleTimeChange}
 
+  // const timeFromInput =
+  //   operationType === 'edit' ? transferredTime : currentTime;
+  // const timeCreation = timeFromInput;
   const timeFromInput =
-    operationType === 'edit' ? transferredTime : currentTime;
-  const timeCreation = timeFromInput;
+  operationType === 'edit' ? myTime : currentTime;
+const timeCreation = timeFromInput;
   /**============================================================= */
 
   const newDate = `${formattedDate}T${timeCreation}`;

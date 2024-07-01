@@ -4,21 +4,21 @@ import Iconsvg from '../Icon/Icon';
 import css from './WaterItem.module.css';
 import { useState } from 'react';
 
-// const formatTime = dateString => {
-//   const date = new Date(dateString);
-//   const hours = date.getUTCHours().toString().padStart(2, '0');
-//   const minutes = date.getUTCMinutes().toString().padStart(2, '0');
-//   return `${hours}:${minutes}`;
-// };
-
 const formatTime = dateString => {
-  const parsedDate = new Date(dateString);
-  const hours = parsedDate.getHours();
-  const minutes = parsedDate.getMinutes();
-  return `${hours.toString().padStart(2, '0')}:${minutes
-    .toString()
-    .padStart(2, '0')}`;
+  const date = new Date(dateString);
+  const hours = date.getUTCHours().toString().padStart(2, '0');
+  const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+  return `${hours}:${minutes}`;
 };
+
+// const formatTime = dateString => {
+//   const parsedDate = new Date(dateString);
+//   const hours = parsedDate.getHours();
+//   const minutes = parsedDate.getMinutes();
+//   return `${hours.toString().padStart(2, '0')}:${minutes
+//     .toString()
+//     .padStart(2, '0')}`;
+// };
 
 const WaterItem = ({ id, volume, date, isEditable }) => {
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
@@ -86,6 +86,7 @@ const WaterItem = ({ id, volume, date, isEditable }) => {
         id={id}
         date={date}
         volume={volume}
+        myTime={ time }
       />
       <DeleteWaterModal
         id={id}
