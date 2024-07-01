@@ -87,23 +87,26 @@ const UserSettingsForm = ({ closeModal }) => {
       setValue('waterDrink', waterDrink.toFixed(1));
     }
   }, [weight, activeTime, gender, setValue]);
+
   const handleAvatarChange = e => {
     const file = e.target.files[0];
-    console.log(file);
+
     if (file) {
       const preview = URL.createObjectURL(file);
+
       setAvatarPreview(preview);
+
       setValue('avatarURL', file);
       setAvatarFile(file);
       const formData = new FormData();
+
       formData.append('avatar', file);
       //dispatch(uploadUserAvatar(file));
       setSavedAvatarURL(formData);
     }
   };
-  const onSubmit1 = async values => {
-    // console.log('Submitting form with values:', values);
 
+  const onSubmit1 = async values => {
     const updatedData = {
       name: values.name,
       email: values.email,
@@ -112,14 +115,16 @@ const UserSettingsForm = ({ closeModal }) => {
       waterDrink: values.waterDrink,
       gender: values.gender,
     };
+
     await dispatch(updateUserProfile(updatedData));
-    console.log(savedAvatarURL);
+
     if (avatarFile) {
       await dispatch(uploadUserAvatar(savedAvatarURL));
     }
 
     closeModal();
   };
+
   return (
     <form className={css.settingForm} onSubmit={handleSubmit(onSubmit1)}>
       <div className={css.settingsAvatarContainer}>
@@ -128,8 +133,8 @@ const UserSettingsForm = ({ closeModal }) => {
           // name={user.name}
           src={
             avatarPreview ||
-            `http://localhost:3000/${userDataAvatar}` ||
-            `${API_URL}${userDataAvatar}`
+            `${savedAvatarURL}` ||
+            `${API_URL}${savedAvatarURL}`
           }
           size="80"
         />

@@ -39,9 +39,7 @@ export const requestUserInfo = async () => {
 
 // Update
 export const updateUserProfiles = async formData => {
-  console.log(formData);
   const { data } = await instance.patch('/users/update', formData);
-  console.log('I come from server', data);
   return data;
 };
 
