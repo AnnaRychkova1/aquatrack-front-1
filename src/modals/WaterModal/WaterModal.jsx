@@ -7,8 +7,9 @@ const WaterModal = ({
   closeModal,
   operationType,
   id,
-  date,
+  // date,
   volume,
+  myTime,
 }) => {
   return (
     <UniversalModal isOpen={isOpen} closeModal={closeModal}>
@@ -25,10 +26,11 @@ const WaterModal = ({
         </p>
         <WaterForm
           id={id}
-          date={date}
+          // date={date}
           volume={volume}
           operationType={operationType}
           closeModal={closeModal}
+          myTime={myTime}
         />
       </div>
     </UniversalModal>
