@@ -23,7 +23,6 @@ export const editWaterRecord = async (id, day) => {
 
 export const deleteWaterRecord = async id => {
   const response = await instance.delete(`/water/${id}`);
-  console.log(response);
   return response.data.id;
 };
 

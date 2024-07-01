@@ -50,8 +50,7 @@ const WaterList = ({ selectDay }) => {
               id={waterItem._id}
               volume={waterItem.volume}
               date={waterItem.date}
-              isEditable={true}
-              // isEditable={isSameDay(new Date(), waterItem.date)}
+              isEditable={isSameDay(new Date(), waterItem.date)}
             />
           </li>
         ))
