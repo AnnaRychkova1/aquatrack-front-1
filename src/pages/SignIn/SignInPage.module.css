@@ -1,7 +1,5 @@
 .generalSignInForm {
   padding: 0 16px;
-  border: 1px solid blue;
-  /* max-width: 343px; */
   min-width: 320px;
   max-width: 375px;
   width: 100%;
@@ -15,7 +13,6 @@
 @media only screen and (min-width: 768px) {
   .generalSignInForm {
     padding: 0 32px;
-    /* max-width: 704px; */
     width: 768px;
     max-width: 100%;
   }
@@ -23,8 +20,6 @@
 
 @media only screen and (min-width: 1440px) {
   .generalSignInForm {
-    /* max-width: 1376px; */
-    /* 672+672+32 */
     display: flex;
     padding: 0 32px;
     gap: 32px;
