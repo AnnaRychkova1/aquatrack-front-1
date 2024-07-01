@@ -1,6 +1,5 @@
 .trackContainerItem {
   border-radius: 30px;
-  border: 1px solid red;
   padding: 16px;
   background-color: var(--background-color);
   max-width: 343px;

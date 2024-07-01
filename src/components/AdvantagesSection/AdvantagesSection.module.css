@@ -10,7 +10,6 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  border: 1px solid red;
 }
 
 @media only screen and (min-resolution: 192dpi) {
@@ -126,7 +125,7 @@
   height: 8px;
 }
 
-.advantages_habits>p {
+.advantages_habits > p {
   font-weight: 700;
   font-size: 8px;
   line-height: 100%;
@@ -229,7 +228,7 @@
     padding: 11px 16px;
   }
 
-  .advantages_habits>p {
+  .advantages_habits > p {
     font-size: 12px;
   }
 }
