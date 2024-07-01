@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { selectWaterDrink } from '../../redux/users/selectors';
 import { selectTotalDay } from '../../redux/water/selectors';
 import { selectDate } from '../../redux/date/selectors';
+import { isSameDay, format } from 'date-fns';
 
 const WaterProgressBar = () => {
   const daylyNorm = useSelector(selectWaterDrink);
@@ -32,9 +33,16 @@ const WaterProgressBar = () => {
 
   // console.log('Water Amount:', waterAmount);
 
+  const formatDate = date => {
+    if (isSameDay(new Date(), new Date(date))) {
+      return 'Today';
+    }
+    return format(new Date(date), 'dd MMMM');
+  };
+
   return (
     <div className={css.contBar}>
-      <p className={css.textBar}>Today</p>
+      <p className={css.textBar}>{formatDate(selectedDate)} </p>
       <div className={css.waterProgressBarWrapper}>
         <div className={css.waterProgressBar}>
           <div
