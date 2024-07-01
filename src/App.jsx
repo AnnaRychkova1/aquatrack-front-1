@@ -18,6 +18,8 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 const App = () => {
   const dispatch = useDispatch();
   const { isCurrent } = useAuth();
+
+  console.log(isCurrent);
   const token = useSelector(selectToken);
   useEffect(() => {
     dispatch(getCurrentUser(token));
