@@ -4,7 +4,6 @@ import {
   logIn,
   logOut,
   uploadUserAvatar,
-  // sendVerify,
   updateUserProfile,
   getCurrentUser,
 } from './operations.js';
@@ -50,17 +49,8 @@ const authSlice = createSlice({
         state.isLoading = false;
         const { user } = action.payload;
         state.user.email = user.email;
-        state.isSignedIn = true;
+        state.isSignedIn = false;
       })
-
-      // // VERIFY EMAIL
-      // .addCase(sendVerify.fulfilled, (state, action) => {
-      //   state.isLoading = false;
-      //   const { user, token } = action.payload;
-      //   state.user = user;
-      //   state.token = token;
-      //   state.isSignedIn = true;
-      // })
 
       //LOGIN
       .addCase(logIn.fulfilled, (state, action) => {
@@ -83,7 +73,7 @@ const authSlice = createSlice({
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         const { user } = action.payload;
-        state.isCurrent = false; // update
+        state.isCurrent = false;
         state.user = user;
         state.isSignedIn = true;
         state.isLoading = false;

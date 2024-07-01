@@ -6,14 +6,9 @@ import {
   requestLogin,
   requestLogout,
   requestRegister,
-  // requestResendVerify,
   requestSendVerify,
   requestUserInfo,
   updateUserProfiles,
-  // refreshToken,
-  // requestResetPassword,
-  // requestForgotPassword,
-  // requestSendVerify,
   uploadUserAvatars,
 } from '../../services/userApi.js';
 
