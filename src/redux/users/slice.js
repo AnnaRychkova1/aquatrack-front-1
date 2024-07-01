@@ -4,7 +4,7 @@ import {
   logIn,
   logOut,
   uploadUserAvatar,
-  sendVerify,
+  // sendVerify,
   updateUserProfile,
   getCurrentUser,
 } from './operations.js';
@@ -52,14 +52,14 @@ const authSlice = createSlice({
         state.isSignedIn = true;
       })
 
-      // VERIFY EMAIL
-      .addCase(sendVerify.fulfilled, (state, action) => {
-        state.isLoading = false;
-        const { user, token } = action.payload;
-        state.user = user;
-        state.token = token;
-        state.isSignedIn = true;
-      })
+      // // VERIFY EMAIL
+      // .addCase(sendVerify.fulfilled, (state, action) => {
+      //   state.isLoading = false;
+      //   const { user, token } = action.payload;
+      //   state.user = user;
+      //   state.token = token;
+      //   state.isSignedIn = true;
+      // })
 
       //LOGIN
       .addCase(logIn.fulfilled, (state, action) => {
@@ -77,7 +77,9 @@ const authSlice = createSlice({
       // CURRENT
       .addCase(getCurrentUser.pending, state => {
         state.isCurrent = true;
+        state.isLoading = true;
         state.isError = false;
+        // state.isSignedIn = true;
       })
       .addCase(getCurrentUser.fulfilled, (state, action) => {
         const { user } = action.payload;
@@ -86,6 +88,7 @@ const authSlice = createSlice({
         state.isSignedIn = true;
       })
       .addCase(getCurrentUser.rejected, state => {
+        state.isLoading = false;
         state.isCurrent = false;
         state.isError = true;
       })

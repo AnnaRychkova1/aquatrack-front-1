@@ -3,10 +3,11 @@ import { lazy, useEffect } from 'react';
 import SharedLayout from './SharedLayout';
 import { PrivateRoute } from './routs/PrivateRoute';
 import RestrictedRoute from './routs/RestrictedRoute';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUser } from './redux/users/operations';
 import { useAuth } from './hooks/useAuth';
 import Loader from './components/Loader/Loader';
+import { selectToken } from './redux/users/selectors';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignIn = lazy(() => import('./pages/SignIn/SignIn'));
@@ -17,10 +18,10 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 const App = () => {
   const dispatch = useDispatch();
   const { isCurrent } = useAuth();
-
+  const token = useSelector(selectToken);
   useEffect(() => {
-    dispatch(getCurrentUser());
-  }, [dispatch]);
+    dispatch(getCurrentUser(token));
+  }, [dispatch, token]);
   return isCurrent ? (
     <Loader />
   ) : (

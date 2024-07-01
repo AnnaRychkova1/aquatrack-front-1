@@ -6,7 +6,7 @@ import {
   requestLogin,
   requestLogout,
   requestRegister,
-  requestResendVerify,
+  // requestResendVerify,
   requestSendVerify,
   requestUserInfo,
   updateUserProfiles,
@@ -150,18 +150,18 @@ export const sendVerify = createAsyncThunk(
   }
 );
 
-export const resendVerify = createAsyncThunk(
-  'users/re-verify',
-  async (formData, thunkAPI) => {
-    try {
-      const res = await requestResendVerify(formData);
+// export const resendVerify = createAsyncThunk(
+//   'users/re-verify',
+//   async (formData, thunkAPI) => {
+//     try {
+//       const res = await requestResendVerify(formData);
 
-      return res;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
+//       return res;
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
 
 export const uploadUserAvatar = createAsyncThunk(
   'users/avatars',
