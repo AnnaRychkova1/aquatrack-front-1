@@ -78,5 +78,3 @@ export const uploadUserAvatars = async formData => {
 
 //   return data;
 // };
-
-// USER

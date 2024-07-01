@@ -1,4 +1,4 @@
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 import css from './UserSettingsForm.module.css';
@@ -9,24 +9,24 @@ import {
   selectAvatar,
   selectEmail,
   selectName,
+  selectUser,
   selectWaterDrink,
 } from '../../redux/users/selectors';
 import {
   updateUserProfile,
   uploadUserAvatar,
 } from '../../redux/users/operations';
-//const API_URL = 'https://aquatrack-back-1.onrender.com/api/';
 const UserSettingsSchema = Yup.object().shape({
-  name: Yup.string(),
+  name: Yup.string().max(10, 'Name must be at most 10 characters!'),
   email: Yup.string()
     .required('Email is required!')
     .email('Must be a valid email!'),
   weight: Yup.number()
-    .transform(value => (isNaN(value) ? null : value))
+    .transform(value => (isNaN(value) ? 0 : value))
     .nullable()
     .min(0, 'Weight must be a positive number!'),
   activeTimeSports: Yup.number()
-    .transform(value => (isNaN(value) ? null : value))
+    .transform(value => (isNaN(value) ? 0 : value))
     .nullable()
     .min(0, 'Active time must be a positive number!'),
   waterDrink: Yup.number()
@@ -36,28 +36,24 @@ const UserSettingsSchema = Yup.object().shape({
     .required('Gender is required!')
     .oneOf(['woman', 'man'], 'Invalid gender selection!'),
   avatarURL: Yup.mixed(),
-  //   .test(
-  //     'fileSize',
-  //     'File too large',
-  //     value => !value || (value && value.size <= 1024 * 1024)
-  //   )
-  //   .test(
-  //     'fileFormat',
-  //     'Unsupported Format',
-  //     value =>
-  //       !value ||
-  //       (value && ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type))
-  //   ),
 });
+const API_URL = 'https://aquatrack-back-1.onrender.com/api/';
+
 const UserSettingsForm = ({ closeModal }) => {
   const dispatch = useDispatch();
   const userDataAvatar = useSelector(selectAvatar);
   const userDataWaterDrink = useSelector(selectWaterDrink);
   const userDataName = useSelector(selectName);
+  const userDataWeight = useSelector(state => selectUser(state).weight);
+  const userDataTimeSports = useSelector(
+    state => selectUser(state).activeTimeSports
+  );
+  const userDataGender = useSelector(state => selectUser(state).gender);
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [savedAvatarURL, setSavedAvatarURL] = useState(userDataAvatar);
   const [avatarFile, setAvatarFile] = useState(null);
   const userDataEmail = useSelector(selectEmail);
+
   const {
     register,
     handleSubmit,
@@ -66,14 +62,13 @@ const UserSettingsForm = ({ closeModal }) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(UserSettingsSchema),
-    //defaultValues: { ...user },
     defaultValues: {
       name: userDataName,
       email: userDataEmail,
-      weight: '',
-      activeTimeSports: '',
+      weight: userDataWeight,
+      activeTimeSports: userDataTimeSports,
       waterDrink: '',
-      gender: '',
+      gender: userDataGender,
       avatarURL: userDataAvatar,
     },
   });
@@ -102,49 +97,13 @@ const UserSettingsForm = ({ closeModal }) => {
       setAvatarFile(file);
       const formData = new FormData();
       formData.append('avatar', file);
-      dispatch(uploadUserAvatar(formData));
-      // console.log(preview);
-      // console.log('FormData before dispatch:', formData.get('avatar'));
+      //dispatch(uploadUserAvatar(file));
+      setSavedAvatarURL(formData);
     }
-    console.log('ssdfbfbdfbfd');
   };
-  console.log('ssdfbfbdfbfd');
   const onSubmit1 = async values => {
-    console.log('Submitting form with values:', values);
-    // const formData = new FormData();
-    // Object.keys(values).forEach(key => {
-    //   formData.append(key, values[key]);
-    // });
-    // dispatch(updateUserSettings(formData))
-    //   .unwrap()s
-    //   .then(() => {
-    //     console.log('Settings update success');
-    //     onClose();
-    //   })
-    //   .catch(error => {
-    //     console.error('Settings update error', error);
-    //     alert('Error updating settings: ' + error.message); // Можна зробити більш складний notification
-    //   });
-    // const updatedData = {};
-    // if (values.name) updatedData.name = values.name;
-    // if (values.email) updatedData.email = values.email;
-    // if (values.weight) updatedData.weight = values.weight;
-    // if (values.activeTimeSports)
-    //   updatedData.activeTimeSports = values.activeTimeSports;
-    // if (values.waterDrink) updatedData.waterDrink = values.waterDrink;
-    // if (values.gender) updatedData.gender = values.gender;
-    // setValue('name', updatedData.name);
-    // setValue('email', updatedData.email);
-    // setValue('weight', updatedData.weight);
-    // setValue('activeTimeSports', updatedData.activeTimeSports);
-    // setValue('waterDrink', updatedData.waterDrink);
-    // setValue('gender', updatedData.gender);
-    // if (avatarFile) {
-    //   const formData = new FormData();
-    //   formData.append('avatar', avatarFile);
-    //   dispatch(uploadUserAvatar(formData));
-    // }
-    //dispatch(updateUserProfile(updatedData));
+    // console.log('Submitting form with values:', values);
+
     const updatedData = {
       name: values.name,
       email: values.email,
@@ -153,38 +112,25 @@ const UserSettingsForm = ({ closeModal }) => {
       waterDrink: values.waterDrink,
       gender: values.gender,
     };
-
-    // Dispatch update action and handle success
-    try {
-      await dispatch(updateUserProfile(updatedData));
-      console.log('Profile update success');
-      // Optionally update local component state or handle UI updates here
-      closeModal(); // Close modal after successful update
-    } catch (error) {
-      console.error('Error updating profile', error);
-      // Handle error if needed
+    await dispatch(updateUserProfile(updatedData));
+    console.log(savedAvatarURL);
+    if (avatarFile) {
+      await dispatch(uploadUserAvatar(savedAvatarURL));
     }
-    console.log('Profile update success');
+
     closeModal();
   };
-  console.log('ssdfbfbdfbfd');
-  // useEffect(() => {
-  //   if (!avatarPreview) {
-  //     console.log('Avatar Preview:', avatarPreview);
-  //   }
-  // }, [avatarPreview]);
-  // const omg = () => {
-  //   console.log('OMG');
-  // };
   return (
-    //<div className={css.wrapper}>
-    //<div className={css.settingsModal}>
     <form className={css.settingForm} onSubmit={handleSubmit(onSubmit1)}>
       <div className={css.settingsAvatarContainer}>
         <img
           className={css.settingsAvatarImage}
           // name={user.name}
-          src={avatarPreview || `http://localhost:3000/${savedAvatarURL}`}
+          src={
+            avatarPreview ||
+            `http://localhost:3000/${userDataAvatar}` ||
+            `${API_URL}${userDataAvatar}`
+          }
           size="80"
         />
         <label
@@ -311,7 +257,6 @@ const UserSettingsForm = ({ closeModal }) => {
                 defaultValue={userDataWaterDrink}
                 className={css.settingsLitersText}
                 type="number"
-                //onChange={e => setNumberValue(e.target.value)}
                 {...register('waterDrink')}
               />
               {errors.waterDrink && <span>{errors.waterDrink.message}</span>}
@@ -323,8 +268,6 @@ const UserSettingsForm = ({ closeModal }) => {
         Save
       </button>
     </form>
-    //</div>
-    //</div>
   );
 };
 

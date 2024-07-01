@@ -1,5 +1,5 @@
 //import { useEffect, useState } from 'react';
-import { selectName } from '../../redux/users/selectors';
+import { selectIsVerified, selectName } from '../../redux/users/selectors';
 import UserBar from '../UserBar/UserBar';
 import { useSelector } from 'react-redux';
 import css from './UserPanel.module.css';
@@ -10,7 +10,7 @@ const UserPanel = () => {
   //const [userName, setUserName] = useState('User');
   //const [avatarUrl, setAvatarUrl] = useState(null);
   //const [svgPopover, setSvgPopover] = useState('chevron-down');
-  const isSignedIn = true;
+  const isSignedIn = useSelector(selectIsVerified);
   const userData = useSelector(selectName);
   // useEffect(() => {
   //   if (userData) {
