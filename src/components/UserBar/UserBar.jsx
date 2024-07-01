@@ -7,7 +7,6 @@ import { selectAvatar, selectName } from '../../redux/users/selectors';
 import css from '../UserPanel/UserPanel.module.css';
 
 const UserBar = () => {
-  // const userData = useSelector(selectName);
   const [isOpen, setIsOpen] = useState(false);
   const [svgPopover, setSvgPopover] = useState('chevron-down');
   const userDataName = useSelector(selectName);
