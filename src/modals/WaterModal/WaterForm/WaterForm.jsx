@@ -25,7 +25,6 @@ const WaterForm = ({
   operationType,
   closeModal,
   id,
-  //  date,
   myTime,
   volume,
 }) => {
@@ -34,13 +33,7 @@ const WaterForm = ({
   const [number, setNumber] = useState(initialWaterAmount);
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
-
-  // const parsedDate = new Date(date);
-  // const hours = parsedDate.getUTCHours();
-  // const minutes = parsedDate.getUTCMinutes();
-  // const transferredTime = `${hours.toString().padStart(2, '0')}:${minutes
-  //   .toString()
-  //   .padStart(2, '0')}`;
+  const [currentTime, setCurrentTime] = useState(myTime || '');
 
   const { handleSubmit } = useForm({
     validationSchema: schemaWaterForm,
@@ -60,28 +53,23 @@ const WaterForm = ({
     setMinValue(Math.min(minValue, newNumber));
   };
 
-  const [currentTime, setCurrentTime] = useState('');
   useEffect(() => {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const formattedTime = `${hours}:${minutes}`;
-    setCurrentTime(formattedTime);
-  }, []);
+    if (operationType !== 'edit') {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      const formattedTime = `${hours}:${minutes}`;
+      setCurrentTime(formattedTime);
+    }
+  }, [operationType]);
 
   const currentDate = new Date();
-
   const currentYear = currentDate.getFullYear();
   const currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
   const currentDay = String(currentDate.getDate()).padStart(2, '0');
   const formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
-
-  const timeFromInput =
-    // currentTime === undefined ? transferredTime : currentTime;
-    currentTime === undefined ? myTime : currentTime;
-
+  const timeFromInput = currentTime === undefined ? myTime : currentTime;
   const newDate = `${formattedDate}T${timeFromInput}`;
-
   const token = useSelector(selectToken);
 
   const onSubmit = async () => {
@@ -129,7 +117,7 @@ const WaterForm = ({
         className={css.inputTime}
         type="time"
         name="time"
-        value={operationType === 'edit' ?  myTime : currentTime}
+        value={currentTime}
         onChange={e => setCurrentTime(e.target.value)}
       />
       <p className={css.valueLabel}>Enter the value of the water used:</p>
