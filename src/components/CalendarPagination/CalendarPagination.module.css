@@ -2,14 +2,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
   height: 32px;
 }
 
 .dateInfo {
   display: flex;
   margin: 0;
-  /* width: 124px; */
   justify-content: center;
   font-weight: 700;
   font-size: 14px;
@@ -24,7 +23,7 @@
   padding: 0;
   justify-content: center;
   align-items: center;
-  color: var(--main-text);
+  background-color: transparent;
 }
 
 .button:disabled {
@@ -34,6 +33,12 @@
 
 .icon {
   stroke: #323f47;
+}
+
+.icon:hover,
+.icon:focus {
+  transition: transform 0.25s;
+  transform: scale(1.2);
 }
 
 .activeIcon {
