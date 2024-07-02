@@ -49,7 +49,7 @@ const Statistic = ({data}) => {
       }
     });
 
-    return { date: date.split('.')[0], Water: a };
+    return { date: date.split('.')[0], Water: a.toFixed(3) };
   });
 
   const gradientId = 'waterGradient';

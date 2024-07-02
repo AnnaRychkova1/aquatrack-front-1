@@ -29,13 +29,14 @@
 .button {
   border: none;
   padding: 0;
+  border-color: transparent;
 }
 
 .icon {
   display: flex;
   width: 20px;
   height: 24px;
-  margin-left: 16px;
+  margin-left: 12px;
   stroke: #A9A9A9;
 
 }
@@ -44,8 +45,16 @@
   display: flex;
   width: 20px;
   height: 24px;
-  margin-left: 16px;
+  margin-left: 12px;
   stroke: var(--main-text);
+}
+
+.icon:hover,
+.icon:focus,
+.activeIcon:hover,
+.activeIcon:focus {
+  transition: transform 0.25s;
+  transform: scale(1.1);
 }
 
 @media only screen and (min-width: 768px) {
@@ -69,7 +78,13 @@
 
   .icon {
     width: 24px;
-    height: 32px;
+    height: 28px;
+    margin-left: 20px;
+  }
+
+  .activeIcon {
+    width: 24px;
+    height: 28px;
     margin-left: 20px;
   }
 }
