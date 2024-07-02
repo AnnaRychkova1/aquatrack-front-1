@@ -4,9 +4,8 @@ import UserCount from './CountPeople';
 const AdvantagesSection = () => {
   return (
     <div className={css.advantages_main}>
-      <UserCount />
+      {/* <UserCount /> */}
       <div className={css.advantages_users}>
-        {/* <UserCount /> */}
         <ul className={css.advantages_usersImg}>
           <li className={css.advantages_point}>
             <div className={`${css.user} ${css.user1}`}></div>
@@ -40,6 +39,7 @@ const AdvantagesSection = () => {
           </li>
         </ul>
       </div>
+      <UserCount />
     </div>
   );
 };
