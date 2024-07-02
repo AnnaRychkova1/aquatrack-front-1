@@ -8,6 +8,7 @@ const UserPanel = () => {
   const userData = useSelector(selectName);
 
   return (
+
     <div className="reactour__userPanelBtn">
       <div className={css.userPanelContainer}>
         {isSignedIn && (
@@ -18,6 +19,7 @@ const UserPanel = () => {
 
         <UserBar />
       </div>
+
     </div>
   );
 };
