@@ -14,7 +14,7 @@ import {
 
 const options = {
   position: 'top-center',
-  autoClose: 5000,
+  autoClose: 3000,
   hideProgressBar: false,
   closeOnClick: true,
   pauseOnHover: true,
@@ -105,35 +105,7 @@ export const getCurrentUser = createAsyncThunk(
 
 // Avatar
 
-export const uploadUserAvatar = createAsyncThunk(
-  'users/avatars',
-  async (formData, thunkAPI) => {
-    try {
-      const response = await uploadUserAvatars(formData);
-      toast.success('Avatar uploaded successfully', { ...options });
-      return response;
-    } catch (err) {
-      toast.error(err.message, { ...options });
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
-
 // Update
-
-export const updateUserProfile = createAsyncThunk(
-  'users/update',
-  async (formData, thunkAPI) => {
-    try {
-      const response = await updateUserProfiles(formData);
-      toast.success('User update successfully', { ...options });
-      return response;
-    } catch (err) {
-      toast.error(err.message, { ...options });
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
 
 export const sendVerify = createAsyncThunk(
   'users/verify',
@@ -189,6 +161,33 @@ export const sendVerify = createAsyncThunk(
 //     }
 //   }
 // );
+
+export const uploadUserAvatar = createAsyncThunk(
+  'users/avatars',
+  async (formData, thunkAPI) => {
+    try {
+      const response = await uploadUserAvatars(formData);
+      toast.success('Avatar uploaded successfully', { ...options });
+      return response.avatarURL;
+    } catch (err) {
+      toast.error(err.message, { ...options });
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+export const updateUserProfile = createAsyncThunk(
+  'users/update',
+  async (formData, thunkAPI) => {
+    try {
+      const response = await updateUserProfiles(formData);
+      toast.success('User update successfully', { ...options });
+      return response.user;
+    } catch (err) {
+      toast.error(err.message, { ...options });
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
 // export const forgotPassword = createAsyncThunk(
 //   'users/forgot-password',
 //   async (formData, thunkAPI) => {

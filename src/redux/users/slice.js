@@ -18,8 +18,8 @@ const INITIAL_STATE = {
     activeTimeSports: 0,
     waterDrink: 1.8,
     avatarURL: null,
-    verify: false,
   },
+
   token: null,
   isSignedIn: false,
   isLoading: false,
@@ -90,7 +90,7 @@ const authSlice = createSlice({
       })
       .addCase(uploadUserAvatar.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user.avatarURL = action.payload.avatarURL;
+        state.user.avatarURL = action.payload;
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
