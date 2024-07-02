@@ -7,29 +7,41 @@ import { selectAvatar, selectName } from '../../redux/users/selectors';
 import css from '../UserPanel/UserPanel.module.css';
 
 const UserBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [svgPopover, setSvgPopover] = useState('chevron-down');
   const userDataName = useSelector(selectName);
   const userDataAvatar = useSelector(selectAvatar);
 
-  const toggleMenu = () => {
-    if (isOpen) {
-      setSvgPopover('chevron-down');
-      setIsOpen(!isOpen);
-    } else {
-      setSvgPopover('chevron-up');
-      setIsOpen(!isOpen);
-    }
+  // const openPopover = () => {
+  //   setIsPopoverOpen(true);
+  //   setSvgPopover('chevron-down');
+  // };
+
+  // const closePopover = () => {
+  //   setIsPopoverOpen(false);
+  //   setSvgPopover('chevron-up');
+  // };
+
+  const togglePopover = () => {
+    setIsPopoverOpen(prevState => !prevState);
+    setSvgPopover(prevState =>
+      prevState === 'chevron-down' ? 'chevron-up' : 'chevron-down'
+    );
+  };
+
+  const closePopover = () => {
+    setIsPopoverOpen(false);
+    setSvgPopover('chevron-down');
   };
 
   return (
     <div className={css.userPanelContainerBtn}>
-      <button className={css.userPanelBtn} onClick={toggleMenu}>
+      <button className={css.userPanelBtn} onClick={togglePopover}>
         <span>{userDataName}</span>
         <img name={userDataName} src={`${userDataAvatar}`} size="40" />
         <Iconsvg className={css.userPanelBtnIcon} iconName={svgPopover} />
       </button>
-      {isOpen && <UserBarPopover />}
+      {isPopoverOpen && <UserBarPopover closePopover={closePopover} />}
     </div>
   );
 };

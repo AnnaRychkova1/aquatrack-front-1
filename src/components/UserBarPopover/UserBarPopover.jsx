@@ -4,12 +4,15 @@ import UserSettingsModal from '../../modals/UserSettingsModal/UserSettingsModal'
 //import Iconsvg from '../Icon/Icon';
 import css from '../UserPanel/UserPanel.module.css';
 import Iconsvg from '../Icon/Icon';
-const UserBarPopover = () => {
+const UserBarPopover = ({ closePopover }) => {
   const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
 
   const openSettingModal = () => setIsSettingModalOpen(true);
-  const closeSettingModal = () => setIsSettingModalOpen(false);
+  const closeSettingModal = () => {
+    setIsSettingModalOpen(false);
+    closePopover();
+  };
 
   const openLogOutModal = () => setIsLogOutModalOpen(true);
   const closeLogOutModal = () => setIsLogOutModalOpen(false);
@@ -26,6 +29,7 @@ const UserBarPopover = () => {
       <UserSettingsModal
         isOpen={isSettingModalOpen}
         closeModal={closeSettingModal}
+        closePopover={closePopover}
       />
       <LogOutModal isOpen={isLogOutModalOpen} closeModal={closeLogOutModal} />
     </div>
