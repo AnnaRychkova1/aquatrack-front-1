@@ -40,34 +40,38 @@ const WaterItem = ({ id, volume, date, isEditable }) => {
           <p className={css.time}>{time}</p>
         </div>
         <div className={css.waterButtons}>
-          <button
-            onClick={openWaterModal}
-            className={css.button}
-            type="button"
-            aria-label="Edit water value"
-            disabled={!isEditable}
-          >
-            <Iconsvg
-              width="14"
-              height="14"
-              iconName="edit"
-              className={css.waterButtonSvg}
-            />
-          </button>
-          <button
-            onClick={openDeleteModal}
-            className={css.button}
-            type="button"
-            aria-label="Delete item"
-            disabled={!isEditable}
-          >
-            <Iconsvg
-              width="14"
-              height="14"
-              iconName="trash"
-              className={css.waterButtonSvg}
-            />
-          </button>
+          <div className="reactour__waterEditCard">
+            <button
+              onClick={openWaterModal}
+              className={css.button}
+              type="button"
+              aria-label="Edit water value"
+              disabled={!isEditable}
+            >
+              <Iconsvg
+                width="14"
+                height="14"
+                iconName="edit"
+                className={css.waterButtonSvg}
+              />
+            </button>
+          </div>
+          <div className="reactour__waterDeleteCard">
+            <button
+              onClick={openDeleteModal}
+              className={css.button}
+              type="button"
+              aria-label="Delete item"
+              disabled={!isEditable}
+            >
+              <Iconsvg
+                width="14"
+                height="14"
+                iconName="trash"
+                className={css.waterButtonSvg}
+              />
+            </button>
+          </div>
         </div>
       </div>
       <WaterModal

@@ -1,23 +1,31 @@
 .userPanelContainer {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 20px;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 40px;
 }
 @media screen and (min-width: 768px) {
   .userPanelContainer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
     margin-bottom: 49px;
   }
 }
 .userPanelTitle {
   font-family: 'Gilroy', sans-serif;
+  display: flex;
   font-weight: 400;
   font-size: 32px;
   line-height: 100%;
   letter-spacing: -0.01em;
   color: #323f47;
+  max-width: 270px;
 }
 @media screen and (min-width: 768px) {
   .userPanelTitle {
@@ -25,43 +33,58 @@
     font-size: 36px;
     line-height: 106%;
   }
+  .userPanelTitle span {
+    font-weight: 700;
+    overflow: hidden;
+    margin-right: 2px;
+  }
 }
 .userPanelTitle span {
+  overflow: hidden;
   font-weight: 700;
 }
 .userPanelContainerBtn {
   display: flex;
   position: relative;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 }
+@media screen and (min-width: 768px) {
+  .userPanelContainerBtn {
+    align-items: flex-end;
+  }
+}
+
 .userPanelBtn {
   padding: 6px 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  justify-content: flex-end;
   gap: 8px;
   outline: none;
   border-radius: 30px;
-  max-width: 137px;
+  min-width: 137px;
   border: none;
   background-color: #323f47;
 }
 @media screen and (min-width: 768px) {
   .userPanelBtn {
-    max-width: 157px;
-    width: 157px;
+    /* max-width: 157px;
+    width: 157px; */
+    max-width: 220px;
   }
 }
 .userPanelBtn img {
   border-radius: 100%;
   width: 38px;
   height: 38px;
+  max-width: none;
   /* background-color: #323f47; */
 }
 .userPanelBtnIcon {
-  width: 35.594px;
+  width: 16px;
   height: 16px;
 }
 .userPanelBtn span {
@@ -80,7 +103,7 @@
     /* background-color: #323f47; */
   }
   .userPanelBtnIcon {
-    width: 41.26px;
+    width: 20px;
     height: 20px;
   }
   .userPanelBtn span {
@@ -92,7 +115,7 @@
 .userPopoverContainer {
   position: absolute;
   top: 54px;
-  max-width: 157px;
+  max-width: 137px;
   max-height: 82px;
   display: flex;
   flex-direction: column;
@@ -140,9 +163,9 @@
   }
 }
 .userPopoverBtn:hover {
-  color: rgba(50, 63, 71, 0.4);
-  stroke: rgba(50, 63, 71, 0.4);
-  fill: rgba(50, 63, 71, 0.4);
+  color: #87d28d;
+  stroke: #87d28d;
+  fill: #87d28d;
 }
 .userPopoverBtnIcon {
   width: 16px;
@@ -151,6 +174,6 @@
   /* fill: rgba(50, 63, 71, 0.4); */
 }
 .userPopoverBtn:hover .userPopoverBtnIcon {
-  stroke: rgba(50, 63, 71, 0.4) !important;
-  fill: rgba(50, 63, 71, 0.4);
+  stroke: #87d28d !important;
+  fill: #87d28d;
 }

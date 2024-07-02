@@ -78,11 +78,11 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
 
   useEffect(() => {
     if (weight && activeTime && gender) {
-      let waterDrink;
+      let waterDrink = 0;
       if (gender === 'woman') {
-        waterDrink = weight * 0.03 + activeTime * 0.4;
+        waterDrink = Math.max(weight * 0.03 + activeTime * 0.4, 0);
       } else if (gender === 'man') {
-        waterDrink = weight * 0.04 + activeTime * 0.6;
+        waterDrink = Math.max(weight * 0.04 + activeTime * 0.6, 0);
       }
       setValue('waterDrink', waterDrink.toFixed(1));
     }
@@ -153,6 +153,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
         </label>
         {errors.avatar && <span>{errors.avatar.message}</span>}
       </div>
+
       <div className={css.settingsFormContent}>
         <div className={css.settingsFormData}>
           <div className={css.settingsGenders}>
@@ -169,34 +170,61 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
               </label>
               <label className={css.settingsGender}>
                 <input
-                  className={css.settingsGenderInput}
+                  className={`${css.settingsGenderInput}${
+                    errors.gender ? css.error : ''
+                  }`}
                   type="radio"
                   value="man"
-                  {...register('gender')}
+                  {...register('gender', {
+                    pattern: {
+                      value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                      message: 'Please enter valid gender',
+                    },
+                  })}
                 />
                 <span className={css.settingsGenderText}>Man</span>
               </label>
             </div>
-            {errors.gender && <span>{errors.gender.message}</span>}
+            {errors.gender && (
+              <span className={css.errorsgender}>{errors.gender.message}</span>
+            )}
           </div>
           <div className={css.settingsUser}>
             <label className={css.settingsUserLabel}>
               <span className={css.settingsUserTitle}>Your name</span>
               <input
-                className={css.settingsUserText}
+                className={`${css.settingsUserText} ${
+                  errors.name ? css.error : ''
+                }`}
                 type="text"
-                {...register('name')}
+                {...register('name', {
+                  pattern: {
+                    value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                    message: 'Please enter valid name',
+                  },
+                })}
               />
-              {errors.name && <span>{errors.name.message}</span>}
+              {errors.name && (
+                <span className={css.errors}>{errors.name.message}</span>
+              )}
             </label>
             <label className={css.settingsUserLabel}>
               <span className={css.settingsUserTitle}>Email</span>
               <input
-                className={css.settingsUserText}
+                className={`${css.settingsUserText} ${
+                  errors.email ? css.error : ''
+                }`}
                 type="email"
-                {...register('email')}
+                {...register('email', {
+                  pattern: {
+                    value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                    message: 'Please enter valid email',
+                  },
+                })}
               />
-              {errors.email && <span>{errors.email.message}</span>}
+              {errors.email && (
+                <span className={css.errors}>{errors.email.message}</span>
+              )}
             </label>
           </div>
 
@@ -229,23 +257,41 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
                 Your weight in kilograms:
               </span>
               <input
-                className={css.settingsParamText}
+                className={`${css.settingsParamText} ${
+                  errors.weight ? css.error : ''
+                }`}
                 type="number"
-                {...register('weight')}
+                {...register('weight', {
+                  pattern: {
+                    value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                    message: 'Please enter valid number',
+                  },
+                })}
               />
-              {errors.weight && <span>{errors.weight.message}</span>}
+              {errors.weight && (
+                <span className={css.errors}>{errors.weight.message}</span>
+              )}
             </label>
             <label className={css.settingsParam}>
               <span className={css.settingsParamTitle}>
                 The time of active participation in sports:
               </span>
               <input
-                className={css.settingsParamText}
+                className={`${css.settingsParamText} ${
+                  errors.activeTimeSports ? css.error : ''
+                }`}
                 type="number"
-                {...register('activeTimeSports')}
+                {...register('activeTimeSports', {
+                  pattern: {
+                    value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                    message: 'Please enter valid number',
+                  },
+                })}
               />
               {errors.activeTimeSports && (
-                <span>{errors.activeTimeSports.message}</span>
+                <span className={css.errors}>
+                  {errors.activeTimeSports.message}
+                </span>
               )}
             </label>
           </div>
@@ -260,11 +306,21 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
               </span>
               <input
                 defaultValue={userDataWaterDrink}
-                className={css.settingsLitersText}
+                className={`${css.settingsLitersText} ${
+                  errors.waterDrink ? css.error : ''
+                }`}
                 type="number"
-                {...register('waterDrink')}
+                step="any"
+                {...register('waterDrink', {
+                  pattern: {
+                    value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                    message: 'Please enter valid number',
+                  },
+                })}
               />
-              {errors.waterDrink && <span>{errors.waterDrink.message}</span>}
+              {errors.waterDrink && (
+                <span className={css.errors}>{errors.waterDrink.message}</span>
+              )}
             </label>
           </div>
         </div>

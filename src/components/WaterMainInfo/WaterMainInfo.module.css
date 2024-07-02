@@ -20,6 +20,27 @@
   justify-content: center;
   align-items: center;
 }
+
+.tour {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  margin-bottom: 5px;
+  background-color: transparent;
+  padding: 10px;
+  border-radius: 30px;
+  border: 1px solid var(--background-color);
+  transition-property: border, background-color;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+
+.tour:hover,
+.tour:focus {
+  border: 1px solid var(--second-text);
+  background-color: var(--background-color);
+}
+
 .imgInfoContainer {
   background-image: url('../../assets/images/png/transparent_bottle_for_water_1x_mobile.png');
   background-position: center;
@@ -89,15 +110,15 @@
   height: 46px;
   background-color: var(--main-text);
   cursor: pointer;
+  border: none;
   transition-property: color, stroke;
   transition-duration: 250ms;
   transition-timing-function: ease;
 }
 
-.btn {
-  background-color: var(--main-text);
-  border: none;
-  display: contents;
+.contBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .icon {
@@ -139,11 +160,6 @@
     padding: 18px 30px;
     width: 178px;
     height: 60px;
-  }
-  .btn {
-    background-color: var(--main-text);
-    border: none;
-    display: contents;
   }
 
   .icon {
