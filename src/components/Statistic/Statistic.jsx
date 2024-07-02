@@ -49,7 +49,11 @@ const Statistic = ({data}) => {
       }
     });
 
-    return { date: date.split('.')[0], Water: a.toFixed(3) };
+    if (a > 0) {
+      a = a.toFixed(3);
+    }
+
+    return { date: date.split('.')[0], Water: a };
   });
 
   const gradientId = 'waterGradient';
@@ -72,8 +76,8 @@ const Statistic = ({data}) => {
   };
 
   return (
-    <div className={css.statistics}>
-      <ResponsiveContainer width="100%" height={250}>
+    <div>
+      <ResponsiveContainer width="100%" height={300}>
         <AreaChart data={finalData}>
           <defs>
             <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
