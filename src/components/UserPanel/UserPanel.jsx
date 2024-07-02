@@ -11,7 +11,7 @@ const UserPanel = () => {
     <div className={css.userPanelContainer}>
       {isSignedIn && (
         <h2 className={css.userPanelTitle}>
-          Hello, <span>{userData}!</span>
+          Hello, <span>{userData}</span>!
         </h2>
       )}
       <UserBar />
