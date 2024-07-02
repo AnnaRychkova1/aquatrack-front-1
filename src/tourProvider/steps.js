@@ -20,14 +20,14 @@ export const steps = [
     content: `Here you can add a record of water consumed`,
     position: 'left',
   },
-  // {
-  //   selector: '.reactour__waterAdd',
-  //   content: `... and here`,
-  //   position: 'left',
-  //   style: {
-  //     highlightPadding: 30, // Задаємо відступ підсвічування
-  //   },
-  // },
+  {
+    selector: '.reactour__waterAdd',
+    content: `... and here`,
+    position: 'left',
+    style: {
+      highlightPadding: 30, // Задаємо відступ підсвічування
+    },
+  },
   {
     selector: '.reactour__waterCardList',
     content: `This block contains records of water consumed during the day`,
@@ -53,16 +53,16 @@ export const steps = [
     content: `Click here to view the percentage of daily norms in graphical format`,
     position: 'left',
   },
-  // {
-  //   selector: '.reactour__waterDailyNorma',
-  //   content: `This is your daily norma `,
-  //   position: 'right',
-  // },
-  // {
-  //   selector: '.reactour__waterPercentage',
-  //   content: `Progress bar showing the percentage of daily norms`,
-  //   position: 'top',
-  // },
+  {
+    selector: '.reactour__waterDailyNorma',
+    content: `This is your daily norma `,
+    position: 'right',
+  },
+  {
+    selector: '.reactour__waterPercentage',
+    content: `Progress bar showing the percentage of daily norms`,
+    position: 'top',
+  },
   {
     selector: '.reactour__Bye',
     content: `Thanks for your attention and good luck!`,
