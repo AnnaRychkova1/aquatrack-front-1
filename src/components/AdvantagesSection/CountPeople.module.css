@@ -23,6 +23,17 @@
 }
 
 @media only screen and (max-width: 767px) {
+
+    /* .count_Users {
+        max-width: 155px;
+        background-color: var(--main-white);
+        gap: 4px;
+        margin-bottom: 8px;
+        padding: 10px 14px;
+        border-radius: 30px;
+        margin-top: -45px;
+    } */
+
     .desktopOnly {
         display: none;
 
@@ -31,6 +42,7 @@
 
 @media only screen and (min-width: 768px) {
     .count_Users {
+
         max-width: 235px;
         padding: 10px 20px;
         width: 100%;
