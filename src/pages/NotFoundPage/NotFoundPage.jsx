@@ -9,12 +9,14 @@ const NotFoundPage = () => {
       <Helmet>
         <title>Page not found</title>
       </Helmet>
+      <div className={css.formContainer}>
       <p className={css.textPage}>
         Sorry, the page you visited does not exist!
       </p>
       <button className={css.btnPage}>
         <Link to="/">Back home</Link>
-      </button>
+        </button>
+        </div>
     </div>
   );
 };

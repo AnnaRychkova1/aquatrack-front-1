@@ -8,11 +8,26 @@
     align-items: center;
     text-align: center;
     margin: 0 auto;
-    height: 812px;
+    height: 780px;
     border: 1px solid blue;
     background: var(--main-white);
     color: #323f47;
+}
 
+.formContainer {
+    padding: 300px 25px 155px
+}
+
+.textPage {
+    font-size: 32px;
+    line-height: 100%;
+    letter-spacing: -0.01em;
+    color: var(--main-text);
+    margin-bottom: 150px;
+}
+
+a {
+    color: #323f47;
 }
 
 .btnPage {
@@ -27,36 +42,22 @@
     background-color: var(--accent-color);
     color: var(--main-text);
     border: none;
-
+    display: block;
+    margin: 0 auto;
     transition: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.btnPage:hover,
-.btnPage:focus {
-    border: 1px solid var(--accent-color);
-    background-color: var(--accent-color);
-}
-
-.textPage {
-    font-size: 32px;
-    line-height: 100%;
-    letter-spacing: -0.01em;
-    color: var(--main-text);
-    /* margin-bottom: 250px; */
-    margin: 300px auto 250px;
-
-}
-
-a {
-    color: #323f47;
-}
 
 @media only screen and (min-width: 768px) {
     .generalHomePage {
         padding: 0 32px;
         width: 768px;
         max-width: 100%;
-        height: 1024px;
+        height: 960px;
+    }
+
+    .formContainer {
+        padding: 400px 50px 225px
     }
 
     .btnPage {
@@ -67,7 +68,7 @@ a {
 
     .textPage {
         font-size: 36px;
-        margin: 450px auto 250px;
+        margin-bottom: 200px;
     }
 }
 
@@ -76,11 +77,10 @@ a {
         display: flex;
         width: 1440px;
         gap: 32px;
-        height: 800px;
+        height: 736px;
     }
 
-
-    .textPage {
-        margin: 350px auto 200px;
+    .formContainer {
+        padding: 300px 50px 140px
     }
 }
