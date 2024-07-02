@@ -11,7 +11,7 @@ const WaterMainInfo = () => {
   const { setIsOpen } = useTour();
 
   return (
-    <div className={css.trackContainerItem}>
+    <div className={`first-step ${css.trackContainerItem}`}>
       <div className="reactour__Bye">
         <div className={css.logoContainer}>
           <Logo />

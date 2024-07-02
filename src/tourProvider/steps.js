@@ -2,7 +2,7 @@ export const steps = [
   {
     selector: '.first-step',
     content: `Ok, let's start`,
-    position: 'bottom',
+    position: 'right',
   },
   {
     selector: '.reactour__userPanelBtn',
