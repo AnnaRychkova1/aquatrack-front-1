@@ -1,13 +1,13 @@
-.count_Users {
+/* .count_Users {
     max-width: 155px;
     background-color: var(--main-white);
     padding: 9px 12px;
     border-radius: 30px;
     margin-top: -305px;
     margin-left: 170px;
-}
+} */
 
-.count_Text {
+/* .count_Text {
     font-weight: 700;
     font-size: 12px;
     line-height: 117%;
@@ -24,7 +24,7 @@
 
 @media only screen and (max-width: 767px) {
 
-    /* .count_Users {
+    .count_Users {
         max-width: 155px;
         background-color: var(--main-white);
         gap: 4px;
@@ -32,7 +32,7 @@
         padding: 10px 14px;
         border-radius: 30px;
         margin-top: -45px;
-    } */
+    }
 
     .desktopOnly {
         display: none;
@@ -53,4 +53,4 @@
         font-size: 15px;
         line-height: 150%;
     }
-}
+} */
