@@ -1,13 +1,11 @@
 .count_Users {
     max-width: 155px;
     background-color: var(--main-white);
-    gap: 4px;
-    margin-bottom: 8px;
-    padding: 10px 14px;
+    padding: 9px 12px;
     border-radius: 30px;
-    margin-top: -45px;
+    margin-top: -305px;
+    margin-left: 170px;
 }
-
 
 .count_Text {
     font-weight: 700;
