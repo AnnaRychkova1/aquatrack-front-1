@@ -1,7 +1,7 @@
 import UserSettingsForm from '../../components/UserSettingsForm/UserSettingsForm';
 import UniversalModal from '../Modal/Modal';
-import css from '../../components/UserSettingsForm/UserSettingsForm.module.css';
-const UserSettingsModal = ({ isOpen, closeModal }) => {
+import css from './UserSettingsModal.module.css';
+const UserSettingsModal = ({ isOpen, closeModal, closePopover }) => {
   return (
     <UniversalModal
       isOpen={isOpen}
@@ -9,8 +9,13 @@ const UserSettingsModal = ({ isOpen, closeModal }) => {
       className={css.settingsModal}
     >
       <div className={css.settingsWrapper}>
-        <h2 className={css.settingsTitle}>Setting</h2>
-        <UserSettingsForm />
+        <div className={css.settingsScroll}>
+          <h2 className={css.settingsTitle}>Setting</h2>
+          <UserSettingsForm
+            closeModal={closeModal}
+            closePopover={closePopover}
+          />
+        </div>
       </div>
     </UniversalModal>
   );

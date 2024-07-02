@@ -4,8 +4,8 @@ import {
   logIn,
   logOut,
   uploadUserAvatar,
-  sendVerify,
   updateUserProfile,
+  getCurrentUser,
 } from './operations.js';
 
 const INITIAL_STATE = {
@@ -18,12 +18,13 @@ const INITIAL_STATE = {
     activeTimeSports: 0,
     waterDrink: 1.8,
     avatarURL: null,
-    verify: null,
   },
+
   token: null,
   isSignedIn: false,
   isLoading: false,
   isError: false,
+  isCurrent: false,
 };
 
 const handlePending = state => {
@@ -47,16 +48,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         const { user } = action.payload;
         state.user.email = user.email;
-        state.isSignedIn = true;
-      })
-
-      // VERIFY EMAIL
-      .addCase(sendVerify.fulfilled, (state, action) => {
-        state.isLoading = false;
-        const { user, token } = action.payload;
-        state.user = user;
-        state.token = token;
-        state.isSignedIn = true;
+        state.isSignedIn = false;
       })
 
       //LOGIN
@@ -71,6 +63,26 @@ const authSlice = createSlice({
         state.isLoading = false;
       })
 
+      // CURRENT
+      .addCase(getCurrentUser.pending, state => {
+        state.isCurrent = true;
+        state.isLoading = true;
+        state.isError = false;
+        // state.isSignedIn = true;
+      })
+      .addCase(getCurrentUser.fulfilled, (state, action) => {
+        const { user } = action.payload;
+        state.isCurrent = false;
+        state.user = user;
+        state.isSignedIn = true;
+        state.isLoading = false;
+      })
+      .addCase(getCurrentUser.rejected, state => {
+        state.isLoading = false;
+        state.isCurrent = false;
+        state.isError = true;
+      })
+
       // LOGOUT
       .addCase(logOut.fulfilled, () => {
         localStorage.removeItem('token');
@@ -78,29 +90,19 @@ const authSlice = createSlice({
       })
       .addCase(uploadUserAvatar.fulfilled, (state, action) => {
         state.isLoading = false;
-        //const { user } = action.payload;
-        state.user.avatarURL = action.payload.avatarURL;
+        state.user.avatarURL = action.payload;
       })
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload.user;
+        const updatedUser = action.payload;
+        state.user = { ...state.user, ...updatedUser };
       })
       .addMatcher(
-        isAnyOf(
-          userRegister.pending,
-          logIn.pending,
-          logOut.pending
-          // sendVerify.pending
-        ),
+        isAnyOf(userRegister.pending, logIn.pending, logOut.pending),
         handlePending
       )
       .addMatcher(
-        isAnyOf(
-          userRegister.rejected,
-          logIn.rejected,
-          logOut.rejected
-          // sendVerify.rejected
-        ),
+        isAnyOf(userRegister.rejected, logIn.rejected, logOut.rejected),
         handleRejected
       );
   },

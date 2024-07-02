@@ -5,14 +5,12 @@
   width: 100%;
   min-width: 320px;
   height: 411px;
-  /* gap: 16px; */
   margin-bottom: 16px;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
 }
 
 @media only screen and (min-width: 768px) {

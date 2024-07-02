@@ -1,18 +1,13 @@
 import { useDispatch } from 'react-redux';
+
 import { deleteWater } from '../../redux/water/operations';
 import UniversalModal from '../Modal/Modal';
 import css from './DeleteWaterModal.module.css';
 
 const DeleteWaterModal = ({ isOpen, closeModal, id }) => {
-  //  console.log(id)
   const dispatch = useDispatch();
-  const handleDelete = async () => {
-    try {
-      await dispatch(deleteWater(id));
-      closeModal();
-    } catch (error) {
-      console.error('Помилка при видаленні:', error);
-    }
+  const handleDelete = id => {
+    dispatch(deleteWater({ id }));
   };
 
   return (
@@ -27,7 +22,7 @@ const DeleteWaterModal = ({ isOpen, closeModal, id }) => {
           <button
             className={css.buttonDelete}
             type="button"
-            onClick={handleDelete}
+            onClick={() => handleDelete(id)}
           >
             Delete
           </button>

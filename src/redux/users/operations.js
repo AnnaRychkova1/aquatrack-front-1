@@ -6,19 +6,15 @@ import {
   requestLogin,
   requestLogout,
   requestRegister,
-  requestResendVerify,
   requestSendVerify,
+  requestUserInfo,
   updateUserProfiles,
-  // refreshToken,
-  // requestResetPassword,
-  // requestForgotPassword,
-  // requestSendVerify,
   uploadUserAvatars,
 } from '../../services/userApi.js';
 
 const options = {
   position: 'top-center',
-  autoClose: 5000,
+  autoClose: 3000,
   hideProgressBar: false,
   closeOnClick: true,
   pauseOnHover: true,
@@ -26,15 +22,21 @@ const options = {
   progress: undefined,
 };
 
-//SignUp
+const emailWaitOptions = {
+  ...options,
+  autoClose: false, // or set to 600000 for 10 minutes
+};
+
+// SignUp
+
 export const userRegister = createAsyncThunk(
   'users/register',
   async (formData, thunkAPI) => {
     try {
       const res = await requestRegister(formData);
-      // toast.success('Successfully registered. Check your email', {
-      //   ...options,
-      // });
+      toast.success('Successfully registered. Check your email', {
+        ...emailWaitOptions,
+      });
 
       return res;
     } catch (err) {
@@ -44,7 +46,8 @@ export const userRegister = createAsyncThunk(
   }
 );
 
-//SignIn
+// SignIn
+
 export const logIn = createAsyncThunk(
   'users/login',
   async (formData, thunkAPI) => {
@@ -69,6 +72,8 @@ export const logIn = createAsyncThunk(
   }
 );
 
+// Logout
+
 export const logOut = createAsyncThunk(
   'users/logout',
   async (token, thunkAPI) => {
@@ -78,6 +83,38 @@ export const logOut = createAsyncThunk(
       return;
     } catch (err) {
       toast.error(err.message, { ...options });
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+
+// Current
+
+export const getCurrentUser = createAsyncThunk(
+  'users/current',
+
+  async (token, thunkAPI) => {
+    try {
+      const response = await requestUserInfo(token);
+      return response;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+
+// Avatar
+
+// Update
+
+export const sendVerify = createAsyncThunk(
+  'users/verify',
+  async ({ verificationToken, formData }, thunkAPI) => {
+    try {
+      const res = await requestSendVerify(verificationToken, formData);
+
+      return res;
+    } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
     }
   }
@@ -95,40 +132,43 @@ export const logOut = createAsyncThunk(
 //   }
 // );
 
-export const sendVerify = createAsyncThunk(
-  'users/verify',
-  async ({ verificationToken, formData }, thunkAPI) => {
-    try {
-      const res = await requestSendVerify(verificationToken, formData);
-      console.log(res);
+// export const getCurrentUser = createAsyncThunk(
+//   'users/current',
 
-      return res;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
+//   // const token = localStorage.getItem('token');
+//   // if (!token) {
+//   //   return null;
+//   // }
 
-export const resendVerify = createAsyncThunk(
-  'users/re-verify',
-  async (formData, thunkAPI) => {
-    try {
-      const res = await requestResendVerify(formData);
+//   async thunkAPI => {
+//     try {
+//       const response = await requestUserInfo();//
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
 
-      return res;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
+// export const resendVerify = createAsyncThunk(
+//   'users/re-verify',
+//   async (formData, thunkAPI) => {
+//     try {
+//       const res = await requestResendVerify(formData);
+
+//       return res;
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
 
 export const uploadUserAvatar = createAsyncThunk(
   'users/avatars',
   async (formData, thunkAPI) => {
     try {
-      const response = await uploadUserAvatars(formData); // Replace with your actual API function
+      const response = await uploadUserAvatars(formData);
       toast.success('Avatar uploaded successfully', { ...options });
-      return response;
+      return response.avatarURL;
     } catch (err) {
       toast.error(err.message, { ...options });
       return thunkAPI.rejectWithValue(err.message);
@@ -139,9 +179,9 @@ export const updateUserProfile = createAsyncThunk(
   'users/update',
   async (formData, thunkAPI) => {
     try {
-      const response = await updateUserProfiles(formData); // Replace with your actual API function
-      toast.success('Avatar uploaded successfully', { ...options });
-      return response;
+      const response = await updateUserProfiles(formData);
+      toast.success('User update successfully', { ...options });
+      return response.user;
     } catch (err) {
       toast.error(err.message, { ...options });
       return thunkAPI.rejectWithValue(err.message);

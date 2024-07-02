@@ -1,18 +1,18 @@
 import css from './WaterForm.module.css';
-import Iconsvg from '../../components/Icon/Icon';
+import Iconsvg from '../../../components/Icon/Icon.jsx';
 import { useState, useEffect } from 'react';
-import { addWater, updateWater } from '../../redux/water/operations.js';
+import { addWater, updateWater } from '../../../redux/water/operations.js';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectToken } from '../../redux/users/selectors';
+import { selectToken } from '../../../redux/users/selectors.js';
 
 const isDateTimeValid = date => new Date(date) <= new Date();
 const schemaWaterForm = yup.object().shape({
   waterAmount: yup
     .number()
     .typeError('Please enter a valid number')
-    .min(50, 'Minimum value is 50')
+    .min(1, 'Minimum value is 1')
     .max(5000, 'Maximum value is 5000')
     .required('Water amount is required'),
   recordingTime: yup
@@ -21,23 +21,27 @@ const schemaWaterForm = yup.object().shape({
     .test('is-valid-datetime', 'Invalid date and time', isDateTimeValid),
 });
 
-const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
+const WaterForm = ({
+  operationType,
+  closeModal,
+  id,
+  //  date,
+  myTime,
+  volume,
+}) => {
   const dispatch = useDispatch();
   let initialWaterAmount = operationType === 'edit' ? volume : 50;
   const [number, setNumber] = useState(initialWaterAmount);
   const [maxValue, setMaxValue] = useState(0);
   const [minValue, setMinValue] = useState(0);
-  // console.log(date);
-  // console.log(volume);
-  /*===================================*/
 
-  const parsedDate = new Date(date);
-  const hours = parsedDate.getHours();
-  const minutes = parsedDate.getMinutes();
-  const transferredTime = `${hours.toString().padStart(2, '0')}:${minutes
-    .toString()
-    .padStart(2, '0')}`;
-  /*==================================*/
+  // const parsedDate = new Date(date);
+  // const hours = parsedDate.getUTCHours();
+  // const minutes = parsedDate.getUTCMinutes();
+  // const transferredTime = `${hours.toString().padStart(2, '0')}:${minutes
+  //   .toString()
+  //   .padStart(2, '0')}`;
+
   const { handleSubmit } = useForm({
     validationSchema: schemaWaterForm,
   });
@@ -65,16 +69,19 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
     setCurrentTime(formattedTime);
   }, []);
 
-  /*==========================*/
-  // const localDate = new Date(data);
-  // const localISOTime = new Date(
-  //   localDate.getTime() - localDate.getTimezoneOffset() * 60000
-  // ).toISOString();
-  // dispatch(changeDate(localISOTime));
-  /*==========================*/
+  const currentDate = new Date();
 
-  const time = new Date();
-  const newDate = time.toISOString();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
+  const currentDay = String(currentDate.getDate()).padStart(2, '0');
+  const formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
+
+  const timeFromInput =
+    // currentTime === undefined ? transferredTime : currentTime;
+    currentTime === undefined ? myTime : currentTime;
+
+  const newDate = `${formattedDate}T${timeFromInput}`;
+
   const token = useSelector(selectToken);
 
   const onSubmit = async () => {
@@ -86,7 +93,6 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
     try {
       if (operationType === 'edit') {
         await dispatch(updateWater({ id, formData }));
-        console.log(formData);
       } else {
         await dispatch(addWater({ formData, token }));
       }
@@ -123,7 +129,7 @@ const WaterForm = ({ operationType, closeModal, id, date, volume }) => {
         className={css.inputTime}
         type="time"
         name="time"
-        value={operationType === 'edit' ? transferredTime : currentTime}
+        value={operationType === 'edit' ?  myTime : currentTime}
         onChange={e => setCurrentTime(e.target.value)}
       />
       <p className={css.valueLabel}>Enter the value of the water used:</p>

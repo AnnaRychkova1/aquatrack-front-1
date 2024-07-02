@@ -1,26 +1,34 @@
 .generalHomePage {
-    padding: 0 16px;
-    min-width: 320px;
-    max-width: 375px;
-    width: 100%;
+  padding: 0 16px;
+  min-width: 320px;
+  max-width: 375px;
+  width: 100%;
 
-    border: 1px solid blue;
+  min-width: 320px;
+  max-width: 375px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 @media only screen and (min-width: 768px) {
-    .generalHomePage {
-        padding: 0 32px;
-        width: 768px;
-        max-width: 100%;
-        /* gap: 32px; */
-    }
+  .generalHomePage {
+    padding: 0 32px;
+    width: 768px;
+    max-width: 100%;
+    width: 768px;
+    max-width: 100%;
+  }
 }
 
 @media only screen and (min-width: 1440px) {
-    .generalHomePage {
-        display: flex;
-        width: 1440px;
-        gap: 32px;
-
-    }
+  .generalHomePage {
+    display: flex;
+    width: 1440px;
+    gap: 32px;
+    flex-direction: row;
+  }
 }

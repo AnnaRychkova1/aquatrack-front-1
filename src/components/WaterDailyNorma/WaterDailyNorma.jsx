@@ -4,6 +4,7 @@ import { selectWaterDrink } from '../../redux/users/selectors';
 
 const WaterDailyNorma = () => {
   const daylyNorm = useSelector(selectWaterDrink);
+
   return (
     <div className={css.contDailyNorma}>
       <p className={css.dailyNorma}>{daylyNorm ? `${daylyNorm} L` : '0L'}</p>

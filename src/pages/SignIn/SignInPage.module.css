@@ -1,31 +1,37 @@
 .generalSignInForm {
-    padding: 0 16px;
-    border: 1px solid blue;
-    /* max-width: 343px; */
+  padding: 0 16px;
+  min-width: 320px;
+  max-width: 375px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
 }
 
 @media only screen and (min-width: 768px) {
-    .generalSignInForm {
-        padding: 0 32px;
-        /* max-width: 704px; */
-    }
+  .generalSignInForm {
+    padding: 0 32px;
+    width: 768px;
+    max-width: 100%;
+  }
 }
 
 @media only screen and (min-width: 1440px) {
-    .generalSignInForm {
-        /* max-width: 1376px; */
-        /* 672+672+32 */
-        display: flex;
-        padding: 0 32px;
-        gap: 32px;
-
-    }
+  .generalSignInForm {
+    display: flex;
+    padding: 0 32px;
+    gap: 32px;
+    flex-direction: row;
+    width: 1440px;
+  }
 }
 
 @media only screen and (max-width: 1439px) {
-    .AdvantagesSection_plus {
-        display: none;
-        width: 672px;
-        height: 736px;
-    }
+  .AdvantagesSection_plus {
+    display: none;
+    width: 672px;
+    height: 736px;
+  }
 }
