@@ -11,7 +11,7 @@ const WaterMainInfo = () => {
   const { setIsOpen } = useTour();
 
   return (
-    <div className={`first-step ${css.trackContainerItem}`}>
+    <div className={css.trackContainerItem}>
       <div className="reactour__Bye">
         <div className={css.logoContainer}>
           <Logo />
@@ -29,14 +29,17 @@ const WaterMainInfo = () => {
 
       <div className={css.imgInfoContainer}></div>
       <WaterDailyNorma />
-      <WaterProgressBar />
-      {/* <div className="reactour__waterAdd"> */}
-      <AddWaterBtn
-        buttonStyle={css.contBtn}
-        iconStyle={css.icon}
-        textStyle={css.textBtn}
-      />
-      {/* </div> */}
+      <div className="reactour__waterPercentage">
+        <WaterProgressBar />
+      </div>
+
+      <div className="reactour__waterAdd">
+        <AddWaterBtn
+          buttonStyle={css.contBtn}
+          iconStyle={css.icon}
+          textStyle={css.textBtn}
+        />
+      </div>
     </div>
   );
 };

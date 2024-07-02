@@ -20,6 +20,7 @@ const WaterList = ({ selectDay }) => {
   // Отримуємо дані з БД
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
+
   useEffect(() => {
     if (token) {
       dispatch(fetchDailyWater({ date: formatDate, token }));

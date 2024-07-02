@@ -25,7 +25,7 @@ export const steps = [
     content: `... and here`,
     position: 'left',
     style: {
-      highlightPadding: 30, // Задаємо відступ підсвічування
+      highlightPadding: 30,
     },
   },
   {
