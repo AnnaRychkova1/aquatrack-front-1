@@ -153,6 +153,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
         </label>
         {errors.avatar && <span>{errors.avatar.message}</span>}
       </div>
+
       <div className={css.settingsFormContent}>
         <div className={css.settingsFormData}>
           <div className={css.settingsGenders}>

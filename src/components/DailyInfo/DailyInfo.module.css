@@ -24,6 +24,11 @@
   border: 0px;
 }
 
+.cardButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .cardIcon {
   display: flex;
   justify-content: center;
