@@ -10,7 +10,8 @@
   border-radius: 30px;
   padding: 16px;
   width: 100%;
-  min-width: 320px;
+  min-width: 288px;
+  max-width: 343px;
   height: 415px;
   background-color: var(--accent-color);
   margin: 0;
@@ -78,7 +79,7 @@
 .contBtn {
   position: absolute;
   top: 82%;
-  left: 54%;
+  left: 49%;
   display: inline-flex;
   justify-content: center;
   align-items: center;
