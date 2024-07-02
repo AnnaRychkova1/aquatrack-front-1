@@ -38,24 +38,26 @@ const WaterList = ({ selectDay }) => {
   }, [dispatch, waterPortions]);
 
   return (
-    <ul className={css.list}>
-      {waterPortions.length === 0 ? (
-        <li className={css.emptyItem}>
-          There is no data for the selected date
-        </li>
-      ) : (
-        waterPortions.map((waterItem, index) => (
-          <li className={css.item} key={`${waterItem._id}-${index}`}>
-            <WaterItem
-              id={waterItem._id}
-              volume={waterItem.volume}
-              date={waterItem.date}
-              isEditable={isSameDay(new Date(), waterItem.date)}
-            />
+    <div className="reactour__waterCardList">
+      <ul className={css.list}>
+        {waterPortions.length === 0 ? (
+          <li className={css.emptyItem}>
+            There is no data for the selected date
           </li>
-        ))
-      )}
-    </ul>
+        ) : (
+          waterPortions.map((waterItem, index) => (
+            <li className={css.item} key={`${waterItem._id}-${index}`}>
+              <WaterItem
+                id={waterItem._id}
+                volume={waterItem.volume}
+                date={waterItem.date}
+                isEditable={isSameDay(new Date(), waterItem.date)}
+              />
+            </li>
+          ))
+        )}
+      </ul>
+    </div>
   );
 };
 

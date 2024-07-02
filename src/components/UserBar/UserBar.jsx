@@ -12,16 +12,6 @@ const UserBar = () => {
   const userDataName = useSelector(selectName);
   const userDataAvatar = useSelector(selectAvatar);
 
-  // const openPopover = () => {
-  //   setIsPopoverOpen(true);
-  //   setSvgPopover('chevron-down');
-  // };
-
-  // const closePopover = () => {
-  //   setIsPopoverOpen(false);
-  //   setSvgPopover('chevron-up');
-  // };
-
   const togglePopover = () => {
     setIsPopoverOpen(prevState => !prevState);
     setSvgPopover(prevState =>
@@ -36,11 +26,13 @@ const UserBar = () => {
 
   return (
     <div className={css.userPanelContainerBtn}>
-      <button className={css.userPanelBtn} onClick={togglePopover}>
-        <span>{userDataName}</span>
-        <img name={userDataName} src={`${userDataAvatar}`} size="40" />
-        <Iconsvg className={css.userPanelBtnIcon} iconName={svgPopover} />
-      </button>
+      <div className="reactour__userPanelInfo">
+        <button className={css.userPanelBtn} onClick={togglePopover}>
+          <span>{userDataName}</span>
+          <img name={userDataName} src={`${userDataAvatar}`} size="40" />
+          <Iconsvg className={css.userPanelBtnIcon} iconName={svgPopover} />
+        </button>
+      </div>
       {isPopoverOpen && <UserBarPopover closePopover={closePopover} />}
     </div>
   );
