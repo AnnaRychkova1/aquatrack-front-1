@@ -29,7 +29,7 @@
 .button {
   border: none;
   padding: 0;
-  border-color: transparent;
+  background-color: transparent;
 }
 
 .icon {
