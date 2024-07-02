@@ -39,7 +39,7 @@ const UserSettingsSchema = Yup.object().shape({
 });
 const API_URL = 'https://aquatrack-back-1.onrender.com/api/';
 
-const UserSettingsForm = ({ closeModal }) => {
+const UserSettingsForm = ({ closeModal, closePopover }) => {
   const dispatch = useDispatch();
   const userDataAvatar = useSelector(selectAvatar);
   const userDataWaterDrink = useSelector(selectWaterDrink);
@@ -122,6 +122,7 @@ const UserSettingsForm = ({ closeModal }) => {
     }
 
     closeModal();
+    closePopover();
   };
 
   return (
