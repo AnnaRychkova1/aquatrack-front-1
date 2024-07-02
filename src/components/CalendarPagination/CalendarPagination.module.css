@@ -27,6 +27,11 @@
   color: var(--main-text);
 }
 
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .icon {
   stroke: #323f47;
 }
