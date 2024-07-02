@@ -1,7 +1,7 @@
 .contBar {
-  position: absolute;
+  /* position: absolute;
   top: 50%;
-  left: 20%;
+  left: 20%; */
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
   background: var(--main-white);
   border-radius: 15px;
@@ -11,6 +11,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin: 49px auto 42px auto;
 }
 
 .textBar {
@@ -42,7 +43,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--accent-color); 
+  background: var(--accent-color);
   transition: width 0.5s ease-in-out;
 }
 
@@ -54,10 +55,7 @@
 }
 
 .waterProgressBarLabel {
-  position: absolute;
-  left: 50%;
   transform: translateX(-50%);
-  /* color: var(--main-text); */
   color: var(--second-text);
 
   font-size: 10px;
@@ -80,19 +78,17 @@
 }
 
 .progressLabelMid {
-  flex-grow: 1; 
+  flex-grow: 1;
   text-align: center;
 }
 
 /*Tablet*/
 @media only screen and (min-width: 768px) {
   .contBar {
-    position: absolute;
-    top: 53%;
-    left: 30%;
     padding: 20px;
     width: 295px;
     height: 106px;
+    margin: 87px auto 26px auto;
   }
   .textBar {
     font-size: 15px;
@@ -108,8 +104,6 @@
 /*Desktop*/
 @media only screen and (min-width: 1440px) {
   .contBar {
-    position: absolute;
-    top: 57%;
-    left: 27%;
+    margin: 215px auto 56px auto;
   }
 }

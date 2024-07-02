@@ -1,7 +1,4 @@
 .contDailyNorma {
-  position: absolute;
-  top: 26%;
-  left: 4%;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -9,6 +6,7 @@
   padding: 12px;
   width: 102px;
   height: 54px;
+  margin-top: 78px;
 
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
   background: var(--main-white);
@@ -29,33 +27,25 @@
 /*Tablet*/
 @media only screen and (min-width: 768px) {
   .contDailyNorma {
-    position: absolute;
-    top: 26%;
-    left: 5%;
     padding: 14px 18px;
     width: 129px;
     height: 78px;
+    margin-top: 101px;
   }
   .dailyNorma {
     font-weight: 700;
     font-size: 15px;
     line-height: 149%;
-    /* color: var(--main);; */
   }
   .textDailyNorma {
-    /* font-weight: 400; */
     font-size: 12px;
     line-height: 187%;
-    /* color: rgba(47, 47, 47, 0.6); */
   }
 }
 
 /*Desktop*/
 @media only screen and (min-width: 1440px) {
   .contDailyNorma {
-    position: absolute;
-    top: 19%;
-    left: 10%;
     .dailyNorma {
       font-family: var(--font-family);
       font-weight: 700;
