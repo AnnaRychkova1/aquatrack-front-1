@@ -45,18 +45,25 @@
   line-height: 100%;
   letter-spacing: -0.01em;
   color: #323f47;
-  max-width: 270px;
+  width: 311px;
 }
 @media screen and (min-width: 768px) {
   .userPanelTitle {
     font-weight: 400;
     font-size: 36px;
     line-height: 106%;
+    width: 320px;
   }
   .userPanelTitle span {
     font-weight: 700;
     overflow: hidden;
     margin-right: 2px;
+    /* width: 311px; */
+  }
+}
+@media screen and (min-width: 1440px) {
+  .userPanelTitle {
+    width: 304px;
   }
 }
 .userPanelTitle span {
@@ -69,10 +76,18 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
+  width: 311px;
 }
 @media screen and (min-width: 768px) {
   .userPanelContainerBtn {
     align-items: flex-end;
+    width: 314px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .userPanelContainerBtn {
+    align-items: flex-end;
+    width: 296px;
   }
 }
 
@@ -142,6 +157,7 @@
   position: absolute;
   top: 54px;
   max-width: 137px;
+  /* max-width: 311px; */
   max-height: 82px;
   display: flex;
   flex-direction: column;
@@ -156,6 +172,12 @@
   .userPopoverContainer {
     top: 64px;
     max-width: 157px;
+    /* max-width: 320px; */
+  }
+}
+@media screen and (min-width: 1440px) {
+  .userPopoverContainer {
+    max-width: 296px;
   }
 }
 .userPopoverBtn {
