@@ -6,8 +6,10 @@ import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from '../../../redux/users/selectors.js';
+import { selectDate } from '../../../redux/date/selectors.js';
 
 const isDateTimeValid = date => new Date(date) <= new Date();
+console.log(isDateTimeValid);
 const schemaWaterForm = yup.object().shape({
   waterAmount: yup
     .number()
@@ -21,13 +23,7 @@ const schemaWaterForm = yup.object().shape({
     .test('is-valid-datetime', 'Invalid date and time', isDateTimeValid),
 });
 
-const WaterForm = ({
-  operationType,
-  closeModal,
-  id,
-  myTime,
-  volume,
-}) => {
+const WaterForm = ({ operationType, closeModal, id, myTime, volume }) => {
   const dispatch = useDispatch();
   let initialWaterAmount = operationType === 'edit' ? volume : 50;
   const [number, setNumber] = useState(initialWaterAmount);
@@ -63,14 +59,17 @@ const WaterForm = ({
     }
   }, [operationType]);
 
-  const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
-  const currentMonth = String(currentDate.getMonth() + 1).padStart(2, '0');
-  const currentDay = String(currentDate.getDate()).padStart(2, '0');
-  const formattedDate = `${currentYear}-${currentMonth}-${currentDay}`;
+  const dateString = useSelector(selectDate);
+  const date = new Date(dateString);
+
+  const formattedDate = date.toISOString().split('T')[0];
+  console.log('formattedDate', formattedDate);
+
   const timeFromInput = currentTime === undefined ? myTime : currentTime;
-  const newDate = `${formattedDate}T${timeFromInput}`;
+  const newDate = new Date(`${formattedDate}T${timeFromInput}`);
   const token = useSelector(selectToken);
+
+  console.log('newDate', newDate);
 
   const onSubmit = async () => {
     const formData = {

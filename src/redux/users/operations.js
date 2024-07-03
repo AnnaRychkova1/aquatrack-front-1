@@ -71,10 +71,9 @@ export const logIn = createAsyncThunk(
           toast.error('User not found', { ...options });
           break;
         default:
-          toast.error(err.message, { ...options });
-
-          return thunkAPI.rejectWithValue(err.message);
+          toast.error(err.response, { ...options });
       }
+      return thunkAPI.rejectWithValue(err.response);
     }
   }
 );

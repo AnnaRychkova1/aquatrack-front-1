@@ -13,7 +13,8 @@ const AddWaterBtn = ({ buttonStyle, iconStyle, textStyle }) => {
   const closeAddWaterModal = () => setIsAddWaterModalOpen(false);
   const storeDate = useSelector(selectDate);
   const operationType = 'add';
-  const isEditable = isSameDay(new Date(), storeDate);
+  // const isEditable = isSameDay(new Date(), storeDate);
+  const isEditable = true;
   return (
     <>
       <button

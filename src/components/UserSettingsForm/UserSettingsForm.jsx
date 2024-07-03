@@ -130,7 +130,6 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
       <div className={css.settingsAvatarContainer}>
         <img
           className={css.settingsAvatarImage}
-          // name={user.name}
           src={
             avatarPreview ||
             `${savedAvatarURL}` ||
