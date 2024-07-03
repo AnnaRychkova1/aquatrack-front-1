@@ -65,10 +65,10 @@
   justify-content: center;
 }
 
-.btnSvg{
+ .btnSvg{
   width: 24px;
   height: 24px;
-}
+} 
 
 .valueLabel {
   font-size: 16px;
