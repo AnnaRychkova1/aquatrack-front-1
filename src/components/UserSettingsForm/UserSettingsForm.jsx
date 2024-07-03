@@ -31,6 +31,7 @@ const UserSettingsSchema = Yup.object().shape({
     .min(0, 'Active time must be a positive number!'),
   waterDrink: Yup.number()
     .required('Water intake is required!')
+    .typeError('The rate of water drink should be a number!')
     .min(0, 'Water intake must be a positive number!'),
   gender: Yup.string()
     // .required('Gender is required!')
