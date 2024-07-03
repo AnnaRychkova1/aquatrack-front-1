@@ -65,6 +65,11 @@
   justify-content: center;
 }
 
+.btnSvg{
+  width: 24px;
+  height: 24px;
+}
+
 .valueLabel {
   font-size: 16px;
   line-height: 1.25;
@@ -113,12 +118,7 @@
 .btnSave:focus {
   background: #87d28d;
 }
-/* 
-.divError {
-  height: 14px;
-  width: 303px;
-  color: red;
-} */
+
 
 @media (min-width: 768px) {
   .amountWaterLabel,
