@@ -10,17 +10,16 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import css from './Statistic.module.css';
-import { format, subDays,  getMonth, getYear, } from 'date-fns';
+import { format, subDays, getMonth, getYear } from 'date-fns';
 import { paginationDate } from '../../redux/date/selectors';
 import { selectToken } from '../../redux/users/selectors';
 import { fetchMonthlyWater } from '../../redux/water/operations';
 import { selectDate } from '../../redux/date/selectors';
 
-const Statistic = ({data}) => {
-
+const Statistic = ({ data }) => {
   const storePaginationDate = new Date(useSelector(paginationDate));
   const selectedDate = useSelector(selectDate);
-  
+
   const month = getMonth(storePaginationDate) + 1;
   const year = getYear(storePaginationDate);
   const dispatch = useDispatch();
@@ -34,14 +33,14 @@ const Statistic = ({data}) => {
 
   const waterPortions = data.map(el => {
     return { date: format(el.date, 'dd.MM.yyyy'), volume: el.volume / 1000 };
-  })
+  });
 
   const arrayDates = [];
   for (let i = 6; i >= 0; i--) {
     arrayDates.push(format(subDays(selectedDate, i), 'dd.MM.yyyy'));
   }
 
-  const finalData= arrayDates.map(date => {
+  const finalData = arrayDates.map(date => {
     let a = 0;
     waterPortions.forEach(el => {
       if (date === el.date) {
@@ -76,7 +75,7 @@ const Statistic = ({data}) => {
   };
 
   return (
-    <div>
+    <div className={css.statistics}>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart data={finalData}>
           <defs>

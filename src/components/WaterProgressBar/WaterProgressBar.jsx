@@ -14,7 +14,6 @@ const WaterProgressBar = () => {
   const selectedDate = useSelector(selectDate);
 
   const [waterAmount, setWaterAmount] = useState(0);
-  // console.log('Day Water All:', dayWaterAll);
 
   useEffect(() => {
     if (typeof dayWaterAll === 'number') {
@@ -31,8 +30,6 @@ const WaterProgressBar = () => {
     }
   }, [daylyNorm, dayWaterAll, selectedDate]);
 
-  // console.log('Water Amount:', waterAmount);
-
   const formatDate = date => {
     if (isSameDay(new Date(), new Date(date))) {
       return 'Today';
@@ -41,7 +38,7 @@ const WaterProgressBar = () => {
   };
 
   return (
-    <div className={css.contBar}>
+    <div className={`reactour__waterPercentage ${css.contBar}`}>
       <p className={css.textBar}>{formatDate(selectedDate)} </p>
       <div className={css.waterProgressBarWrapper}>
         <div className={css.waterProgressBar}>

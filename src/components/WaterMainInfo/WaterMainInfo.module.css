@@ -44,6 +44,10 @@
   background-color: var(--background-color);
 }
 
+.highlighted-mask {
+  border-radius: 10px !important;
+}
+
 @media (min-resolution: 192dpi) {
   .trackContainerItem {
     background-image: url('../../assets/images/png/transparent_bottle_for_water_2x_mobile.png');
