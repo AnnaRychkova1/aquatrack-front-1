@@ -59,6 +59,7 @@ const authSlice = createSlice({
           state.user = user;
           state.token = token;
           state.isSignedIn = true;
+          state.isLoading = false;
         }
         state.isLoading = false;
       })
@@ -88,21 +89,37 @@ const authSlice = createSlice({
         localStorage.removeItem('token');
         return INITIAL_STATE;
       })
+
+      // AVATAR
       .addCase(uploadUserAvatar.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user.avatarURL = action.payload;
       })
+
+      // UPDATE PROFILE
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
         const updatedUser = action.payload;
         state.user = { ...state.user, ...updatedUser };
       })
       .addMatcher(
-        isAnyOf(userRegister.pending, logIn.pending, logOut.pending),
+        isAnyOf(
+          userRegister.pending,
+          logIn.pending,
+          logOut.pending,
+          uploadUserAvatar.pending,
+          updateUserProfile.pending
+        ),
         handlePending
       )
       .addMatcher(
-        isAnyOf(userRegister.rejected, logIn.rejected, logOut.rejected),
+        isAnyOf(
+          userRegister.rejected,
+          logIn.rejected,
+          logOut.rejected,
+          uploadUserAvatar.rejected,
+          updateUserProfile.rejected
+        ),
         handleRejected
       );
   },

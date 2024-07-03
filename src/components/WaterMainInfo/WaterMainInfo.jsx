@@ -12,33 +12,33 @@ const WaterMainInfo = () => {
 
   return (
     <div className={css.trackContainerItem}>
-      <div className="reactour__Bye">
-        <div className={css.logoContainer}>
+      <div className={css.topContainer}>
+        <div className="reactour__Bye">
           <Logo />
+        </div>
+        <div ref={firstStep} className="first-step">
+          <button
+            className={`first-step ${css.tour}`}
+            onClick={() => setIsOpen(true)}
+          >
+            App guide
+          </button>
         </div>
       </div>
 
-      <div ref={firstStep} className="first-step">
-        <button
-          className={`first-step ${css.tour}`}
-          onClick={() => setIsOpen(true)}
-        >
-          App guide
-        </button>
-      </div>
-
-      <div className={css.imgInfoContainer}></div>
       <WaterDailyNorma />
       <div className="reactour__waterPercentage">
         <WaterProgressBar />
       </div>
 
       <div className="reactour__waterAdd">
-        <AddWaterBtn
-          buttonStyle={css.contBtn}
-          iconStyle={css.icon}
-          textStyle={css.textBtn}
-        />
+        <div className={css.btnContainer}>
+          <AddWaterBtn
+            buttonStyle={css.contBtn}
+            iconStyle={css.icon}
+            textStyle={css.textBtn}
+          />
+        </div>
       </div>
     </div>
   );

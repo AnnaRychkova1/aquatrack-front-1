@@ -1,15 +1,15 @@
 .logoFont {
-  position: absolute;
-  top: 5%;
-  left: 5%;
-  margin-bottom: 5px;
   color: var(--main-text);
   font-weight: bold;
   font-size: 18px;
+  text-transform: uppercase;
+  margin-top: 8px;
+  text-align: left;
 }
 
 @media only screen and (min-width: 768px) {
   .logoFont {
     font-size: 24px;
+    margin-top: 0;
   }
 }
