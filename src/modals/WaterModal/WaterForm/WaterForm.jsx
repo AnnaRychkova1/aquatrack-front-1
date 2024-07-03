@@ -93,19 +93,23 @@ const WaterForm = ({ operationType, closeModal, id, myTime, volume }) => {
     <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>
       <p className={css.amountWaterLabel}>Amount of water:</p>
       <div className={css.btnBox}>
-        <button className={css.btnReduce} onClick={decrementNumber}>
+        <button
+          className={css.btnReduce}
+          type="button"
+          onClick={decrementNumber}
+        >
           <Iconsvg
-            width="24"
-            height="24"
+            // width="24"
+            // height="24"
             iconName="minus"
             className={css.btnSvg}
           />
         </button>
         <span className={css.numberMl}>{number} ml</span>
-        <button className={css.btnZoom} onClick={incrementNumber}>
+        <button className={css.btnZoom} type="button" onClick={incrementNumber}>
           <Iconsvg
-            width="24"
-            height="24"
+            // width="24"
+            // height="24"
             iconName="plus"
             className={css.btnSvg}
           />

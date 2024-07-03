@@ -4,11 +4,8 @@ import sprite from "/src/assets/images/svg/symbol-defs.svg";
 
 const Iconsvg = ({ width, height, iconName, className }) => {
   return (
-    // <svg width={width} height={height} className={className}>
-    //   <use href={`${sprite}#${iconName}`}></use>
-    // </svg>
     <svg width={width} height={height} className={className}>
-      <use xlinkHref={`${sprite}#${iconName}`}></use> 
+      <use href={`${sprite}#${iconName}`}></use>
     </svg>
   );
 };
