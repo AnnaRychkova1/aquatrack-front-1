@@ -34,7 +34,7 @@ const UserBar = () => {
       <div className="reactour__userPanelInfo">
         <button className={css.userPanelBtn} onClick={togglePopover}>
           {isSignedIn ? (
-            <span className={css.userNameSmall}>{userDataName}!</span>
+            <span className={css.userNameSmall}>{userDataName}</span>
           ) : (
             <span className={css.userNameSmall}>User</span>
           )}

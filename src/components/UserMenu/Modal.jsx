@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import Modal from "react-modal";
-import css from "../../../modals/Modal/Modal.module.css";
-import Iconsvg from "../../Icon/Icon";
+import { useState, useEffect } from 'react';
+import Modal from 'react-modal';
+import css from '../../../modals/Modal/Modal.module.css';
+import Iconsvg from '../Icon/Icon';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 const UserMenuModal = ({ children, word }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,20 +12,20 @@ const UserMenuModal = ({ children, word }) => {
   const closeModal = () => setIsOpen(false);
 
   useEffect(() => {
-    const handleEscape = (event) => {
-      if (event.key === "Escape") {
+    const handleEscape = event => {
+      if (event.key === 'Escape') {
         closeModal();
       }
     };
 
     if (isOpen) {
-      document.addEventListener("keydown", handleEscape);
+      document.addEventListener('keydown', handleEscape);
     } else {
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener('keydown', handleEscape);
     }
 
     return () => {
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener('keydown', handleEscape);
     };
   }, [isOpen]);
 
