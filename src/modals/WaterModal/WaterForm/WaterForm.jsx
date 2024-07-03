@@ -96,8 +96,8 @@ const WaterForm = ({
       <div className={css.btnBox}>
         <button className={css.btnReduce} onClick={decrementNumber}>
           <Iconsvg
-            width="18"
-            height="18"
+            width="24"
+            height="24"
             iconName="minus"
             className={css.btnSvg}
           />
@@ -105,8 +105,8 @@ const WaterForm = ({
         <span className={css.numberMl}>{number} ml</span>
         <button className={css.btnZoom} onClick={incrementNumber}>
           <Iconsvg
-            width="18"
-            height="18"
+            width="24"
+            height="24"
             iconName="plus"
             className={css.btnSvg}
           />
