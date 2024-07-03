@@ -96,8 +96,8 @@ const WaterForm = ({
       <div className={css.btnBox}>
         <button className={css.btnReduce} onClick={decrementNumber}>
           <Iconsvg
-            width="24"
-            height="24"
+            // width="24"
+            // height="24"
             iconName="minus"
             className={css.btnSvg}
           />
@@ -105,8 +105,8 @@ const WaterForm = ({
         <span className={css.numberMl}>{number} ml</span>
         <button className={css.btnZoom} onClick={incrementNumber}>
           <Iconsvg
-            width="24"
-            height="24"
+            // width="24"
+            // height="24"
             iconName="plus"
             className={css.btnSvg}
           />
@@ -135,3 +135,9 @@ const WaterForm = ({
 };
 
 export default WaterForm;
+
+// <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+//   <rect x="0.75" y="0.75" width="38.5" height="38.5" rx="19.25" stroke="#323F47" stroke-width="1.5" />
+//   <path d="M20 12.8572V27.1429" stroke="#323F47" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+//   <path d="M12.8569 20H27.1426" stroke="#323F47" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+// </svg>
