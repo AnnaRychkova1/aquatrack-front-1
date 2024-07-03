@@ -61,7 +61,7 @@ const CalendarPagination = ({ viewStatistic }) => {
         type="button"
         className={css.button}
         onClick={handlePreviousMounth}
-        disabled={viewStatistic ? true : false}
+        // disabled={viewStatistic ? true : false}
       >
         <Icon
           width="18"
@@ -77,7 +77,8 @@ const CalendarPagination = ({ viewStatistic }) => {
         type="button"
         className={css.button}
         onClick={handleNextMounth}
-        disabled={viewStatistic ? true : btnDisabled}
+        // disabled={viewStatistic ? true : btnDisabled}
+        disabled={btnDisabled}
       >
         <Icon
           width="18"
