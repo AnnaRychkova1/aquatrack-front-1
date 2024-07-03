@@ -7,7 +7,7 @@ import { changePaginationBtnDisabled } from '../../redux/pagination/slice';
 import css from './CalendarPagination.module.css';
 import Icon from '../Icon/Icon';
 
-const CalendarPagination = ({ viewStatistic }) => {
+const CalendarPagination = () => {
   const dispatch = useDispatch();
   const storeDate = new Date(useSelector(paginationDate));
   const btnDisabled = useSelector(paginationBtnDisabled);
@@ -61,7 +61,6 @@ const CalendarPagination = ({ viewStatistic }) => {
         type="button"
         className={css.button}
         onClick={handlePreviousMounth}
-        // disabled={viewStatistic ? true : false}
       >
         <Icon
           width="18"
@@ -77,7 +76,6 @@ const CalendarPagination = ({ viewStatistic }) => {
         type="button"
         className={css.button}
         onClick={handleNextMounth}
-        // disabled={viewStatistic ? true : btnDisabled}
         disabled={btnDisabled}
       >
         <Icon

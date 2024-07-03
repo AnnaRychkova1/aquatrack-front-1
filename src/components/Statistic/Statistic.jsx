@@ -74,26 +74,6 @@ const Statistic = ({ data }) => {
     return `${tickItem} L`;
   };
 
-  // Параметри за замовчуванням для XAxis
-  const xAxisProps = {
-    dataKey: 'date',
-    padding: { left: 20, right: 20 },
-    tickSize: false,
-    tickLine: false,
-    tick: { fill: 'var(--main-text)' },
-    stroke: '',
-  };
-
-  // Параметри за замовчуванням для YAxis
-  const yAxisProps = {
-    padding: { top: 20, bottom: 20 },
-    tickSize: false,
-    tickLine: false,
-    tick: { fill: 'var(--main-text)' },
-    stroke: '',
-    tickFormatter: formatYAxis,
-  };
-
   return (
     <div>
       <ResponsiveContainer width="100%" height={300}>
@@ -105,8 +85,22 @@ const Statistic = ({ data }) => {
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="3" stroke="none" />
-          <XAxis {...xAxisProps} />
-          <YAxis {...yAxisProps} />
+          <XAxis
+            dataKey="date"
+            padding={{ left: 20, right: 20 }}
+            tickSize={false}
+            tickLine={false}
+            tick={{ fill: 'var(--main-text)' }}
+            stroke=""
+          />
+          <YAxis
+            padding={{ top: 20, bottom: 20 }}
+            tickSize={false}
+            tickLine={false}
+            tick={{ fill: 'var(--main-text)' }}
+            stroke=""
+            tickFormatter={formatYAxis}
+          />
           <Area
             dataKey="Water"
             dot={{

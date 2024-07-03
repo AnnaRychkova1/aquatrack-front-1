@@ -22,7 +22,7 @@ const MonthInfo = () => {
             {!viewStatistic ? 'Month' : 'Statistics'}
           </h3>
           <div className={css.pagination}>
-            <CalendarPagination viewStatistic={viewStatistic} />
+            <CalendarPagination />
             <div className="reactour__waterStatisticInfo">
               <button
                 type="button"
