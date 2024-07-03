@@ -75,7 +75,7 @@ const Statistic = ({ data }) => {
   };
 
   return (
-    <div>
+    <div className={css.statistics}>
       <ResponsiveContainer width="100%" height={300}>
         <AreaChart data={finalData}>
           <defs>
