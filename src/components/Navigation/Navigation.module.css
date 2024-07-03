@@ -17,7 +17,7 @@
   }
 }
 
-.welcomeButton_block>a {
+.welcomeButton_block > a {
   border-radius: 30px;
   padding: 14px 19px;
   font-family: 'Poppins', sans-serif;
@@ -31,7 +31,7 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .welcomeButton_block>a {
+  .welcomeButton_block > a {
     padding: 18px 40px;
     font-size: 16px;
     line-height: 150%;
@@ -44,7 +44,7 @@
 
 .welcomeButton_tracker:hover,
 .welcomeButton_tracker:focus {
-  background-color: var(--accent-color);
+  background-color: #87d28d;
 }
 
 .welcomeButton_sign {
