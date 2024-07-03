@@ -8,18 +8,18 @@ const UserPanel = () => {
   const userData = useSelector(selectName);
 
   return (
-
     <div className="reactour__userPanelBtn">
       <div className={css.userPanelContainer}>
-        {isSignedIn && (
-          <h2 className={css.userPanelTitle}>
-            Hello, <span>{userData}!</span>
-          </h2>
-        )}
-
+        <h2 className={css.userPanelTitle}>
+          Hello
+          {isSignedIn ? (
+            <span className={css.userName}>, {userData}!</span>
+          ) : (
+            <span className={css.userName}>, User</span>
+          )}
+        </h2>
         <UserBar />
       </div>
-
     </div>
   );
 };

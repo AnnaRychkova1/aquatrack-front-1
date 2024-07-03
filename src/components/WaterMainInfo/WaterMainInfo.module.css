@@ -19,6 +19,12 @@
 .topContainer {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 78px;
+}
+@media only screen and (min-width: 768px) {
+  .topContainer {
+    margin-bottom: 101px;
+  }
 }
 
 .tour {

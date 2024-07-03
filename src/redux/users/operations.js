@@ -24,7 +24,7 @@ const options = {
 
 const emailWaitOptions = {
   ...options,
-  autoClose: false, // or set to 600000 for 10 minutes
+  autoClose: false,
 };
 
 // SignUp
@@ -40,7 +40,14 @@ export const userRegister = createAsyncThunk(
 
       return res;
     } catch (err) {
-      toast.error(err.message, { ...options });
+      if (err.response?.status === 409) {
+        toast.error(
+          'This email is already in use. Please check your email or use a different one.',
+          {
+            ...options,
+          }
+        );
+      }
       return thunkAPI.rejectWithValue(err.message);
     }
   }
@@ -53,7 +60,7 @@ export const logIn = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const res = await requestLogin(formData);
-      // toast.success('Successfully login', { ...options });
+      toast.success('Successfully login', { ...options });
       return res;
     } catch (err) {
       switch (err.response?.status) {

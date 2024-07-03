@@ -33,7 +33,7 @@ const UserSettingsSchema = Yup.object().shape({
     .required('Water intake is required!')
     .min(0, 'Water intake must be a positive number!'),
   gender: Yup.string()
-    .required('Gender is required!')
+    // .required('Gender is required!')
     .oneOf(['woman', 'man'], 'Invalid gender selection!'),
   avatarURL: Yup.mixed(),
 });

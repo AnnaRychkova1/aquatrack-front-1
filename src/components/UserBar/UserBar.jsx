@@ -3,7 +3,11 @@ import { useState } from 'react';
 import Iconsvg from '../Icon/Icon';
 import UserBarPopover from '../UserBarPopover/UserBarPopover';
 import { useSelector } from 'react-redux';
-import { selectAvatar, selectName } from '../../redux/users/selectors';
+import {
+  selectAvatar,
+  selectIsSignedIn,
+  selectName,
+} from '../../redux/users/selectors';
 import css from '../UserPanel/UserPanel.module.css';
 
 const UserBar = () => {
@@ -11,6 +15,7 @@ const UserBar = () => {
   const [svgPopover, setSvgPopover] = useState('chevron-down');
   const userDataName = useSelector(selectName);
   const userDataAvatar = useSelector(selectAvatar);
+  const isSignedIn = useSelector(selectIsSignedIn);
 
   const togglePopover = () => {
     setIsPopoverOpen(prevState => !prevState);
@@ -28,7 +33,11 @@ const UserBar = () => {
     <div className={css.userPanelContainerBtn}>
       <div className="reactour__userPanelInfo">
         <button className={css.userPanelBtn} onClick={togglePopover}>
-          <span>{userDataName}</span>
+          {isSignedIn ? (
+            <span className={css.userNameSmall}>{userDataName}!</span>
+          ) : (
+            <span className={css.userNameSmall}>User</span>
+          )}
           <img name={userDataName} src={`${userDataAvatar}`} size="40" />
           <Iconsvg className={css.userPanelBtnIcon} iconName={svgPopover} />
         </button>

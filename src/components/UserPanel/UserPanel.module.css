@@ -10,11 +10,31 @@
   .userPanelContainer {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 6px;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 40px;
-    margin-bottom: 49px;
+  }
+}
+.userName {
+  width: 198px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media screen and (min-width: 768px) {
+  .userName {
+    width: 232px;
+  }
+}
+.userNameSmall {
+  max-width: 170px;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media screen and (min-width: 768px) {
+  .userNameSmall {
+    width: 232px;
   }
 }
 .userPanelTitle {
@@ -84,8 +104,14 @@
   /* background-color: #323f47; */
 }
 .userPanelBtnIcon {
-  width: 16px;
-  height: 16px;
+  width: 32px;
+  height: 32px;
+  stroke: white;
+}
+.userPanelBtnIcon:hover,
+.userPanelBtnIcon:focus {
+  scale: 1.2;
+  stroke: var(--accent-color);
 }
 .userPanelBtn span {
   font-weight: 700;
@@ -103,8 +129,8 @@
     /* background-color: #323f47; */
   }
   .userPanelBtnIcon {
-    width: 20px;
-    height: 20px;
+    width: 40px;
+    height: 40px;
   }
   .userPanelBtn span {
     font-weight: 700;

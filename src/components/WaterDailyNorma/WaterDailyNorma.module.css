@@ -6,8 +6,6 @@
   padding: 12px;
   width: 102px;
   height: 54px;
-  margin-top: 78px;
-
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
   background: var(--main-white);
 }
@@ -30,7 +28,6 @@
     padding: 14px 18px;
     width: 129px;
     height: 78px;
-    margin-top: 101px;
   }
   .dailyNorma {
     font-weight: 700;
