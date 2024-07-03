@@ -3,6 +3,10 @@ export const steps = [
     selector: '.first-step',
     content: `Ok, let's start`,
     position: 'right',
+    style: {
+      borderRadius: '15px',
+    },
+    highlightedMaskClassName: 'highlighted-mask',
   },
   {
     selector: '.reactour__userPanelBtn',

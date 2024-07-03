@@ -1,5 +1,4 @@
 import { useTour } from '@reactour/tour';
-import { useRef } from 'react';
 import WaterDailyNorma from '../WaterDailyNorma/WaterDailyNorma';
 import WaterProgressBar from '../WaterProgressBar/WaterProgressBar';
 import css from './WaterMainInfo.module.css';
@@ -7,7 +6,6 @@ import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import Logo from '../Logo/Logo';
 
 const WaterMainInfo = () => {
-  const firstStep = useRef(null);
   const { setIsOpen } = useTour();
 
   return (
@@ -16,23 +14,20 @@ const WaterMainInfo = () => {
         <div className="reactour__Bye">
           <Logo />
         </div>
-        <div ref={firstStep} className="first-step">
-          <button
-            className={`first-step ${css.tour}`}
-            onClick={() => setIsOpen(true)}
-          >
-            App guide
-          </button>
-        </div>
+
+        <button
+          className={`first-step ${css.tour}`}
+          onClick={() => setIsOpen(true)}
+        >
+          App guide
+        </button>
       </div>
 
       <WaterDailyNorma />
-      <div className="reactour__waterPercentage">
-        <WaterProgressBar />
-      </div>
+      <WaterProgressBar />
 
-      <div className="reactour__waterAdd">
-        <div className={css.btnContainer}>
+      <div className={css.btnContainer}>
+        <div className="reactour__waterAdd">
           <AddWaterBtn
             buttonStyle={css.contBtn}
             iconStyle={css.icon}
