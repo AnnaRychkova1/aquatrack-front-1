@@ -21,13 +21,7 @@ const schemaWaterForm = yup.object().shape({
     .test('is-valid-datetime', 'Invalid date and time', isDateTimeValid),
 });
 
-const WaterForm = ({
-  operationType,
-  closeModal,
-  id,
-  myTime,
-  volume,
-}) => {
+const WaterForm = ({ operationType, closeModal, id, myTime, volume }) => {
   const dispatch = useDispatch();
   let initialWaterAmount = operationType === 'edit' ? volume : 50;
   const [number, setNumber] = useState(initialWaterAmount);
@@ -94,7 +88,11 @@ const WaterForm = ({
     <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>
       <p className={css.amountWaterLabel}>Amount of water:</p>
       <div className={css.btnBox}>
-        <button className={css.btnReduce} onClick={decrementNumber}>
+        <button
+          className={css.btnReduce}
+          type="button"
+          onClick={decrementNumber}
+        >
           <Iconsvg
             // width="24"
             // height="24"
@@ -103,7 +101,7 @@ const WaterForm = ({
           />
         </button>
         <span className={css.numberMl}>{number} ml</span>
-        <button className={css.btnZoom} onClick={incrementNumber}>
+        <button className={css.btnZoom} type="button" onClick={incrementNumber}>
           <Iconsvg
             // width="24"
             // height="24"
@@ -135,9 +133,3 @@ const WaterForm = ({
 };
 
 export default WaterForm;
-
-// <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-//   <rect x="0.75" y="0.75" width="38.5" height="38.5" rx="19.25" stroke="#323F47" stroke-width="1.5" />
-//   <path d="M20 12.8572V27.1429" stroke="#323F47" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-//   <path d="M12.8569 20H27.1426" stroke="#323F47" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-// </svg>
