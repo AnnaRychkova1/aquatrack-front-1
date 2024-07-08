@@ -9,6 +9,7 @@ import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
 import Notification from '../Notification/Notification';
 import css from './SignUpForm.module.css';
+import GoogleBtn from '../GoogleBtn/GoogleBtn';
 
 const schema = yup.object().shape({
   email: yup
@@ -155,6 +156,9 @@ const SignUpForm = () => {
             Sign Up
           </button>
         </form>
+
+        <GoogleBtn type="Up" />
+
         <p className={css.description}>
           Already have an account?&nbsp;
           <Link className={css.link} to={'/signin'}>

@@ -8,6 +8,7 @@ import { logIn } from '../../redux/users/operations';
 import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
 import css from './SignInForm.module.css';
+import GoogleBtn from '../GoogleBtn/GoogleBtn';
 
 const schema = yup.object().shape({
   email: yup
@@ -105,6 +106,9 @@ const SignInForm = () => {
             Sign In
           </button>
         </form>
+
+        <GoogleBtn type="Up" />
+
         <p className={css.description}>
           Don’t have an account?&nbsp;
           <NavLink className={css.link} to={'/signup'}>
