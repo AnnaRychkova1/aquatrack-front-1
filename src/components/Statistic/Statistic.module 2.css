@@ -1,0 +1,16 @@
+.customTooltip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 48px;
+    border-radius: 15px;
+    background-color: #FFFFFF;
+}
+
+.water {
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 22px;
+    color: var(--main-text);
+}
