@@ -22,6 +22,15 @@ export const requestLogout = async token => {
   return data;
 };
 
+//Google
+export const requestGoogleLogin = async formData => {
+  const { data } = await instance.get('/users/google', {
+    params: formData,
+  });
+  setToken(data.token);
+  return data;
+};
+
 // Verification Email
 export const requestSendVerify = async (verificationToken, formData) => {
   const { data } = await instance.get(
