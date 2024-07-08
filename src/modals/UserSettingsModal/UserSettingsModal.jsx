@@ -3,11 +3,7 @@ import UniversalModal from '../Modal/Modal';
 import css from './UserSettingsModal.module.css';
 const UserSettingsModal = ({ isOpen, closeModal, closePopover }) => {
   return (
-    <UniversalModal
-      isOpen={isOpen}
-      closeModal={closeModal}
-      className={css.settingsModal}
-    >
+    <UniversalModal isOpen={isOpen} closeModal={closeModal}>
       <div className={css.settingsWrapper}>
         <div className={css.settingsScroll}>
           <h2 className={css.settingsTitle}>Setting</h2>

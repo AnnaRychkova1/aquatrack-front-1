@@ -83,11 +83,10 @@
 
 .settingsTitle {
   margin-bottom: 20px;
-
+  max-width: 120px;
   font-weight: 700;
   font-size: 20px;
   line-height: 120%;
-
   letter-spacing: -0.01em;
   color: #323f47;
 }
