@@ -9,14 +9,12 @@ const UserSettingsModal = ({ isOpen, closeModal, closePopover }) => {
       className={css.settingsModal}
     >
       <div className={css.settingsWrapper}>
-        <div className={css.scrollContainer}>
-          <div className={css.settingsScroll}>
-            <h2 className={css.settingsTitle}>Setting</h2>
-            <UserSettingsForm
-              closeModal={closeModal}
-              closePopover={closePopover}
-            />
-          </div>
+        <div className={css.settingsScroll}>
+          <h2 className={css.settingsTitle}>Setting</h2>
+          <UserSettingsForm
+            closeModal={closeModal}
+            closePopover={closePopover}
+          />
         </div>
       </div>
     </UniversalModal>
