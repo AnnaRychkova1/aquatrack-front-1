@@ -34,6 +34,9 @@
   border: none;
   cursor: pointer;
   padding: 0px;
+  transition-property: stroke;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 
 .modalCloseButton:hover .iconClose {

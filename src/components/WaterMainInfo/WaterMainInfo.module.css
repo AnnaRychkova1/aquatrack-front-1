@@ -124,6 +124,9 @@
   stroke-linecap: round;
   margin-right: 6px;
   transform: scale(1.42);
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 
 .textBtn {
@@ -135,6 +138,9 @@
   text-wrap: nowrap;
   color: var(--main-white);
   background-color: var(--main-text);
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 
 .contBtn:hover .icon,

@@ -37,8 +37,10 @@
   width: 20px;
   height: 24px;
   margin-left: 12px;
-  stroke: #A9A9A9;
-
+  stroke: #a9a9a9;
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 
 .activeIcon {
@@ -47,6 +49,9 @@
   height: 24px;
   margin-left: 12px;
   stroke: var(--main-text);
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 
 .icon:hover,
@@ -58,11 +63,10 @@
 }
 
 @media only screen and (min-width: 768px) {
-
   .wrapper {
-      max-width: 640px;
-      height: 361px;
-    }
+    max-width: 640px;
+    height: 361px;
+  }
 
   .header {
     width: 100%;
@@ -90,10 +94,8 @@
 }
 
 @media only screen and (min-width: 1440px) {
-
   .wrapper {
-      width: 608px;
-      height: 361px;
+    width: 608px;
+    height: 361px;
   }
 }
-
