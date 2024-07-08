@@ -3,6 +3,7 @@ import {
   userRegister,
   logIn,
   logOut,
+  loginGoogle,
   uploadUserAvatar,
   updateUserProfile,
   getCurrentUser,
@@ -63,6 +64,16 @@ const authSlice = createSlice({
         }
         state.isLoading = false;
       })
+
+      // LOGIN WITH GOOGLE
+      .addCase(loginGoogle.pending, handlePending)
+      .addCase(loginGoogle.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+        state.isSignedIn = true;
+      })
+      .addCase(loginGoogle.rejected, handleRejected)
 
       // CURRENT
       .addCase(getCurrentUser.pending, state => {
