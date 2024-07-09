@@ -83,6 +83,9 @@
 .input:focus {
   border: 1px solid var(--accent-color);
   color: inherit;
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 
 .button {
@@ -97,11 +100,14 @@
   margin-top: 16px;
   cursor: pointer;
   opacity: 0px;
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 
 .button:hover,
 .button:focus {
-  background-color: var(--accent-color);
+  background-color: #87d28d;
 }
 
 .description {

@@ -30,7 +30,9 @@
   line-height: 150%;
   letter-spacing: -0.01em;
   color: #2f2f2f;
-  transition: all 250ms;
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 .settingsAvatarLabel:hover {
   color: #6e6e6e;
@@ -42,6 +44,9 @@
   width: 20px;
   height: 21px;
   fill: #2f2f2f;
+  transition-property: fill;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 .iconUpload:hover {
   fill: #6e6e6e;
@@ -473,7 +478,9 @@ input[type='number']::-webkit-inner-spin-button {
   border: none;
   background-color: #9be1a0;
   border-radius: 30px;
-  transition: all 250ms;
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 @media screen and (min-width: 768px) {
   .settingsButton {

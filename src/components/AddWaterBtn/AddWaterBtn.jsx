@@ -1,7 +1,4 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { isSameDay } from 'date-fns';
-import { selectDate } from '../../redux/date/selectors';
 import WaterModal from '../../modals/WaterModal/WaterModal';
 import Iconsvg from '../Icon/Icon';
 // import css from './AddWaterBtn.module.css';
@@ -11,7 +8,7 @@ const AddWaterBtn = ({ buttonStyle, iconStyle, textStyle }) => {
 
   const openAddWaterModal = () => setIsAddWaterModalOpen(true);
   const closeAddWaterModal = () => setIsAddWaterModalOpen(false);
-  const storeDate = useSelector(selectDate);
+
   const operationType = 'add';
   // const isEditable = isSameDay(new Date(), storeDate);
   const isEditable = true;

@@ -122,6 +122,9 @@
   width: 32px;
   height: 32px;
   stroke: white;
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 .userPanelBtnIcon:hover,
 .userPanelBtnIcon:focus {
@@ -192,7 +195,9 @@
   line-height: 149%;
   color: #323f47;
   border: none;
-  transition: all 250ms;
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 @media screen and (min-width: 768px) {
   .userPopoverBtn {
@@ -207,7 +212,9 @@
     line-height: 149%;
     color: #323f47;
     border: none;
-    transition: all 250ms;
+    transition-property: all;
+    transition-duration: 250ms;
+    transition-timing-function: ease;
   }
 }
 .userPopoverBtn:hover {
