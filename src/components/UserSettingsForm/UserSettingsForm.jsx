@@ -34,9 +34,7 @@ const UserSettingsSchema = Yup.object().shape({
     .required('Water intake is required!')
     .typeError('The rate of water drink should be a number!')
     .min(0, 'Water intake must be a positive number!'),
-  gender: Yup.string()
-    // .required('Gender is required!')
-    .oneOf(['woman', 'man'], 'Invalid gender selection!'),
+  gender: Yup.string().oneOf(['woman', 'man'], 'Invalid gender selection!'),
   avatarURL: Yup.mixed(),
 });
 
@@ -56,7 +54,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
   const [savedAvatarURL, setSavedAvatarURL] = useState(userDataAvatar);
   const [avatarFile, setAvatarFile] = useState(null);
   const userDataEmail = useSelector(selectEmail);
-  const [calculatedWater, setCalculatedWater] = useState(userDataWaterDrink); 
+  const [calculatedWater, setCalculatedWater] = useState(userDataWaterDrink);
 
   const {
     register,
@@ -71,7 +69,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
       email: userDataEmail,
       weight: userDataWeight,
       activeTimeSports: userDataTimeSports,
-      waterDrink: userDataWaterDrink, 
+      waterDrink: userDataWaterDrink,
       gender: userDataGender,
       avatarURL: userDataAvatar,
     },
@@ -80,7 +78,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
   const weight = watch('weight');
   const activeTime = watch('activeTimeSports');
   const gender = watch('gender');
-  const waterDrink = watch('waterDrink'); 
+  const waterDrink = watch('waterDrink');
 
   useEffect(() => {
     if (weight && activeTime && gender) {
@@ -91,7 +89,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
         waterDrink = Math.max(weight * 0.04 + activeTime * 0.6, 0);
       }
       setValue('waterDrink', waterDrink.toFixed(1));
-      setCalculatedWater(waterDrink.toFixed(1)); 
+      setCalculatedWater(waterDrink.toFixed(1));
     }
   }, [weight, activeTime, gender, setValue]);
 
@@ -99,15 +97,11 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
     const file = e.target.files[0];
     if (file) {
       const preview = URL.createObjectURL(file);
-
       setAvatarPreview(preview);
-
       setValue('avatarURL', file);
       setAvatarFile(file);
       const formData = new FormData();
-
       formData.append('avatar', file);
-      //dispatch(uploadUserAvatar(file));
       setSavedAvatarURL(formData);
     }
   };
@@ -127,7 +121,6 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
     if (avatarFile) {
       await dispatch(uploadUserAvatar(savedAvatarURL));
     }
-
     closeModal();
     closePopover();
   };
@@ -159,7 +152,6 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
         </label>
         {errors.avatar && <span>{errors.avatar.message}</span>}
       </div>
-
       <div className={css.settingsFormContent}>
         <div className={css.settingsFormData}>
           <div className={css.settingsGenders}>
@@ -218,7 +210,6 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
               )}
             </label>
           </div>
-
           <div className={css.settingsDailyNorma}>
             <p className={css.settingsDailyNormaTitle}>My daily norma</p>
             <div className={css.settingsDailyNormaEquations}>
@@ -279,20 +270,21 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
           <div className={css.settingsLitersParams}>
             <p className={css.settingsLitersRequired}>
               The required amount of water in liters per day:
-              <span>{calculatedWater} L</span> 
+              <span>{calculatedWater} L</span>
             </p>
             <label className={css.settingsLiters}>
               <span className={css.settingsLitersTitle}>
                 Write down how much water you will drink:
               </span>
               <input
-                value={calculatedWater} 
                 className={`${css.settingsLitersText} ${
                   errors.waterDrink ? css.error : ''
                 }`}
                 type="number"
                 step="any"
                 {...register('waterDrink')}
+                onChange={e => setCalculatedWater(e.target.value)}
+                value={calculatedWater}
               />
               {errors.waterDrink && (
                 <span className={css.errors}>{errors.waterDrink.message}</span>
@@ -310,7 +302,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
 
 export default UserSettingsForm;
 
-/**======================================================== */
+/**======================початковий код================================== */
 // import { useForm } from 'react-hook-form';
 // import { yupResolver } from '@hookform/resolvers/yup';
 // import * as Yup from 'yup';
