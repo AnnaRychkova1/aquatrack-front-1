@@ -9,8 +9,6 @@ const GoogleBtn = ({ type, className }) => {
   return (
     <a
       className={`${style.googleBtn} ${className}`}
-      //href={`${BASE_URL}/api/users/google`}
-
       href="https://aquatrack-back-1.onrender.com/api/users/google"
       target="_blank"
       rel="noopener noreferrer"
