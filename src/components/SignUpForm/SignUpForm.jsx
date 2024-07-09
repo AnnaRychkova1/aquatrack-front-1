@@ -50,7 +50,9 @@ const SignUpForm = () => {
   const handleFocus = fieldName => clearErrors(fieldName);
 
   const onSubmit = data => {
-    const { repeatPassword, ...userData } = data;
+    const { 
+      // repeatPassword,
+       ...userData } = data;
     dispatch(userRegister(userData));
     reset();
     setFormData({
