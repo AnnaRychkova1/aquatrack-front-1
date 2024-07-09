@@ -29,6 +29,7 @@ const SignInForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    clearErrors,
   } = useForm({
     resolver: yupResolver(schema),
     mode: 'onBlur',
@@ -37,6 +38,8 @@ const SignInForm = () => {
       password: '',
     },
   });
+
+  const handleFocus = fieldName => clearErrors(fieldName);
 
   const onSubmit = data => {
     dispatch(logIn(data));
@@ -62,6 +65,7 @@ const SignInForm = () => {
               })}
               placeholder="Enter your email"
               autoComplete="on"
+              onFocus={() => handleFocus('email')}
             />
             {errors.email && (
               <span className={css.errors}>{errors.email.message}</span>
@@ -74,6 +78,7 @@ const SignInForm = () => {
               type={showPassword ? 'text' : 'password'}
               {...register('password')}
               placeholder="Enter your password"
+              onFocus={() => handleFocus('password')}
             />
             {errors.password && (
               <span className={css.errors}>{errors.password.message}</span>
