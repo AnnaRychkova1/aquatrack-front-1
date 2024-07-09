@@ -33,11 +33,13 @@
 
 .icon {
   stroke: #323f47;
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 
 .icon:hover,
 .icon:focus {
-  transition: transform 0.25s;
   transform: scale(1.2);
 }
 

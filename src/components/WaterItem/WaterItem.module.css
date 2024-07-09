@@ -63,8 +63,7 @@
   transition-timing-function: ease;
 }
 
-.button:hover .waterButtonSvg,
-.button:focus .waterButtonSvg {
+.button:hover .waterButtonSvg {
   stroke: var(--accent-color);
 }
 

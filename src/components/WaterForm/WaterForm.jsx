@@ -59,6 +59,7 @@ const WaterForm = ({ operationType, closeModal, id, myTime, volume }) => {
   }, [operationType]);
 
   const dateString = useSelector(selectDate);
+
   const date = new Date(dateString);
 
   const formattedDate = date.toISOString().split('T')[0];

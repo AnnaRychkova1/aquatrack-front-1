@@ -79,12 +79,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #f0eff4;
-  border-radius: 6px;
+  background-color: #f0eff4; /* Цвет ползунка */
+  border-radius: 6px; /* Скругление углов ползунка */
   border: 3px solid #f0eff4;
   transition-property: background-color, border;
   transition-duration: 250ms;
-  transition-timing-function: ease;
+  transition-timing-function: ease; /* Цвет и ширина рамки ползунка, используйте цвет вашего модального окна */
 }
 
 ::-webkit-scrollbar-thumb:hover {
