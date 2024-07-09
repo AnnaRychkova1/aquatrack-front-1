@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { userRegister } from '../../redux/users/operations';
 import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
-import Notification from '../Notification/Notification';
+// import Notification from '../Notification/Notification';
 import css from './SignUpForm.module.css';
 
 const schema = yup.object().shape({
@@ -40,14 +40,14 @@ const SignUpForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-    clearErrors, // Додано
+    clearErrors, 
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: formData,
     mode: 'onBlur',
   });
 
-  const handleFocus = fieldName => clearErrors(fieldName); // Додано
+  const handleFocus = fieldName => clearErrors(fieldName);
 
   const onSubmit = data => {
     const { repeatPassword, ...userData } = data;
@@ -79,7 +79,7 @@ const SignUpForm = () => {
                 setFormData({ ...formData, email: e.target.value })
               }
               value={formData.email}
-              onFocus={() => handleFocus('email')} // Додано
+              onFocus={() => handleFocus('email')}
             />
             {errors.email && (
               <span className={css.errors}>{errors.email.message}</span>
@@ -96,7 +96,7 @@ const SignUpForm = () => {
                 setFormData({ ...formData, password: e.target.value })
               }
               value={formData.password}
-              onFocus={() => handleFocus('password')} // Додано
+              onFocus={() => handleFocus('password')} 
             />
             {errors.password && (
               <span className={css.errors}>{errors.password.message}</span>
@@ -125,7 +125,7 @@ const SignUpForm = () => {
                 setFormData({ ...formData, repeatPassword: e.target.value })
               }
               value={formData.repeatPassword}
-              onFocus={() => handleFocus('repeatPassword')} // Додано
+              onFocus={() => handleFocus('repeatPassword')} 
             />
             {errors.repeatPassword && (
               <span className={css.errors}>
