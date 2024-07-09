@@ -1,3 +1,11 @@
+.settingModal {
+  margin-top: 80px;
+}
+
+/* .settingModal > button {
+  z-index: 1005;
+} */
+
 .settingsWrapper {
   margin: 0;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
@@ -74,6 +82,9 @@
   background-color: #f0eff4;
   border-radius: 6px;
   border: 3px solid #f0eff4;
+  transition-property: background-color, border;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {

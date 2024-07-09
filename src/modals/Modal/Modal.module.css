@@ -21,7 +21,7 @@
   border-radius: 15px;
   background-color: var(--main-white);
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-  max-height: 85%;
+  max-height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -34,6 +34,7 @@
   border: none;
   cursor: pointer;
   padding: 0px;
+  z-index: 1005;
 }
 
 .modalCloseButton:hover .iconClose {

@@ -78,7 +78,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
   const weight = watch('weight');
   const activeTime = watch('activeTimeSports');
   const gender = watch('gender');
-  const waterDrink = watch('waterDrink');
+  // const waterDrink = watch('waterDrink');
 
   useEffect(() => {
     if (weight && activeTime && gender) {
