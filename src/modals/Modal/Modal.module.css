@@ -21,8 +21,8 @@
   border-radius: 15px;
   background-color: var(--main-white);
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-  max-height: 80vh; /* Обмеження висоти модального вікна */
-  overflow-y: auto; /* Прокручування вмісту модального вікна*/
+  max-height: 85%;
+  overflow-y: auto;
   overflow-x: hidden;
 }
 
