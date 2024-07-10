@@ -34,19 +34,19 @@ export const steps = [
   },
   {
     selector: '.reactour__waterCardList',
-    content: `This block contains records of water consumed during the day`,
+    content: `This block contains records of water consumed during the day. Here, you can also edit and delete a record.`,
     position: 'bottom',
   },
-  {
-    selector: '.reactour__waterEditCard',
-    content: `Click here to edit record`,
-    position: 'top',
-  },
-  {
-    selector: '.reactour__waterDeleteCard',
-    content: `Click here to delete record`,
-    position: 'bottom',
-  },
+  // {
+  //   selector: '.reactour__waterEditCard',
+  //   content: `Click here to edit record`,
+  //   position: 'top',
+  // },
+  // {
+  //   selector: '.reactour__waterDeleteCard',
+  //   content: `Click here to delete record`,
+  //   position: 'bottom',
+  // },
   {
     selector: '.reactour__waterMonthInfo',
     content: `This block contains monthly information. You can view the percentage of daily norms in calendar format`,
