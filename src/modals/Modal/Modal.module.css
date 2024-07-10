@@ -17,7 +17,7 @@
 
 .modalContent {
   position: relative;
-  width: fit-content;
+  /* width: fit-content; */
   border-radius: 15px;
   background-color: var(--main-white);
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
