@@ -1,6 +1,7 @@
 .wrapper {
   background-color: var(--main-white);
-  max-width: 343px;
+  max-width: 344px;
+  min-width: 288px;
   padding: 40px 20px;
   border-radius: 15px;
   width: 100%;
@@ -29,7 +30,8 @@
 
 @media (min-width: 768px) {
   .wrapper {
-    max-width: 518px;
+    max-width: 100%;
+    width: 518px;
     padding: 40px;
   }
 
