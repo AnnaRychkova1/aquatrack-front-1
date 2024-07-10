@@ -58,6 +58,67 @@
   flex-direction: column;
   gap: 24px;
 }
+
+.inputForm {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  color: #2f2f2f;
+  padding: 14px 16px;
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  outline: none;
+  transition: all 300ms ease-in-out;
+}
+
+.inputForm:hover,
+.inputForm:focus {
+  border-color: var(--accent-color);
+}
+
+.settingsButton {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  color: #323f47;
+  align-self: flex-start;
+  padding: 14px 40px;
+  border: none;
+  background-color: #9be1a0;
+  border-radius: 30px;
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+
+.settingsButton:hover {
+  background-color: #87d28d;
+}
+.settingsButton:active {
+  background-color: #e6e6e6;
+}
+
+.errors {
+  margin-top: 5px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: #ef5050;
+  position: absolute;
+  top: 78px;
+  width: 100%;
+}
+
+.error {
+  border-color: #ef5050;
+  color: #ef5050;
+}
+
 @media screen and (min-width: 768px) {
   .settingForm {
     font-weight: 700;
@@ -113,6 +174,7 @@
   letter-spacing: -0.01em;
   color: #2f2f2f;
 }
+
 @media screen and (min-width: 768px) {
   .settingsGenderText {
     font-size: 16px;
@@ -151,7 +213,7 @@
 .settingsUser {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 24px;
   justify-content: center;
   width: 100%;
 }
@@ -159,7 +221,6 @@
   .settingsUser {
     display: flex;
     flex-direction: column;
-    gap: 14px;
     justify-content: center;
     max-width: 400px;
   }
@@ -185,17 +246,7 @@
     line-height: 133%;
   }
 }
-.settingsUserText {
-  font-family: Poppins;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 129%;
-  letter-spacing: -0.01em;
-  color: #2f2f2f;
-  padding: 14px 16px;
-  border: 1px solid rgba(47, 47, 47, 0.15);
-  border-radius: 15px;
-}
+
 @media screen and (min-width: 768px) {
   .settingsUserText {
     font-size: 16px;
@@ -203,15 +254,7 @@
     padding: 16px 16px;
   }
 }
-.settingsUserText:focus {
-  border: 1px solid rgba(47, 47, 47, 0.2);
-  border-radius: 15px;
-  outline: none;
-}
-.settingsUserText:active {
-  border: 1px solid rgba(47, 47, 47, 0.4);
-  border-radius: 15px;
-}
+
 .settingsDailyNorma {
   display: flex;
   flex-direction: column;
@@ -334,7 +377,7 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
-  gap: 14px;
+  gap: 24px;
 }
 .settingsParam {
   display: flex;
@@ -355,17 +398,7 @@
     line-height: 150%;
   }
 }
-.settingsParamText {
-  font-family: Poppins;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 129%;
-  letter-spacing: -0.01em;
-  color: #2f2f2f;
-  padding: 14px 16px;
-  border: 1px solid rgba(47, 47, 47, 0.15);
-  border-radius: 15px;
-}
+
 @media screen and (min-width: 768px) {
   .settingsParamText {
     font-size: 16px;
@@ -373,15 +406,7 @@
     padding: 16px 16px;
   }
 }
-.settingsParamText:focus {
-  border: 1px solid rgba(47, 47, 47, 0.2);
-  border-radius: 15px;
-  outline: none;
-}
-.settingsParamText:active {
-  border: 1px solid rgba(47, 47, 47, 0.4);
-  border-radius: 15px;
-}
+
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -441,17 +466,7 @@ input[type='number']::-webkit-inner-spin-button {
     line-height: 133%;
   }
 }
-.settingsLitersText {
-  font-family: Poppins;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 129%;
-  letter-spacing: -0.01em;
-  color: #2f2f2f;
-  padding: 14px 16px;
-  border: 1px solid rgba(47, 47, 47, 0.15);
-  border-radius: 15px;
-}
+
 @media screen and (min-width: 768px) {
   .settingsLitersText {
     font-size: 16px;
@@ -459,30 +474,7 @@ input[type='number']::-webkit-inner-spin-button {
     padding: 16px 16px;
   }
 }
-.settingsLitersText:focus {
-  border: 1px solid rgba(47, 47, 47, 0.2);
-  border-radius: 15px;
-  outline: none;
-}
-.settingsLitersText:active {
-  border: 1px solid rgba(47, 47, 47, 0.4);
-  border-radius: 15px;
-}
-.settingsButton {
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 129%;
-  letter-spacing: -0.01em;
-  color: #323f47;
-  align-self: flex-start;
-  padding: 14px 40px;
-  border: none;
-  background-color: #9be1a0;
-  border-radius: 30px;
-  transition-property: all;
-  transition-duration: 250ms;
-  transition-timing-function: ease;
-}
+
 @media screen and (min-width: 768px) {
   .settingsButton {
     padding: 16px 50px;
@@ -490,27 +482,4 @@ input[type='number']::-webkit-inner-spin-button {
     font-size: 16px;
     line-height: 150%;
   }
-}
-.settingsButton:hover {
-  background-color: #87d28d;
-}
-.settingsButton:active {
-  background-color: #e6e6e6;
-}
-
-.errors {
-  margin-top: 5px;
-  font-size: 12px;
-  line-height: 18px;
-  letter-spacing: -0.01em;
-  text-align: left;
-  color: #ef5050;
-  position: absolute;
-  top: 85px;
-  width: 100%;
-}
-
-.error {
-  border-color: #ef5050;
-  color: #ef5050;
 }
