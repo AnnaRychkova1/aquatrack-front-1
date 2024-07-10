@@ -9,7 +9,8 @@ const UniversalModal = ({
   children,
   isOpen,
   closeModal,
-  additionalClassName,
+  addModalClassName,
+  addOverlayClassName,
 }) => {
   useEffect(() => {
     const handleEscape = event => {
@@ -32,13 +33,24 @@ const UniversalModal = ({
     };
   }, [isOpen, closeModal]);
 
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = 'unset';
+  //   }
+  //   return () => {
+  //     document.body.style.overflow = 'unset';
+  //   };
+  // }, [isOpen]);
+
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
       // className={css.modalContent}
-      className={`${css.modalContent} ${additionalClassName}`}
-      overlayClassName={css.modalBackdrop}
+      className={`${css.modalContent} ${addModalClassName}`}
+      overlayClassName={`${css.modalBackdrop} ${addOverlayClassName}`}
       shouldCloseOnOverlayClick={true}
 
       // contentLabel="Example Modal"

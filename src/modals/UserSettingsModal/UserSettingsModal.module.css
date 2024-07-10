@@ -1,27 +1,68 @@
-.settingModal {
-  margin-top: 80px;
+.settingOverlay {
+  padding-top: 80px;
+  /* padding-bottom: 160px; */
+  overflow: auto;
+  /* height: calc(100vh - 80px); */
+  /* height: fit-content; */
 }
 
-/* .settingModal > button {
+.settingModal {
+  max-height: 100%;
+  /* height: calc(100vh - 80px); */
+  /* height: fit-content; */
+  display: flex;
+  flex-direction: column;
+  /* overflow-y: auto; */
+  /* background-color: aqua; */
+  /* border-radius: 0;
+  background-color: transparent; */
+
+  /* height: 100%; */
+  /* height: calc(100vh - 64px);  */
+
+  /* position: relative;
+  width: fit-content;
+  
+  background-color: var(--main-white);
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1); */
+}
+
+.settingModal > button {
   z-index: 1005;
-} */
+  right: 13px;
+}
 
 .settingsWrapper {
   margin: 0;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
   background: #ffffff;
-  padding: 40px 7px 20px 20px;
-  max-width: 335px;
-  min-width: 280px;
+  padding: 40px 13px 20px 20px;
+  max-width: 343px;
+  min-width: 288px;
   width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  /* overflow-y: auto; */
+  /* overflow-y: auto;
+  background-color: aqua; */
 }
 
-.settingsScroll {
+/* .scrollContainer {
+  position: relative; */
+/* position: absolute; */
+/* height: 100%; */
+/* overflow-y: scroll; */
+/* overflow-y: scroll; */
+/* } */
+
+/* .settingsScroll {
+  height: 90%;
+  overflow-y: auto;
   scroll-padding-left: 7px;
   scrollbar-color: inherit;
   position: relative;
-}
-.settingsScroll::-webkit-scrollbar-button {
+} */
+/* .settingsScroll::-webkit-scrollbar-button {
   display: none;
 }
 .settingsScroll::-webkit-scrollbar {
@@ -32,29 +73,29 @@
 .settingsScroll::-webkit-scrollbar-track {
   background-color: var(--main-white);
   border-radius: 30px;
-}
-.settingsScroll::-webkit-scrollbar-track {
+} */
+/* .settingsScroll::-webkit-scrollbar-track {
   background: #962626;
   border-radius: 0;
-}
-.settingsScroll::-webkit-scrollbar-thumb {
+} */
+/* .settingsScroll::-webkit-scrollbar-thumb {
   background-color: var(--background-color);
   border-radius: 30px;
-}
+} */
 
 @media screen and (min-width: 768px) {
   .settingsWrapper {
-    padding: 40px 16px 40px 40px;
+    padding: 40px 33px 40px 40px;
     margin: 0;
     max-width: 100%;
     width: 648px;
   }
-  .settingsScroll {
+  /* .settingsScroll {
     scroll-padding-left: 16px;
   }
   .settingsScroll::-webkit-scrollbar {
     width: 8px;
-  }
+  } */
 }
 @media screen and (min-width: 1440px) {
   .settingsWrapper {
@@ -76,6 +117,7 @@
 ::-webkit-scrollbar-track {
   background: inherit;
   border-radius: 6px;
+  margin: 15px 0;
 }
 
 ::-webkit-scrollbar-thumb {
