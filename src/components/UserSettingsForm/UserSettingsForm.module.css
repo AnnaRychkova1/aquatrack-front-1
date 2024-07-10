@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   gap: 40px;
+  z-index: 1005;
 }
 
 .settingsAvatarContainer {

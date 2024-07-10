@@ -17,10 +17,20 @@
 
 .modalContent {
   position: relative;
-  /* width: fit-content; */
+  width: fit-content;
   border-radius: 15px;
   background-color: var(--main-white);
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  min-width: 288px;
+  max-width: 340px;
+  width: calc(100% - 32px);
+}
+
+@media only screen and (min-width: 768px) {
+  .modalContent {
+    max-width: 100%;
+    width: fit-content;
+  }
 }
 
 .modalCloseButton {
