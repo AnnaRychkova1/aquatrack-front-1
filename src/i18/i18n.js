@@ -1,44 +1,29 @@
-import i18n from 'i18next';
+import { use } from 'i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
-import { format as formatDate, isDate } from 'date-fns';
-import { enGB, uk } from 'date-fns/locale';
 
-const locales = { enGB, uk };
-const currentLanguage = localStorage.getItem('i18nextLng');
+import uk from './uk.json';
+import en from './en.json';
 
-i18n.use(initReactI18next).init({
-  resources: {
-    en: {
-      translation: import('./dictionaries/en/translation.json'),
+const i18n = use(Backend)
+  .use(initReactI18next)
+  .use(LanguageDetector)
+  .init({
+    fallbackLng: 'en',
+    debug: false,
+    resources: {
+      en: {
+        translation: en,
+      },
+      uk: {
+        translation: uk,
+      },
     },
-    uk: {
-      translation: import('./dictionaries/uk/translation.json'),
-    },
-  },
-  fallbackLng: 'en',
-  debug: false,
-  returnObjects: true,
-  whitelist: ['uk', 'en'],
-  keySeparator: '.',
-  interpolation: {
-    escapeValue: false,
-    formatSeparator: ',',
-    format: (value, format, lng) => {
-      if (isDate(value)) {
-        const locale = locales[lng];
+    ns: ['translation'],
+    defaultNS: 'translation',
+  });
 
-        if (format === 'dayMonth')
-          return formatDate(value, 'd MMMM', { locale });
-        if (format === 'monthYear')
-          return formatDate(value, 'MMM, yyyy', { locale });
-
-        return formatDate(value, format, { locale });
-      }
-
-      return value;
-    },
-  },
-  lng: currentLanguage || 'en',
-});
+console.log(i18n);
 
 export default i18n;

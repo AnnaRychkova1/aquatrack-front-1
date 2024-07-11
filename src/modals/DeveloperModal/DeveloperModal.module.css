@@ -1,0 +1,121 @@
+.devOverlay {
+  height: 100%;
+  display: flex;
+  align-items: first baseline;
+  /* padding-top: 76px; */
+  overflow-y: scroll;
+}
+
+/* @media screen and (min-width: 768px) {
+  .devOverlay {
+    
+  }
+} */
+
+.devModal {
+  margin-left: 5px;
+  background-color: #d3f6d3;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(215, 245, 234, 0.7),
+      rgba(133, 243, 188, 0.4)
+    ),
+    url('../../assets/images/devBackground.png');
+  /* url('../../assets/images/dropes.png'); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 20% 40%;
+}
+
+@media screen and (min-width: 768px) {
+  .devModal > button {
+    right: 40px;
+    top: 40px;
+  }
+}
+
+@media (min-resolution: 192dpi) {
+  .devModal {
+    background-image: url('../../assets/images/devBackgroundx2.png');
+  }
+}
+
+.devWrapperModal {
+  margin: 0;
+  padding: 20px 20px 20px 20px;
+  max-width: 340px;
+  min-width: 288px;
+  width: 100%;
+  border-radius: 15px;
+}
+
+@media screen and (min-width: 768px) {
+  .devWrapperModal {
+    padding: 40px 40px 40px 40px;
+    margin: 0;
+    max-width: 100%;
+    width: 720px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .devWrapperModal {
+    width: 920px;
+  }
+}
+
+.devTitle {
+  font-size: 20px;
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+  .devTitle {
+    font-size: 28px;
+    max-width: 400px;
+    margin-bottom: 40px;
+  }
+}
+
+.developersList {
+  display: flex;
+  /* flex-direction: row; */
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px; /* fix */
+}
+
+@media only screen and (min-width: 768px) {
+  .developersList {
+    gap: 32px 20px; /* fix */
+  }
+}
+
+.devItem {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: calc((100% - 20px) / 2);
+  /* height: 180px;  */
+}
+
+@media only screen and (min-width: 768px) {
+  .devItem {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: calc((100% - 40px) / 3);
+    /* height: 100%; */
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .devItem {
+    width: calc((100% - 60px) / 4);
+  }
+}
