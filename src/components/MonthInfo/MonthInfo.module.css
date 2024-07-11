@@ -2,7 +2,7 @@
   background-color: var(--background-color);
   color: var(--main-text);
   max-width: 303px;
-  height: 348px;
+  /* height: 348px; */
 }
 .header {
   display: flex;

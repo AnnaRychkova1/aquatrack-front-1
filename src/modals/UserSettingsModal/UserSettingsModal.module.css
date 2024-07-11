@@ -108,34 +108,34 @@
   }
 }
 
-::-webkit-scrollbar-button {
+.settingsWrapper::-webkit-scrollbar-button {
   display: none;
 }
 
-::-webkit-scrollbar {
+.settingsWrapper::-webkit-scrollbar {
   height: 60px;
   width: 6px;
 }
 
 @media screen and (min-width: 768px) {
-  ::-webkit-scrollbar {
+  .settingsWrapper::-webkit-scrollbar {
     width: 8px;
   }
 }
 
-::-webkit-scrollbar-track {
+.settingsWrapper::-webkit-scrollbar-track {
   background: inherit;
   border-radius: 6px;
   margin: 84px 0 20px 0;
 }
 
 @media screen and (min-width: 768px) {
-  ::-webkit-scrollbar-track {
+  .settingsWrapper::-webkit-scrollbar-track {
     margin: 92px 0 40px 0;
   }
 }
 
-::-webkit-scrollbar-thumb {
+.settingsWrapper::-webkit-scrollbar-thumb {
   background-color: #f0eff4;
   border-radius: 6px;
   border: 3px solid #f0eff4;
@@ -144,7 +144,7 @@
   transition-timing-function: ease;
 }
 
-::-webkit-scrollbar-thumb:hover {
+.settingsWrapper::-webkit-scrollbar-thumb:hover {
   background-color: #a8a7ab;
   border: 3px solid #a8a7ab;
 }
