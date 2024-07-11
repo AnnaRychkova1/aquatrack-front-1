@@ -16,11 +16,15 @@ import {
   updateUserProfile,
   uploadUserAvatar,
 } from '../../redux/users/operations';
+
 const UserSettingsSchema = Yup.object().shape({
-  name: Yup.string().max(10, 'Name must be at most 10 characters!'),
+  name: Yup.string()
+    .min(3, 'Enter at least 3 characters')
+    .max(10, 'Enter a maximum of 10 characters')
+    .matches(/^[A-Za-z]+$/, 'Enter only letters'),
   email: Yup.string()
-    .required('Email is required!')
-    .email('Must be a valid email!'),
+    .email('Please enter valid email')
+    .required('Email field is required'),
   weight: Yup.number()
     .transform(value => (isNaN(value) ? 0 : value))
     .nullable()
@@ -33,11 +37,10 @@ const UserSettingsSchema = Yup.object().shape({
     .required('Water intake is required!')
     .typeError('The rate of water drink should be a number!')
     .min(0, 'Water intake must be a positive number!'),
-  gender: Yup.string()
-    // .required('Gender is required!')
-    .oneOf(['woman', 'man'], 'Invalid gender selection!'),
+  gender: Yup.string().oneOf(['woman', 'man'], 'Invalid gender selection!'),
   avatarURL: Yup.mixed(),
 });
+
 const API_URL = 'https://aquatrack-back-1.onrender.com/api/';
 
 const UserSettingsForm = ({ closeModal, closePopover }) => {
@@ -54,6 +57,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
   const [savedAvatarURL, setSavedAvatarURL] = useState(userDataAvatar);
   const [avatarFile, setAvatarFile] = useState(null);
   const userDataEmail = useSelector(selectEmail);
+  const [calculatedWater, setCalculatedWater] = useState(userDataWaterDrink);
 
   const {
     register,
@@ -61,6 +65,8 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
     setValue,
     watch,
     formState: { errors },
+    trigger,
+    clearErrors,
   } = useForm({
     resolver: yupResolver(UserSettingsSchema),
     defaultValues: {
@@ -68,14 +74,16 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
       email: userDataEmail,
       weight: userDataWeight,
       activeTimeSports: userDataTimeSports,
-      waterDrink: '',
+      waterDrink: userDataWaterDrink,
       gender: userDataGender,
       avatarURL: userDataAvatar,
     },
   });
+
   const weight = watch('weight');
   const activeTime = watch('activeTimeSports');
   const gender = watch('gender');
+  // const waterDrink = watch('waterDrink');
 
   useEffect(() => {
     if (weight && activeTime && gender) {
@@ -86,6 +94,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
         waterDrink = Math.max(weight * 0.04 + activeTime * 0.6, 0);
       }
       setValue('waterDrink', waterDrink.toFixed(1));
+      setCalculatedWater(waterDrink.toFixed(1));
     }
   }, [weight, activeTime, gender, setValue]);
 
@@ -93,18 +102,50 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
     const file = e.target.files[0];
     if (file) {
       const preview = URL.createObjectURL(file);
-
       setAvatarPreview(preview);
-
       setValue('avatarURL', file);
       setAvatarFile(file);
       const formData = new FormData();
-
       formData.append('avatar', file);
-      //dispatch(uploadUserAvatar(file));
       setSavedAvatarURL(formData);
     }
   };
+
+  const handleBlur = () => {
+    trigger('name');
+  };
+  const handleFocus = () => {
+    clearErrors('name');
+  };
+
+  const handleBlurEmail = () => {
+    trigger('email');
+  };
+  const handleFocusEmail = () => {
+    clearErrors('email');
+  };
+
+  const handleBlurWeight = () => {
+    trigger('weight');
+  };
+  const handleFocusWeight = () => {
+    clearErrors('weight');
+  };
+
+  const handleBlurSports = () => {
+    trigger('activeTimeSports');
+  };
+  const handleFocusSports = () => {
+    clearErrors('activeTimeSports');
+  };
+
+  const handleBlurDrink = () => {
+    trigger('waterDrink');
+  };
+  const handleFocusDrink = () => {
+    clearErrors('waterDrink');
+  };
+
 
   const onSubmit1 = async values => {
     const updatedData = {
@@ -121,7 +162,6 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
     if (avatarFile) {
       await dispatch(uploadUserAvatar(savedAvatarURL));
     }
-
     closeModal();
     closePopover();
   };
@@ -153,7 +193,6 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
         </label>
         {errors.avatar && <span>{errors.avatar.message}</span>}
       </div>
-
       <div className={css.settingsFormContent}>
         <div className={css.settingsFormData}>
           <div className={css.settingsGenders}>
@@ -175,12 +214,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
                   }`}
                   type="radio"
                   value="man"
-                  {...register('gender', {
-                    pattern: {
-                      value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                      message: 'Please enter valid gender',
-                    },
-                  })}
+                  {...register('gender')}
                 />
                 <span className={css.settingsGenderText}>Man</span>
               </label>
@@ -192,17 +226,15 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
           <div className={css.settingsUser}>
             <label className={css.settingsUserLabel}>
               <span className={css.settingsUserTitle}>Your name</span>
+
               <input
-                className={`${css.settingsUserText} ${
+                className={`${css.inputForm} ${
                   errors.name ? css.error : ''
                 }`}
                 type="text"
-                {...register('name', {
-                  pattern: {
-                    value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                    message: 'Please enter valid name',
-                  },
-                })}
+                {...register('name')}
+                onBlur={handleBlur}
+                onFocus={handleFocus}
               />
               {errors.name && (
                 <span className={css.errors}>{errors.name.message}</span>
@@ -211,23 +243,19 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
             <label className={css.settingsUserLabel}>
               <span className={css.settingsUserTitle}>Email</span>
               <input
-                className={`${css.settingsUserText} ${
+                className={`${css.inputForm} ${
                   errors.email ? css.error : ''
                 }`}
                 type="email"
-                {...register('email', {
-                  pattern: {
-                    value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                    message: 'Please enter valid email',
-                  },
-                })}
+                {...register('email')}
+                onBlur={handleBlurEmail}
+                onFocus={handleFocusEmail}
               />
               {errors.email && (
                 <span className={css.errors}>{errors.email.message}</span>
               )}
             </label>
           </div>
-
           <div className={css.settingsDailyNorma}>
             <p className={css.settingsDailyNormaTitle}>My daily norma</p>
             <div className={css.settingsDailyNormaEquations}>
@@ -257,16 +285,13 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
                 Your weight in kilograms:
               </span>
               <input
-                className={`${css.settingsParamText} ${
+                className={`${css.inputForm} ${
                   errors.weight ? css.error : ''
                 }`}
                 type="number"
-                {...register('weight', {
-                  pattern: {
-                    value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                    message: 'Please enter valid number',
-                  },
-                })}
+                {...register('weight')}
+                onBlur={handleBlurWeight}
+                onFocus={handleFocusWeight}
               />
               {errors.weight && (
                 <span className={css.errors}>{errors.weight.message}</span>
@@ -277,16 +302,13 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
                 The time of active participation in sports:
               </span>
               <input
-                className={`${css.settingsParamText} ${
+                className={`${css.inputForm} ${
                   errors.activeTimeSports ? css.error : ''
                 }`}
                 type="number"
-                {...register('activeTimeSports', {
-                  pattern: {
-                    value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                    message: 'Please enter valid number',
-                  },
-                })}
+                {...register('activeTimeSports')}
+                onBlur={handleBlurSports}
+                onFocus={handleFocusSports}
               />
               {errors.activeTimeSports && (
                 <span className={css.errors}>
@@ -298,25 +320,23 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
           <div className={css.settingsLitersParams}>
             <p className={css.settingsLitersRequired}>
               The required amount of water in liters per day:
-              <span>{userDataWaterDrink} L</span>
+              <span>{calculatedWater} L</span>
             </p>
             <label className={css.settingsLiters}>
               <span className={css.settingsLitersTitle}>
                 Write down how much water you will drink:
               </span>
               <input
-                defaultValue={userDataWaterDrink}
-                className={`${css.settingsLitersText} ${
+                className={`${css.inputForm} ${
                   errors.waterDrink ? css.error : ''
                 }`}
                 type="number"
                 step="any"
-                {...register('waterDrink', {
-                  pattern: {
-                    value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                    message: 'Please enter valid number',
-                  },
-                })}
+                {...register('waterDrink')}
+                onChange={e => setCalculatedWater(e.target.value)}
+                value={calculatedWater}
+                onBlur={handleBlurDrink}
+                onFocus={handleFocusDrink}
               />
               {errors.waterDrink && (
                 <span className={css.errors}>{errors.waterDrink.message}</span>

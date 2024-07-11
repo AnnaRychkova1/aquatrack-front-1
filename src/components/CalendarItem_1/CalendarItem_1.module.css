@@ -21,7 +21,7 @@
   border-radius: 1.875rem;
   background-color: var(--main-white);
   border: none;
-  transition-property: stroke;
+  transition-property: color, background-color;
   transition-duration: 250ms;
   transition-timing-function: ease;
 }
@@ -40,7 +40,7 @@
   border-radius: 1.875rem;
   background-color: rgba(50, 63, 71, 0.2);
   border: none;
-  transition-property: stroke;
+  transition-property: color, background-color;
   transition-duration: 250ms;
   transition-timing-function: ease;
 }
@@ -58,7 +58,7 @@
   border-radius: 1.875rem;
   background-color: var(--main-text);
   border: none;
-  transition-property: border;
+  transition-property: color, background-color;
   transition-duration: 250ms;
   transition-timing-function: ease;
 }

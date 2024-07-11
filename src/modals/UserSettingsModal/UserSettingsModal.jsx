@@ -1,23 +1,25 @@
+import Iconsvg from '../../components/Icon/Icon';
 import UserSettingsForm from '../../components/UserSettingsForm/UserSettingsForm';
 import UniversalModal from '../Modal/Modal';
 import css from './UserSettingsModal.module.css';
 const UserSettingsModal = ({ isOpen, closeModal, closePopover }) => {
+  const addModalClassName = isOpen ? css.settingModal : '';
+  const addOverlayClassName = isOpen ? css.settingOverlay : '';
   return (
     <UniversalModal
       isOpen={isOpen}
       closeModal={closeModal}
-      className={css.settingsModal}
+      addModalClassName={addModalClassName}
+      addOverlayClassName={addOverlayClassName}
     >
       <div className={css.settingsWrapper}>
-        <div className={css.scrollContainer}>
-          <div className={css.settingsScroll}>
-            <h2 className={css.settingsTitle}>Setting</h2>
-            <UserSettingsForm
-              closeModal={closeModal}
-              closePopover={closePopover}
-            />
-          </div>
+        <div className={css.topContainer}>
+          <h2 className={css.settingsTitle}>Setting</h2>
+          <button className={css.modalCloseButton} onClick={closeModal}>
+            <Iconsvg iconName="close" className={css.iconClose} />
+          </button>
         </div>
+        <UserSettingsForm closeModal={closeModal} closePopover={closePopover} />
       </div>
     </UniversalModal>
   );

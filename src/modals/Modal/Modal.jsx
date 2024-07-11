@@ -5,7 +5,13 @@ import Iconsvg from '../../components/Icon/Icon';
 
 Modal.setAppElement('#root');
 
-const UniversalModal = ({ children, isOpen, closeModal }) => {
+const UniversalModal = ({
+  children,
+  isOpen,
+  closeModal,
+  addModalClassName,
+  addOverlayClassName,
+}) => {
   useEffect(() => {
     const handleEscape = event => {
       if (event.key === 'Escape') {
@@ -27,13 +33,26 @@ const UniversalModal = ({ children, isOpen, closeModal }) => {
     };
   }, [isOpen, closeModal]);
 
+  // useEffect(() => {
+  //   if (isOpen) {
+  //     document.body.style.overflow = 'hidden';
+  //   } else {
+  //     document.body.style.overflow = 'unset';
+  //   }
+  //   return () => {
+  //     document.body.style.overflow = 'unset';
+  //   };
+  // }, [isOpen]);
+
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={closeModal}
-      className={css.modalContent}
-      overlayClassName={css.modalBackdrop}
+      // className={css.modalContent}
+      className={`${css.modalContent} ${addModalClassName}`}
+      overlayClassName={`${css.modalBackdrop} ${addOverlayClassName}`}
       shouldCloseOnOverlayClick={true}
+
       // contentLabel="Example Modal"
     >
       <button className={css.modalCloseButton} onClick={closeModal}>

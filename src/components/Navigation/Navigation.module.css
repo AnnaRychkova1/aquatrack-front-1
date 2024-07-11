@@ -6,7 +6,7 @@
 
 .welcomeButton_tracker:hover,
 .welcomeButton_tracker:focus {
-  background-color: var(--accent-color);
+  background-color: #87d28d;
 }
 
 @media only screen and (min-width: 768px) {
@@ -40,6 +40,9 @@
 
 .welcomeButton_tracker {
   background-color: var(--accent-color);
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 
 .welcomeButton_tracker:hover,
@@ -49,6 +52,9 @@
 
 .welcomeButton_sign {
   border: 1px solid var(--main-text);
+  transition-property: border, color;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 
 .welcomeButton_sign:hover,

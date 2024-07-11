@@ -21,9 +21,16 @@
   border-radius: 15px;
   background-color: var(--main-white);
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
-  max-height: 80vh; /* Обмеження висоти модального вікна */
-  overflow-y: auto; /* Прокручування вмісту модального вікна*/
-  overflow-x: hidden;
+  min-width: 288px;
+  max-width: 340px;
+  width: calc(100% - 32px);
+}
+
+@media only screen and (min-width: 768px) {
+  .modalContent {
+    max-width: 100%;
+    width: fit-content;
+  }
 }
 
 .modalCloseButton {
@@ -34,6 +41,9 @@
   border: none;
   cursor: pointer;
   padding: 0px;
+  transition-property: stroke;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
 }
 
 .modalCloseButton:hover .iconClose {

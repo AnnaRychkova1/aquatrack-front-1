@@ -30,23 +30,28 @@ const WaterList = ({ selectDay }) => {
   // Отримуємо зі стору масив даних
   const waterPortions = useSelector(selectWaterPortion);
 
+  // Сортуємо масив за датою від ранішої до пізнішої
+  const sortedWaterPortions = [...waterPortions].sort(
+    (a, b) => new Date(a.date) - new Date(b.date)
+  );
+
   // Обчислюємо загальну кількість випитої води за день
   useEffect(() => {
-    const totalVolume = waterPortions.reduce((sum, item) => {
+    const totalVolume = sortedWaterPortions.reduce((sum, item) => {
       return sum + item.volume;
     }, 0);
     dispatch(changeTotalDay(totalVolume));
-  }, [dispatch, waterPortions]);
+  }, [dispatch, sortedWaterPortions]);
 
   return (
     <div className="reactour__waterCardList">
       <ul className={css.list}>
-        {waterPortions.length === 0 ? (
+        {sortedWaterPortions.length === 0 ? (
           <li className={css.emptyItem}>
             There is no data for the selected date
           </li>
         ) : (
-          waterPortions.map((waterItem, index) => (
+          sortedWaterPortions.map((waterItem, index) => (
             <li className={css.item} key={`${waterItem._id}-${index}`}>
               <WaterItem
                 id={waterItem._id}
