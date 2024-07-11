@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../redux/users/operations';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
 import css from './SignInForm.module.css';
 
