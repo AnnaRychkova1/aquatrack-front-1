@@ -10,3 +10,12 @@
     margin: 32px 0;
   }
 }
+
+@media (min-width: 1440px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+}
