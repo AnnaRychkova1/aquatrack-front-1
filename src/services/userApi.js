@@ -2,7 +2,9 @@ import instance, { setToken, clearToken } from './instance';
 
 // SignUp
 export const requestRegister = async formData => {
-  const { data } = await instance.post('/users/register', formData);
+  const { email, password } = formData;
+  const newFormData = { email, password };
+  const { data } = await instance.post('/users/register', newFormData);
   return data;
 };
 
