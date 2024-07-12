@@ -42,6 +42,7 @@ const SignInForm = () => {
   const handleFocus = fieldName => clearErrors(fieldName);
 
   const onSubmit = data => {
+    console.log(data);
     dispatch(logIn(data));
     reset();
   };
