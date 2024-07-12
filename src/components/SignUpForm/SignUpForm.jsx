@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux';
 import { userRegister } from '../../redux/users/operations';
 import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
-// import Notification from '../Notification/Notification';
 import css from './SignUpForm.module.css';
+import { useTranslation } from 'react-i18next';
 
 const schema = yup.object().shape({
   email: yup
@@ -26,8 +26,8 @@ const schema = yup.object().shape({
 });
 
 const SignUpForm = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
@@ -40,7 +40,7 @@ const SignUpForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-    clearErrors, 
+    clearErrors,
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: formData,
@@ -50,9 +50,10 @@ const SignUpForm = () => {
   const handleFocus = fieldName => clearErrors(fieldName);
 
   const onSubmit = data => {
-    const { 
+    const {
       // repeatPassword,
-       ...userData } = data;
+      ...userData
+    } = data;
     dispatch(userRegister(userData));
     reset();
     setFormData({
@@ -67,15 +68,15 @@ const SignUpForm = () => {
       <Logo />
 
       <div className={css.formContainer}>
-        <p className={css.title}>Sign Up</p>
+        <p className={css.title}>{t('signupForm.signup')}</p>
         <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-          <label className={css.label}>Email</label>
+          <label className={css.label}>{t('signupForm.email')}</label>
           <div className={css.input_field}>
             <input
               className={`${css.input} ${errors.email ? css.error : ''}`}
               type="email"
               {...register('email')}
-              placeholder="Enter your email"
+              placeholder={t('signupForm.placeholderEmail')}
               autoComplete="on"
               onChange={e =>
                 setFormData({ ...formData, email: e.target.value })
@@ -87,18 +88,18 @@ const SignUpForm = () => {
               <span className={css.errors}>{errors.email.message}</span>
             )}
           </div>
-          <label className={css.label}>Password</label>
+          <label className={css.label}>{t('signupForm.password')}</label>
           <div className={css.input_field}>
             <input
               className={`${css.input} ${errors.password ? css.error : ''}`}
               type={showPassword ? 'text' : 'password'}
               {...register('password')}
-              placeholder="Enter your password"
+              placeholder={t('signupForm.placeholderPassword')}
               onChange={e =>
                 setFormData({ ...formData, password: e.target.value })
               }
               value={formData.password}
-              onFocus={() => handleFocus('password')} 
+              onFocus={() => handleFocus('password')}
             />
             {errors.password && (
               <span className={css.errors}>{errors.password.message}</span>
@@ -114,7 +115,7 @@ const SignUpForm = () => {
               ></use>
             </svg>
           </div>
-          <label className={css.label}>Repeat Password</label>
+          <label className={css.label}>{t('signupForm.repeat')}</label>
           <div className={css.input_field}>
             <input
               className={`${css.input} ${
@@ -122,12 +123,12 @@ const SignUpForm = () => {
               }`}
               type={showPassword ? 'text' : 'password'}
               {...register('repeatPassword')}
-              placeholder="Repeat password"
+              placeholder={t('signupForm.placeholderPasswordRepeat')}
               onChange={e =>
                 setFormData({ ...formData, repeatPassword: e.target.value })
               }
               value={formData.repeatPassword}
-              onFocus={() => handleFocus('repeatPassword')} 
+              onFocus={() => handleFocus('repeatPassword')}
             />
             {errors.repeatPassword && (
               <span className={css.errors}>
@@ -146,13 +147,13 @@ const SignUpForm = () => {
             </svg>
           </div>
           <button className={css.button} type="submit">
-            Sign Up
+            {t('signupForm.signup')}
           </button>
         </form>
         <p className={css.description}>
-          Already have an account?&nbsp;
+          {t('signupForm.haveAccount')}?&nbsp;
           <Link className={css.link} to={'/signin'}>
-            Sign In
+            {t('signupForm.signin')}
           </Link>
         </p>
       </div>
@@ -210,7 +211,6 @@ export default SignUpForm;
 //     defaultValues: formData,
 //     mode: 'onBlur',
 //   });
-
 
 //   const onSubmit = data => {
 //     const { repeatPassword, ...userData } = data;

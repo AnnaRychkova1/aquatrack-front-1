@@ -19,7 +19,7 @@
     "recordDaily": "Записуйте та відстежуйте щоденне споживання води ",
     "waterTracker": "Трекер споживання води",
     "try": "Спробуй трекер",
-    "signin": "Зареєструватися"
+    "signin": "Увійти"
   },
   "adwantagesSection": {
     "our": "Наші",
@@ -33,5 +33,29 @@
       "team": "команда",
       "now": "тепер"
     }
+  },
+  "notFound": {
+    "sorry": "Вибачте, сторінка, яку ви відвідали, не існує!",
+    "back": "На головну"
+  },
+  "signupForm": {
+    "signup": "Зареєструватися",
+    "email": "Електронна пошта",
+    "placeholderEmail": "Введіть свою електронну адресу",
+    "password": "Пароль",
+    "placeholderPassword": "Введіть свій пароль",
+    "repeat": "Повторити пароль",
+    "placeholderPasswordRepeat": "Повторити пароль",
+    "haveAccount": "Вже маєте аккаунт",
+    "signin": "Увійти"
+  },
+  "signinForm": {
+    "signin": "Увійти",
+    "email": "Електронна пошта",
+    "placeholderEmail": "Введіть свою електронну адресу",
+    "password": "Пароль",
+    "placeholderPassword": "Введіть свій пароль",
+    "dontAccount": "Немає аккаунту",
+    "signup": "Зареєструватися"
   }
 }

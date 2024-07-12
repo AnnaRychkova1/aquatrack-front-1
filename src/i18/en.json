@@ -33,5 +33,29 @@
       "team": "team",
       "now": "now"
     }
+  },
+  "notFound": {
+    "sorry": "Sorry, the page you visited does not exist!",
+    "back": "Back home"
+  },
+  "signupForm": {
+    "signup": "Sign Up",
+    "email": "Email",
+    "placeholderEmail": "Enter your email",
+    "password": "Password",
+    "placeholderPassword": "Enter your password",
+    "repeat": "Repeat Password",
+    "placeholderPasswordRepeat": "Repeat password",
+    "haveAccount": "Already have an account",
+    "signin": "Sign In"
+  },
+  "signinForm": {
+    "signin": "Sign In",
+    "email": "Email",
+    "placeholderEmail": "Enter your email",
+    "password": "Password",
+    "placeholderPassword": "Enter your password",
+    "dontAccount": "Don’t have an account",
+    "signup": "Sign Up"
   }
 }

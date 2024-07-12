@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import css from './CountPeople.module.css';
 import { useTranslation } from 'react-i18next';
+import Loader from '../Loader/Loader';
 
 const UserCount = () => {
   const { t } = useTranslation();
@@ -38,7 +39,7 @@ const UserCount = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Loader />;
   if (error) return <p>Error: {error.message}</p>;
 
   return (

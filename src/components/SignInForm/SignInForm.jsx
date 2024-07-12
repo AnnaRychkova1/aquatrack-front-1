@@ -8,6 +8,7 @@ import { logIn } from '../../redux/users/operations';
 import { useState } from 'react';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
 import css from './SignInForm.module.css';
+import { useTranslation } from 'react-i18next';
 
 const schema = yup.object().shape({
   email: yup
@@ -21,6 +22,7 @@ const schema = yup.object().shape({
 });
 
 const SignInForm = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -42,7 +44,6 @@ const SignInForm = () => {
   const handleFocus = fieldName => clearErrors(fieldName);
 
   const onSubmit = data => {
-    console.log(data);
     dispatch(logIn(data));
     reset();
   };
@@ -51,9 +52,9 @@ const SignInForm = () => {
     <div className={css.loginContainer}>
       {<Logo />}
       <div className={css.formContainer}>
-        <h1 className={css.title}>Sign In</h1>
+        <h1 className={css.title}>{t('signinForm.signin')}</h1>
         <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-          <label className={css.label}>Email</label>
+          <label className={css.label}>{t('signinForm.email')}</label>
           <div className={css.input_field}>
             <input
               className={`${css.input} ${errors.email ? css.error : ''}`}
@@ -64,7 +65,7 @@ const SignInForm = () => {
                   message: 'Please enter valid email',
                 },
               })}
-              placeholder="Enter your email"
+              placeholder={t('signinForm.placeholderEmail')}
               autoComplete="on"
               onFocus={() => handleFocus('email')}
             />
@@ -72,13 +73,13 @@ const SignInForm = () => {
               <span className={css.errors}>{errors.email.message}</span>
             )}
           </div>
-          <label className={css.label}>Password</label>
+          <label className={css.label}>{t('signinForm.password')}</label>
           <div className={css.input_field}>
             <input
               className={`${css.input} ${errors.password ? css.error : ''}`}
               type={showPassword ? 'text' : 'password'}
               {...register('password')}
-              placeholder="Enter your password"
+              placeholder={t('signinForm.placeholderPassword')}
               onFocus={() => handleFocus('password')}
             />
             {errors.password && (
@@ -108,13 +109,13 @@ const SignInForm = () => {
           </div>
 
           <button className={css.button} type="submit">
-            Sign In
+            {t('signinForm.signin')}
           </button>
         </form>
         <p className={css.description}>
-          Don’t have an account?&nbsp;
+          {t('signinForm.dontAccount')}?&nbsp;
           <NavLink className={css.link} to={'/signup'}>
-            Sign Up
+            {t('signinForm.signup')}
           </NavLink>
         </p>
       </div>
