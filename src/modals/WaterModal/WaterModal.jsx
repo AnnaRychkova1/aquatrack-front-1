@@ -1,6 +1,7 @@
 import UniversalModal from '../Modal/Modal';
 import WaterForm from '../../components/WaterForm/WaterForm';
 import css from './WaterModal.module.css';
+import { useTranslation } from 'react-i18next';
 
 const WaterModal = ({
   isOpen,
@@ -11,18 +12,19 @@ const WaterModal = ({
   volume,
   myTime,
 }) => {
+  const { t } = useTranslation();
   return (
     <UniversalModal isOpen={isOpen} closeModal={closeModal}>
       <div className={css.wrapper}>
         <h3 className={css.title}>
           {operationType === 'edit'
-            ? 'Edit the entered amount of water'
-            : 'Add water'}
+            ? t('modals.editHeader')
+            : t('modals.addHeader')}
         </h3>
         <p className={css.subtitle}>
           {operationType === 'edit'
-            ? 'Correct entered data:'
-            : 'Choose a value'}
+            ? t('modals.editText')
+            : t('modals.addText')}
         </p>
         <WaterForm
           id={id}

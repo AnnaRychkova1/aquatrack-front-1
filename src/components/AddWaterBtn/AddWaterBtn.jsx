@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import WaterModal from '../../modals/WaterModal/WaterModal';
 import Iconsvg from '../Icon/Icon';
-// import css from './AddWaterBtn.module.css';
+import { useTranslation } from 'react-i18next';
 
 const AddWaterBtn = ({ buttonStyle, iconStyle, textStyle }) => {
+  const { t } = useTranslation();
   const [isAddWaterModalOpen, setIsAddWaterModalOpen] = useState(false);
 
   const openAddWaterModal = () => setIsAddWaterModalOpen(true);
   const closeAddWaterModal = () => setIsAddWaterModalOpen(false);
 
   const operationType = 'add';
-  // const isEditable = isSameDay(new Date(), storeDate);
   const isEditable = true;
   return (
     <>
@@ -27,7 +27,7 @@ const AddWaterBtn = ({ buttonStyle, iconStyle, textStyle }) => {
           iconName="plus_dark"
           className={iconStyle}
         />
-        <span className={textStyle}>Add water</span>
+        <span className={textStyle}>{t('trackerPage.addWater')}</span>
       </button>
       <WaterModal
         isOpen={isAddWaterModalOpen}

@@ -10,8 +10,10 @@ import { changePaginationDate } from '../../redux/date/slice';
 import { selectMonth } from '../../redux/water/selectors';
 import Icon from '../Icon/Icon';
 import css from './MonthInfo.module.css';
+import { useTranslation } from 'react-i18next';
 
 const MonthInfo = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const viewStatistic = useSelector(viewStatistics);
   const waterPortions = useSelector(selectMonth);
@@ -23,7 +25,9 @@ const MonthInfo = () => {
         <div className={css.header}>
           <div className={css.titleHeader}>
             <h3 className={css.title}>
-              {!viewStatistic ? 'Month' : 'Statistics'}
+              {!viewStatistic
+                ? t('trackerPage.month')
+                : t('trackerPage.statistics')}
             </h3>
             <button
               type="button"
@@ -33,7 +37,7 @@ const MonthInfo = () => {
                 dispatch(changePaginationDate(currentDate));
               }}
             >
-              Today
+              {t('trackerPage.today')}
             </button>
           </div>
           <div className={css.pagination}>

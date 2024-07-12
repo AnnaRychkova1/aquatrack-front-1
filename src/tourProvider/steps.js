@@ -1,7 +1,7 @@
-export const steps = [
+export const getSteps = t => [
   {
     selector: '.first-step',
-    content: `Ok, let's start`,
+    content: t('guide.start'),
     position: 'right',
     style: {
       borderRadius: '15px',
@@ -10,23 +10,23 @@ export const steps = [
   },
   {
     selector: '.reactour__userPanelBtn',
-    content: `This is a block of user settings`,
+    content: t('guide.userSettings'),
     position: 'bottom',
   },
   {
     selector: '.reactour__userPanelInfo',
-    content: `Click here to set/change your avatar, gender, name, email, weight, water drink norma`,
+    content: t('guide.userPanelInfo'),
     position: 'left',
   },
 
   {
     selector: '.reactour__waterAddCard',
-    content: `Here you can add a record of water consumed`,
+    content: t('guide.addWaterRecord'),
     position: 'left',
   },
   {
     selector: '.reactour__waterAdd',
-    content: `... and here`,
+    content: t('guide.addWaterRecordHere'),
     position: 'left',
     style: {
       highlightPadding: 30,
@@ -34,7 +34,7 @@ export const steps = [
   },
   {
     selector: '.reactour__waterCardList',
-    content: `This block contains records of water consumed during the day. Here, you can also edit and delete a record.`,
+    content: t('guide.waterRecordList'),
     position: 'bottom',
   },
   // {
@@ -49,27 +49,27 @@ export const steps = [
   // },
   {
     selector: '.reactour__waterMonthInfo',
-    content: `This block contains monthly information. You can view the percentage of daily norms in calendar format`,
+    content: t('guide.monthlyInfo'),
     position: 'top',
   },
   {
     selector: '.reactour__waterStatisticInfo',
-    content: `Click here to view the percentage of daily norms in graphical format`,
+    content: t('guide.viewStats'),
     position: 'left',
   },
   {
     selector: '.reactour__waterDailyNorma',
-    content: `This is your daily norma `,
+    content: t('guide.dailyNorma'),
     position: 'right',
   },
   {
     selector: '.reactour__waterPercentage',
-    content: `Progress bar showing the percentage of daily norms`,
+    content: t('guide.progressBar'),
     position: 'top',
   },
   {
     selector: '.reactour__Bye',
-    content: `Thanks for your attention and good luck!`,
+    content: t('guide.thanks'),
     position: 'button',
   },
 ];

@@ -15,8 +15,10 @@ import { paginationDate } from '../../redux/date/selectors';
 import { selectToken } from '../../redux/users/selectors';
 import { fetchMonthlyWater } from '../../redux/water/operations';
 import { selectDate } from '../../redux/date/selectors';
+import { useTranslation } from 'react-i18next';
 
 const Statistic = ({ data }) => {
+  const { t } = useTranslation();
   const storePaginationDate = new Date(useSelector(paginationDate));
   const selectedDate = useSelector(selectDate);
 
@@ -61,7 +63,9 @@ const Statistic = ({ data }) => {
     if (active && payload && payload.length) {
       return (
         <div className={css.customTooltip}>
-          <p className={css.water}>{`${payload[0].value * 1000} ml`}</p>
+          <p className={css.water}>{`${payload[0].value * 1000} ${t(
+            'trackerPage.ml'
+          )}`}</p>
         </div>
       );
     }
@@ -71,7 +75,7 @@ const Statistic = ({ data }) => {
     if (tickItem === 0) {
       return '0';
     }
-    return `${tickItem} L`;
+    return `${tickItem} ${t('trackerPage.liter')}`;
   };
 
   return (

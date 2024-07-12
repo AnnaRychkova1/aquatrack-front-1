@@ -1,0 +1,64 @@
+.photoContainer {
+  position: relative;
+}
+
+.photoDev {
+  border-radius: 50%;
+  border: 1px solid green;
+  width: 120px;
+  height: 140px;
+  overflow: hidden;
+}
+@media only screen and (min-width: 768px) {
+  .photoDev {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+.devLink {
+  background-color: rgb(55, 55, 247);
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  padding: 8px;
+  position: absolute;
+  left: 50%;
+  bottom: -12px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 1440px) {
+  .devLink {
+    padding: 10px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.iconLinkedin {
+  width: 22px;
+  height: 22px;
+  fill: #ffffff;
+}
+
+.devName {
+  font-size: 14px;
+}
+
+.devRole {
+  font-size: 12px;
+}
+
+@media only screen and (min-width: 768px) {
+  .devName {
+    font-size: 18px;
+  }
+
+  .devRole {
+    font-size: 18px;
+  }
+}

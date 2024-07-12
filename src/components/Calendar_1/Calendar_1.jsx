@@ -15,8 +15,10 @@ import { selectToken } from '../../redux/users/selectors';
 import { selectMonth } from '../../redux/water/selectors';
 import CalendarItem_1 from '../CalendarItem_1/CalendarItem_1';
 import css from './Calendar_1.module.css';
+import { useTranslation } from 'react-i18next';
 
 const Calendar_1 = () => {
+  const { t } = useTranslation();
   // Отримуємо дату зі стору
   const storePaginationDate = new Date(useSelector(paginationDate));
   //storePaginationDate  Sat Jun 29 2024 09:42:33 GMT+0300 (Восточная Европа, летнее время)
@@ -60,9 +62,7 @@ const Calendar_1 = () => {
   return (
     <ul className={css.list}>
       {getDatesArray().length === 0 ? (
-        <li className={css.emptyItem}>
-          There is no data for the selected month
-        </li>
+        <li className={css.emptyItem}>{t('trackerPage.noDataForMonth')}</li>
       ) : (
         getDatesArray().map(date => {
           //  date   Fri Jun 21 2024 00:00:00 GMT+0300 (Восточная Европа, летнее время)

@@ -39,6 +39,8 @@
 }
 
 .welcomeButton_tracker {
+  display: flex;
+  align-items: center;
   background-color: var(--accent-color);
   transition-property: background-color;
   transition-duration: 250ms;
@@ -51,6 +53,8 @@
 }
 
 .welcomeButton_sign {
+  display: flex;
+  align-items: center;
   border: 1px solid var(--main-text);
   transition-property: border, color;
   transition-duration: 250ms;

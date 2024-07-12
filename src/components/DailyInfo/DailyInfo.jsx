@@ -5,15 +5,17 @@ import ChooseDate from '../ChooseDate/ChooseDate';
 import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import WaterList from '../WaterList/WaterList';
 import css from './DailyInfo.module.css';
+import { useTranslation } from 'react-i18next';
 
 const DailyInfo = () => {
+  const { t } = useTranslation();
   // Дата зі стору
   const storeDate = useSelector(selectDate);
   let formattedDate;
 
   // Якщо дата зі стору = календарній даті => Today
   if (isSameDay(new Date(), storeDate)) {
-    formattedDate = 'Today';
+    formattedDate = t('trackerPage.today');
   } else {
     formattedDate = `${getDate(storeDate)}, ${format(
       new Date(storeDate),

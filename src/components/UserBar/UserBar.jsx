@@ -9,8 +9,10 @@ import {
   selectName,
 } from '../../redux/users/selectors';
 import css from '../UserPanel/UserPanel.module.css';
+import { useTranslation } from 'react-i18next';
 
 const UserBar = () => {
+  const { t } = useTranslation();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [svgPopover, setSvgPopover] = useState('chevron-down');
   const userDataName = useSelector(selectName);
@@ -36,7 +38,7 @@ const UserBar = () => {
           {isSignedIn ? (
             <span className={css.userNameSmall}>{userDataName}</span>
           ) : (
-            <span className={css.userNameSmall}>User</span>
+            <span className={css.userNameSmall}>{t('trackerPage.user')}</span>
           )}
           <img name={userDataName} src={`${userDataAvatar}`} size="40" />
           <Iconsvg className={css.userPanelBtnIcon} iconName={svgPopover} />

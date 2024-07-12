@@ -7,8 +7,10 @@ import { selectWaterPortion } from '../../redux/water/selectors';
 import { changeTotalDay } from '../../redux/water/slice';
 import WaterItem from '../WaterItem/WaterItem';
 import css from './WaterList.module.css';
+import { useTranslation } from 'react-i18next';
 
 const WaterList = ({ selectDay }) => {
+  const { t } = useTranslation();
   // Форматуємо дату в формат YYYY-MM-DD
   const initDate = new Date(selectDay);
   const year = initDate.getFullYear();
@@ -47,9 +49,7 @@ const WaterList = ({ selectDay }) => {
     <div className="reactour__waterCardList">
       <ul className={css.list}>
         {sortedWaterPortions.length === 0 ? (
-          <li className={css.emptyItem}>
-            There is no data for the selected date
-          </li>
+          <li className={css.emptyItem}>{t('trackerPage.noWater')}</li>
         ) : (
           sortedWaterPortions.map((waterItem, index) => (
             <li className={css.item} key={`${waterItem._id}-${index}`}>

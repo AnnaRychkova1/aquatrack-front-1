@@ -6,8 +6,10 @@ import { selectWaterDrink } from '../../redux/users/selectors';
 import { selectTotalDay } from '../../redux/water/selectors';
 import { selectDate } from '../../redux/date/selectors';
 import { isSameDay, format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 const WaterProgressBar = () => {
+  const { t } = useTranslation();
   const daylyNorm = useSelector(selectWaterDrink);
   const dayWaterAll = useSelector(selectTotalDay);
 
@@ -32,7 +34,7 @@ const WaterProgressBar = () => {
 
   const formatDate = date => {
     if (isSameDay(new Date(), new Date(date))) {
-      return 'Today';
+      return t('trackerPage.today');
     }
     return format(new Date(date), 'dd MMMM');
   };

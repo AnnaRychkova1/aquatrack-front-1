@@ -6,14 +6,16 @@ import { useSelector } from 'react-redux';
 import { selectIsLoading } from '../../redux/users/selectors';
 import Loader from '../../components/Loader/Loader';
 import css from '../SignIn/SignInPage.module.css';
+import { useTranslation } from 'react-i18next';
 
 const SignIn = () => {
   const loading = useSelector(selectIsLoading);
+  const { t } = useTranslation();
   return (
     <>
       {loading && <Loader />}
       <Helmet>
-        <title>SignIn</title>
+        <title>{t('pages.signin')}</title>
       </Helmet>
       <div className={css.generalSignInForm}>
         <SignInForm />

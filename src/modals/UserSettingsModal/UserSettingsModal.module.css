@@ -99,17 +99,17 @@
   }
 }
 
-.settingsWrapper::-webkit-scrollbar-button {
+::-webkit-scrollbar-button {
   display: none;
 }
 
-.settingsWrapper::-webkit-scrollbar {
+::-webkit-scrollbar {
   height: 60px;
   width: 6px;
 }
 
 @media screen and (min-width: 768px) {
-  .settingsWrapper::-webkit-scrollbar {
+  ::-webkit-scrollbar {
     width: 8px;
   }
 }
@@ -126,7 +126,7 @@
   }
 }
 
-.settingsWrapper::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: #f0eff4;
   border-radius: 6px;
   border: 3px solid #f0eff4;
@@ -135,7 +135,7 @@
   transition-timing-function: ease;
 }
 
-.settingsWrapper::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background-color: #a8a7ab;
   border: 3px solid #a8a7ab;
 }

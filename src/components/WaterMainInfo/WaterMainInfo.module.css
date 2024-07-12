@@ -27,23 +27,6 @@
   }
 }
 
-.tour {
-  margin-bottom: 5px;
-  background-color: transparent;
-  padding: 10px;
-  border-radius: 30px;
-  border: 1px solid var(--background-color);
-  transition-property: border, background-color;
-  transition-duration: 250ms;
-  transition-timing-function: ease;
-}
-
-.tour:hover,
-.tour:focus {
-  border: 1px solid var(--second-text);
-  background-color: var(--background-color);
-}
-
 .highlighted-mask {
   border-radius: 10px !important;
 }
