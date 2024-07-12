@@ -9,9 +9,7 @@ const WelcomeSection = () => {
     <div className={css.welcomeBox}>
       <Logo />
       <div>
-        {/* <p className={css.welcomePhrase}>Record daily water intake and track</p> */}
         <p className={css.welcomePhrase}>{t('welcomeSection.recordDaily')}</p>
-        {/* <h1 className={css.welcomeName}>Water consumption tracker</h1> */}
         <h1 className={css.welcomeName}>{t('welcomeSection.waterTracker')}</h1>
         <Navigation />
       </div>

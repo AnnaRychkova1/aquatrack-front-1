@@ -6,6 +6,7 @@ import { useState } from 'react';
 import DeveloperModal from '../../modals/DeveloperModal/DeveloperModal';
 
 const Header = () => {
+  const { t } = useTranslation();
   const [isDeveloperModalOpen, setIsDeveloperModalOpen] = useState(false);
 
   const openDeveloperModal = () => setIsDeveloperModalOpen(true);
@@ -29,7 +30,7 @@ const Header = () => {
           }`}
           onClick={() => changeLanguage('en')}
         >
-          En
+          {t('header.en')}
         </button>
         <button
           type="button"
@@ -38,14 +39,14 @@ const Header = () => {
           }`}
           onClick={() => changeLanguage('uk')}
         >
-          Ua
+          {t('header.ua')}
         </button>
         {isLoggedIn && (
           <button
             className={`first-step ${css.tour}`}
             onClick={() => setIsOpen(true)}
           >
-            App Guide
+            {t('header.guide')}
           </button>
         )}
         <button
@@ -53,7 +54,7 @@ const Header = () => {
           className={css.developers}
           onClick={openDeveloperModal}
         >
-          Developers
+          {t('header.devs')}
         </button>
       </div>
       <DeveloperModal

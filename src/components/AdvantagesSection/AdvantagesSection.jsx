@@ -1,10 +1,11 @@
+import { useTranslation } from 'react-i18next';
 import css from './AdvantagesSection.module.css';
 import UserCount from './CountPeople';
 
 const AdvantagesSection = () => {
+  const { t } = useTranslation();
   return (
     <div className={css.advantages_main}>
-      {/* <UserCount /> */}
       <div className={css.advantages_users}>
         <ul className={css.advantages_usersImg}>
           <li className={css.advantages_point}>
@@ -20,7 +21,9 @@ const AdvantagesSection = () => {
           </li>
         </ul>
         <p className={css.advantagesText}>
-          Our <span className={css.textSpan}>happy</span> customers
+          {t('adwantagesSection.our')}{' '}
+          <span className={css.textSpan}>{t('adwantagesSection.happy')}</span>{' '}
+          {t('adwantagesSection.customers')}
         </p>
       </div>
 
@@ -28,14 +31,14 @@ const AdvantagesSection = () => {
         <ul className={css.advantagesTabs}>
           <li className={css.advantages_habits}>
             <div className={css.ellipse}></div>
-            <p className={css.habit_1}>Habit drive</p>
+            <p className={css.habit_1}>{t('adwantagesSection.habit')}</p>
           </li>
           <li className={css.advantages_habits}>
-            <p className={css.habit_2}>View statistics</p>
+            <p className={css.habit_2}>{t('adwantagesSection.statistics')}</p>
           </li>
 
           <li className={css.advantages_habits}>
-            <p className={css.habit_3}>Personal rate setting</p>
+            <p className={css.habit_3}>{t('adwantagesSection.rate')}</p>
           </li>
         </ul>
       </div>

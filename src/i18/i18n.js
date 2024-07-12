@@ -24,6 +24,4 @@ const i18n = use(Backend)
     defaultNS: 'translation',
   });
 
-console.log(i18n);
-
 export default i18n;

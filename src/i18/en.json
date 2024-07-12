@@ -1,6 +1,37 @@
 {
+  "pages": {
+    "home": "AquaTrack",
+    "notFound": "Page not found",
+    "signin": "SignIn",
+    "signup": "SignUp",
+    "tracker": "Your Tracker"
+  },
+  "header": {
+    "en": "En",
+    "ua": "Ua",
+    "guide": "App Guide",
+    "devs": "Developers"
+  },
+  "logo": {
+    "logo": "Aquatrack"
+  },
   "welcomeSection": {
     "recordDaily": "Record daily water intake and track",
-    "waterTracker": "Water consumption tracker"
+    "waterTracker": "Water consumption tracker",
+    "try": "Try tracker",
+    "signin": " Sign In"
+  },
+  "adwantagesSection": {
+    "our": "Our",
+    "happy": "happy",
+    "customers": "customers",
+    "habit": "Habit drive",
+    "statistics": "View statistics",
+    "rate": "Personal rate setting",
+    "count": {
+      "our": "Our",
+      "team": "team",
+      "now": "now"
+    }
   }
 }
