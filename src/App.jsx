@@ -8,6 +8,7 @@ import { getCurrentUser } from './redux/users/operations';
 import { useAuth } from './hooks/useAuth';
 import Loader from './components/Loader/Loader';
 import { selectToken } from './redux/users/selectors';
+import Header from './components/Header/Header';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignIn = lazy(() => import('./pages/SignIn/SignIn'));
@@ -30,34 +31,37 @@ const App = () => {
   return isCurrent ? (
     <Loader />
   ) : (
-    <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route
-          index
-          element={
-            <RestrictedRoute redirectTo="/tracker" component={<HomePage />} />
-          }
-        />
-        <Route
-          path="/signin"
-          element={
-            <RestrictedRoute redirectTo="/tracker" component={<SignIn />} />
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <RestrictedRoute redirectTo="/tracker" component={<SignUp />} />
-          }
-        />
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route
+            index
+            element={
+              <RestrictedRoute redirectTo="/tracker" component={<HomePage />} />
+            }
+          />
+          <Route
+            path="/signin"
+            element={
+              <RestrictedRoute redirectTo="/tracker" component={<SignIn />} />
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <RestrictedRoute redirectTo="/tracker" component={<SignUp />} />
+            }
+          />
 
-        <Route
-          path="/tracker"
-          element={<PrivateRoute redirectTo="/" component={<Tracker />} />}
-        />
-        <Route path="*" element={<NotFoundPage />} />
-      </Route>
-    </Routes>
+          <Route
+            path="/tracker"
+            element={<PrivateRoute redirectTo="/" component={<Tracker />} />}
+          />
+          <Route path="*" element={<NotFoundPage />} />
+        </Route>
+      </Routes>
+    </>
   );
 };
 export default App;

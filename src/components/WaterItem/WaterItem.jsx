@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import DeleteWaterModal from '../../modals/DeleteWaterModal/DeleteWaterModal';
 import WaterModal from '../../modals/WaterModal/WaterModal';
 import Iconsvg from '../Icon/Icon';
@@ -12,6 +13,7 @@ const formatTime = dateString => {
 };
 
 const WaterItem = ({ id, volume, date, isEditable }) => {
+  const { t } = useTranslation();
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -34,8 +36,8 @@ const WaterItem = ({ id, volume, date, isEditable }) => {
 
         <div className={css.waterInfo}>
           <p className={css.volume}>
-            {volume > 999 ? volume / 1000 : volume}
-            {volume > 999 ? ' L' : ' ml'}
+            {volume > 999 ? volume / 1000 : volume}{' '}
+            {volume > 999 ? t('trackerPage.liter') : t('trackerPage.ml')}
           </p>
           <p className={css.time}>{time}</p>
         </div>

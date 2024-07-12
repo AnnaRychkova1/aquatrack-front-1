@@ -4,7 +4,9 @@ import UserSettingsModal from '../../modals/UserSettingsModal/UserSettingsModal'
 //import Iconsvg from '../Icon/Icon';
 import css from '../UserPanel/UserPanel.module.css';
 import Iconsvg from '../Icon/Icon';
+import { useTranslation } from 'react-i18next';
 const UserBarPopover = ({ closePopover }) => {
+  const { t } = useTranslation();
   const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
 
@@ -20,11 +22,11 @@ const UserBarPopover = ({ closePopover }) => {
     <div className={css.userPopoverContainer}>
       <button className={css.userPopoverBtn} onClick={openSettingModal}>
         <Iconsvg className={css.userPopoverBtnIcon} iconName={'settings'} />
-        <span>Settings</span>
+        <span>{t('trackerPage.settings')}</span>
       </button>
       <button className={css.userPopoverBtn} onClick={openLogOutModal}>
         <Iconsvg className={css.userPopoverBtnIcon} iconName={'log-out'} />
-        <span>Log out</span>
+        <span>{t('trackerPage.logout')}</span>
       </button>
       <UserSettingsModal
         isOpen={isSettingModalOpen}

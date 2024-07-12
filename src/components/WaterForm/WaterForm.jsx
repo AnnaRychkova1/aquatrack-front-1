@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectToken } from '../../redux/users/selectors.js';
 import { selectDate } from '../../redux/date/selectors.js';
+import { useTranslation } from 'react-i18next';
 
 const isDateTimeValid = date => new Date(date) <= new Date();
 const schemaWaterForm = yup.object().shape({
@@ -23,6 +24,7 @@ const schemaWaterForm = yup.object().shape({
 });
 
 const WaterForm = ({ operationType, closeModal, id, myTime, volume }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   let initialWaterAmount = operationType === 'edit' ? volume : 50;
   const [number, setNumber] = useState(initialWaterAmount);
@@ -88,7 +90,7 @@ const WaterForm = ({ operationType, closeModal, id, myTime, volume }) => {
 
   return (
     <form className={css.waterForm} onSubmit={handleSubmit(onSubmit)}>
-      <p className={css.amountWaterLabel}>Amount of water:</p>
+      <p className={css.amountWaterLabel}>{t('modals.amount')}:</p>
       <div className={css.btnBox}>
         <button
           className={css.btnReduce}
@@ -102,7 +104,9 @@ const WaterForm = ({ operationType, closeModal, id, myTime, volume }) => {
             className={css.btnSvg}
           />
         </button>
-        <span className={css.numberMl}>{number} ml</span>
+        <span className={css.numberMl}>
+          {number} {t('trackerPage.ml')}
+        </span>
         <button
           className={css.btnZoom}
           type={'button'}
@@ -116,7 +120,7 @@ const WaterForm = ({ operationType, closeModal, id, myTime, volume }) => {
           />
         </button>
       </div>
-      <p className={css.timeLabel}>Recording time:</p>
+      <p className={css.timeLabel}>{t('modals.recordingTime')}:</p>
       <input
         className={css.inputTime}
         type="time"
@@ -124,7 +128,7 @@ const WaterForm = ({ operationType, closeModal, id, myTime, volume }) => {
         value={currentTime}
         onChange={e => setCurrentTime(e.target.value)}
       />
-      <p className={css.valueLabel}>Enter the value of the water used:</p>
+      <p className={css.valueLabel}>{t('modals.enterValue')}:</p>
       <input
         className={css.input2}
         type="number"
@@ -132,7 +136,7 @@ const WaterForm = ({ operationType, closeModal, id, myTime, volume }) => {
         onChange={e => setNumber(Math.min(Math.max(e.target.value, 1), 5000))}
       />
       <button className={css.btnSave} type="submit">
-        Save
+        {t('modals.save')}
       </button>
     </form>
   );

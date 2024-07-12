@@ -2,15 +2,8 @@
   height: 100%;
   display: flex;
   align-items: first baseline;
-  /* padding-top: 76px; */
   overflow-y: scroll;
 }
-
-/* @media screen and (min-width: 768px) {
-  .devOverlay {
-    
-  }
-} */
 
 .devModal {
   margin-left: 5px;
@@ -21,7 +14,6 @@
       rgba(133, 243, 188, 0.4)
     ),
     url('../../assets/images/devBackground.png');
-  /* url('../../assets/images/dropes.png'); */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 20% 40%;
@@ -80,16 +72,15 @@
 
 .developersList {
   display: flex;
-  /* flex-direction: row; */
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 20px; /* fix */
+  gap: 20px;
 }
 
 @media only screen and (min-width: 768px) {
   .developersList {
-    gap: 32px 20px; /* fix */
+    gap: 32px 20px;
   }
 }
 
@@ -101,7 +92,6 @@
   justify-content: center;
   text-align: center;
   width: calc((100% - 20px) / 2);
-  /* height: 180px;  */
 }
 
 @media only screen and (min-width: 768px) {
@@ -110,7 +100,6 @@
     flex-direction: column;
     gap: 18px;
     width: calc((100% - 40px) / 3);
-    /* height: 100%; */
   }
 }
 

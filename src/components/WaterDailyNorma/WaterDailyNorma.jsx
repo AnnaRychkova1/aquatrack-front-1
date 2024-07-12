@@ -1,14 +1,19 @@
 import css from './WaterDailyNorma.module.css';
 import { useSelector } from 'react-redux';
 import { selectWaterDrink } from '../../redux/users/selectors';
+import { useTranslation } from 'react-i18next';
 
 const WaterDailyNorma = () => {
+  const { t } = useTranslation();
   const daylyNorm = useSelector(selectWaterDrink);
 
   return (
     <div className={`reactour__waterDailyNorma ${css.contDailyNorma}`}>
-      <p className={css.dailyNorma}>{daylyNorm ? `${daylyNorm} L` : '0L'}</p>
-      <p className={css.textDailyNorma}>My daily norma</p>
+      {/* <p className={css.dailyNorma}>{daylyNorm ? `${daylyNorm} L` : '0L'}</p> */}
+      <p className={css.dailyNorma}>
+        {daylyNorm} {t('trackerPage.liter')}
+      </p>
+      <p className={css.textDailyNorma}>{t('trackerPage.dailyNorma')}</p>
     </div>
   );
 };

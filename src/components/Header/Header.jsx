@@ -21,7 +21,7 @@ const Header = () => {
   };
 
   return (
-    <>
+    <header>
       <div className={css.headerContainer}>
         <button
           type="button"
@@ -61,7 +61,7 @@ const Header = () => {
         isOpen={isDeveloperModalOpen}
         closeModal={closeDeveloperModal}
       />
-    </>
+    </header>
   );
 };
 

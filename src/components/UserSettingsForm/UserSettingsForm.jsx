@@ -16,6 +16,7 @@ import {
   updateUserProfile,
   uploadUserAvatar,
 } from '../../redux/users/operations';
+import { useTranslation } from 'react-i18next';
 
 const UserSettingsSchema = Yup.object().shape({
   name: Yup.string()
@@ -44,6 +45,7 @@ const UserSettingsSchema = Yup.object().shape({
 const API_URL = 'https://aquatrack-back-1.onrender.com/api/';
 
 const UserSettingsForm = ({ closeModal, closePopover }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const userDataAvatar = useSelector(selectAvatar);
   const userDataWaterDrink = useSelector(selectWaterDrink);
@@ -83,7 +85,6 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
   const weight = watch('weight');
   const activeTime = watch('activeTimeSports');
   const gender = watch('gender');
-  // const waterDrink = watch('waterDrink');
 
   useEffect(() => {
     if (weight && activeTime && gender) {
@@ -146,7 +147,6 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
     clearErrors('waterDrink');
   };
 
-
   const onSubmit1 = async values => {
     const updatedData = {
       name: values.name,
@@ -183,7 +183,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
           className={css.settingsAvatarLabel}
         >
           <Iconsvg iconName="upload" className={css.iconUpload} />
-          Upload a photo
+          {t('modals.uploadPhoto')}
           <input
             className={css.settingsAvatarInput}
             type="file"
@@ -196,7 +196,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
       <div className={css.settingsFormContent}>
         <div className={css.settingsFormData}>
           <div className={css.settingsGenders}>
-            <p className={css.settingsGenderTitle}>Your gender identity</p>
+            <p className={css.settingsGenderTitle}>{t('modals.gender')}</p>
             <div className={css.settingsGenderInputs}>
               <label className={css.settingsGender}>
                 <input
@@ -205,7 +205,9 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
                   value="woman"
                   {...register('gender')}
                 />
-                <span className={css.settingsGenderText}>Woman</span>
+                <span className={css.settingsGenderText}>
+                  {t('modals.woman')}
+                </span>
               </label>
               <label className={css.settingsGender}>
                 <input
@@ -216,7 +218,9 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
                   value="man"
                   {...register('gender')}
                 />
-                <span className={css.settingsGenderText}>Man</span>
+                <span className={css.settingsGenderText}>
+                  {t('modals.man')}
+                </span>
               </label>
             </div>
             {errors.gender && (
@@ -225,12 +229,9 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
           </div>
           <div className={css.settingsUser}>
             <label className={css.settingsUserLabel}>
-              <span className={css.settingsUserTitle}>Your name</span>
-
+              <span className={css.settingsUserTitle}>{t('modals.name')}</span>
               <input
-                className={`${css.inputForm} ${
-                  errors.name ? css.error : ''
-                }`}
+                className={`${css.inputForm} ${errors.name ? css.error : ''}`}
                 type="text"
                 {...register('name')}
                 onBlur={handleBlur}
@@ -241,11 +242,9 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
               )}
             </label>
             <label className={css.settingsUserLabel}>
-              <span className={css.settingsUserTitle}>Email</span>
+              <span className={css.settingsUserTitle}>{t('modals.email')}</span>
               <input
-                className={`${css.inputForm} ${
-                  errors.email ? css.error : ''
-                }`}
+                className={`${css.inputForm} ${errors.email ? css.error : ''}`}
                 type="email"
                 {...register('email')}
                 onBlur={handleBlurEmail}
@@ -257,24 +256,24 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
             </label>
           </div>
           <div className={css.settingsDailyNorma}>
-            <p className={css.settingsDailyNormaTitle}>My daily norma</p>
+            <p className={css.settingsDailyNormaTitle}>
+              {t('modals.myDailyNorma')}
+            </p>
             <div className={css.settingsDailyNormaEquations}>
               <p className={css.settingsDailyNormaEquation}>
-                For woman: <span>V=(M*0.03) + (T*0.4)</span>
+                {t('modals.forWoman')}: <span>V=(M*0.03) + (T*0.4)</span>
               </p>
               <p className={css.settingsDailyNormaEquation}>
-                For man: <span>V=(M*0.04) + (T*0.6)</span>
+                {t('modals.forMan')}: <span>V=(M*0.04) + (T*0.6)</span>
               </p>
             </div>
             <p className={css.settingsDailyNormaContent}>
-              <span>*</span> V is the volume of the water norm in liters per
-              day, M is your body weight, T is the time of active sports, or
-              another type of activity commensurate in terms of loads (in the
-              absence of these, you must set 0)
+              <span>*</span>
+              {t('modals.countVolume')}
             </p>
             <p className={css.settingsDailyNormaText}>
               <Iconsvg width="14" height="14" iconName={'exclamation'} />
-              Active time in hours
+              {t('modals.activeTime')}
             </p>
           </div>
         </div>
@@ -282,12 +281,10 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
           <div className={css.settingsUserParams}>
             <label className={css.settingsParam}>
               <span className={css.settingsParamTitle}>
-                Your weight in kilograms:
+                {t('modals.yourWeight')}:
               </span>
               <input
-                className={`${css.inputForm} ${
-                  errors.weight ? css.error : ''
-                }`}
+                className={`${css.inputForm} ${errors.weight ? css.error : ''}`}
                 type="number"
                 {...register('weight')}
                 onBlur={handleBlurWeight}
@@ -299,7 +296,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
             </label>
             <label className={css.settingsParam}>
               <span className={css.settingsParamTitle}>
-                The time of active participation in sports:
+                {t('modals.yourActivities')}:
               </span>
               <input
                 className={`${css.inputForm} ${
@@ -319,12 +316,14 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
           </div>
           <div className={css.settingsLitersParams}>
             <p className={css.settingsLitersRequired}>
-              The required amount of water in liters per day:
-              <span>{calculatedWater} L</span>
+              {t('modals.require')}:
+              <span>
+                {calculatedWater} {t('trackerPage.liter')}
+              </span>
             </p>
             <label className={css.settingsLiters}>
               <span className={css.settingsLitersTitle}>
-                Write down how much water you will drink:
+                {t('modals.writeDown')}:
               </span>
               <input
                 className={`${css.inputForm} ${
@@ -346,7 +345,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
         </div>
       </div>
       <button className={css.settingsButton} type="submit">
-        Save
+        {t('modals.save')}
       </button>
     </form>
   );

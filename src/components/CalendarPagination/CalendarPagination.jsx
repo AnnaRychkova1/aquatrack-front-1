@@ -6,8 +6,10 @@ import { paginationBtnDisabled } from '../../redux/pagination/selectors';
 import { changePaginationBtnDisabled } from '../../redux/pagination/slice';
 import css from './CalendarPagination.module.css';
 import Icon from '../Icon/Icon';
+import { useTranslation } from 'react-i18next';
 
 const CalendarPagination = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const storeDate = new Date(useSelector(paginationDate));
   const btnDisabled = useSelector(paginationBtnDisabled);
@@ -48,9 +50,9 @@ const CalendarPagination = () => {
     dispatch(changePaginationDate(new Date(nextMounth).toISOString()));
   };
 
-  const formattedMonth = `${storeDate.toLocaleDateString('en-GB', {
-    month: 'long',
-  })}`;
+  const formattedMonth = t(
+    `months.${storeDate.toLocaleDateString('en-GB', { month: 'long' })}`
+  );
 
   const formattedYear = `${storeDate.toLocaleDateString('en-GB', {
     year: 'numeric',

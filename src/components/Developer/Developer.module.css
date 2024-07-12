@@ -5,9 +5,15 @@
 .photoDev {
   border-radius: 50%;
   border: 1px solid green;
-  width: 160px;
-  height: 160px;
+  width: 120px;
+  height: 140px;
   overflow: hidden;
+}
+@media only screen and (min-width: 768px) {
+  .photoDev {
+    width: 160px;
+    height: 160px;
+  }
 }
 
 .devLink {
