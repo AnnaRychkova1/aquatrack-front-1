@@ -8,7 +8,7 @@ import css from './PasswordChangeForm.module.css';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { logIn } from '../../redux/users/operations';
-import {newPasswordChange} from '../../redux/users/operations';
+import { newPasswordChange } from '../../redux/users/operations';
 import { useNavigate } from 'react-router-dom';
 import sprite from '../../assets/images/svg/symbol-defs.svg';
 
@@ -49,26 +49,16 @@ const PasswordChangeForm = () => {
   });
 
   const handleFocus = fieldName => clearErrors(fieldName);
-/**************************************************************************************** */
-  // const onSubmit = data => {
-  //   dispatch(logIn(data)); // перевіряєм чи правильно користувач ввів данні
-  //   reset();
-  //   dispatch(newPasswordChange(data)); // треба оновити пароль на новий
-  //   navigate('/signin');
-  // };
-  const onSubmit = async data => {
-    try {
-      await dispatch(logIn(data)); // перевіряємо, чи правильно користувач ввів дані
-      reset();
-      await dispatch(newPasswordChange(data)); // оновлюємо пароль на новий
-      navigate('/signin');
-    } catch (error) {
-      console.error('Error during login or password change:', error);
-      //  показати користувачу повідомлення
-    }
+  /**************************************************************************************** */
+  const onSubmit = data => {
+    dispatch(logIn(data)); // перевіряєм чи правильно користувач ввів паролі однакові, якщо так то відправляєм форму
+    reset();
+    
+    navigate('/signin');
   };
+ 
 
-/**************************************************************************************** */
+  /**************************************************************************************** */
   return (
     <div className={css.loginContainer}>
       {<Logo />}
@@ -80,33 +70,21 @@ const PasswordChangeForm = () => {
           )}
         </h1>
         <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-          <label className={css.label}>{t('signinForm.email')}</label>
-          <div className={css.input_field}>
-            <input
-              className={`${css.input} ${errors.email ? css.error : ''}`}
-              type="email"
-              {...register('email', {
-                pattern: {
-                  value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
-                  message: 'Please enter valid email',
-                },
-              })}
-              placeholder={t('signinForm.placeholderEmail')}
-              autoComplete="on"
-              onFocus={() => handleFocus('email')}
-            />
-            {errors.email && (
-              <span className={css.errors}>{errors.email.message}</span>
+          <label className={css.label}>
+            {t(
+              // 'signinForm.password'
+              'New password'
             )}
-          </div>
-
-          <label className={css.label}>{t('signinForm.password')}</label>
+          </label>
           <div className={css.input_field}>
             <input
               className={`${css.input} ${errors.password ? css.error : ''}`}
               type={showPassword ? 'text' : 'password'}
               {...register('password')}
-              placeholder={t('signinForm.placeholderPassword')}
+              placeholder={t(
+                // 'signinForm.placeholderPassword'
+                "Enter a new password"
+              )}
               onFocus={() => handleFocus('password')}
             />
             {errors.password && (
@@ -148,7 +126,7 @@ const PasswordChangeForm = () => {
               {...register('newpassword')}
               placeholder={t(
                 // 'signinForm.placeholderPassword'
-                "Enter a new password"
+                'Enter the new password again'
               )}
               onFocus={() => handleFocus('newpassword')}
             />
@@ -204,3 +182,36 @@ const PasswordChangeForm = () => {
   );
 };
 export default PasswordChangeForm;
+
+{
+  /* <label className={css.label}>{t('signinForm.email')}</label>
+          <div className={css.input_field}>
+            <input
+              className={`${css.input} ${errors.email ? css.error : ''}`}
+              type="email"
+              {...register('email', {
+                pattern: {
+                  value: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/,
+                  message: 'Please enter valid email',
+                },
+              })}
+              placeholder={t('signinForm.placeholderEmail')}
+              autoComplete="on"
+              onFocus={() => handleFocus('email')}
+            />
+            {errors.email && (
+              <span className={css.errors}>{errors.email.message}</span>
+            )}
+          </div> */
+}
+ // const onSubmit = async data => {
+  //   try {
+  //     await dispatch(logIn(data)); // перевіряємо, чи правильно користувач ввів дані
+  //     reset();
+  //     await dispatch(newPasswordChange(data)); // оновлюємо пароль на новий
+  //     navigate('/signin');
+  //   } catch (error) {
+  //     console.error('Error during login or password change:', error);
+  //     //  показати користувачу повідомлення
+  //   }
+  // };
