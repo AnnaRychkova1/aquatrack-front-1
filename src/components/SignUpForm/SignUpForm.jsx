@@ -10,6 +10,8 @@ import sprite from '../../assets/images/svg/symbol-defs.svg';
 import css from './SignUpForm.module.css';
 import { useTranslation } from 'react-i18next';
 
+import GoogleBtn from '../GoogleBtn/GoogleBtn';
+
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -150,6 +152,9 @@ const SignUpForm = () => {
             {t('signupForm.signup')}
           </button>
         </form>
+
+        <GoogleBtn type="In" />
+
         <p className={css.description}>
           {t('signupForm.haveAccount')}?&nbsp;
           <Link className={css.link} to={'/signin'}>
