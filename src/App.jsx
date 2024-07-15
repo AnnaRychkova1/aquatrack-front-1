@@ -15,6 +15,7 @@ const SignIn = lazy(() => import('./pages/SignIn/SignIn'));
 const SignUp = lazy(() => import('./pages/SignUp/SignUp'));
 const Tracker = lazy(() => import('./pages/Tracker/Tracker'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
+const PasswordReset = lazy(() => import('./pages/PasswordReset/PasswordReset'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -51,6 +52,12 @@ const App = () => {
             path="/signup"
             element={
               <RestrictedRoute redirectTo="/tracker" component={<SignUp />} />
+            }
+          />
+          <Route
+            path="/password-reset"
+            element={
+              <RestrictedRoute redirectTo="/tracker" component={<PasswordReset />} />
             }
           />
 

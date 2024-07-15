@@ -118,6 +118,19 @@ const SignInForm = () => {
             {t('signinForm.signup')}
           </NavLink>
         </p>
+        <p className={css.description}>
+          {t(
+            // 'signinForm.dontAccount'
+            'Forgot your password'
+          )}
+          ?&nbsp;
+          <NavLink className={css.link} to={'/password-reset'}>
+            {t(
+              // 'signinForm.signup'
+              'Reset'
+            )}
+          </NavLink>
+        </p>
       </div>
     </div>
   );
