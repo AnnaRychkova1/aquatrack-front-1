@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import {
   requestLogin,
+  requestGoogleLogin,
   requestLogout,
   requestRegister,
   requestSendVerify,

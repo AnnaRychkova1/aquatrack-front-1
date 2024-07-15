@@ -16,6 +16,15 @@ export const requestLogin = async formData => {
   return data;
 };
 
+//Google
+export const requestGoogleLogin = async formData => {
+  const { data } = await instance.get('/users/google', {
+    params: formData,
+  });
+  setToken(data.token);
+  return data;
+};
+
 // SignOut
 export const requestLogout = async token => {
   const { data } = await instance.post('/users/logout');
