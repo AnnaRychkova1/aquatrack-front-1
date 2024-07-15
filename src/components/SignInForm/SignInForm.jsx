@@ -10,6 +10,9 @@ import sprite from '../../assets/images/svg/symbol-defs.svg';
 import css from './SignInForm.module.css';
 import { useTranslation } from 'react-i18next';
 
+import GoogleBtn from '../GoogleBtn/GoogleBtn';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 const schema = yup.object().shape({
   email: yup
     .string()
@@ -112,6 +115,9 @@ const SignInForm = () => {
             {t('signinForm.signin')}
           </button>
         </form>
+
+        <GoogleBtn type="In" />
+
         <p className={css.description}>
           {t('signinForm.dontAccount')}?&nbsp;
           <NavLink className={css.link} to={'/signup'}>
