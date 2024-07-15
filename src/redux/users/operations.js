@@ -78,6 +78,20 @@ export const logIn = createAsyncThunk(
   }
 );
 
+//ADDITIONAL loginGoogle
+
+export const loginGoogle = createAsyncThunk(
+  'users/loginGoogle',
+  async (formData, thunkAPI) => {
+    try {
+      const res = await requestGoogleLogin(formData);
+      return res;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data.message || err.message);
+    }
+  }
+);
+
 // Logout
 
 export const logOut = createAsyncThunk(
