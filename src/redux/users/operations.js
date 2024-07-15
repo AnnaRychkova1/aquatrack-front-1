@@ -10,6 +10,7 @@ import {
   requestUserInfo,
   updateUserProfiles,
   uploadUserAvatars,
+  resetPassword,
 } from '../../services/userApi.js';
 
 const options = {
@@ -126,6 +127,82 @@ export const sendVerify = createAsyncThunk(
   }
 );
 
+export const uploadUserAvatar = createAsyncThunk(
+  'users/avatars',
+  async (formData, thunkAPI) => {
+    try {
+      const response = await uploadUserAvatars(formData);
+      toast.success('Avatar uploaded successfully', { ...options });
+      return response.avatarURL;
+    } catch (err) {
+      toast.error(err.message, { ...options });
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+export const updateUserProfile = createAsyncThunk(
+  'users/update',
+  async (formData, thunkAPI) => {
+    try {
+      const response = await updateUserProfiles(formData);
+      toast.success('User update successfully', { ...options });
+      return response.user;
+    } catch (err) {
+      toast.error(err.message, { ...options });
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
+
+export const newPassword = createAsyncThunk(
+  'users/password/new',
+  async (formData, thunkAPI) => {
+    try {
+      const res = await resetPassword(formData);
+      toast.success('Successfully new password', { ...options });
+      return res;
+    } catch (err) {
+      switch (err.response?.status) {
+        case 401:
+          toast.error('Email or password is wrong', { ...options });
+          break;
+        case 404:
+          toast.error('User not found', { ...options });
+          break;
+        default:
+          toast.error(err.response, { ...options });
+      }
+      return thunkAPI.rejectWithValue(err.response);
+    }
+  }
+);
+
+// export const forgotPassword = createAsyncThunk(
+//   'users/forgot-password',
+//   async (formData, thunkAPI) => {
+//     try {
+//       const res = await requestForgotPassword(formData);
+
+//       return res;
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
+
+// export const resetPassword = createAsyncThunk(
+//   'users/reset-password',
+//   async (formData, thunkAPI) => {
+//     try {
+//       const res = await requestResetPassword(formData);
+
+//       return res;
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message);
+//     }
+//   }
+// );
+
 // export const tokenRefresh = createAsyncThunk(
 //   'users/refresh',
 //   async (formData, thunkAPI) => {
@@ -160,58 +237,6 @@ export const sendVerify = createAsyncThunk(
 //   async (formData, thunkAPI) => {
 //     try {
 //       const res = await requestResendVerify(formData);
-
-//       return res;
-//     } catch (err) {
-//       return thunkAPI.rejectWithValue(err.message);
-//     }
-//   }
-// );
-
-export const uploadUserAvatar = createAsyncThunk(
-  'users/avatars',
-  async (formData, thunkAPI) => {
-    try {
-      const response = await uploadUserAvatars(formData);
-      toast.success('Avatar uploaded successfully', { ...options });
-      return response.avatarURL;
-    } catch (err) {
-      toast.error(err.message, { ...options });
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
-export const updateUserProfile = createAsyncThunk(
-  'users/update',
-  async (formData, thunkAPI) => {
-    try {
-      const response = await updateUserProfiles(formData);
-      toast.success('User update successfully', { ...options });
-      return response.user;
-    } catch (err) {
-      toast.error(err.message, { ...options });
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
-// export const forgotPassword = createAsyncThunk(
-//   'users/forgot-password',
-//   async (formData, thunkAPI) => {
-//     try {
-//       const res = await requestForgotPassword(formData);
-
-//       return res;
-//     } catch (err) {
-//       return thunkAPI.rejectWithValue(err.message);
-//     }
-//   }
-// );
-
-// export const resetPassword = createAsyncThunk(
-//   'users/reset-password',
-//   async (formData, thunkAPI) => {
-//     try {
-//       const res = await requestResetPassword(formData);
 
 //       return res;
 //     } catch (err) {

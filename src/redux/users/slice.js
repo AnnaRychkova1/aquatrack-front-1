@@ -6,6 +6,7 @@ import {
   uploadUserAvatar,
   updateUserProfile,
   getCurrentUser,
+  newPassword,
 } from './operations.js';
 
 const INITIAL_STATE = {
@@ -50,6 +51,20 @@ const authSlice = createSlice({
         state.user.email = user.email;
         state.isSignedIn = false;
       })
+
+      //password-reset
+      .addCase(newPassword.fulfilled, (state, action) => {
+        const { user, token } = action.payload;
+        if (token) {
+          localStorage.setItem('token', token);
+          state.user = user;
+          state.token = token;
+          state.isSignedIn = true;
+          state.isLoading = false;
+        }
+        state.isLoading = false;
+      })
+
 
       //LOGIN
       .addCase(logIn.fulfilled, (state, action) => {
