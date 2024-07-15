@@ -179,7 +179,7 @@ export const newPassword = createAsyncThunk(
 );
 
 export const newPasswordChange = createAsyncThunk(
-  'users//password/custom/update',
+  'users/password/custom/update',
   async (formData, thunkAPI) => {
     try {
       const res = await changePassword(formData);
@@ -201,7 +201,7 @@ export const newPasswordChange = createAsyncThunk(
   }
 );
 
-newPasswordChange
+// newPasswordChange
 
 // export const forgotPassword = createAsyncThunk(
 //   'users/forgot-password',
