@@ -11,6 +11,7 @@ import {
   updateUserProfiles,
   uploadUserAvatars,
   resetPassword,
+  changePassword,
 } from '../../services/userApi.js';
 
 const options = {
@@ -176,6 +177,31 @@ export const newPassword = createAsyncThunk(
     }
   }
 );
+
+export const newPasswordChange = createAsyncThunk(
+  'users//password/custom/update',
+  async (formData, thunkAPI) => {
+    try {
+      const res = await changePassword(formData);
+      toast.success('Successfully new password', { ...options });
+      return res;
+    } catch (err) {
+      switch (err.response?.status) {
+        case 401:
+          toast.error('Email or password is wrong', { ...options });
+          break;
+        case 404:
+          toast.error('User not found', { ...options });
+          break;
+        default:
+          toast.error(err.response, { ...options });
+      }
+      return thunkAPI.rejectWithValue(err.response);
+    }
+  }
+);
+
+newPasswordChange
 
 // export const forgotPassword = createAsyncThunk(
 //   'users/forgot-password',

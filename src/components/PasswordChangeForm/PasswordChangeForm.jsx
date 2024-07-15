@@ -1,14 +1,16 @@
-import { NavLink } from 'react-router-dom';
 import Logo from '../Logo/Logo';
 import * as yup from 'yup';
+import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { logIn } from '../../redux/users/operations';
-import { useState } from 'react';
-import sprite from '../../assets/images/svg/symbol-defs.svg';
-import css from './SignInForm.module.css';
+import css from './PasswordChangeForm.module.css';
+import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { logIn } from '../../redux/users/operations';
+import {newPasswordChange} from '../../redux/users/operations';
+import { useNavigate } from 'react-router-dom';
+import sprite from '../../assets/images/svg/symbol-defs.svg';
 
 const schema = yup.object().shape({
   email: yup
@@ -19,12 +21,18 @@ const schema = yup.object().shape({
     .string()
     .required('Password field is required')
     .min(6, 'Password must contain at least 6 characters'),
+  newpassword: yup
+    .string()
+    .required('Password field is required')
+    .min(6, 'Password must contain at least 6 characters'),
 });
 
-const SignInForm = () => {
+const PasswordChangeForm = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+
+  const navigate = useNavigate();
 
   const {
     register,
@@ -37,22 +45,40 @@ const SignInForm = () => {
     mode: 'onBlur',
     defaultValues: {
       email: '',
-      password: '',
     },
   });
 
   const handleFocus = fieldName => clearErrors(fieldName);
-
-  const onSubmit = data => {
-    dispatch(logIn(data));
-    reset();
+/**************************************************************************************** */
+  // const onSubmit = data => {
+  //   dispatch(logIn(data)); // перевіряєм чи правильно користувач ввів данні
+  //   reset();
+  //   dispatch(newPasswordChange(data)); // треба оновити пароль на новий
+  //   navigate('/signin');
+  // };
+  const onSubmit = async data => {
+    try {
+      await dispatch(logIn(data)); // перевіряємо, чи правильно користувач ввів дані
+      reset();
+      await dispatch(newPasswordChange(data)); // оновлюємо пароль на новий
+      navigate('/signin');
+    } catch (error) {
+      console.error('Error during login or password change:', error);
+      //  показати користувачу повідомлення
+    }
   };
 
+/**************************************************************************************** */
   return (
     <div className={css.loginContainer}>
       {<Logo />}
       <div className={css.formContainer}>
-        <h1 className={css.title}>{t('signinForm.signin')}</h1>
+        <h1 className={css.title}>
+          {t(
+            // 'signinForm.signin'
+            'Password change'
+          )}
+        </h1>
         <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
           <label className={css.label}>{t('signinForm.email')}</label>
           <div className={css.input_field}>
@@ -73,6 +99,7 @@ const SignInForm = () => {
               <span className={css.errors}>{errors.email.message}</span>
             )}
           </div>
+
           <label className={css.label}>{t('signinForm.password')}</label>
           <div className={css.input_field}>
             <input
@@ -108,39 +135,67 @@ const SignInForm = () => {
             )}
           </div>
 
+          <label className={css.label}>
+            {t(
+              // 'signinForm.password'
+              'New password'
+            )}
+          </label>
+          <div className={css.input_field}>
+            <input
+              className={`${css.input} ${errors.password ? css.error : ''}`}
+              type={showPassword ? 'text' : 'password'}
+              {...register('newpassword')}
+              placeholder={t(
+                // 'signinForm.placeholderPassword'
+                "Enter a new password"
+              )}
+              onFocus={() => handleFocus('newpassword')}
+            />
+            {errors.password && (
+              <span className={css.errors}>{errors.password.message}</span>
+            )}
+            {!showPassword && (
+              <svg
+                className={css.icon_eye}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                <use
+                  width={20}
+                  height={20}
+                  xlinkHref={`${sprite}#eye-off`}
+                ></use>
+              </svg>
+            )}
+
+            {showPassword && (
+              <svg
+                className={css.eyeIconOff}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                <use width={20} height={20} xlinkHref={`${sprite}#eye`}></use>
+              </svg>
+            )}
+          </div>
+
           <button className={css.button} type="submit">
-            {t('signinForm.signin')}
+            {t(
+              // 'signinForm.signin'
+              'Send'
+            )}
           </button>
         </form>
-        <p className={css.description}>
-          {t('signinForm.dontAccount')}?&nbsp;
-          <NavLink className={css.link} to={'/signup'}>
-            {t('signinForm.signup')}
-          </NavLink>
-        </p>
+
         <p className={css.description}>
           {t(
+            'Go to the main page'
             // 'signinForm.dontAccount'
-            'Forgot your password'
           )}
           ?&nbsp;
-          <NavLink className={css.link} to={'/password-reset'}>
+          <NavLink className={css.link} to={'/'}>
             {t(
+              'Home Page'
               // 'signinForm.signup'
-              'Reset'
-            )}
-          </NavLink>
-        </p>
-        <p className={css.description}>
-          {t(
-            // 'signinForm.dontAccount'
-            'Change password'
-          )}
-          ?&nbsp;
-          <NavLink className={css.link} to={'/password-change'}>
-            {t(
-              // 'signinForm.signup'
-              'Change'
             )}
           </NavLink>
         </p>
@@ -148,4 +203,4 @@ const SignInForm = () => {
     </div>
   );
 };
-export default SignInForm;
+export default PasswordChangeForm;
