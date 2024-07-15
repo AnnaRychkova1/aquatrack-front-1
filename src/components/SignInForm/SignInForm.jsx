@@ -10,6 +10,7 @@ import sprite from '../../assets/images/svg/symbol-defs.svg';
 import css from './SignInForm.module.css';
 import { useTranslation } from 'react-i18next';
 
+import { useEffect } from 'react';
 import GoogleBtn from '../GoogleBtn/GoogleBtn';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -28,6 +29,23 @@ const SignInForm = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+
+  /////////add for google
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const query = new URLSearchParams(location.search);
+    const token = query.get('token');
+
+    if (token) {
+      localStorage.setItem('token', token);
+      navigate('/tracker'); // Redirect to tracker if token is present
+    }
+  }, [location, navigate]);
+
+  ///////
 
   const {
     register,
