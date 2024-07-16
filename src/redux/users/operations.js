@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import {
   requestLogin,
+  requestGoogleLogin,
   requestLogout,
   requestRegister,
   requestSendVerify,
@@ -76,6 +77,20 @@ export const logIn = createAsyncThunk(
           toast.error(err.response, { ...options });
       }
       return thunkAPI.rejectWithValue(err.response);
+    }
+  }
+);
+
+//ADDITIONAL loginGoogle
+
+export const loginGoogle = createAsyncThunk(
+  'users/loginGoogle',
+  async (formData, thunkAPI) => {
+    try {
+      const res = await requestGoogleLogin(formData);
+      return res;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data.message || err.message);
     }
   }
 );
