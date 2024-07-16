@@ -76,7 +76,7 @@ export const resetPassword = async formData => {
 // Password-change
 export const changePassword = async formData => {
   const { data } = await instance.post('/users/password/custom/update', formData);
-  localStorage.setItem('token', data.token);
+  // localStorage.setItem('token', data.token);
   setToken(data.token);
   return data;
 };

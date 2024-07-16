@@ -49,13 +49,13 @@ const PasswordChangeForm = () => {
   };
 
   const onSubmit = (
-    // { password }
-    data
+    { password }
+    // data
   ) => {
     dispatch(
       newPasswordChange(
-        // { password }
-        data
+        { password }
+        // data
       )
     );
 
