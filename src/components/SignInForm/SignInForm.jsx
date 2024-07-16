@@ -155,19 +155,6 @@ const SignInForm = () => {
             )}
           </NavLink>
         </p>
-        {/* <p className={css.description}>
-          {t(
-            // 'signinForm.dontAccount'
-            'Change password'
-          )}
-          ?&nbsp;
-          <NavLink className={css.link} to={'/password-change'}>
-            {t(
-              // 'signinForm.signup'
-              'Change'
-            )}
-          </NavLink>
-        </p> */}
       </div>
     </div>
   );
