@@ -48,8 +48,17 @@ const PasswordChangeForm = () => {
     await trigger(fieldName);
   };
 
-  const onSubmit = ({ password }) => {
-    dispatch(newPasswordChange({ password }));
+  const onSubmit = (
+    // { password }
+    data
+  ) => {
+    dispatch(
+      newPasswordChange(
+        // { password }
+        data
+      )
+    );
+
     reset();
     navigate('/signin');
   };

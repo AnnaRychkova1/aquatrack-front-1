@@ -156,7 +156,7 @@ export const updateUserProfile = createAsyncThunk(
 );
 
 export const newPassword = createAsyncThunk(
-  'users/password/new',
+  '/users/password/custom',
   async (formData, thunkAPI) => {
     try {
       const res = await resetPassword(formData);

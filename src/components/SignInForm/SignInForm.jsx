@@ -131,7 +131,7 @@ const SignInForm = () => {
             )}
           </NavLink>
         </p>
-        <p className={css.description}>
+        {/* <p className={css.description}>
           {t(
             // 'signinForm.dontAccount'
             'Change password'
@@ -143,7 +143,7 @@ const SignInForm = () => {
               'Change'
             )}
           </NavLink>
-        </p>
+        </p> */}
       </div>
     </div>
   );

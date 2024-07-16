@@ -42,7 +42,7 @@ const PasswordForm = () => {
   const onSubmit = data => {
     dispatch(newPassword(data));
     reset();
-    navigate('/signin'); 
+    navigate('/'); 
   };
 
   return (
