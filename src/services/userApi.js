@@ -66,7 +66,16 @@ export const uploadUserAvatars = async formData => {
 
 // Password-reset
 export const resetPassword = async formData => {
-  const { data } = await instance.post('/users/password/new', formData);
+  // const { data } = await instance.post('/users/password/new', formData);
+  const { data } = await instance.post('/users/password/custom', formData)
+  localStorage.setItem('token', data.token);
+  setToken(data.token);
+  return data;
+};
+
+// Password-change
+export const changePassword = async formData => {
+  const { data } = await instance.post('/users/password/custom/update', formData);
   localStorage.setItem('token', data.token);
   setToken(data.token);
   return data;

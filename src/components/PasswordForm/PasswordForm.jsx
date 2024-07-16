@@ -7,7 +7,7 @@ import css from './PasswordForm.module.css';
 import { NavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { newPassword } from '../../redux/users/operations';
-import { useNavigate } from 'react-router-dom'; // Імпортуйте useNavigate
+import { useNavigate } from 'react-router-dom'; 
 
 const schema = yup.object().shape({
   email: yup
@@ -19,7 +19,7 @@ const schema = yup.object().shape({
 const PasswordForm = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const navigate = useNavigate(); // Використовуйте useNavigate
+  const navigate = useNavigate(); 
 
   const {
     register,
@@ -35,14 +35,14 @@ const PasswordForm = () => {
     },
   });
 
-  //зробити перевірку чи є такий зареєстрований користувач
+
 
   const handleFocus = fieldName => clearErrors(fieldName);
 
   const onSubmit = data => {
     dispatch(newPassword(data));
     reset();
-    navigate('/signin'); // Перенаправлення користувача на сторінку Sign In
+    navigate('/'); 
   };
 
   return (
