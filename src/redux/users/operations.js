@@ -126,8 +126,6 @@ export const getCurrentUser = createAsyncThunk(
   }
 );
 
-// Avatar
-
 // Update
 
 export const sendVerify = createAsyncThunk(
