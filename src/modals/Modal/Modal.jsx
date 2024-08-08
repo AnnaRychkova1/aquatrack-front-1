@@ -1,6 +1,6 @@
 import Modal from 'react-modal';
 import css from './Modal.module.css';
-import Iconsvg from '../../components/Icon/Icon';
+import Iconsvg from '../../shared/components/Icon/Icon';
 
 Modal.setAppElement('#root');
 

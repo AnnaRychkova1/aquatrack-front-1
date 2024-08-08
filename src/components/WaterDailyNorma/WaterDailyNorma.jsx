@@ -9,7 +9,6 @@ const WaterDailyNorma = () => {
 
   return (
     <div className={`reactour__waterDailyNorma ${css.contDailyNorma}`}>
-      {/* <p className={css.dailyNorma}>{daylyNorm ? `${daylyNorm} L` : '0L'}</p> */}
       <p className={css.dailyNorma}>
         {daylyNorm} {t('trackerPage.liter')}
       </p>

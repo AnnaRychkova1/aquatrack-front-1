@@ -1,12 +1,12 @@
 import WaterDailyNorma from '../WaterDailyNorma/WaterDailyNorma';
 import WaterProgressBar from '../WaterProgressBar/WaterProgressBar';
 import css from './WaterMainInfo.module.css';
-import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
-import Logo from '../Logo/Logo';
+import AddWaterBtn from '../../shared/components/AddWaterBtn/AddWaterBtn';
+import Logo from '../../shared/components/Logo/Logo';
 
 const WaterMainInfo = () => {
   return (
-    <div className={css.trackContainerItem}>
+    <section className={css.trackContainerItem}>
       <div className={css.topContainer}>
         <div className="reactour__Bye">
           <Logo />
@@ -25,7 +25,7 @@ const WaterMainInfo = () => {
           />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

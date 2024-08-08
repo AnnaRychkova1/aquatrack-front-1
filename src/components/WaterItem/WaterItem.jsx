@@ -1,18 +1,17 @@
 import { useTranslation } from 'react-i18next';
 import DeleteWaterModal from '../../modals/DeleteWaterModal/DeleteWaterModal';
 import WaterModal from '../../modals/WaterModal/WaterModal';
-import Iconsvg from '../Icon/Icon';
+import Iconsvg from '../../shared/components/Icon/Icon';
 import css from './WaterItem.module.css';
 import { useState } from 'react';
 
 const formatTime = dateString => {
   const date = new Date(dateString);
-  const hours = date.getUTCHours().toString().padStart(2, '0');
-  const minutes = date.getUTCMinutes().toString().padStart(2, '0');
-  return `${hours}:${minutes}`;
+  const options = { hour: '2-digit', minute: '2-digit', hour12: false };
+  return date.toLocaleTimeString(undefined, options);
 };
 
-const WaterItem = ({ id, volume, date, isEditable }) => {
+const WaterItem = ({ id, volume, date }) => {
   const { t } = useTranslation();
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -48,7 +47,6 @@ const WaterItem = ({ id, volume, date, isEditable }) => {
               className={css.button}
               type="button"
               aria-label="Edit water value"
-              disabled={!isEditable}
             >
               <Iconsvg
                 width="14"
@@ -64,7 +62,6 @@ const WaterItem = ({ id, volume, date, isEditable }) => {
               className={css.button}
               type="button"
               aria-label="Delete item"
-              disabled={!isEditable}
             >
               <Iconsvg
                 width="14"
@@ -81,7 +78,6 @@ const WaterItem = ({ id, volume, date, isEditable }) => {
         closeModal={closeWaterModal}
         operationType={'edit'}
         id={id}
-        // date={date}
         volume={volume}
         myTime={time}
       />

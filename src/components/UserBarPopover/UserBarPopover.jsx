@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import LogOutModal from '../../modals/LogOutModal/LogOutModal';
 import UserSettingsModal from '../../modals/UserSettingsModal/UserSettingsModal';
-//import Iconsvg from '../Icon/Icon';
-import css from '../UserPanel/UserPanel.module.css';
-import Iconsvg from '../Icon/Icon';
+import css from '../UserBarPopover/UserBarPopover.module.css';
+import Iconsvg from '../../shared/components/Icon/Icon';
 import { useTranslation } from 'react-i18next';
+
 const UserBarPopover = ({ closePopover }) => {
   const { t } = useTranslation();
   const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);

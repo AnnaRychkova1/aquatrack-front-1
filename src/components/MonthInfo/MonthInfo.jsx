@@ -1,5 +1,5 @@
 // import Calendar from '../Calendar/Calendar';
-import Calendar_1 from '../Calendar_1/Calendar_1';
+import Calendar_1 from '../Calendar/Calendar';
 import CalendarPagination from '../CalendarPagination/CalendarPagination';
 import Statistic from '../Statistic/Statistic';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,7 +8,7 @@ import { changeViewStatistics } from '../../redux/pagination/slice';
 import { changeDate } from '../../redux/date/slice';
 import { changePaginationDate } from '../../redux/date/slice';
 import { selectMonth } from '../../redux/water/selectors';
-import Icon from '../Icon/Icon';
+import Icon from '../../shared/components/Icon/Icon';
 import css from './MonthInfo.module.css';
 import { useTranslation } from 'react-i18next';
 

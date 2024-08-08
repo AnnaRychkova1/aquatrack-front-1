@@ -6,9 +6,12 @@ import {
   logOut,
   uploadUserAvatar,
   updateUserProfile,
-  getCurrentUser,
-  newPassword,
-  newPasswordChange,
+  currentUser,
+  forgotPassword,
+  changePassword,
+  resendVerify,
+  generatePassword,
+  countUsers,
 } from './operations.js';
 
 const INITIAL_STATE = {
@@ -22,7 +25,7 @@ const INITIAL_STATE = {
     waterDrink: 1.8,
     avatarURL: null,
   },
-
+  users: null,
   token: null,
   isSignedIn: false,
   isLoading: false,
@@ -41,12 +44,17 @@ const handleRejected = state => {
 };
 
 const authSlice = createSlice({
-  name: 'user',
+  name: 'auth',
   initialState: INITIAL_STATE,
   extraReducers: builder => {
     builder
 
-      // REGISTER
+      .addCase(countUsers.fulfilled, (state, action) => {
+        state.users = action.payload;
+        state.isLoading = false;
+      })
+
+      // Register
       .addCase(userRegister.fulfilled, (state, action) => {
         state.isLoading = false;
         const { user } = action.payload;
@@ -54,33 +62,7 @@ const authSlice = createSlice({
         state.isSignedIn = false;
       })
 
-      //password-reset
-      .addCase(newPassword.fulfilled, (state, action) => {
-        const { user, token } = action.payload;
-        if (token) {
-          localStorage.setItem('token', token);
-          state.user = user;
-          state.token = token;
-          state.isSignedIn = true;
-          state.isLoading = false;
-        }
-        state.isLoading = false;
-      })
-
-      //password-change
-      .addCase(newPasswordChange.fulfilled, (state, action) => {
-        const { user, token } = action.payload;
-        if (token) {
-          localStorage.setItem('token', token);
-          state.user = user;
-          state.token = token;
-          state.isSignedIn = true;
-          state.isLoading = false;
-        }
-        state.isLoading = false;
-      })
-
-      //LOGIN
+      // Login
       .addCase(logIn.fulfilled, (state, action) => {
         const { user, token } = action.payload;
         if (token) {
@@ -93,61 +75,89 @@ const authSlice = createSlice({
         state.isLoading = false;
       })
 
-      // LOGIN WITH GOOGLE
-      .addCase(loginGoogle.pending, handlePending)
+      // Google Login
       .addCase(loginGoogle.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isSignedIn = true;
       })
-      .addCase(loginGoogle.rejected, handleRejected)
 
-      // CURRENT
-      .addCase(getCurrentUser.pending, state => {
+      // Current
+      .addCase(currentUser.pending, state => {
         state.isCurrent = true;
         state.isLoading = true;
         state.isError = false;
-        // state.isSignedIn = true;
       })
-      .addCase(getCurrentUser.fulfilled, (state, action) => {
+      .addCase(currentUser.fulfilled, (state, action) => {
         const { user } = action.payload;
         state.isCurrent = false;
         state.user = user;
         state.isSignedIn = true;
         state.isLoading = false;
       })
-      .addCase(getCurrentUser.rejected, state => {
+      .addCase(currentUser.rejected, state => {
         state.isLoading = false;
         state.isCurrent = false;
         state.isError = true;
       })
 
-      // LOGOUT
+      // Logout
       .addCase(logOut.fulfilled, () => {
         localStorage.removeItem('token');
         return INITIAL_STATE;
       })
 
-      // AVATAR
+      // Avatar
       .addCase(uploadUserAvatar.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user.avatarURL = action.payload;
       })
 
-      // UPDATE PROFILE
+      // Update
       .addCase(updateUserProfile.fulfilled, (state, action) => {
         state.isLoading = false;
         const updatedUser = action.payload;
         state.user = { ...state.user, ...updatedUser };
       })
+
+      // Password-forgot
+      .addCase(forgotPassword.fulfilled, state => {
+        state.isLoading = false;
+        state.isSignedIn = false;
+      })
+
+      // Password-change
+      .addCase(changePassword.fulfilled, state => {
+        state.isLoading = false;
+        state.isSignedIn = false;
+      })
+
+      // Password-generate
+      .addCase(generatePassword.fulfilled, state => {
+        state.isLoading = false;
+        state.isSignedIn = false;
+      })
+
+      // Resend verify
+      .addCase(resendVerify.fulfilled, state => {
+        state.isLoading = false;
+        state.isSignedIn = false;
+      })
+
       .addMatcher(
         isAnyOf(
           userRegister.pending,
           logIn.pending,
+          loginGoogle.pending,
           logOut.pending,
           uploadUserAvatar.pending,
-          updateUserProfile.pending
+          updateUserProfile.pending,
+          forgotPassword.pending,
+          changePassword.pending,
+          resendVerify.pending,
+          generatePassword.pending,
+          countUsers.pending
         ),
         handlePending
       )
@@ -155,9 +165,15 @@ const authSlice = createSlice({
         isAnyOf(
           userRegister.rejected,
           logIn.rejected,
+          loginGoogle.rejected,
           logOut.rejected,
           uploadUserAvatar.rejected,
-          updateUserProfile.rejected
+          updateUserProfile.rejected,
+          forgotPassword.rejected,
+          changePassword.rejected,
+          resendVerify.rejected,
+          generatePassword.rejected,
+          countUsers.rejected
         ),
         handleRejected
       );

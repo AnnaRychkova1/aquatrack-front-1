@@ -1,5 +1,5 @@
 import css from './WaterProgressBar.module.css';
-import Iconsvg from '../Icon/Icon';
+import Iconsvg from '../../shared/components/Icon/Icon';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectWaterDrink } from '../../redux/users/selectors';

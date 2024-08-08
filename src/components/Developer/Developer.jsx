@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Iconsvg from '../Icon/Icon';
+import Iconsvg from '../../shared/components/Icon/Icon';
 import css from './Developer.module.css';
 import data from '../../modals/DeveloperModal/developersData';
 import { useTranslation } from 'react-i18next';

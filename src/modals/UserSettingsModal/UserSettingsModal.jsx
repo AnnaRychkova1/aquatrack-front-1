@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import Iconsvg from '../../components/Icon/Icon';
-import UserSettingsForm from '../../components/UserSettingsForm/UserSettingsForm';
+import Iconsvg from '../../shared/components/Icon/Icon';
+import UserSettingsForm from '../../forms/UserSettingsForm/UserSettingsForm';
 import UniversalModal from '../Modal/Modal';
 import css from './UserSettingsModal.module.css';
 const UserSettingsModal = ({ isOpen, closeModal, closePopover }) => {

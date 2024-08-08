@@ -5,7 +5,7 @@ import { changePaginationDate } from '../../redux/date/slice';
 import { paginationBtnDisabled } from '../../redux/pagination/selectors';
 import { changePaginationBtnDisabled } from '../../redux/pagination/slice';
 import css from './CalendarPagination.module.css';
-import Icon from '../Icon/Icon';
+import Icon from '../../shared/components/Icon/Icon';
 import { useTranslation } from 'react-i18next';
 
 const CalendarPagination = () => {

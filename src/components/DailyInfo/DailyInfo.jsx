@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { isSameDay, format, getDate } from 'date-fns';
 import { selectDate } from '../../redux/date/selectors';
 import ChooseDate from '../ChooseDate/ChooseDate';
-import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
+import AddWaterBtn from '../../shared/components/AddWaterBtn/AddWaterBtn';
 import WaterList from '../WaterList/WaterList';
 import css from './DailyInfo.module.css';
 import { useTranslation } from 'react-i18next';

@@ -24,7 +24,7 @@ const userPersistConfig = {
 
 export const store = configureStore({
   reducer: {
-    user: persistReducer(userPersistConfig, authReducer),
+    auth: persistReducer(userPersistConfig, authReducer),
     date: dateReducer,
     water: waterReducer,
     pagination: paginationReducer,

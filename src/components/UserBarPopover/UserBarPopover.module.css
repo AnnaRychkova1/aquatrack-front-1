@@ -1,0 +1,73 @@
+.userPopoverContainer {
+  position: absolute;
+  top: 54px;
+  width: 100%;
+  /* max-width: 137px; */
+  max-height: 82px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 15px;
+  padding: 14px 20px;
+  gap: 8px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+}
+@media screen and (min-width: 768px) {
+  .userPopoverContainer {
+    top: 64px;
+  }
+}
+
+.userPopoverBtn {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  max-width: 137px;
+  background-color: inherit;
+  outline: none;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 149%;
+  color: #323f47;
+  border: none;
+  transition-property: all;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+
+@media screen and (min-width: 768px) {
+  .userPopoverBtn {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    width: 157px;
+    background-color: inherit;
+    outline: none;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 149%;
+    color: #323f47;
+    border: none;
+    transition-property: all;
+    transition-duration: 250ms;
+    transition-timing-function: ease;
+  }
+}
+
+.userPopoverBtn:hover {
+  color: #87d28d;
+  stroke: #87d28d;
+  fill: #87d28d;
+}
+
+.userPopoverBtnIcon {
+  width: 16px;
+  height: 16px;
+  stroke: #323f47;
+}
+
+.userPopoverBtn:hover .userPopoverBtnIcon {
+  stroke: #87d28d !important;
+  fill: #87d28d;
+}

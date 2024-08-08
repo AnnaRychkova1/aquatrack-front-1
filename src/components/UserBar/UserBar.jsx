@@ -1,23 +1,16 @@
 //import { useEffect, useState } from 'react';
 import { useState } from 'react';
-import Iconsvg from '../Icon/Icon';
+import Iconsvg from '../../shared/components/Icon/Icon';
 import UserBarPopover from '../UserBarPopover/UserBarPopover';
 import { useSelector } from 'react-redux';
-import {
-  selectAvatar,
-  selectIsSignedIn,
-  selectName,
-} from '../../redux/users/selectors';
-import css from '../UserPanel/UserPanel.module.css';
-import { useTranslation } from 'react-i18next';
+import { selectAvatar, selectName } from '../../redux/users/selectors';
+import css from '../UserBar/UserBar.module.css';
 
 const UserBar = () => {
-  const { t } = useTranslation();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [svgPopover, setSvgPopover] = useState('chevron-down');
   const userDataName = useSelector(selectName);
   const userDataAvatar = useSelector(selectAvatar);
-  const isSignedIn = useSelector(selectIsSignedIn);
 
   const togglePopover = () => {
     setIsPopoverOpen(prevState => !prevState);
@@ -32,20 +25,18 @@ const UserBar = () => {
   };
 
   return (
-    <div className={css.userPanelContainerBtn}>
+    <>
       <div className="reactour__userPanelInfo">
-        <button className={css.userPanelBtn} onClick={togglePopover}>
-          {isSignedIn ? (
-            <span className={css.userNameSmall}>{userDataName}</span>
-          ) : (
-            <span className={css.userNameSmall}>{t('trackerPage.user')}</span>
-          )}
-          <img name={userDataName} src={`${userDataAvatar}`} size="40" />
-          <Iconsvg className={css.userPanelBtnIcon} iconName={svgPopover} />
-        </button>
+        <div className={css.userPanel}>
+          <span className={css.userNameSmall}>{userDataName}</span>
+          <img name={userDataName} src={`${userDataAvatar}`} />
+          <button className={css.userPanelBtn} onClick={togglePopover}>
+            <Iconsvg className={css.userPanelBtnIcon} iconName={svgPopover} />
+          </button>
+          {isPopoverOpen && <UserBarPopover closePopover={closePopover} />}
+        </div>
       </div>
-      {isPopoverOpen && <UserBarPopover closePopover={closePopover} />}
-    </div>
+    </>
   );
 };
 

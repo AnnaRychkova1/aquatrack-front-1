@@ -1,5 +1,5 @@
 import UniversalModal from '../Modal/Modal';
-import WaterForm from '../../components/WaterForm/WaterForm';
+import WaterForm from '../../forms/WaterForm/WaterForm';
 import css from './WaterModal.module.css';
 import { useTranslation } from 'react-i18next';
 
@@ -8,7 +8,6 @@ const WaterModal = ({
   closeModal,
   operationType,
   id,
-  // date,
   volume,
   myTime,
 }) => {
@@ -28,7 +27,6 @@ const WaterModal = ({
         </p>
         <WaterForm
           id={id}
-          // date={date}
           volume={volume}
           operationType={operationType}
           closeModal={closeModal}

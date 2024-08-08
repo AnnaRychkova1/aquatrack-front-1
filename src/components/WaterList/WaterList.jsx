@@ -11,15 +11,13 @@ import { useTranslation } from 'react-i18next';
 
 const WaterList = ({ selectDay }) => {
   const { t } = useTranslation();
-  // Форматуємо дату в формат YYYY-MM-DD
   const initDate = new Date(selectDay);
   const year = initDate.getFullYear();
-  const month = String(initDate.getMonth() + 1).padStart(2, '0'); // Місяці від 0 до 11
-  const day = String(initDate.getDate()).padStart(2, '0'); // Дні від 1 до 31
+  const month = String(initDate.getMonth() + 1).padStart(2, '0');
+  const day = String(initDate.getDate()).padStart(2, '0');
 
   const formatDate = `${year}-${month}-${day}`;
 
-  // Отримуємо дані з БД
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
 
@@ -29,15 +27,12 @@ const WaterList = ({ selectDay }) => {
     }
   }, [dispatch, token, formatDate]);
 
-  // Отримуємо зі стору масив даних
   const waterPortions = useSelector(selectWaterPortion);
 
-  // Сортуємо масив за датою від ранішої до пізнішої
   const sortedWaterPortions = [...waterPortions].sort(
     (a, b) => new Date(a.date) - new Date(b.date)
   );
 
-  // Обчислюємо загальну кількість випитої води за день
   useEffect(() => {
     const totalVolume = sortedWaterPortions.reduce((sum, item) => {
       return sum + item.volume;
@@ -58,7 +53,6 @@ const WaterList = ({ selectDay }) => {
                 volume={waterItem.volume}
                 date={waterItem.date}
                 isEditable={true}
-                // isEditable={isSameDay(new Date(), waterItem.date)}
               />
             </li>
           ))

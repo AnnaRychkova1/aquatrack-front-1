@@ -6,11 +6,11 @@ import css from './WaterDetailedInfo.module.css';
 
 const WaterDetailedInfo = () => {
   return (
-    <div className={css.trackContainerItem}>
+    <section className={css.trackContainerItem}>
       <UserPanel />
       <DailyInfo />
       <MonthInfo />
-    </div>
+    </section>
   );
 };
 

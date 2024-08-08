@@ -1,45 +1,76 @@
-import CalendarItem from '../CalendarItem/CalendarItem';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import {
+  isSameDay,
+  getMonth,
+  getYear,
   startOfMonth,
   endOfMonth,
   eachDayOfInterval,
-  isSameDay,
 } from 'date-fns';
+import { selectWaterDrink } from '../../redux/users/selectors';
+import { fetchMonthlyWater } from '../../redux/water/operations';
+import { paginationDate } from '../../redux/date/selectors';
+import { selectToken } from '../../redux/users/selectors';
+import { selectMonth } from '../../redux/water/selectors';
+import CalendarItem from '../CalendarItem/CalendarItem';
 import css from './Calendar.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectMonthWater } from '../../redux/water/selectors.js';
-import { useEffect } from 'react';
-import { getMonthWater } from '../../redux/water/operations.js';
+import { useTranslation } from 'react-i18next';
 
-const Calendar = ({ currentMonth }) => {
+const Calendar = () => {
+  const { t } = useTranslation();
+
+  const storePaginationDate = new Date(useSelector(paginationDate));
+
+  const waterDrinkNorma = useSelector(selectWaterDrink);
+
+  const month = getMonth(storePaginationDate) + 1;
+  const year = getYear(storePaginationDate);
+
   const dispatch = useDispatch();
-  const monthData = useSelector(selectMonthWater);
-
+  const token = useSelector(selectToken);
   useEffect(() => {
-    dispatch(getMonthWater(currentMonth));
-  }, [dispatch, currentMonth]);
+    if (token) {
+      dispatch(fetchMonthlyWater({ month, year, token }));
+    }
+  }, [dispatch, month, year, token]);
 
-  const days = eachDayOfInterval({
-    start: startOfMonth(new Date(currentMonth)),
-    end: endOfMonth(new Date(currentMonth)),
-  });
+  const waterPortions = useSelector(selectMonth);
 
-  const getDayData = day => {
-    return monthData.find(data => isSameDay(new Date(data.date), day));
+  const getDatesArray = () => {
+    const start = startOfMonth(storePaginationDate);
+    const end = endOfMonth(storePaginationDate);
+    const days = eachDayOfInterval({ start, end });
+    return days;
+  };
+
+  const percent = volume => {
+    if (volume) {
+      return Math.round((volume / waterDrinkNorma) * 0.1);
+    } else {
+      return 0;
+    }
   };
 
   return (
-    <div>
-      <ul className={css.listCalendar}>
-        {days.map(day => {
+    <ul className={css.list}>
+      {getDatesArray().length === 0 ? (
+        <li className={css.emptyItem}>{t('trackerPage.noDataForMonth')}</li>
+      ) : (
+        getDatesArray().map(date => {
+          const volumePerDay = waterPortions.reduce((totalVolume, arrDate) => {
+            return isSameDay(arrDate.date, date)
+              ? totalVolume + arrDate.volume
+              : totalVolume;
+          }, 0);
           return (
-            <li className={css.itemCalendar} key={day}>
-              <CalendarItem day={day} getDayData={getDayData} />
+            <li className={css.item} key={date.toISOString()}>
+              <CalendarItem date={date} percent={percent(volumePerDay)} />
             </li>
           );
-        })}
-      </ul>
-    </div>
+        })
+      )}
+    </ul>
   );
 };
 
