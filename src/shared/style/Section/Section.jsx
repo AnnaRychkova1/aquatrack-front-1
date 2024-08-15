@@ -1,5 +1,5 @@
-import Logo from '../../components/Logo/Logo';
 import css from './Section.module.css';
+import Logo from '../../components/Logo/Logo';
 
 const Section = ({ children }) => {
   return (

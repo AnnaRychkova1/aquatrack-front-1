@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   XAxis,
   YAxis,
@@ -9,29 +10,25 @@ import {
   AreaChart,
   ResponsiveContainer,
 } from 'recharts';
-import css from './Statistic.module.css';
 import { format, subDays, getMonth, getYear } from 'date-fns';
+
+import css from './Statistic.module.css';
+import Loader from '../../shared/components/Loader/Loader';
 import { paginationDate } from '../../redux/date/selectors';
 import { selectToken } from '../../redux/users/selectors';
 import { fetchMonthlyWater } from '../../redux/water/operations';
 import { selectDate } from '../../redux/date/selectors';
-import { useTranslation } from 'react-i18next';
+import { selectLoadingWater } from '../../redux/water/selectors';
 
 const Statistic = ({ data }) => {
   const { t } = useTranslation();
   const storePaginationDate = new Date(useSelector(paginationDate));
   const selectedDate = useSelector(selectDate);
-
   const month = getMonth(storePaginationDate) + 1;
   const year = getYear(storePaginationDate);
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
-
-  useEffect(() => {
-    if (token) {
-      dispatch(fetchMonthlyWater({ month, year, token }));
-    }
-  }, [dispatch, month, year, token]);
+  const loadingWater = useSelector(selectLoadingWater);
 
   const waterPortions = data.map(el => {
     return { date: format(el.date, 'dd.MM.yyyy'), volume: el.volume / 1000 };
@@ -59,6 +56,12 @@ const Statistic = ({ data }) => {
 
   const gradientId = 'waterGradient';
 
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchMonthlyWater({ month, year, token }));
+    }
+  }, [dispatch, month, year, token]);
+
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
@@ -71,12 +74,17 @@ const Statistic = ({ data }) => {
     }
     return null;
   };
+
   const formatYAxis = tickItem => {
     if (tickItem === 0) {
       return '0';
     }
     return `${tickItem} ${t('trackerPage.liter')}`;
   };
+
+  if (loadingWater) {
+    return <Loader />;
+  }
 
   return (
     <div className={css.statistics}>

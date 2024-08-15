@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { isSameDay, format, getDate } from 'date-fns';
-import { selectDate } from '../../redux/date/selectors';
-import ChooseDate from '../ChooseDate/ChooseDate';
+
+import css from './DailyInfo.module.css';
 import AddWaterBtn from '../../shared/components/AddWaterBtn/AddWaterBtn';
 import WaterList from '../WaterList/WaterList';
-import css from './DailyInfo.module.css';
-import { useTranslation } from 'react-i18next';
+import { selectDate } from '../../redux/date/selectors';
 
 const DailyInfo = () => {
   const { t } = useTranslation();
@@ -25,7 +25,7 @@ const DailyInfo = () => {
   return (
     <div className={css.wrapper}>
       <div className={css.cardHeader}>
-        <ChooseDate formattedDate={formattedDate} />
+        <h3 className={css.cardTitle}>{formattedDate}</h3>
         <div className="reactour__waterAddCard">
           <AddWaterBtn
             buttonStyle={css.cardButton}

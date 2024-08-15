@@ -1,7 +1,7 @@
-import Logo from '../../shared/components/Logo/Logo';
-import css from './WelcomeSection.module.css';
-import { Navigation } from '../Navigation/Navigation';
 import { useTranslation } from 'react-i18next';
+import css from './WelcomeSection.module.css';
+import Logo from '../../shared/components/Logo/Logo';
+import { Navigation } from '../Navigation/Navigation';
 
 const WelcomeSection = () => {
   const { t } = useTranslation();

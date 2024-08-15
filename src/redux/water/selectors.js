@@ -6,6 +6,6 @@ export const selectWaterPortion = state => state.water.items;
 
 export const selectMonth = state => state.water.monthIReception;
 
-export const selectLoading = state => state.water.loading;
+export const selectLoadingWater = state => state.water.loading;
 
-export const selectError = state => state.water.error;
+export const selectErrorWater = state => state.water.error;

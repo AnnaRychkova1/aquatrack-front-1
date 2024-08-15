@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   isSameDay,
   getMonth,
@@ -8,41 +9,26 @@ import {
   endOfMonth,
   eachDayOfInterval,
 } from 'date-fns';
+
+import css from './Calendar.module.css';
+import CalendarItem from '../CalendarItem/CalendarItem';
+import Loader from '../../shared/components/Loader/Loader';
 import { selectWaterDrink } from '../../redux/users/selectors';
 import { fetchMonthlyWater } from '../../redux/water/operations';
 import { paginationDate } from '../../redux/date/selectors';
 import { selectToken } from '../../redux/users/selectors';
-import { selectMonth } from '../../redux/water/selectors';
-import CalendarItem from '../CalendarItem/CalendarItem';
-import css from './Calendar.module.css';
-import { useTranslation } from 'react-i18next';
+import { selectLoadingWater, selectMonth } from '../../redux/water/selectors';
 
 const Calendar = () => {
   const { t } = useTranslation();
-
   const storePaginationDate = new Date(useSelector(paginationDate));
-
   const waterDrinkNorma = useSelector(selectWaterDrink);
-
   const month = getMonth(storePaginationDate) + 1;
   const year = getYear(storePaginationDate);
-
+  const loadingWater = useSelector(selectLoadingWater);
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
-  useEffect(() => {
-    if (token) {
-      dispatch(fetchMonthlyWater({ month, year, token }));
-    }
-  }, [dispatch, month, year, token]);
-
   const waterPortions = useSelector(selectMonth);
-
-  const getDatesArray = () => {
-    const start = startOfMonth(storePaginationDate);
-    const end = endOfMonth(storePaginationDate);
-    const days = eachDayOfInterval({ start, end });
-    return days;
-  };
 
   const percent = volume => {
     if (volume) {
@@ -51,6 +37,23 @@ const Calendar = () => {
       return 0;
     }
   };
+
+  const getDatesArray = () => {
+    const start = startOfMonth(storePaginationDate);
+    const end = endOfMonth(storePaginationDate);
+    const days = eachDayOfInterval({ start, end });
+    return days;
+  };
+
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchMonthlyWater({ month, year, token }));
+    }
+  }, [dispatch, month, year, token]);
+
+  if (loadingWater) {
+    return <Loader />;
+  }
 
   return (
     <ul className={css.list}>

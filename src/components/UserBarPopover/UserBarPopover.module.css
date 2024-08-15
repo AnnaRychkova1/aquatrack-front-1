@@ -1,8 +1,7 @@
 .userPopoverContainer {
   position: absolute;
-  top: 54px;
+  z-index: 20;
   width: 100%;
-  /* max-width: 137px; */
   max-height: 82px;
   display: flex;
   flex-direction: column;
@@ -13,17 +12,33 @@
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
   background: #ffffff;
 }
+
+.userPopoverContainer.bottom {
+  top: 54px;
+  left: 0;
+}
+
+.userPopoverContainer.top {
+  bottom: 54px;
+  left: 0;
+}
+
 @media screen and (min-width: 768px) {
-  .userPopoverContainer {
+  .userPopoverContainer.bottom {
     top: 64px;
+    left: 0;
+  }
+  .userPopoverContainer.top {
+    bottom: 64px;
+    left: 0;
   }
 }
 
 .userPopoverBtn {
   display: flex;
   gap: 8px;
+  width: 100%;
   align-items: center;
-  max-width: 137px;
   background-color: inherit;
   outline: none;
   font-weight: 700;
@@ -41,7 +56,6 @@
     display: flex;
     gap: 8px;
     align-items: center;
-    width: 157px;
     background-color: inherit;
     outline: none;
     font-weight: 700;

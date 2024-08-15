@@ -1,8 +1,8 @@
-import UniversalModal from '../Modal/Modal';
+import { useTranslation } from 'react-i18next';
 import css from './DeveloperModal.module.css';
+import UniversalModal from '../Modal/Modal';
 import data from './developersData';
 import Developer from '../../components/Developer/Developer';
-import { useTranslation } from 'react-i18next';
 
 const DeveloperModal = ({ isOpen, closeModal }) => {
   const { t } = useTranslation();

@@ -1,9 +1,10 @@
+import { useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import css from '../../shared/style/Section/Section.module.css';
 import Section from '../../shared/style/Section/Section';
 import GoogleBtn from '../../shared/components/GoogleBtn/GoogleBtn';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
 import SignInForm from '../../forms/SignInForm';
 
 const SignIn = () => {

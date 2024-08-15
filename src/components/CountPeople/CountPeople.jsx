@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import css from './CountPeople.module.css';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+
+import css from './CountPeople.module.css';
 import Loader from '../../shared/components/Loader/Loader';
 import { countUsers } from '../../redux/users/operations';
-import { useDispatch, useSelector } from 'react-redux';
 import { selectCount, selectIsLoading } from '../../redux/users/selectors';
 
 const CountPeople = () => {
@@ -11,21 +12,22 @@ const CountPeople = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const userCount = useSelector(selectCount);
-  console.log(userCount);
+  const formattedUserCount = formatUserCount(userCount);
+
+  const formatUserCount = userCount => {
+    if (userCount !== null) {
+      if (userCount > 10000) {
+        return `${(userCount / 1000).toFixed(2)}k`;
+      } else {
+        return userCount.toString();
+      }
+    }
+    return '';
+  };
 
   useEffect(() => {
     dispatch(countUsers());
   }, [dispatch]);
-
-  // const formatUserCount = count => {
-  //   if (count === null) {
-  //     if (count > 10000) {
-  //       return `${(count / 1000).toFixed(2)} `;
-  //     } else {
-  //       return count.toString();
-  //     }
-  //   }
-  // };
 
   if (isLoading) return <Loader />;
 
@@ -36,7 +38,7 @@ const CountPeople = () => {
         <span className={css.textSpan}>
           {t('adwantagesSection.count.team')}{' '}
         </span>{' '}
-        {t('adwantagesSection.count.now')} : {userCount}
+        {t('adwantagesSection.count.now')} : {formattedUserCount}
       </p>
     </div>
   );

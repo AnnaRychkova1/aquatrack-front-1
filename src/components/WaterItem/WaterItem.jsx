@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+import css from './WaterItem.module.css';
+
 import DeleteWaterModal from '../../modals/DeleteWaterModal/DeleteWaterModal';
 import WaterModal from '../../modals/WaterModal/WaterModal';
 import Iconsvg from '../../shared/components/Icon/Icon';
-import css from './WaterItem.module.css';
-import { useState } from 'react';
 
 const formatTime = dateString => {
   const date = new Date(dateString);
@@ -13,6 +14,7 @@ const formatTime = dateString => {
 
 const WaterItem = ({ id, volume, date }) => {
   const { t } = useTranslation();
+  const time = formatTime(date);
   const [isWaterModalOpen, setIsWaterModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -21,7 +23,6 @@ const WaterItem = ({ id, volume, date }) => {
 
   const openDeleteModal = () => setIsDeleteModalOpen(true);
   const closeDeleteModal = () => setIsDeleteModalOpen(false);
-  const time = formatTime(date);
 
   return (
     <>

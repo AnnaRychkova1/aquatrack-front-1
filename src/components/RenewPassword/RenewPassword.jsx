@@ -7,6 +7,7 @@ import Section from '../../shared/style/Section/Section';
 
 const RenewPassword = () => {
   const { t } = useTranslation();
+
   return (
     <Section>
       <div className={css.content}>

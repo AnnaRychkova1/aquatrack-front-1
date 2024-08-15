@@ -3,62 +3,61 @@
   flex-direction: column;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   margin-bottom: 40px;
 }
 
 .userName {
-  width: 198px;
+  /* width: 198px; */
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
+  font-weight: 700;
 }
 
 .userPanelTitle {
   font-family: 'Gilroy', sans-serif;
   display: flex;
+  justify-content: flex-end;
   font-weight: 400;
   font-size: 32px;
   line-height: 100%;
   letter-spacing: -0.01em;
   color: #323f47;
-  width: 311px;
-}
-
-.userPanelTitle span {
-  overflow: hidden;
-  font-weight: 700;
+  /* width: 311px; */
+  width: 100%;
+  overflow-x: hidden;
 }
 
 @media screen and (min-width: 768px) {
   .userPanelContainer {
+    display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 6px;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     align-items: center;
     margin-bottom: 40px;
   }
 
   .userPanelTitle {
+    justify-content: flex-start;
     font-weight: 400;
     font-size: 36px;
     line-height: 106%;
-    width: 320px;
+    /* width: 320px; */
   }
 
-  .userPanelTitle span {
+  .userName {
+    /* width: 232px; */
     font-weight: 700;
     overflow: hidden;
     margin-right: 2px;
   }
-
-  .userName {
-    width: 232px;
-  }
 }
 
 @media screen and (min-width: 1440px) {
-  .userPanelTitle {
+  /* .userPanelTitle {
     width: 304px;
-  }
+  } */
 }

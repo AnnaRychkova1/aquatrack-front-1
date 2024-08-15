@@ -1,15 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useEffect, useState } from 'react';
 
 import css from '../../shared/style/Section/Section.module.css';
 
-import { useEffect, useState } from 'react';
 import ForgotForm from '../../forms/ForgotForm';
 import Section from '../../shared/style/Section/Section';
 
 const Forgot = ({ operationType }) => {
   const { t } = useTranslation();
-
   const [typePassword, setTypePassword] = useState('');
   const [showForm, setShowForm] = useState(false);
   const [shownBtn, setShownBtn] = useState(true);
@@ -46,14 +45,14 @@ const Forgot = ({ operationType }) => {
               type="button"
               onClick={automatically}
             >
-              Generare new password automatically
+              {t('forgotForm.automatically')}
             </button>
             <button
               className={css.typePasswordBtn}
               type="button"
               onClick={manual}
             >
-              Generare new password manual
+              {t('forgotForm.manual')}
             </button>
           </>
         )}

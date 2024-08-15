@@ -1,7 +1,8 @@
-import css from './WaterDailyNorma.module.css';
 import { useSelector } from 'react-redux';
-import { selectWaterDrink } from '../../redux/users/selectors';
 import { useTranslation } from 'react-i18next';
+
+import css from './WaterDailyNorma.module.css';
+import { selectWaterDrink } from '../../redux/users/selectors';
 
 const WaterDailyNorma = () => {
   const { t } = useTranslation();

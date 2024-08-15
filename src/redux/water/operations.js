@@ -69,7 +69,7 @@ export const deleteWater = createAsyncThunk(
 );
 
 export const fetchDailyWater = createAsyncThunk(
-  'water/fetchDay',
+  'water/dailyWater',
   async ({ date }, thunkAPI) => {
     try {
       const response = await requestWaterDaily(date);
@@ -82,7 +82,7 @@ export const fetchDailyWater = createAsyncThunk(
 );
 
 export const fetchMonthlyWater = createAsyncThunk(
-  'water/fetchWaters',
+  'water/monthlyWater',
   async ({ month, year }, thunkAPI) => {
     try {
       const response = await requestWaterMonthly({ month, year });

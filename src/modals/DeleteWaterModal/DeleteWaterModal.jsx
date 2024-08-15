@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
-
-import { deleteWater } from '../../redux/water/operations';
-import UniversalModal from '../Modal/Modal';
-import css from './DeleteWaterModal.module.css';
 import { useTranslation } from 'react-i18next';
+
+import css from './DeleteWaterModal.module.css';
+import UniversalModal from '../Modal/Modal';
+import { deleteWater } from '../../redux/water/operations';
 
 const DeleteWaterModal = ({ isOpen, closeModal, id }) => {
   const { t } = useTranslation();

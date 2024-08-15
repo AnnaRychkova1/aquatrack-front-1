@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next';
+import css from './UserSettingsModal.module.css';
 import Iconsvg from '../../shared/components/Icon/Icon';
 import UserSettingsForm from '../../forms/UserSettingsForm/UserSettingsForm';
 import UniversalModal from '../Modal/Modal';
-import css from './UserSettingsModal.module.css';
+
 const UserSettingsModal = ({ isOpen, closeModal, closePopover }) => {
   const { t } = useTranslation();
   const addModalClassName = isOpen ? css.settingModal : '';

@@ -1,6 +1,11 @@
+.containerPanel {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 .userPanel {
   position: relative;
-  padding: 6px 6px 6px 12px;
+  padding: 6px 0px 6px 12px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -23,7 +28,7 @@
 
 .userPanelBtn {
   background-color: transparent;
-  padding: 4px 4px 4px 0;
+  padding: 4px 12px 4px 4px;
   border: none;
 }
 
@@ -70,11 +75,5 @@
     font-size: 16px;
     line-height: 150%;
     /* width: 232px; */
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .userPanel {
-    width: 296px;
   }
 }

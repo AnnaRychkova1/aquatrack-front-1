@@ -1,16 +1,17 @@
-//import { useEffect, useState } from 'react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import css from '../UserBar/UserBar.module.css';
 import Iconsvg from '../../shared/components/Icon/Icon';
 import UserBarPopover from '../UserBarPopover/UserBarPopover';
-import { useSelector } from 'react-redux';
 import { selectAvatar, selectName } from '../../redux/users/selectors';
-import css from '../UserBar/UserBar.module.css';
 
 const UserBar = () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [svgPopover, setSvgPopover] = useState('chevron-down');
   const userDataName = useSelector(selectName);
   const userDataAvatar = useSelector(selectAvatar);
+  const popoverRef = useRef(null);
 
   const togglePopover = () => {
     setIsPopoverOpen(prevState => !prevState);
@@ -22,10 +23,24 @@ const UserBar = () => {
   const closePopover = () => {
     setIsPopoverOpen(false);
     setSvgPopover('chevron-down');
+    console.log('hello');
   };
 
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (popoverRef.current && !popoverRef.current.contains(event.target)) {
+        closePopover();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <>
+    <div className={css.containerPanel}>
       <div className="reactour__userPanelInfo">
         <div className={css.userPanel}>
           <span className={css.userNameSmall}>{userDataName}</span>
@@ -33,10 +48,12 @@ const UserBar = () => {
           <button className={css.userPanelBtn} onClick={togglePopover}>
             <Iconsvg className={css.userPanelBtnIcon} iconName={svgPopover} />
           </button>
-          {isPopoverOpen && <UserBarPopover closePopover={closePopover} />}
+          {isPopoverOpen && (
+            <UserBarPopover ref={popoverRef} closePopover={closePopover} />
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

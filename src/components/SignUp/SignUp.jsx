@@ -8,6 +8,7 @@ import SignUpForm from '../../forms/SignUpForm';
 
 const SignUp = () => {
   const { t } = useTranslation();
+
   return (
     <Section>
       <div className={css.content}>

@@ -1,6 +1,5 @@
 import UserLogOut from '../../components/UserLogOut/UserLogOut';
 import UniversalModal from '../Modal/Modal';
-//import css from './LogOutModal.module.css';
 
 const LogOutModal = ({ isOpen, closeModal }) => {
   return (

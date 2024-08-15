@@ -1,14 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
-import { lazy, useEffect } from 'react';
-import SharedLayout from './SharedLayout';
-import { PrivateRoute } from './routs/PrivateRoute';
-import RestrictedRoute from './routs/RestrictedRoute';
 import { useDispatch, useSelector } from 'react-redux';
-import { currentUser } from './redux/users/operations';
-import { useAuth } from './hooks/useAuth';
+import { lazy, useEffect } from 'react';
+
+import SharedLayout from './SharedLayout';
 import Loader from './shared/components/Loader/Loader';
-import { selectToken } from './redux/users/selectors';
 import Header from './components/Header/Header';
+import { PrivateRoute } from './routs/PrivateRoute';
+import { RestrictedRoute } from './routs/RestrictedRoute';
+import { currentUser } from './redux/users/operations';
+import { selectToken } from './redux/users/selectors';
+import { useAuth } from './hooks/useAuth';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SignInPage = lazy(() => import('./pages/SignInPage'));

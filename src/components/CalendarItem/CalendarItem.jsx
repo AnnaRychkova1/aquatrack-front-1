@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { getDate, isSameDay } from 'date-fns';
+
+import css from './CalendarItem.module.css';
 import { selectDate } from '../../redux/date/selectors';
 import { changeDate } from '../../redux/date/slice';
-import css from './CalendarItem.module.css';
 
 const CalendarItem = ({ date, percent }) => {
   const determineDate = useSelector(selectDate);
   const dispatch = useDispatch();
+
   const handleChangeDate = data => {
     const localDate = new Date(data);
     const localISOTime = new Date(

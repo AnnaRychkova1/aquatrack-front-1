@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import WaterModal from '../../../modals/WaterModal/WaterModal';
 import Iconsvg from '../../components/Icon/Icon';
-import { useTranslation } from 'react-i18next';
 
 const AddWaterBtn = ({ buttonStyle, iconStyle, textStyle }) => {
   const { t } = useTranslation();

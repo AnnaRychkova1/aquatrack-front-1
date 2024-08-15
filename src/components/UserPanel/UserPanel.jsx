@@ -1,8 +1,8 @@
-import { selectName } from '../../redux/users/selectors';
-import UserBar from '../UserBar/UserBar';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import css from './UserPanel.module.css';
-import { useTranslation } from 'react-i18next';
+import UserBar from '../UserBar/UserBar';
+import { selectName } from '../../redux/users/selectors';
 
 const UserPanel = () => {
   const { t } = useTranslation();

@@ -1,7 +1,7 @@
+import { useTranslation } from 'react-i18next';
+import css from './WaterModal.module.css';
 import UniversalModal from '../Modal/Modal';
 import WaterForm from '../../forms/WaterForm/WaterForm';
-import css from './WaterModal.module.css';
-import { useTranslation } from 'react-i18next';
 
 const WaterModal = ({
   isOpen,

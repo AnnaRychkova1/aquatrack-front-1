@@ -1,17 +1,14 @@
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../../hooks/useAuth';
-import css from './Header.module.css';
 import { useTour } from '@reactour/tour';
 import { useState } from 'react';
+
+import css from './Header.module.css';
 import DeveloperModal from '../../modals/DeveloperModal/DeveloperModal';
+import { useAuth } from '../../hooks/useAuth';
 
 const Header = () => {
   const { t } = useTranslation();
   const [isDeveloperModalOpen, setIsDeveloperModalOpen] = useState(false);
-
-  const openDeveloperModal = () => setIsDeveloperModalOpen(true);
-  const closeDeveloperModal = () => setIsDeveloperModalOpen(false);
-
   const { i18n } = useTranslation();
   const { setIsOpen } = useTour();
   const { isLoggedIn } = useAuth();
@@ -19,6 +16,9 @@ const Header = () => {
   const changeLanguage = lng => {
     i18n.changeLanguage(lng);
   };
+
+  const openDeveloperModal = () => setIsDeveloperModalOpen(true);
+  const closeDeveloperModal = () => setIsDeveloperModalOpen(false);
 
   return (
     <header>

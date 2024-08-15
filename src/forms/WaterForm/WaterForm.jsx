@@ -1,13 +1,14 @@
-import css from './WaterForm.module.css';
-import Iconsvg from '../../shared/components/Icon/Icon.jsx';
 import { useState, useEffect } from 'react';
 import { addWater, updateWater } from '../../redux/water/operations.js';
+import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
+
+import css from './WaterForm.module.css';
+import Iconsvg from '../../shared/components/Icon/Icon.jsx';
 import { selectToken } from '../../redux/users/selectors.js';
 import { selectDate } from '../../redux/date/selectors.js';
-import { useTranslation } from 'react-i18next';
 
 const isDateTimeValid = date => new Date(date) <= new Date();
 const schemaWaterForm = yup.object().shape({
@@ -76,16 +77,12 @@ const WaterForm = ({ operationType, closeModal, id, myTime, volume }) => {
       volume: number,
     };
 
-    try {
-      if (operationType === 'edit') {
-        await dispatch(updateWater({ id, formData }));
-      } else {
-        await dispatch(addWater({ formData, token }));
-      }
-      closeModal();
-    } catch (error) {
-      console.error('Помилка при виконанні:', error);
+    if (operationType === 'edit') {
+      dispatch(updateWater({ id, formData }));
+    } else {
+      dispatch(addWater({ formData, token }));
     }
+    closeModal();
   };
 
   return (

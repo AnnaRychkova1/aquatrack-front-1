@@ -7,6 +7,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(151, 232, 156, 0.2);
   z-index: 1009;
 }

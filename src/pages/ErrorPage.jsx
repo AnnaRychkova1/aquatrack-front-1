@@ -1,9 +1,9 @@
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import css from './MissingPages.module.css';
 import Page from '../shared/style/Page/Page';
-import { Link } from 'react-router-dom';
 
 const ErrorPage = () => {
   const { t } = useTranslation();
@@ -13,7 +13,7 @@ const ErrorPage = () => {
         <title>{t('pages.error')}</title>
       </Helmet>
       <section className={css.container}>
-        <p className={css.textPage}> {t('notFound.sorry')}</p>
+        <p className={css.textPage}> {t('error.sorry')}</p>
         <button className={css.btnPage}>
           <Link className={css.linkBack} to="/">
             {t('notFound.back')}

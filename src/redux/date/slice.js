@@ -17,6 +17,5 @@ const dateSlice = createSlice({
   },
 });
 
-export const { changeDate, changePaginationDate } =
-  dateSlice.actions;
+export const { changeDate, changePaginationDate } = dateSlice.actions;
 export const dateReducer = dateSlice.reducer;

@@ -87,7 +87,9 @@
     "placeholderEmail": "Enter your email",
     "send": "Send",
     "toMain": "Go to the main page",
-    "home": "Home Page"
+    "home": "Home Page",
+    "automatically": "Generare new password automatically",
+    "manual": "Generare new password manual"
   },
   "renewForm": {
     "change": "Change your password",
@@ -98,6 +100,9 @@
     "send": "Send",
     "toMain": "Go to the main page",
     "home": "Home Page"
+  },
+  "error": {
+    "sorry": "Sorry, there are some technical issues"
   },
   "months": {
     "January": "January",

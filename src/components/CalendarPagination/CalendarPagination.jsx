@@ -1,18 +1,27 @@
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
+import css from './CalendarPagination.module.css';
+import Icon from '../../shared/components/Icon/Icon';
 import { paginationDate } from '../../redux/date/selectors';
 import { changePaginationDate } from '../../redux/date/slice';
 import { paginationBtnDisabled } from '../../redux/pagination/selectors';
 import { changePaginationBtnDisabled } from '../../redux/pagination/slice';
-import css from './CalendarPagination.module.css';
-import Icon from '../../shared/components/Icon/Icon';
-import { useTranslation } from 'react-i18next';
 
 const CalendarPagination = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const storeDate = new Date(useSelector(paginationDate));
   const btnDisabled = useSelector(paginationBtnDisabled);
+
+  const formattedMonth = t(
+    `months.${storeDate.toLocaleDateString('en-GB', { month: 'long' })}`
+  );
+
+  const formattedYear = `${storeDate.toLocaleDateString('en-GB', {
+    year: 'numeric',
+  })}`;
 
   const getPreviousMounth = date => {
     const currentDate = new Date(date);
@@ -50,13 +59,6 @@ const CalendarPagination = () => {
     dispatch(changePaginationDate(new Date(nextMounth).toISOString()));
   };
 
-  const formattedMonth = t(
-    `months.${storeDate.toLocaleDateString('en-GB', { month: 'long' })}`
-  );
-
-  const formattedYear = `${storeDate.toLocaleDateString('en-GB', {
-    year: 'numeric',
-  })}`;
   return (
     <div className={css.container}>
       <button

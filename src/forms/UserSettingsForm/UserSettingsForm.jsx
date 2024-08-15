@@ -1,10 +1,12 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
-import css from './UserSettingsForm.module.css';
 import { useEffect, useState } from 'react';
-import Iconsvg from '../../shared/components/Icon/Icon';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+
+import css from './UserSettingsForm.module.css';
+import Iconsvg from '../../shared/components/Icon/Icon';
 import {
   selectAvatar,
   selectEmail,
@@ -16,7 +18,6 @@ import {
   updateUserProfile,
   uploadUserAvatar,
 } from '../../redux/users/operations';
-import { useTranslation } from 'react-i18next';
 
 const UserSettingsSchema = Yup.object().shape({
   name: Yup.string()
