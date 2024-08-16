@@ -9,6 +9,7 @@ import css from './WaterForm.module.css';
 import Iconsvg from '../../shared/components/Icon/Icon.jsx';
 import { selectToken } from '../../redux/users/selectors.js';
 import { selectDate } from '../../redux/date/selectors.js';
+import { useModalContext } from '../../context/useModalContext.jsx';
 
 const isDateTimeValid = date => new Date(date) <= new Date();
 const schemaWaterForm = yup.object().shape({
@@ -24,9 +25,10 @@ const schemaWaterForm = yup.object().shape({
     .test('is-valid-datetime', 'Invalid date and time', isDateTimeValid),
 });
 
-const WaterForm = ({ operationType, closeModal, id, myTime, volume }) => {
+const WaterForm = ({ operationType, id, myTime, volume }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const { closeModal } = useModalContext();
   let initialWaterAmount = operationType === 'edit' ? volume : 50;
   const [number, setNumber] = useState(initialWaterAmount);
   const [maxValue, setMaxValue] = useState(0);

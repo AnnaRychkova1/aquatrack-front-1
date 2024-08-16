@@ -1,4 +1,4 @@
-import * as yup from 'yup';
+import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -9,13 +9,11 @@ import css from './Form.module.css';
 import sprite from '../assets/images/svg/symbol-defs.svg';
 import { logIn } from '../redux/users/operations';
 
-const schema = yup.object().shape({
-  email: yup
-    .string()
+const schema = Yup.object().shape({
+  email: Yup.string()
     .email('Please enter valid email')
     .required('Email field is required'),
-  password: yup
-    .string()
+  password: Yup.string()
     .required('Password field is required')
     .min(6, 'Password must contain at least 6 characters'),
 });

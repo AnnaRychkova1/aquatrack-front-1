@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import css from './UserSettingsForm.module.css';
 import Iconsvg from '../../shared/components/Icon/Icon';
@@ -38,13 +40,23 @@ const UserSettingsSchema = Yup.object().shape({
     .required('Water intake is required!')
     .typeError('The rate of water drink should be a number!')
     .min(0, 'Water intake must be a positive number!'),
-  gender: Yup.string().oneOf(['woman', 'man'], 'Invalid gender selection!'),
+  gender: Yup.string().oneOf(['woman', 'man'], 'You must choose your gender!'),
   avatarURL: Yup.mixed(),
 });
 
+const options = {
+  position: 'top-center',
+  autoClose: 3000,
+  hideProgressBar: false,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+  progress: undefined,
+};
+
 const API_URL = 'https://aquatrack-back-1.onrender.com/api/';
 
-const UserSettingsForm = ({ closeModal, closePopover }) => {
+const UserSettingsForm = ({ handleClose }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const userDataAvatar = useSelector(selectAvatar);
@@ -66,9 +78,8 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
     handleSubmit,
     setValue,
     watch,
-    formState: { errors },
-    trigger,
     clearErrors,
+    formState: { errors },
   } = useForm({
     resolver: yupResolver(UserSettingsSchema),
     defaultValues: {
@@ -80,6 +91,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
       gender: userDataGender,
       avatarURL: userDataAvatar,
     },
+    mode: 'onTouched',
   });
 
   const weight = watch('weight');
@@ -112,42 +124,28 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
     }
   };
 
-  const handleBlur = () => {
-    trigger('name');
-  };
-  const handleFocus = () => {
-    clearErrors('name');
-  };
-
-  const handleBlurEmail = () => {
-    trigger('email');
-  };
-  const handleFocusEmail = () => {
-    clearErrors('email');
-  };
-
-  const handleBlurWeight = () => {
-    trigger('weight');
-  };
-  const handleFocusWeight = () => {
-    clearErrors('weight');
+  const handleInputWaterDrinkChange = e => {
+    const value = e.target.value;
+    if (value === '') {
+      setCalculatedWater('');
+      setValue('waterDrink', '');
+    } else {
+      const numericValue = parseFloat(value);
+      if (!isNaN(numericValue)) {
+        setCalculatedWater(numericValue);
+        setValue('waterDrink', numericValue);
+        clearErrors('waterDrink');
+      }
+    }
   };
 
-  const handleBlurSports = () => {
-    trigger('activeTimeSports');
-  };
-  const handleFocusSports = () => {
-    clearErrors('activeTimeSports');
-  };
+  useEffect(() => {
+    if (errors.gender) {
+      toast.error(errors.gender.message, options);
+    }
+  }, [errors.gender]);
 
-  const handleBlurDrink = () => {
-    trigger('waterDrink');
-  };
-  const handleFocusDrink = () => {
-    clearErrors('waterDrink');
-  };
-
-  const onSubmit1 = async values => {
+  const onSubmit = async values => {
     const updatedData = {
       name: values.name,
       email: values.email,
@@ -157,17 +155,16 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
       gender: values.gender,
     };
 
-    await dispatch(updateUserProfile(updatedData));
+    dispatch(updateUserProfile(updatedData));
 
     if (avatarFile) {
-      await dispatch(uploadUserAvatar(savedAvatarURL));
+      dispatch(uploadUserAvatar(savedAvatarURL));
     }
-    closeModal();
-    closePopover();
+    handleClose();
   };
 
   return (
-    <form className={css.settingForm} onSubmit={handleSubmit(onSubmit1)}>
+    <form className={css.settingForm} onSubmit={handleSubmit(onSubmit)}>
       <div className={css.settingsAvatarContainer}>
         <img
           className={css.settingsAvatarImage}
@@ -211,7 +208,7 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
               </label>
               <label className={css.settingsGender}>
                 <input
-                  className={`${css.settingsGenderInput}${
+                  className={`${css.settingsGenderInput} ${
                     errors.gender ? css.error : ''
                   }`}
                   type="radio"
@@ -222,10 +219,12 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
                   {t('modals.man')}
                 </span>
               </label>
+              {errors.gender && (
+                <span className={css.errorsgender}>
+                  {errors.gender.message}
+                </span>
+              )}
             </div>
-            {errors.gender && (
-              <span className={css.errorsgender}>{errors.gender.message}</span>
-            )}
           </div>
           <div className={css.settingsUser}>
             <label className={css.settingsUserLabel}>
@@ -234,8 +233,6 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
                 className={`${css.inputForm} ${errors.name ? css.error : ''}`}
                 type="text"
                 {...register('name')}
-                onBlur={handleBlur}
-                onFocus={handleFocus}
               />
               {errors.name && (
                 <span className={css.errors}>{errors.name.message}</span>
@@ -247,8 +244,6 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
                 className={`${css.inputForm} ${errors.email ? css.error : ''}`}
                 type="email"
                 {...register('email')}
-                onBlur={handleBlurEmail}
-                onFocus={handleFocusEmail}
               />
               {errors.email && (
                 <span className={css.errors}>{errors.email.message}</span>
@@ -287,8 +282,6 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
                 className={`${css.inputForm} ${errors.weight ? css.error : ''}`}
                 type="number"
                 {...register('weight')}
-                onBlur={handleBlurWeight}
-                onFocus={handleFocusWeight}
               />
               {errors.weight && (
                 <span className={css.errors}>{errors.weight.message}</span>
@@ -304,8 +297,6 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
                 }`}
                 type="number"
                 {...register('activeTimeSports')}
-                onBlur={handleBlurSports}
-                onFocus={handleFocusSports}
               />
               {errors.activeTimeSports && (
                 <span className={css.errors}>
@@ -332,14 +323,8 @@ const UserSettingsForm = ({ closeModal, closePopover }) => {
                 type="number"
                 step="any"
                 {...register('waterDrink')}
-                onChange={e => {
-                  const value = e.target.value;
-                  setCalculatedWater(value);
-                  setValue('waterDrink', value);
-                }}
-                value={calculatedWater}
-                onBlur={handleBlurDrink}
-                onFocus={handleFocusDrink}
+                onChange={handleInputWaterDrinkChange}
+                value={calculatedWater !== '' ? String(calculatedWater) : ''}
               />
               {errors.waterDrink && (
                 <span className={css.errors}>{errors.waterDrink.message}</span>

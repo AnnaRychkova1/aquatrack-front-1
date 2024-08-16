@@ -1,31 +1,21 @@
 import { useTranslation } from 'react-i18next';
 import css from './DeveloperModal.module.css';
-import UniversalModal from '../Modal/Modal';
 import data from './developersData';
 import Developer from '../../components/Developer/Developer';
 
-const DeveloperModal = ({ isOpen, closeModal }) => {
+const DeveloperModal = () => {
   const { t } = useTranslation();
-  const addModalClassName = isOpen ? css.devModal : '';
-  const addOverlayClassName = isOpen ? css.devOverlay : '';
   return (
-    <UniversalModal
-      isOpen={isOpen}
-      closeModal={closeModal}
-      addModalClassName={addModalClassName}
-      addOverlayClassName={addOverlayClassName}
-    >
-      <div className={css.devWrapperModal}>
-        <h2 className={css.devTitle}>{t('modals.createdTeam')}</h2>
-        <ul className={css.developersList}>
-          {data.map((developer, index) => (
-            <li className={css.devItem} key={`${developer.id}-${index}`}>
-              <Developer id={developer.id} />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </UniversalModal>
+    <div className={css.devWrapperModal}>
+      <h2 className={css.devTitle}>{t('modals.createdTeam')}</h2>
+      <ul className={css.developersList}>
+        {data.map((developer, index) => (
+          <li className={css.devItem} key={`${developer.id}-${index}`}>
+            <Developer id={developer.id} />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

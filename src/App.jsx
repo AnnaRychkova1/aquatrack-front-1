@@ -10,6 +10,7 @@ import { RestrictedRoute } from './routs/RestrictedRoute';
 import { currentUser } from './redux/users/operations';
 import { selectToken } from './redux/users/selectors';
 import { useAuth } from './hooks/useAuth';
+import UniversalModal from './modals/Modal/Modal';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SignInPage = lazy(() => import('./pages/SignInPage'));
@@ -83,6 +84,7 @@ const App = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
+      <UniversalModal />
     </>
   );
 };

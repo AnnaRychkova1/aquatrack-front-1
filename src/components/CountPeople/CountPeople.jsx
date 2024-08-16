@@ -12,7 +12,6 @@ const CountPeople = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const userCount = useSelector(selectCount);
-  const formattedUserCount = formatUserCount(userCount);
 
   const formatUserCount = userCount => {
     if (userCount !== null) {
@@ -24,6 +23,8 @@ const CountPeople = () => {
     }
     return '';
   };
+
+  const formattedUserCount = formatUserCount(userCount);
 
   useEffect(() => {
     dispatch(countUsers());

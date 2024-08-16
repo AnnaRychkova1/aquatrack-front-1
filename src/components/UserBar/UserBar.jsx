@@ -1,4 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import {
+  // useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useSelector } from 'react-redux';
 
 import css from '../UserBar/UserBar.module.css';
@@ -23,21 +27,21 @@ const UserBar = () => {
   const closePopover = () => {
     setIsPopoverOpen(false);
     setSvgPopover('chevron-down');
-    console.log('hello');
+    // console.log('hello');
   };
 
-  useEffect(() => {
-    const handleClickOutside = event => {
-      if (popoverRef.current && !popoverRef.current.contains(event.target)) {
-        closePopover();
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = event => {
+  //     if (popoverRef.current && !popoverRef.current.contains(event.target)) {
+  //       closePopover();
+  //     }
+  //   };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
+  //   document.addEventListener('mousedown', handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleClickOutside);
+  //   };
+  // }, []);
 
   return (
     <div className={css.containerPanel}>

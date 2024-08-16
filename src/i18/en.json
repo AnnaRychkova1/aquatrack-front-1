@@ -66,6 +66,7 @@
     "renew": "Renew"
   },
   "trackerPage": {
+    "welcome": "Welcome to AquaTrack!",
     "liter": "L",
     "dailyNorma": "My daily norma",
     "addWater": "Add water",
@@ -102,7 +103,7 @@
     "home": "Home Page"
   },
   "error": {
-    "sorry": "Sorry, there are some technical issues"
+    "sorry": "Whoops, something went wrong! Please try reloading this page!"
   },
   "months": {
     "January": "January",

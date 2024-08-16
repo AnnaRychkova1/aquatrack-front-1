@@ -121,6 +121,17 @@
   width: 100%;
 }
 
+.errorsgender {
+  margin-top: 5px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: #ef5050;
+  width: 100%;
+}
+
 .error {
   border-color: #ef5050;
   color: #ef5050;
