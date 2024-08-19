@@ -19,7 +19,7 @@
 }
 
 .advantages_users {
-  max-width: 155px;
+  max-width: 180px;
   background-color: var(--main-white);
   display: flex;
   gap: 4px;
@@ -154,7 +154,7 @@
     border-radius: 30px;
     width: 704px;
     max-width: 100%;
-    height: 446px;
+    height: 496px;
     padding: 283px 32px 32px;
   }
 
@@ -197,7 +197,8 @@
   }
 
   .advantages_users {
-    max-width: 235px;
+    max-width: 258px;
+    width: fit-content;
     padding: 10px 20px;
     margin-bottom: -14px;
   }

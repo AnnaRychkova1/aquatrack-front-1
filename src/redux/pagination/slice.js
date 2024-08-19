@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const paginstionSlice = createSlice({
+const paginationSlice = createSlice({
   name: 'pagination',
   initialState: {
     paginationBtnDisabled: true,
@@ -17,5 +17,5 @@ const paginstionSlice = createSlice({
 });
 
 export const { changePaginationBtnDisabled, changeViewStatistics } =
-  paginstionSlice.actions;
-export const paginationReducer = paginstionSlice.reducer;
+  paginationSlice.actions;
+export const paginationReducer = paginationSlice.reducer;

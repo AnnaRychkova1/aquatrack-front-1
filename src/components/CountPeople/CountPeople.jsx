@@ -5,12 +5,17 @@ import { useTranslation } from 'react-i18next';
 import css from './CountPeople.module.css';
 import Loader from '../../shared/components/Loader/Loader';
 import { countUsers } from '../../redux/users/operations';
-import { selectCount, selectIsLoading } from '../../redux/users/selectors';
+import {
+  selectCount,
+  selectIsError,
+  selectIsLoading,
+} from '../../redux/users/selectors';
 
 const CountPeople = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
+  const isError = useSelector(selectIsError);
   const userCount = useSelector(selectCount);
 
   const formatUserCount = userCount => {
@@ -37,9 +42,19 @@ const CountPeople = () => {
       <p className={css.count_Text}>
         {t('adwantagesSection.count.our')}{' '}
         <span className={css.textSpan}>
-          {t('adwantagesSection.count.team')}{' '}
+          {t('adwantagesSection.count.team')}
         </span>{' '}
-        {t('adwantagesSection.count.now')} : {formattedUserCount}
+        {t('adwantagesSection.count.now')} :{' '}
+        <span className={css.textSpan}>
+          {isError ? (
+            <>
+              <br />
+              {t('adwantagesSection.count.howmuch')}
+            </>
+          ) : (
+            formattedUserCount
+          )}
+        </span>
       </p>
     </div>
   );

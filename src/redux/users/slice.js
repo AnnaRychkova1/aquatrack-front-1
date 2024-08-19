@@ -93,6 +93,7 @@ const authSlice = createSlice({
         const { user } = action.payload;
         state.isCurrent = false;
         state.user = user;
+        state.token = localStorage.getItem('token');
         state.isSignedIn = true;
         state.isLoading = false;
       })

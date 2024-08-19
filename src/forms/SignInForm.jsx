@@ -1,13 +1,16 @@
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 
 import css from './Form.module.css';
 import sprite from '../assets/images/svg/symbol-defs.svg';
 import { logIn } from '../redux/users/operations';
+import { selectIsError, selectIsLoading } from '../redux/users/selectors';
+import Loader from '../shared/components/Loader/Loader';
+import ErrorPage from '../pages/ErrorPage';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -21,6 +24,8 @@ const schema = Yup.object().shape({
 const SignInForm = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const loading = useSelector(selectIsLoading);
+  const isError = useSelector(selectIsError);
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -44,6 +49,14 @@ const SignInForm = () => {
     dispatch(logIn(data));
     reset();
   };
+
+  if (loading) {
+    return <Loader />;
+  }
+
+  if (isError) {
+    return <ErrorPage />;
+  }
 
   return (
     <form className={css.form} onSubmit={handleSubmit(onSubmit)}>

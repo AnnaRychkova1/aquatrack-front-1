@@ -1,47 +1,46 @@
 .count_Users {
-    max-width: 155px;
-    background-color: var(--main-white);
-    padding: 10px 14px;
-    border-radius: 30px;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 117%;
-    color: var(--main-text);
+  max-width: 155px;
+  width: fit-content;
+  background-color: var(--main-white);
+  padding: 10px 14px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 117%;
+  color: var(--main-text);
 }
 
 .textSpan {
-    color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 @media only screen and (max-width: 767px) {
-
-    .count_Users {
-        margin-top: -305px;
-        margin-left: 150px;
-    }
+  .count_Users {
+    margin-top: -305px;
+    margin-left: 150px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
-
-    .count_Users {
-        max-width: 235px;
-        padding: 10px 20px;
-        margin-top: -45px;
-        font-size: 15px;
-        line-height: 150%;
-    }
+  .count_Users {
+    max-width: 235px;
+    padding: 10px 20px;
+    margin-top: -45px;
+    font-size: 15px;
+    line-height: 150%;
+  }
 }
 
 .textSpan {
-    color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 .desktopOnly {
-    display: block;
+  display: block;
 }
 
 @media only screen and (max-width: 767px) {
-    .desktopOnly {
-        display: none;
-    }
+  .desktopOnly {
+    display: none;
+  }
 }

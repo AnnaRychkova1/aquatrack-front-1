@@ -26,7 +26,7 @@
   },
   "adwantagesSection": {
     "our": "Наші",
-    "happy": "раді",
+    "happy": "щасливі",
     "customers": "користувачі",
     "habit": "Керуй звичкою",
     "statistics": "Статистика",
@@ -34,7 +34,8 @@
     "count": {
       "our": "Наша",
       "team": "команда",
-      "now": "тепер"
+      "now": "тепер ",
+      "howmuch": "Увесь світ"
     }
   },
   "notFound": {
@@ -52,7 +53,8 @@
     "haveAccount": "Вже маєте аккаунт",
     "signin": "Увійти",
     "resendVerify": "Потрібно верифікуватися заново",
-    "reverify": "Верифікуватися"
+    "reverify": "Верифікуватися",
+    "google": "Зареєструватися через Google"
   },
   "signinForm": {
     "signin": "Увійти",
@@ -63,7 +65,8 @@
     "dontAccount": "Немає аккаунту",
     "signup": "Зареєструватися",
     "forgot": "Забули ваш пароль",
-    "renew": "Оновити"
+    "renew": "Оновити",
+    "google": "Увійти через Google"
   },
   "trackerPage": {
     "welcome": "Вітаємо в Акватрек!",

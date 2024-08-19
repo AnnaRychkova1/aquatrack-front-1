@@ -34,7 +34,8 @@
     "count": {
       "our": "Our",
       "team": "team",
-      "now": "now"
+      "now": "now ",
+      "howmuch": "The whole world"
     }
   },
   "notFound": {
@@ -52,7 +53,8 @@
     "haveAccount": "Already have an account",
     "signin": "Sign In",
     "resendVerify": "Need to verify again",
-    "reverify": "Verify"
+    "reverify": "Verify",
+    "google": "Sign Up with Google"
   },
   "signinForm": {
     "signin": "Sign In",
@@ -63,7 +65,8 @@
     "dontAccount": "Don’t have an account",
     "signup": "Sign Up",
     "forgot": "Forgot your password",
-    "renew": "Renew"
+    "renew": "Renew",
+    "google": "Sign In with Google"
   },
   "trackerPage": {
     "welcome": "Welcome to AquaTrack!",

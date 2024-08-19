@@ -5,9 +5,11 @@ import { useTranslation } from 'react-i18next';
 import css from './WaterList.module.css';
 import WaterItem from '../WaterItem/WaterItem';
 import Loader from '../../shared/components/Loader/Loader';
+import ErrorPage from '../../pages/ErrorPage';
 import { fetchDailyWater } from '../../redux/water/operations';
 import { selectToken } from '../../redux/users/selectors';
 import {
+  selectErrorWater,
   selectLoadingWater,
   selectWaterPortion,
 } from '../../redux/water/selectors';
@@ -16,23 +18,27 @@ import { changeTotalDay } from '../../redux/water/slice';
 const WaterList = ({ selectDay }) => {
   const { t } = useTranslation();
   const loadingWater = useSelector(selectLoadingWater);
+  const isErrorWater = useSelector(selectErrorWater);
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const waterPortions = useSelector(selectWaterPortion);
 
   const formatDate = useMemo(() => {
     const initDate = new Date(selectDay);
-    const year = initDate.getFullYear();
-    const month = String(initDate.getMonth() + 1).padStart(2, '0');
-    const day = String(initDate.getDate()).padStart(2, '0');
+    const year = initDate.getUTCFullYear();
+    const month = String(initDate.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(initDate.getUTCDate()).padStart(2, '0');
 
     return `${year}-${month}-${day}`;
   }, [selectDay]);
 
   const sortedWaterPortions = useMemo(() => {
-    return [...waterPortions].sort(
-      (a, b) => new Date(a.date) - new Date(b.date)
-    );
+    return [...waterPortions]
+      .sort((a, b) => new Date(a.date) - new Date(b.date))
+      .map(item => ({
+        ...item,
+        date: new Date(item.date).toLocaleString(),
+      }));
   }, [waterPortions]);
 
   const totalVolume = useMemo(() => {
@@ -53,6 +59,10 @@ const WaterList = ({ selectDay }) => {
 
   if (loadingWater) {
     return <Loader />;
+  }
+
+  if (isErrorWater) {
+    return <ErrorPage />;
   }
 
   return (

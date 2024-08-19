@@ -8,6 +8,7 @@ export const requestCountUsers = async () => {
 
 // SignUp
 export const requestRegister = async formData => {
+  localStorage.removeItem('token');
   const { email, password } = formData;
   const newFormData = { email, password };
   const { data } = await instance.post('/users/register', newFormData);
@@ -96,7 +97,7 @@ export const requestGoogleLogin = async formData => {
   const { data } = await instance.get('/users/google', {
     params: formData,
   });
-  console.log(data);
+  localStorage.setItem('token', data.token);
   setToken(data.token);
   return data;
 };

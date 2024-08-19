@@ -1,18 +1,19 @@
 import { useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
 import css from '../../shared/style/Section/Section.module.css';
 import Section from '../../shared/style/Section/Section';
 import GoogleBtn from '../../shared/components/GoogleBtn/GoogleBtn';
 import SignInForm from '../../forms/SignInForm';
+import { currentUser } from '../../redux/users/operations';
 
 const SignIn = () => {
   const { t } = useTranslation();
-  /////////add for google
 
-  const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const query = new URLSearchParams(location.search);
@@ -20,11 +21,10 @@ const SignIn = () => {
 
     if (token) {
       localStorage.setItem('token', token);
-      navigate('/tracker');
+      dispatch(currentUser());
     }
-  }, [location, navigate]);
+  }, [location, dispatch]);
 
-  ///////
   return (
     <Section>
       <div className={css.content}>

@@ -17,7 +17,12 @@ import { selectWaterDrink } from '../../redux/users/selectors';
 import { fetchMonthlyWater } from '../../redux/water/operations';
 import { paginationDate } from '../../redux/date/selectors';
 import { selectToken } from '../../redux/users/selectors';
-import { selectLoadingWater, selectMonth } from '../../redux/water/selectors';
+import {
+  selectErrorWater,
+  selectLoadingWater,
+  selectMonth,
+} from '../../redux/water/selectors';
+import ErrorPage from '../../pages/ErrorPage';
 
 const Calendar = () => {
   const { t } = useTranslation();
@@ -26,6 +31,7 @@ const Calendar = () => {
   const month = getMonth(storePaginationDate) + 1;
   const year = getYear(storePaginationDate);
   const loadingWater = useSelector(selectLoadingWater);
+  const isErrorWater = useSelector(selectErrorWater);
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const waterPortions = useSelector(selectMonth);
@@ -53,6 +59,10 @@ const Calendar = () => {
 
   if (loadingWater) {
     return <Loader />;
+  }
+
+  if (isErrorWater) {
+    return <ErrorPage />;
   }
 
   return (

@@ -107,9 +107,9 @@ export const logOut = createAsyncThunk(
 // Current
 export const currentUser = createAsyncThunk(
   'users/current',
-  async (token, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const response = await requestCurrentUser(token);
+      const response = await requestCurrentUser();
       return response;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
@@ -249,12 +249,16 @@ export const resendVerify = createAsyncThunk(
 
 // Google login
 export const loginGoogle = createAsyncThunk(
-  'users/loginGoogle',
+  'users/google',
   async (formData, thunkAPI) => {
     try {
       const res = await requestGoogleLogin(formData);
+      toast.success('Verification by Google success', {
+        ...options,
+      });
       return res;
     } catch (err) {
+      toast.error(err.response, { ...options });
       return thunkAPI.rejectWithValue(err.response.data.message || err.message);
     }
   }

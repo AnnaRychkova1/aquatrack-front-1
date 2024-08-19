@@ -11,7 +11,6 @@
   line-height: 1.8;
   letter-spacing: 0.02em;
   color: var(--main-text);
-  margin-bottom: 150px;
 }
 
 .linkBack {
@@ -32,6 +31,7 @@
   border: none;
   display: block;
   margin: 0 auto;
+  margin-top: 150px;
   transition: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -44,10 +44,10 @@
     padding: 18px 40px;
     font-size: 16px;
     line-height: 150%;
+    margin-top: 200px;
   }
 
   .textPage {
     font-size: 36px;
-    margin-bottom: 200px;
   }
 }

@@ -10,13 +10,11 @@ import { viewStatistics } from '../../redux/pagination/selectors';
 import { changeViewStatistics } from '../../redux/pagination/slice';
 import { changeDate } from '../../redux/date/slice';
 import { changePaginationDate } from '../../redux/date/slice';
-import { selectMonth } from '../../redux/water/selectors';
 
 const MonthInfo = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const viewStatistic = useSelector(viewStatistics);
-  const waterPortions = useSelector(selectMonth);
   const currentDate = new Date().toISOString();
 
   return (
@@ -41,7 +39,7 @@ const MonthInfo = () => {
             </button>
           </div>
           <div className={css.pagination}>
-            <CalendarPagination />
+            <CalendarPagination viewStatistic={viewStatistic} />
             <div className="reactour__waterStatisticInfo">
               <button
                 type="button"
@@ -58,7 +56,7 @@ const MonthInfo = () => {
             </div>
           </div>
         </div>
-        {!viewStatistic ? <Calendar /> : <Statistic data={waterPortions} />}
+        {!viewStatistic ? <Calendar /> : <Statistic />}
       </div>
     </div>
   );
