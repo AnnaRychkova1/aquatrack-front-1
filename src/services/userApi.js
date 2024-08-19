@@ -1,7 +1,14 @@
 import instance, { setToken, clearToken } from './instance';
 
+// Count users
+export const requestCountUsers = async () => {
+  const { data } = await instance.get('/users/count');
+  return data;
+};
+
 // SignUp
 export const requestRegister = async formData => {
+  localStorage.removeItem('token');
   const { email, password } = formData;
   const newFormData = { email, password };
   const { data } = await instance.post('/users/register', newFormData);
@@ -12,15 +19,6 @@ export const requestRegister = async formData => {
 export const requestLogin = async formData => {
   const { data } = await instance.post('/users/login', formData);
   localStorage.setItem('token', data.token);
-  setToken(data.token);
-  return data;
-};
-
-//Google
-export const requestGoogleLogin = async formData => {
-  const { data } = await instance.get('/users/google', {
-    params: formData,
-  });
   setToken(data.token);
   return data;
 };
@@ -43,19 +41,19 @@ export const requestSendVerify = async (verificationToken, formData) => {
 };
 
 // Current
-export const requestUserInfo = async () => {
+export const requestCurrentUser = async () => {
   const { data } = await instance.get('/users/current');
   return data;
 };
 
 // Update
-export const updateUserProfiles = async formData => {
+export const requestUpdateUserProfile = async formData => {
   const { data } = await instance.patch('/users/update', formData);
   return data;
 };
 
 // Avatar
-export const uploadUserAvatars = async formData => {
+export const requestUploadUserAvatars = async formData => {
   const { data } = await instance.patch('/users/avatars', formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
@@ -64,43 +62,49 @@ export const uploadUserAvatars = async formData => {
   return data;
 };
 
-// Password-reset
-export const resetPassword = async formData => {
-  // const { data } = await instance.post('/users/password/new', formData);
-  const { data } = await instance.post('/users/password/custom', formData)
-  localStorage.setItem('token', data.token);
-  setToken(data.token);
+// Password-forgot
+export const requestForgotPassword = async formData => {
+  const { data } = await instance.post('/users/password/forgot', formData);
   return data;
 };
 
 // Password-change
-export const changePassword = async formData => {
-  const { data } = await instance.post('/users/password/custom/update', formData);
+export const requestChangePassword = async (userData, token) => {
+  setToken(token);
+  localStorage.setItem('token', token);
+  const { data } = await instance.post('/users/password/update', userData, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return data;
+};
+
+// Password-generate
+export const requestGeneratePassword = async formData => {
+  const { data } = await instance.post('/users/password/generate', formData);
+  return data;
+};
+
+// Resend verify
+export const requestResendVerify = async formData => {
+  const { data } = await instance.post('/users/verify', formData);
+  return data;
+};
+
+// Google
+export const requestGoogleLogin = async formData => {
+  const { data } = await instance.get('/users/google', {
+    params: formData,
+  });
   localStorage.setItem('token', data.token);
   setToken(data.token);
   return data;
 };
 
-// export const requestResendVerify = async formData => {
-//   const { data } = await instance.post('/users/verify', formData);
-
-//   return data;
-// };
-
-// export const refreshToken = async formData => {
+// Refresh Token
+// export const requestRefreshToken = async formData => {
 //   const { data } = await instance.get('/users/refresh', formData);
 // setAuthHeader(data.token);
-//   return data;
-// };
-
-// export const requestForgotPassword = async formData => {
-//   const { data } = await instance.post('/users/forgot-password', formData);
-
-//   return data;
-// };
-
-// export const requestResetPassword = async formData => {
-//   const { data } = await instance.post('/users/reset-password', formData);
-
 //   return data;
 // };

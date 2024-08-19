@@ -1,17 +1,15 @@
 import { useTranslation } from 'react-i18next';
-import { useAuth } from '../../hooks/useAuth';
-import css from './Header.module.css';
 import { useTour } from '@reactour/tour';
-import { useState } from 'react';
+
+import css from './Header.module.css';
+import styles from '../../modals/Modal/Modal.module.css';
 import DeveloperModal from '../../modals/DeveloperModal/DeveloperModal';
+import { useAuth } from '../../hooks/useAuth';
+import { useModalContext } from '../../context/useModalContext';
 
 const Header = () => {
   const { t } = useTranslation();
-  const [isDeveloperModalOpen, setIsDeveloperModalOpen] = useState(false);
-
-  const openDeveloperModal = () => setIsDeveloperModalOpen(true);
-  const closeDeveloperModal = () => setIsDeveloperModalOpen(false);
-
+  const { openModal } = useModalContext();
   const { i18n } = useTranslation();
   const { setIsOpen } = useTour();
   const { isLoggedIn } = useAuth();
@@ -52,15 +50,16 @@ const Header = () => {
         <button
           type="button"
           className={css.developers}
-          onClick={openDeveloperModal}
+          onClick={() => {
+            openModal(<DeveloperModal />, {
+              modalClassName: styles.devModal,
+              overlayClassName: styles.devOverlay,
+            });
+          }}
         >
           {t('header.devs')}
         </button>
       </div>
-      <DeveloperModal
-        isOpen={isDeveloperModalOpen}
-        closeModal={closeDeveloperModal}
-      />
     </header>
   );
 };

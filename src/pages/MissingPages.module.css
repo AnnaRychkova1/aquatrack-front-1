@@ -1,0 +1,53 @@
+.container {
+  border: 2px solid var(--accent-color);
+  border-radius: 30px;
+  text-align: center;
+  width: 100%;
+  padding: 200px 25px 200px 25px;
+}
+
+.textPage {
+  font-size: 32px;
+  line-height: 1.8;
+  letter-spacing: 0.02em;
+  color: var(--main-text);
+}
+
+.linkBack {
+  color: #323f47;
+}
+
+.btnPage {
+  border-radius: 30px;
+  padding: 14px 19px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 129%;
+  letter-spacing: -0.01em;
+  text-align: center;
+  background-color: var(--accent-color);
+  color: var(--main-text);
+  border: none;
+  display: block;
+  margin: 0 auto;
+  margin-top: 150px;
+  transition: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    padding: 200px 50px 200px 50px;
+  }
+
+  .btnPage {
+    padding: 18px 40px;
+    font-size: 16px;
+    line-height: 150%;
+    margin-top: 200px;
+  }
+
+  .textPage {
+    font-size: 36px;
+  }
+}

@@ -2,7 +2,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
   height: 32px;
 }
 
@@ -13,14 +12,13 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 18px;
-  letter-spacing: -1%;
   color: var(--main-text);
 }
 
 .button {
   display: flex;
   border: none;
-  padding: 0;
+  padding: 12px;
   justify-content: center;
   align-items: center;
   background-color: transparent;
@@ -38,18 +36,17 @@
   transition-timing-function: ease;
 }
 
+.activeIcon {
+  stroke: #a9a9a9;
+}
+
 .icon:hover,
 .icon:focus {
   transform: scale(1.2);
 }
 
-.activeIcon {
-  stroke: #a9a9a9;
-}
-
 @media only screen and (min-width: 768px) {
   .dateInfo {
-    width: 140px;
     font-size: 16px;
     line-height: 24px;
   }

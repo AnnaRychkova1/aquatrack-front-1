@@ -1,12 +1,46 @@
-import UserLogOut from '../../components/UserLogOut/UserLogOut';
-import UniversalModal from '../Modal/Modal';
-//import css from './LogOutModal.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
-const LogOutModal = ({ isOpen, closeModal }) => {
+import css from './LogOutModal.module.css';
+import { selectToken } from '../../redux/users/selectors';
+import { logOut } from '../../redux/users/operations';
+import { useModalContext } from '../../context/useModalContext';
+
+const LogOutModal = ({ closePopover }) => {
+  const { t } = useTranslation();
+  const token = useSelector(selectToken);
+  const dispatch = useDispatch();
+  const { closeModal } = useModalContext();
+
+  const onLogOut = () => {
+    dispatch(logOut(token));
+    closeModal();
+    closePopover();
+  };
+  const handleClose = () => {
+    closePopover();
+    closeModal();
+  };
+
   return (
-    <UniversalModal isOpen={isOpen} closeModal={closeModal}>
-      <UserLogOut closeModal={closeModal} />
-    </UniversalModal>
+    <div className={css.logOutModal}>
+      <p className={css.title}>{t('modals.logout')}</p>
+
+      <p className={css.subtitle}>{t('modals.leave')}?</p>
+      <div className={css.boxButton}>
+        <button className={css.buttonLogOut} type="button" onClick={onLogOut}>
+          {t('modals.logout')}
+        </button>
+
+        <button
+          className={css.buttonCancel}
+          type="button"
+          onClick={handleClose}
+        >
+          {t('modals.cancel')}
+        </button>
+      </div>
+    </div>
   );
 };
 

@@ -1,22 +1,20 @@
-// import Calendar from '../Calendar/Calendar';
-import Calendar_1 from '../Calendar_1/Calendar_1';
-import CalendarPagination from '../CalendarPagination/CalendarPagination';
-import Statistic from '../Statistic/Statistic';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
+import css from './MonthInfo.module.css';
+import Icon from '../../shared/components/Icon/Icon';
+import Statistic from '../Statistic/Statistic';
+import CalendarPagination from '../CalendarPagination/CalendarPagination';
+import Calendar from '../Calendar/Calendar';
 import { viewStatistics } from '../../redux/pagination/selectors';
 import { changeViewStatistics } from '../../redux/pagination/slice';
 import { changeDate } from '../../redux/date/slice';
 import { changePaginationDate } from '../../redux/date/slice';
-import { selectMonth } from '../../redux/water/selectors';
-import Icon from '../Icon/Icon';
-import css from './MonthInfo.module.css';
-import { useTranslation } from 'react-i18next';
 
 const MonthInfo = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const viewStatistic = useSelector(viewStatistics);
-  const waterPortions = useSelector(selectMonth);
   const currentDate = new Date().toISOString();
 
   return (
@@ -41,7 +39,7 @@ const MonthInfo = () => {
             </button>
           </div>
           <div className={css.pagination}>
-            <CalendarPagination />
+            <CalendarPagination viewStatistic={viewStatistic} />
             <div className="reactour__waterStatisticInfo">
               <button
                 type="button"
@@ -58,7 +56,7 @@ const MonthInfo = () => {
             </div>
           </div>
         </div>
-        {!viewStatistic ? <Calendar_1 /> : <Statistic data={waterPortions} />}
+        {!viewStatistic ? <Calendar /> : <Statistic />}
       </div>
     </div>
   );

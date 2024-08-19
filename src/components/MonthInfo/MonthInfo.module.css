@@ -51,7 +51,8 @@
 
 .pagination {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  width: 100%;
 }
 
 .button {
@@ -64,7 +65,6 @@
   display: flex;
   width: 20px;
   height: 24px;
-  margin-left: 12px;
   stroke: #a9a9a9;
   transition-property: all;
   transition-duration: 250ms;
@@ -96,6 +96,10 @@
     height: 361px;
   }
 
+  .pagination {
+    justify-content: flex-end;
+  }
+
   .header {
     justify-content: space-between;
     flex-wrap: nowrap;
@@ -114,13 +118,11 @@
     width: 140px;
     font-size: 16px;
     line-height: 24px;
-    width: 100%;
   }
 
   .icon {
     width: 24px;
     height: 28px;
-    margin-left: 20px;
   }
 
   .activeIcon {

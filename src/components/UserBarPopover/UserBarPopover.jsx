@@ -1,41 +1,68 @@
-import { useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
+import css from '../UserBarPopover/UserBarPopover.module.css';
+import styles from '../../modals/Modal/Modal.module.css';
 import LogOutModal from '../../modals/LogOutModal/LogOutModal';
 import UserSettingsModal from '../../modals/UserSettingsModal/UserSettingsModal';
-//import Iconsvg from '../Icon/Icon';
-import css from '../UserPanel/UserPanel.module.css';
-import Iconsvg from '../Icon/Icon';
-import { useTranslation } from 'react-i18next';
-const UserBarPopover = ({ closePopover }) => {
+import Iconsvg from '../../shared/components/Icon/Icon';
+import { useModalContext } from '../../context/useModalContext';
+
+const UserBarPopover = forwardRef(({ closePopover }, ref) => {
   const { t } = useTranslation();
-  const [isLogOutModalOpen, setIsLogOutModalOpen] = useState(false);
-  const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
+  const { openModal } = useModalContext();
+  const [popoverPosition, setPopoverPosition] = useState('bottom');
 
-  const openSettingModal = () => setIsSettingModalOpen(true);
-  const closeSettingModal = () => {
-    setIsSettingModalOpen(false);
-    closePopover();
-  };
+  useEffect(() => {
+    const handlePosition = () => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect();
+        const isBelow = rect.bottom + rect.height > window.innerHeight;
+        if (isBelow) {
+          setPopoverPosition('top');
+        } else {
+          setPopoverPosition('bottom');
+        }
+      }
+    };
 
-  const openLogOutModal = () => setIsLogOutModalOpen(true);
-  const closeLogOutModal = () => setIsLogOutModalOpen(false);
+    handlePosition();
+    window.addEventListener('resize', handlePosition);
+    return () => {
+      window.removeEventListener('resize', handlePosition);
+    };
+  }, [ref]);
+
   return (
-    <div className={css.userPopoverContainer}>
-      <button className={css.userPopoverBtn} onClick={openSettingModal}>
+    <div
+      className={`${css.userPopoverContainer} ${css[popoverPosition]}`}
+      ref={ref}
+    >
+      <button
+        className={css.userPopoverBtn}
+        onClick={() => {
+          openModal(<UserSettingsModal closePopover={closePopover} />, {
+            modalClassName: styles.settingModal,
+            overlayClassName: styles.settingOverlay,
+          });
+        }}
+      >
         <Iconsvg className={css.userPopoverBtnIcon} iconName={'settings'} />
         <span>{t('trackerPage.settings')}</span>
       </button>
-      <button className={css.userPopoverBtn} onClick={openLogOutModal}>
+      <button
+        className={css.userPopoverBtn}
+        onClick={() => {
+          openModal(<LogOutModal closePopover={closePopover} />);
+        }}
+      >
         <Iconsvg className={css.userPopoverBtnIcon} iconName={'log-out'} />
         <span>{t('trackerPage.logout')}</span>
       </button>
-      <UserSettingsModal
-        isOpen={isSettingModalOpen}
-        closeModal={closeSettingModal}
-        closePopover={closePopover}
-      />
-      <LogOutModal isOpen={isLogOutModalOpen} closeModal={closeLogOutModal} />
     </div>
   );
-};
+});
+
+UserBarPopover.displayName = 'UserBarPopover';
 
 export default UserBarPopover;

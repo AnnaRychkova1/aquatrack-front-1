@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import css from './AdvantagesSection.module.css';
-import UserCount from './CountPeople';
+import CountPeople from '../CountPeople/CountPeople';
 
 const AdvantagesSection = () => {
   const { t } = useTranslation();
   return (
-    <div className={css.advantages_main}>
+    <section className={css.advantages_main}>
       <div className={css.advantages_users}>
         <ul className={css.advantages_usersImg}>
           <li className={css.advantages_point}>
@@ -42,8 +42,8 @@ const AdvantagesSection = () => {
           </li>
         </ul>
       </div>
-      <UserCount />
-    </div>
+      <CountPeople />
+    </section>
   );
 };
 export default AdvantagesSection;

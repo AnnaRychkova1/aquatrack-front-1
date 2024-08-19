@@ -1,36 +1,23 @@
-import css from './WaterProgressBar.module.css';
-import Iconsvg from '../Icon/Icon';
-import { useEffect, useState } from 'react';
+import { isSameDay, format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+
+import css from './WaterProgressBar.module.css';
+import Iconsvg from '../../shared/components/Icon/Icon';
 import { selectWaterDrink } from '../../redux/users/selectors';
 import { selectTotalDay } from '../../redux/water/selectors';
 import { selectDate } from '../../redux/date/selectors';
-import { isSameDay, format } from 'date-fns';
-import { useTranslation } from 'react-i18next';
 
 const WaterProgressBar = () => {
   const { t } = useTranslation();
   const daylyNorm = useSelector(selectWaterDrink);
   const dayWaterAll = useSelector(selectTotalDay);
-
   const selectedDate = useSelector(selectDate);
 
-  const [waterAmount, setWaterAmount] = useState(0);
-
-  useEffect(() => {
-    if (typeof dayWaterAll === 'number') {
-      let waterAmount = 0;
-
-      if (daylyNorm && dayWaterAll >= 0) {
-        waterAmount = (dayWaterAll * 100) / (daylyNorm * 1000);
-      } else {
-        waterAmount = 100;
-      }
-      setWaterAmount(Math.min(waterAmount, 100));
-    } else {
-      setWaterAmount(0);
-    }
-  }, [daylyNorm, dayWaterAll, selectedDate]);
+  const waterAmount =
+    typeof dayWaterAll === 'number' && daylyNorm && dayWaterAll >= 0
+      ? Math.min((dayWaterAll * 100) / (daylyNorm * 1000), 100)
+      : 0;
 
   const formatDate = date => {
     if (isSameDay(new Date(), new Date(date))) {

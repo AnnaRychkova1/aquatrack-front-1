@@ -1,0 +1,120 @@
+.logOutModal {
+  border-radius: 15px;
+  padding: 40px 20px;
+  max-width: 344px;
+  min-width: 288px;
+  width: 100%;
+  background-color: var(--main-white);
+  border: none;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.title,
+.subtitle {
+  font-family: 'Poppins', sans-serif;
+  color: var(--main-text);
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.subtitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  margin-top: 16px;
+}
+
+.buttonLogOut,
+.buttonCancel {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main-text);
+  border-radius: 30px;
+  padding: 14px 0;
+  width: 100%;
+  border: none;
+  transition: all 300ms ease-in-out;
+}
+
+.buttonLogOut {
+  background: var(--accent-color);
+  margin-top: 20px;
+}
+
+.buttonCancel {
+  color: rgba(50, 63, 71, 0.3);
+  background: var(--background-color);
+  margin-top: 9px;
+}
+
+.buttonLogOut:hover,
+.buttondelete:focus {
+  background: #87d28d;
+}
+
+.buttonCancel:hover,
+.buttonCancel:focus {
+  color: var(--main-text);
+}
+
+@media (min-width: 768px) {
+  .logOutModal {
+    padding: 40px;
+    max-width: 100%;
+    width: 516px;
+  }
+
+  .title {
+    font-size: 28px;
+    line-height: 1.14;
+  }
+
+  .subtitle {
+    margin-top: 24px;
+    font-size: 18px;
+    line-height: 1.33;
+  }
+
+  .boxButton {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .buttonLogOut,
+  .buttonCancel {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 24px;
+    width: 175px;
+  }
+
+  .buttonLogOut {
+    padding: 18px 57px;
+  }
+
+  .buttonCancel {
+    padding: 18px 59px;
+  }
+}
+.iconCloseButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: none;
+  background-color: inherit;
+}
+.iconClose {
+  width: 28px;
+  height: 28px;
+}

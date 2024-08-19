@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   XAxis,
   YAxis,
@@ -9,61 +10,93 @@ import {
   AreaChart,
   ResponsiveContainer,
 } from 'recharts';
+import { eachDayOfInterval, format, subDays } from 'date-fns';
+
 import css from './Statistic.module.css';
-import { format, subDays, getMonth, getYear } from 'date-fns';
+import Loader from '../../shared/components/Loader/Loader';
 import { paginationDate } from '../../redux/date/selectors';
 import { selectToken } from '../../redux/users/selectors';
 import { fetchMonthlyWater } from '../../redux/water/operations';
-import { selectDate } from '../../redux/date/selectors';
-import { useTranslation } from 'react-i18next';
 
-const Statistic = ({ data }) => {
+import {
+  selectErrorWater,
+  selectLoadingWater,
+  selectMonth,
+} from '../../redux/water/selectors';
+import ErrorPage from '../../pages/ErrorPage';
+
+const Statistic = () => {
   const { t } = useTranslation();
-  const storePaginationDate = new Date(useSelector(paginationDate));
-  const selectedDate = useSelector(selectDate);
-
-  const month = getMonth(storePaginationDate) + 1;
-  const year = getYear(storePaginationDate);
+  const pagination = useSelector(paginationDate);
+  const storePaginationDate = useMemo(() => new Date(pagination), [pagination]);
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
+  const loadingWater = useSelector(selectLoadingWater);
+  const isErrorWater = useSelector(selectErrorWater);
+  const waterPortions = useSelector(selectMonth);
+  const date = new Date(useSelector(paginationDate));
+
+  const startOfCurrentPeriod = subDays(date, 6);
+  const endOfCurrentPeriod = date;
+
+  // const startMonth = format(startOfCurrentPeriod, 'MMMM yyyy');
+  // const endMonth = format(endOfCurrentPeriod, 'MMMM yyyy');
+
+  // const isDifferentMonths = startMonth !== endMonth;
+  // console.log(isDifferentMonths);
+
+  const weekDates = eachDayOfInterval({
+    start: startOfCurrentPeriod,
+    end: endOfCurrentPeriod,
+  }).map(date => format(date, 'yyyy-MM-dd'));
+
+  const waterPortionsPeriod = waterPortions.map(el => ({
+    date: format(new Date(el.date), 'yyyy-MM-dd'),
+    volume: el.volume / 1000,
+  }));
+
+  const filteredData = waterPortionsPeriod.filter(({ date }) =>
+    weekDates.includes(date)
+  );
+
+  const finalData = useMemo(() => {
+    const volumeByDate = filteredData.reduce((acc, { date, volume }) => {
+      acc[date] = (acc[date] || 0) + volume;
+      return acc;
+    }, {});
+    return weekDates.map(date => ({
+      date,
+      Water: volumeByDate[date] || 0,
+    }));
+  }, [weekDates, filteredData]);
+
+  const gradientId = 'waterGradient';
 
   useEffect(() => {
     if (token) {
-      dispatch(fetchMonthlyWater({ month, year, token }));
+      dispatch(
+        fetchMonthlyWater({
+          month: storePaginationDate.getMonth() + 1,
+          year: storePaginationDate.getFullYear(),
+          token,
+        })
+      );
     }
-  }, [dispatch, month, year, token]);
+  }, [dispatch, token, storePaginationDate]);
 
-  const waterPortions = data.map(el => {
-    return { date: format(el.date, 'dd.MM.yyyy'), volume: el.volume / 1000 };
-  });
-
-  const arrayDates = [];
-  for (let i = 6; i >= 0; i--) {
-    arrayDates.push(format(subDays(selectedDate, i), 'dd.MM.yyyy'));
+  if (loadingWater) {
+    return <Loader />;
   }
 
-  const finalData = arrayDates.map(date => {
-    let a = 0;
-    waterPortions.forEach(el => {
-      if (date === el.date) {
-        a += el.volume;
-      }
-    });
-
-    if (a > 0) {
-      a = a.toFixed(3);
-    }
-
-    return { date: date.split('.')[0], Water: a };
-  });
-
-  const gradientId = 'waterGradient';
+  if (isErrorWater) {
+    return <ErrorPage />;
+  }
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
         <div className={css.customTooltip}>
-          <p className={css.water}>{`${payload[0].value * 1000} ${t(
+          <p className={css.water}>{`${Math.round(payload[0].value * 1000)} ${t(
             'trackerPage.ml'
           )}`}</p>
         </div>
@@ -71,11 +104,13 @@ const Statistic = ({ data }) => {
     }
     return null;
   };
+
   const formatYAxis = tickItem => {
-    if (tickItem === 0) {
-      return '0';
-    }
-    return `${tickItem} ${t('trackerPage.liter')}`;
+    return tickItem === 0 ? '0' : `${tickItem} ${t('trackerPage.liter')}`;
+  };
+
+  const formatXAxis = tickItem => {
+    return format(new Date(tickItem), 'dd.MM');
   };
 
   return (
@@ -96,6 +131,7 @@ const Statistic = ({ data }) => {
             tickLine={false}
             tick={{ fill: 'var(--main-text)' }}
             stroke=""
+            tickFormatter={formatXAxis}
           />
           <YAxis
             padding={{ top: 20, bottom: 20 }}

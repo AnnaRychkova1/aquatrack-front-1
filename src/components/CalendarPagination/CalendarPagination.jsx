@@ -1,68 +1,107 @@
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import {
+  addDays,
+  addMonths,
+  format,
+  startOfDay,
+  subDays,
+  subMonths,
+} from 'date-fns';
+import css from './CalendarPagination.module.css';
+import Icon from '../../shared/components/Icon/Icon';
 import { paginationDate } from '../../redux/date/selectors';
 import { changePaginationDate } from '../../redux/date/slice';
 import { paginationBtnDisabled } from '../../redux/pagination/selectors';
 import { changePaginationBtnDisabled } from '../../redux/pagination/slice';
-import css from './CalendarPagination.module.css';
-import Icon from '../Icon/Icon';
-import { useTranslation } from 'react-i18next';
 
-const CalendarPagination = () => {
+const CalendarPagination = ({ viewStatistic }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const storeDate = new Date(useSelector(paginationDate));
   const btnDisabled = useSelector(paginationBtnDisabled);
+  const startOfCurrentPeriod = subDays(storeDate, 6);
+  const endOfCurrentPeriod = storeDate;
 
-  const getPreviousMounth = date => {
-    const currentDate = new Date(date);
-    currentDate.setMonth(currentDate.getMonth() - 1);
-    return currentDate;
+  const getPreviousPeriod = date => {
+    if (viewStatistic) {
+      const startOfPreviousWeek = subDays(date, 7);
+      const endOfPreviousWeek = subDays(date, 7);
+      return { start: startOfPreviousWeek, end: endOfPreviousWeek };
+    } else {
+      return subMonths(date, 1);
+    }
   };
 
-  const getNextMounth = date => {
-    const currentDate = new Date(date);
-    currentDate.setMonth(currentDate.getMonth() + 1);
-    return currentDate;
+  const getNextPeriod = date => {
+    if (viewStatistic) {
+      const startOfNextWeek = addDays(date, 1);
+      const endOfNextWeek = addDays(date, 7);
+      return { start: startOfNextWeek, end: endOfNextWeek };
+    } else {
+      return addMonths(date, 1);
+    }
   };
 
-  const handlePreviousMounth = () => {
-    const previousMounth = getPreviousMounth(storeDate);
-    dispatch(changePaginationDate(new Date(previousMounth).toISOString()));
+  const handlePreviousPeriod = () => {
+    const previousPeriod = getPreviousPeriod(storeDate);
+
+    if (viewStatistic) {
+      dispatch(changePaginationDate(previousPeriod.end.toISOString()));
+    } else {
+      dispatch(changePaginationDate(previousPeriod.toISOString()));
+    }
+
     dispatch(changePaginationBtnDisabled(false));
   };
 
-  const handleNextMounth = () => {
-    const nextMounth = getNextMounth(storeDate);
-    const currentBtnMonth = new Date().toLocaleDateString('en-GB', {
-      month: 'long',
-      year: 'numeric',
-    });
-    const nextBtnMonth = new Date(nextMounth).toLocaleDateString('en-GB', {
-      month: 'long',
-      year: 'numeric',
-    });
+  const handleNextPeriod = () => {
+    const nextPeriod = getNextPeriod(storeDate);
+    const today = startOfDay(new Date());
 
-    if (currentBtnMonth === nextBtnMonth) {
-      dispatch(changePaginationBtnDisabled(true));
+    if (viewStatistic) {
+      const nextPeriodEndDay = startOfDay(nextPeriod.end);
+      if (nextPeriodEndDay >= today) {
+        dispatch(changePaginationBtnDisabled(true));
+      } else {
+        dispatch(changePaginationBtnDisabled(false));
+      }
+
+      dispatch(changePaginationDate(nextPeriod.end.toISOString()));
+    } else {
+      const currentPeriodBtn = format(today, 'MMMM yyyy');
+      const nextPeriodBtn = format(nextPeriod, 'MMMM yyyy');
+
+      if (currentPeriodBtn === nextPeriodBtn) {
+        dispatch(changePaginationBtnDisabled(true));
+      } else {
+        dispatch(changePaginationBtnDisabled(false));
+      }
+
+      dispatch(changePaginationDate(nextPeriod.toISOString()));
     }
-
-    dispatch(changePaginationDate(new Date(nextMounth).toISOString()));
   };
 
-  const formattedMonth = t(
-    `months.${storeDate.toLocaleDateString('en-GB', { month: 'long' })}`
-  );
+  let formattedDate;
+  if (viewStatistic) {
+    formattedDate = `${format(startOfCurrentPeriod, 'dd MMM')} - ${format(
+      endOfCurrentPeriod,
+      'dd MMM'
+    )}`;
+  } else {
+    const monthName = t(
+      `months.${storeDate.toLocaleDateString('en-GB', { month: 'long' })}`
+    );
+    const year = storeDate.toLocaleDateString('en-GB', { year: 'numeric' });
+    formattedDate = `${monthName}, ${year}`;
+  }
 
-  const formattedYear = `${storeDate.toLocaleDateString('en-GB', {
-    year: 'numeric',
-  })}`;
   return (
     <div className={css.container}>
       <button
         type="button"
         className={css.button}
-        onClick={handlePreviousMounth}
+        onClick={handlePreviousPeriod}
       >
         <Icon
           width="18"
@@ -71,13 +110,11 @@ const CalendarPagination = () => {
           className={css.icon}
         />
       </button>
-      <div className={css.dateInfo}>
-        {formattedMonth}, {formattedYear}
-      </div>
+      <div className={css.dateInfo}>{formattedDate}</div>
       <button
         type="button"
         className={css.button}
-        onClick={handleNextMounth}
+        onClick={handleNextPeriod}
         disabled={btnDisabled}
       >
         <Icon

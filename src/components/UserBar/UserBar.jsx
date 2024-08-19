@@ -1,23 +1,17 @@
-//import { useEffect, useState } from 'react';
-import { useState } from 'react';
-import Iconsvg from '../Icon/Icon';
-import UserBarPopover from '../UserBarPopover/UserBarPopover';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import {
-  selectAvatar,
-  selectIsSignedIn,
-  selectName,
-} from '../../redux/users/selectors';
-import css from '../UserPanel/UserPanel.module.css';
-import { useTranslation } from 'react-i18next';
+
+import css from '../UserBar/UserBar.module.css';
+import Iconsvg from '../../shared/components/Icon/Icon';
+import UserBarPopover from '../UserBarPopover/UserBarPopover';
+import { selectAvatar, selectName } from '../../redux/users/selectors';
 
 const UserBar = () => {
-  const { t } = useTranslation();
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [svgPopover, setSvgPopover] = useState('chevron-down');
   const userDataName = useSelector(selectName);
   const userDataAvatar = useSelector(selectAvatar);
-  const isSignedIn = useSelector(selectIsSignedIn);
+  const popoverRef = useRef(null);
 
   const togglePopover = () => {
     setIsPopoverOpen(prevState => !prevState);
@@ -31,20 +25,33 @@ const UserBar = () => {
     setSvgPopover('chevron-down');
   };
 
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (popoverRef.current && !popoverRef.current.contains(event.target)) {
+        closePopover();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className={css.userPanelContainerBtn}>
+    <div className={css.containerPanel}>
       <div className="reactour__userPanelInfo">
-        <button className={css.userPanelBtn} onClick={togglePopover}>
-          {isSignedIn ? (
-            <span className={css.userNameSmall}>{userDataName}</span>
-          ) : (
-            <span className={css.userNameSmall}>{t('trackerPage.user')}</span>
+        <div className={css.userPanel}>
+          <span className={css.userNameSmall}>{userDataName}</span>
+          <img name={userDataName} src={`${userDataAvatar}`} />
+          <button className={css.userPanelBtn} onClick={togglePopover}>
+            <Iconsvg className={css.userPanelBtnIcon} iconName={svgPopover} />
+          </button>
+          {isPopoverOpen && (
+            <UserBarPopover ref={popoverRef} closePopover={closePopover} />
           )}
-          <img name={userDataName} src={`${userDataAvatar}`} size="40" />
-          <Iconsvg className={css.userPanelBtnIcon} iconName={svgPopover} />
-        </button>
+        </div>
       </div>
-      {isPopoverOpen && <UserBarPopover closePopover={closePopover} />}
     </div>
   );
 };

@@ -4,7 +4,10 @@
     "notFound": "Page not found",
     "signin": "SignIn",
     "signup": "SignUp",
-    "tracker": "Your Tracker"
+    "tracker": "Your Tracker",
+    "forgot": "Forgot Password",
+    "renew": "Renew",
+    "error": "Error"
   },
   "header": {
     "en": "En",
@@ -31,7 +34,8 @@
     "count": {
       "our": "Our",
       "team": "team",
-      "now": "now"
+      "now": "now ",
+      "howmuch": "The whole world"
     }
   },
   "notFound": {
@@ -47,7 +51,10 @@
     "repeat": "Repeat Password",
     "placeholderPasswordRepeat": "Repeat password",
     "haveAccount": "Already have an account",
-    "signin": "Sign In"
+    "signin": "Sign In",
+    "resendVerify": "Need to verify again",
+    "reverify": "Verify",
+    "google": "Sign Up with Google"
   },
   "signinForm": {
     "signin": "Sign In",
@@ -56,9 +63,13 @@
     "password": "Password",
     "placeholderPassword": "Enter your password",
     "dontAccount": "Don’t have an account",
-    "signup": "Sign Up"
+    "signup": "Sign Up",
+    "forgot": "Forgot your password",
+    "renew": "Renew",
+    "google": "Sign In with Google"
   },
   "trackerPage": {
+    "welcome": "Welcome to AquaTrack!",
     "liter": "L",
     "dailyNorma": "My daily norma",
     "addWater": "Add water",
@@ -73,7 +84,30 @@
     "statistics": "Statistics",
     "ml": "ml"
   },
-
+  "forgotForm": {
+    "resetPassword": "Change your password",
+    "resetVerify": "Resend verify email",
+    "email": "Enter your email",
+    "placeholderEmail": "Enter your email",
+    "send": "Send",
+    "toMain": "Go to the main page",
+    "home": "Home Page",
+    "automatically": "Generare new password automatically",
+    "manual": "Generare new password manual"
+  },
+  "renewForm": {
+    "change": "Change your password",
+    "new": "New password",
+    "placeholderPassword": "Enter a new password",
+    "confirm": "Confirm new password",
+    "placeholderRepeatPassword": "Enter the new password again",
+    "send": "Send",
+    "toMain": "Go to the main page",
+    "home": "Home Page"
+  },
+  "error": {
+    "sorry": "Whoops, something went wrong! Please try reloading this page!"
+  },
   "months": {
     "January": "January",
     "February": "February",

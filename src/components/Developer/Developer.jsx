@@ -1,18 +1,19 @@
 import { Link } from 'react-router-dom';
-import Iconsvg from '../Icon/Icon';
-import css from './Developer.module.css';
-import data from '../../modals/DeveloperModal/developersData';
 import { useTranslation } from 'react-i18next';
+
+import css from './Developer.module.css';
+import Iconsvg from '../../shared/components/Icon/Icon';
+import data from '../../modals/DeveloperModal/developersData';
 
 const Developer = ({ id }) => {
   const { t } = useTranslation();
   const developer = data.find(dev => dev.id === id);
-
-  if (!developer) return null;
-
   const { link, png, pngx2, webp, webpx2 } = developer;
   const name = t(`developers.${id}.name`);
   const role = t(`developers.${id}.role`);
+
+  if (!developer) return null;
+
   return (
     <>
       <div className={css.photoContainer}>

@@ -1,0 +1,125 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.label {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: var(--second-text);
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+.input_field {
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.input {
+  padding: 16px;
+  border-radius: 15px;
+  border: 1px solid #2f2f2f33;
+  opacity: 0px;
+  outline: none;
+  background-color: var(--background-color);
+}
+
+.icon_eye,
+.eyeIconOff {
+  fill: none;
+  stroke: var(--second-text);
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 20px;
+  height: 20px;
+}
+
+.input::placeholder {
+  font-size: 14px;
+  line-height: 18px;
+  text-align: left;
+  letter-spacing: -0.01em;
+  color: #2f2f2f99;
+}
+
+.input:focus {
+  border: 1px solid var(--accent-color);
+  color: inherit;
+  transition: all 300ms ease-in-out;
+}
+
+.button {
+  height: 50px;
+  border-radius: 30px;
+  border: none;
+  color: var(--main-text);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 18px;
+  background-color: var(--accent-color);
+  margin-top: 16px;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+
+.button:hover,
+.button:focus {
+  background-color: #87d28d;
+  color: #ffffff;
+}
+
+.errors {
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: #ef5050;
+
+  position: absolute;
+  bottom: -25px;
+  left: 0;
+  width: 100%;
+}
+
+.error {
+  border-color: #ef5050;
+  color: #ef5050;
+}
+
+@media screen and (min-width: 768px) {
+  .form {
+    margin-bottom: 20px;
+  }
+
+  .title {
+    font-size: 36px;
+    line-height: 38px;
+  }
+
+  .label {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .input::placeholder {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .button {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

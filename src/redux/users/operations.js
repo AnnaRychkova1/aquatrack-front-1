@@ -4,15 +4,17 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import {
   requestLogin,
-  requestGoogleLogin,
   requestLogout,
   requestRegister,
-  requestSendVerify,
-  requestUserInfo,
-  updateUserProfiles,
-  uploadUserAvatars,
-  resetPassword,
-  changePassword,
+  requestCurrentUser,
+  requestUpdateUserProfile,
+  requestUploadUserAvatars,
+  requestForgotPassword,
+  requestChangePassword,
+  requestGoogleLogin,
+  requestResendVerify,
+  requestGeneratePassword,
+  requestCountUsers,
 } from '../../services/userApi.js';
 
 const options = {
@@ -25,22 +27,29 @@ const options = {
   progress: undefined,
 };
 
-const emailWaitOptions = {
-  ...options,
-  autoClose: false,
-};
+// Count users
+export const countUsers = createAsyncThunk(
+  'users/count',
+  async (_, thunkAPI) => {
+    try {
+      const res = await requestCountUsers();
+      return res;
+    } catch (err) {
+      toast.error(err.res.data.message);
+      return thunkAPI.rejectWithValue(err.response);
+    }
+  }
+);
 
 // SignUp
-
 export const userRegister = createAsyncThunk(
   'users/register',
   async (formData, thunkAPI) => {
     try {
       const res = await requestRegister(formData);
       toast.success('Successfully registered. Check your email', {
-        ...emailWaitOptions,
+        ...options,
       });
-
       return res;
     } catch (err) {
       if (err.response?.status === 409) {
@@ -57,7 +66,6 @@ export const userRegister = createAsyncThunk(
 );
 
 // SignIn
-
 export const logIn = createAsyncThunk(
   'users/login',
   async (formData, thunkAPI) => {
@@ -81,28 +89,13 @@ export const logIn = createAsyncThunk(
   }
 );
 
-//ADDITIONAL loginGoogle
-
-export const loginGoogle = createAsyncThunk(
-  'users/loginGoogle',
-  async (formData, thunkAPI) => {
-    try {
-      const res = await requestGoogleLogin(formData);
-      return res;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.response.data.message || err.message);
-    }
-  }
-);
-
 // Logout
-
 export const logOut = createAsyncThunk(
   'users/logout',
   async (token, thunkAPI) => {
     try {
       await requestLogout(token);
-      // toast.success('Successfully logout', { ...options });
+      toast.success('Successfully logout', { ...options });
       return;
     } catch (err) {
       toast.error(err.message, { ...options });
@@ -112,13 +105,11 @@ export const logOut = createAsyncThunk(
 );
 
 // Current
-
-export const getCurrentUser = createAsyncThunk(
+export const currentUser = createAsyncThunk(
   'users/current',
-
-  async (token, thunkAPI) => {
+  async (_, thunkAPI) => {
     try {
-      const response = await requestUserInfo(token);
+      const response = await requestCurrentUser();
       return response;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
@@ -126,26 +117,12 @@ export const getCurrentUser = createAsyncThunk(
   }
 );
 
-// Update
-
-export const sendVerify = createAsyncThunk(
-  'users/verify',
-  async ({ verificationToken, formData }, thunkAPI) => {
-    try {
-      const res = await requestSendVerify(verificationToken, formData);
-
-      return res;
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message);
-    }
-  }
-);
-
+// Avatar
 export const uploadUserAvatar = createAsyncThunk(
   'users/avatars',
   async (formData, thunkAPI) => {
     try {
-      const response = await uploadUserAvatars(formData);
+      const response = await requestUploadUserAvatars(formData);
       toast.success('Avatar uploaded successfully', { ...options });
       return response.avatarURL;
     } catch (err) {
@@ -154,11 +131,13 @@ export const uploadUserAvatar = createAsyncThunk(
     }
   }
 );
+
+// Update profile
 export const updateUserProfile = createAsyncThunk(
   'users/update',
   async (formData, thunkAPI) => {
     try {
-      const response = await updateUserProfiles(formData);
+      const response = await requestUpdateUserProfile(formData);
       toast.success('User update successfully', { ...options });
       return response.user;
     } catch (err) {
@@ -168,12 +147,13 @@ export const updateUserProfile = createAsyncThunk(
   }
 );
 
-export const newPassword = createAsyncThunk(
-  '/users/password/custom',
+// Password forgot
+export const forgotPassword = createAsyncThunk(
+  '/users/password/forgot-password',
   async (formData, thunkAPI) => {
     try {
-      const res = await resetPassword(formData);
-      toast.success('Successfully new password', { ...options });
+      const res = await requestForgotPassword(formData);
+      toast.success('Successfully. Check your email', { ...options });
       return res;
     } catch (err) {
       switch (err.response?.status) {
@@ -191,12 +171,15 @@ export const newPassword = createAsyncThunk(
   }
 );
 
-export const newPasswordChange = createAsyncThunk(
-  'users/password/custom/update',
-  async (formData, thunkAPI) => {
+// Password custon update
+export const changePassword = createAsyncThunk(
+  'users/password/update',
+  async ({ userData, token }, thunkAPI) => {
     try {
-      const res = await changePassword(formData);
-      toast.success('Successfully new password', { ...options });
+      const res = await requestChangePassword(userData, token);
+      toast.success('Successfully created your new password', {
+        ...options,
+      });
       return res;
     } catch (err) {
       switch (err.response?.status) {
@@ -214,69 +197,80 @@ export const newPasswordChange = createAsyncThunk(
   }
 );
 
-// newPasswordChange
+// Generate Password
+export const generatePassword = createAsyncThunk(
+  'users/password/generate',
+  async (formData, thunkAPI) => {
+    try {
+      const res = await requestGeneratePassword(formData);
+      toast.success('Successfully. Check your email', { ...options });
+      return res;
+    } catch (err) {
+      switch (err.response?.status) {
+        case 400:
+          toast.error('Email is wrong', { ...options });
+          break;
+        case 404:
+          toast.error('User not found', { ...options });
+          break;
+        default:
+          toast.error(err.response, { ...options });
+      }
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
 
-// export const forgotPassword = createAsyncThunk(
-//   'users/forgot-password',
-//   async (formData, thunkAPI) => {
-//     try {
-//       const res = await requestForgotPassword(formData);
+// Resend Verify
+export const resendVerify = createAsyncThunk(
+  'users/verify',
+  async (formData, thunkAPI) => {
+    try {
+      const res = await requestResendVerify(formData);
+      toast.success('Verification email sent', {
+        ...options,
+      });
+      return res;
+    } catch (err) {
+      switch (err.response?.status) {
+        case 400:
+          toast.error('Verification has already been passed', { ...options });
+          break;
+        case 404:
+          toast.error('User not found', { ...options });
+          break;
+        default:
+          toast.error(err.response, { ...options });
+      }
+      return thunkAPI.rejectWithValue(err.message);
+    }
+  }
+);
 
-//       return res;
-//     } catch (err) {
-//       return thunkAPI.rejectWithValue(err.message);
-//     }
-//   }
-// );
+// Google login
+export const loginGoogle = createAsyncThunk(
+  'users/google',
+  async (formData, thunkAPI) => {
+    try {
+      const res = await requestGoogleLogin(formData);
+      toast.success('Verification by Google success', {
+        ...options,
+      });
+      return res;
+    } catch (err) {
+      toast.error(err.response, { ...options });
+      return thunkAPI.rejectWithValue(err.response.data.message || err.message);
+    }
+  }
+);
 
-// export const resetPassword = createAsyncThunk(
-//   'users/reset-password',
-//   async (formData, thunkAPI) => {
-//     try {
-//       const res = await requestResetPassword(formData);
-
-//       return res;
-//     } catch (err) {
-//       return thunkAPI.rejectWithValue(err.message);
-//     }
-//   }
-// );
+// Refresh Token
 
 // export const tokenRefresh = createAsyncThunk(
 //   'users/refresh',
 //   async (formData, thunkAPI) => {
 //     try {
-//       const res = await refreshToken(formData);
-//       return res;
-//     } catch (err) {
-//       return thunkAPI.rejectWithValue(err.message);
-//     }
-//   }
-// );
-
-// export const getCurrentUser = createAsyncThunk(
-//   'users/current',
-
-//   // const token = localStorage.getItem('token');
-//   // if (!token) {
-//   //   return null;
-//   // }
-
-//   async thunkAPI => {
-//     try {
-//       const response = await requestUserInfo();//
-//     } catch (err) {
-//       return thunkAPI.rejectWithValue(err.message);
-//     }
-//   }
-// );
-
-// export const resendVerify = createAsyncThunk(
-//   'users/re-verify',
-//   async (formData, thunkAPI) => {
-//     try {
-//       const res = await requestResendVerify(formData);
-
+//       const res = await requestRefreshToken(formData);
 //       return res;
 //     } catch (err) {
 //       return thunkAPI.rejectWithValue(err.message);

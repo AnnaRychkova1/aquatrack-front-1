@@ -1,7 +1,6 @@
 .wrapper {
   background-color: var(--background-color);
   color: var(--main-text);
-  /* padding: 1.25rem; */
   margin-bottom: 2.5rem;
 }
 
@@ -53,17 +52,25 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 150%;
-  /* letter-spacing: -0.01em; */
   text-align: center;
 }
 
+.cardTitle {
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+}
+
 @media screen and (min-width: 768px) {
-  /* .wrapper {
-    padding: 2rem;
-  } */
+  .cardTitle {
+    font-size: 1.75rem;
+    line-height: 114%;
+  }
 }
-@media screen and (min-width: 1440px) {
-  /* .wrapper {
+
+/* @media screen and (min-width: 1440px) {
+  .wrapper {
     margin-bottom: 4.5rem;
-  } */
-}
+  }
+} */

@@ -1,55 +1,101 @@
-.button {
-  border-radius: 100%;
+.dayInfo {
   display: flex;
-  width: 28px;
-  height: 28px;
-  padding: 5px 8px;
   flex-direction: column;
+  row-gap: 0.375rem;
   justify-content: center;
   align-items: center;
-  border: none;
-  background: rgba(50, 63, 71, 0.2);
-  color: var(--color-darkblue);
+  width: auto;
 }
-.percentage {
-  color: rgba(47, 47, 47, 0.6);
-  font-size: 10px;
-  font-weight: 400;
-  line-height: 1;
+
+.dayNumberFull {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding-top: 6px;
-}
-.number {
-  text-align: center;
-  font-size: 14px;
+  width: 28px;
+  height: 28px;
   font-weight: 700;
-  line-height: 1.28;
-  letter-spacing: -0.14px;
+  font-size: 0.875rem;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main-text);
+  border-radius: 1.875rem;
+  background-color: var(--main-white);
+  border: none;
+  transition-property: color, background-color;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+
+.dayNumberPart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--main-text);
+  border-radius: 1.875rem;
+  background-color: rgba(50, 63, 71, 0.2);
+  border: none;
+  transition-property: color, background-color;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+.dayNumberCurrent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: -0.01em;
+  text-align: center;
+  color: var(--accent-color);
+  border-radius: 1.875rem;
+  background-color: var(--main-text);
+  border: none;
+  transition-property: color, background-color;
+  transition-duration: 250ms;
+  transition-timing-function: ease;
+}
+
+.dayNumberFull:hover,
+.dayNumberFull:focus,
+.dayNumberPart:hover,
+.dayNumberPart:focus {
+  color: var(--accent-color);
+  background-color: var(--main-text);
+}
+
+.dayNumberCurrent:hover,
+.dayNumberCurrent:focus {
+  border: 1px solid var(--main-white);
+}
+
+.dayPercent {
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.625rem;
+  color: rgba(47, 47, 47, 0.6);
 }
 @media screen and (min-width: 768px) {
-  .button {
-    display: flex;
+  .dayNumberFull {
+    font-size: 16px;
     width: 38px;
     height: 38px;
-    padding: 7px 15px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
   }
-  .number {
-    text-align: center;
+  .dayNumberPart {
     font-size: 16px;
-    font-weight: 700;
-    line-height: 1.5;
-    letter-spacing: -0.16px;
+    width: 38px;
+    height: 38px;
   }
-  .percentage {
-    color: rgba(47, 47, 47, 0.6);
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 1.86;
-    padding-top: 4px;
+  .dayNumberCurrent {
+    font-size: 16px;
+    width: 38px;
+    height: 38px;
   }
 }
