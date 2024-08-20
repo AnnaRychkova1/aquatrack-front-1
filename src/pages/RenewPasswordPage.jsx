@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 
 import Page from '../shared/style/Page/Page';
 import RenewPassword from '../components/RenewPassword/RenewPassword';
-import AdvantagesSection from '../../components/AdvantagesSection/AdvantagesSection';
-import { useMedia } from '../../hooks/useMedia';
+import AdvantagesSection from '../components/AdvantagesSection/AdvantagesSection';
+import { useMedia } from '../hooks/useMedia';
 
 const RenewPasswordPage = () => {
   const { t } = useTranslation();
