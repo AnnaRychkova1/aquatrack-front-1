@@ -2,7 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
 import Page from '../../shared/components/Page/Page';
-import RenewPassword from '../../components/RenewPassword/RenewPassword';
+import RenewPassword from '../components/RenewPassword/RenewPassword';
 import AdvantagesSection from '../../components/AdvantagesSection/AdvantagesSection';
 import { useMedia } from '../../hooks/useMedia';
 
