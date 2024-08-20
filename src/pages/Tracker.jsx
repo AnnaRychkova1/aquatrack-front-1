@@ -7,7 +7,6 @@ import Loader from '../shared/components/Loader/Loader';
 import WaterMainInfo from '../components/WaterMainInfo/WaterMainInfo';
 import WaterDetailedInfo from '../components/WaterDetailedInfo/WaterDetailedInfo';
 import ErrorPage from './ErrorPage';
-// import Notification from '../components/Notification/Notification';
 import { selectIsError, selectIsLoading } from '../redux/users/selectors';
 
 const Tracker = () => {
@@ -28,7 +27,6 @@ const Tracker = () => {
       <Helmet>
         <title>{t('pages.tracker')}</title>
       </Helmet>
-      {/* <Notification type="success" message={`${t('trackerPage.welcome')}`} /> */}
       <WaterMainInfo />
       <WaterDetailedInfo />
     </Page>
