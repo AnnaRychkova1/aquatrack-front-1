@@ -17,13 +17,14 @@ const CountPeople = () => {
   const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectIsError);
   const userCount = useSelector(selectCount);
+  console.log(userCount);
 
   const formatUserCount = userCount => {
     if (userCount !== null) {
       if (userCount > 10000) {
         return `${(userCount / 1000).toFixed(2)}k`;
       } else {
-        return userCount.toString();
+        return userCount;
       }
     }
     return '';
