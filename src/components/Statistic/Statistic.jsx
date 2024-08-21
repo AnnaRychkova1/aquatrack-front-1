@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
   XAxis,
@@ -21,7 +21,6 @@ import { fetchMonthlyWater } from '../../redux/water/operations';
 import {
   selectErrorWater,
   selectLoadingWater,
-  selectMonth,
 } from '../../redux/water/selectors';
 import ErrorPage from '../../pages/ErrorPage';
 
@@ -33,64 +32,83 @@ const Statistic = () => {
   const token = useSelector(selectToken);
   const loadingWater = useSelector(selectLoadingWater);
   const isErrorWater = useSelector(selectErrorWater);
-  const waterPortions = useSelector(selectMonth);
-  const date = new Date(useSelector(paginationDate));
+  const [lastFetchedPeriod, setLastFetchedPeriod] = useState(null);
+  const [firstMonthData, setFirstMonthData] = useState([]);
+  const [secondMonthData, setSecondMonthData] = useState([]);
 
-  const startOfCurrentPeriod = subDays(date, 6);
-  const endOfCurrentPeriod = date;
-
-  // const startMonth = format(startOfCurrentPeriod, 'MMMM yyyy');
-  // const endMonth = format(endOfCurrentPeriod, 'MMMM yyyy');
-
-  // const isDifferentMonths = startMonth !== endMonth;
-  // console.log(isDifferentMonths);
+  const startOfCurrentPeriod = subDays(storePaginationDate, 6);
+  const endOfCurrentPeriod = storePaginationDate;
 
   const weekDates = eachDayOfInterval({
     start: startOfCurrentPeriod,
     end: endOfCurrentPeriod,
   }).map(date => format(date, 'yyyy-MM-dd'));
 
-  const waterPortionsPeriod = waterPortions.map(el => ({
+  const combinedData = [...firstMonthData, ...secondMonthData].map(el => ({
     date: format(new Date(el.date), 'yyyy-MM-dd'),
     volume: el.volume / 1000,
   }));
 
-  const filteredData = waterPortionsPeriod.filter(({ date }) =>
-    weekDates.includes(date)
-  );
+  const volumeByDateMonth = combinedData.reduce((acc, { date, volume }) => {
+    acc[date] = (acc[date] || 0) + volume;
+    return acc;
+  }, {});
 
-  const finalData = useMemo(() => {
-    const volumeByDate = filteredData.reduce((acc, { date, volume }) => {
-      acc[date] = (acc[date] || 0) + volume;
-      return acc;
-    }, {});
-    return weekDates.map(date => ({
-      date,
-      Water: volumeByDate[date] || 0,
-    }));
-  }, [weekDates, filteredData]);
+  const finalData = weekDates.map(date => ({
+    date,
+    Water: volumeByDateMonth[date] || 0,
+  }));
 
   const gradientId = 'waterGradient';
 
+  const startMonth = startOfCurrentPeriod.getMonth() + 1;
+  const endMonth = endOfCurrentPeriod.getMonth() + 1;
+  const startYear = startOfCurrentPeriod.getFullYear();
+  const endYear = endOfCurrentPeriod.getFullYear();
+
   useEffect(() => {
     if (token) {
-      dispatch(
-        fetchMonthlyWater({
-          month: storePaginationDate.getMonth() + 1,
-          year: storePaginationDate.getFullYear(),
-          token,
-        })
-      );
+      if (
+        !lastFetchedPeriod ||
+        startMonth !== lastFetchedPeriod.startMonth ||
+        startYear !== lastFetchedPeriod.startYear ||
+        endMonth !== lastFetchedPeriod.endMonth ||
+        endYear !== lastFetchedPeriod.endYear
+      ) {
+        dispatch(
+          fetchMonthlyWater({
+            month: startMonth,
+            year: startYear,
+            token,
+          })
+        ).then(response => {
+          setFirstMonthData(response.payload);
+        });
+
+        if (startMonth !== endMonth || startYear !== endYear) {
+          dispatch(
+            fetchMonthlyWater({
+              month: endMonth,
+              year: endYear,
+              token,
+            })
+          ).then(response => {
+            setSecondMonthData(response.payload);
+          });
+        }
+
+        setLastFetchedPeriod({ startMonth, startYear, endMonth, endYear });
+      }
     }
-  }, [dispatch, token, storePaginationDate]);
-
-  if (loadingWater) {
-    return <Loader />;
-  }
-
-  if (isErrorWater) {
-    return <ErrorPage />;
-  }
+  }, [
+    dispatch,
+    token,
+    startMonth,
+    startYear,
+    endMonth,
+    endYear,
+    lastFetchedPeriod,
+  ]);
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
@@ -112,6 +130,14 @@ const Statistic = () => {
   const formatXAxis = tickItem => {
     return format(new Date(tickItem), 'dd.MM');
   };
+
+  if (loadingWater) {
+    return <Loader />;
+  }
+
+  if (isErrorWater) {
+    return <ErrorPage />;
+  }
 
   return (
     <div className={css.statistics}>

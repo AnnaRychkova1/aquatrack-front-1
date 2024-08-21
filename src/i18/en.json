@@ -122,6 +122,20 @@
     "November": "November",
     "December": "December"
   },
+  "shortMonths": {
+    "Jan": "Jan",
+    "Feb": "Feb",
+    "Mar": "Mar",
+    "Apr": "Apr",
+    "May": "May",
+    "Jun": "Jun",
+    "Jul": "Jul",
+    "Aug": "Aug",
+    "Sep": "Sep",
+    "Oct": "Oct",
+    "Nov": "Nov",
+    "Dec": "Dec"
+  },
   "guide": {
     "start": "Ok, let's start",
     "userSettings": "This is a block of user settings",

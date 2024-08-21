@@ -20,34 +20,19 @@ const CalendarPagination = ({ viewStatistic }) => {
   const dispatch = useDispatch();
   const storeDate = new Date(useSelector(paginationDate));
   const btnDisabled = useSelector(paginationBtnDisabled);
-  const startOfCurrentPeriod = subDays(storeDate, 6);
-  const endOfCurrentPeriod = storeDate;
-
-  const getPreviousPeriod = date => {
-    if (viewStatistic) {
-      const startOfPreviousWeek = subDays(date, 7);
-      const endOfPreviousWeek = subDays(date, 7);
-      return { start: startOfPreviousWeek, end: endOfPreviousWeek };
-    } else {
-      return subMonths(date, 1);
-    }
-  };
-
-  const getNextPeriod = date => {
-    if (viewStatistic) {
-      const startOfNextWeek = addDays(date, 1);
-      const endOfNextWeek = addDays(date, 7);
-      return { start: startOfNextWeek, end: endOfNextWeek };
-    } else {
-      return addMonths(date, 1);
-    }
-  };
+  const endOfCurrentPeriod = startOfDay(storeDate);
+  const startOfCurrentPeriod = subDays(endOfCurrentPeriod, 6);
 
   const handlePreviousPeriod = () => {
-    const previousPeriod = getPreviousPeriod(storeDate);
+    const previousPeriod = viewStatistic
+      ? {
+          start: subDays(endOfCurrentPeriod, 7),
+          end: subDays(startOfCurrentPeriod, 7),
+        }
+      : subMonths(storeDate, 1);
 
     if (viewStatistic) {
-      dispatch(changePaginationDate(previousPeriod.end.toISOString()));
+      dispatch(changePaginationDate(previousPeriod.start.toISOString()));
     } else {
       dispatch(changePaginationDate(previousPeriod.toISOString()));
     }
@@ -56,7 +41,13 @@ const CalendarPagination = ({ viewStatistic }) => {
   };
 
   const handleNextPeriod = () => {
-    const nextPeriod = getNextPeriod(storeDate);
+    const nextPeriod = viewStatistic
+      ? {
+          start: addDays(startOfCurrentPeriod, 7),
+          end: addDays(endOfCurrentPeriod, 7),
+        }
+      : addMonths(storeDate, 1);
+
     const today = startOfDay(new Date());
 
     if (viewStatistic) {
@@ -77,17 +68,18 @@ const CalendarPagination = ({ viewStatistic }) => {
       } else {
         dispatch(changePaginationBtnDisabled(false));
       }
-
       dispatch(changePaginationDate(nextPeriod.toISOString()));
     }
   };
 
   let formattedDate;
   if (viewStatistic) {
-    formattedDate = `${format(startOfCurrentPeriod, 'dd MMM')} - ${format(
-      endOfCurrentPeriod,
-      'dd MMM'
-    )}`;
+    const startMonth = t(`shortMonths.${format(startOfCurrentPeriod, 'MMM')}`);
+    const endMonth = t(`shortMonths.${format(endOfCurrentPeriod, 'MMM')}`);
+    formattedDate = `${format(
+      startOfCurrentPeriod,
+      'dd'
+    )} ${startMonth} - ${format(endOfCurrentPeriod, 'dd')} ${endMonth}`;
   } else {
     const monthName = t(
       `months.${storeDate.toLocaleDateString('en-GB', { month: 'long' })}`
