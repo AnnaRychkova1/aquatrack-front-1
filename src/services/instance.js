@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://aquatrack-back-1.onrender.com/api/';
-// export const API_URL = 'http://localhost:3000/api/';
+// const API_URL = 'https://aquatrack-back-1.onrender.com/api/';
+export const API_URL = 'http://localhost:3000/api/';
 
 const instance = axios.create({
   baseURL: API_URL,

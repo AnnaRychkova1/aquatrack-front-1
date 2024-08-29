@@ -8,7 +8,12 @@ import { useModalContext } from '../../context/useModalContext';
 
 const formatTime = dateString => {
   const date = new Date(dateString);
-  const options = { hour: '2-digit', minute: '2-digit', hour12: false };
+  const options = {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+    timeZone: 'UTC',
+  };
   return date.toLocaleTimeString(undefined, options);
 };
 

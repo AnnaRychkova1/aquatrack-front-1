@@ -33,12 +33,9 @@ const WaterList = ({ selectDay }) => {
   }, [selectDay]);
 
   const sortedWaterPortions = useMemo(() => {
-    return [...waterPortions]
-      .sort((a, b) => new Date(a.date) - new Date(b.date))
-      .map(item => ({
-        ...item,
-        date: new Date(item.date).toLocaleString(),
-      }));
+    return [...waterPortions].sort(
+      (a, b) => new Date(a.date) - new Date(b.date)
+    );
   }, [waterPortions]);
 
   const totalVolume = useMemo(() => {

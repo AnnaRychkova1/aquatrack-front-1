@@ -82,6 +82,7 @@ const WaterForm = ({ operationType, id, myTime, volume }) => {
     if (operationType === 'edit') {
       dispatch(updateWater({ id, formData }));
     } else {
+      console.log(formData);
       dispatch(addWater({ formData, token }));
     }
     closeModal();
