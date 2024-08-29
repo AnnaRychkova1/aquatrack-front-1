@@ -3,11 +3,10 @@
   justify-content: flex-start;
   align-items: center;
   min-width: 9.3125rem;
-  height: 4.625rem;
+  height: 74px;
   border-radius: 1rem;
   background-color: var(--main-white);
   padding: 1.125rem 0.875rem;
-  margin-bottom: 1.5rem;
   column-gap: 0.625rem;
 }
 .waterglass {
@@ -79,9 +78,8 @@
 @media screen and (min-width: 768px) {
   .waterCard {
     min-width: 12rem;
-    height: 5.375rem;
+    height: 86px;
     padding: 1.25rem;
-    margin-bottom: 1.5rem;
     column-gap: 1.25rem;
   }
 
