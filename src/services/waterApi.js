@@ -27,7 +27,6 @@ export const requestWaterDaily = async date => {
   const { data } = await instance.get('/water/daily', {
     params: { date, timezoneOffset },
   });
-  console.log(data);
   return data;
 };
 
