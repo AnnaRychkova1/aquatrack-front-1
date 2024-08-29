@@ -1,12 +1,20 @@
 import instance from './instance';
 
+const timezoneOffset = new Date().getTimezoneOffset();
+
 export const addWaterDaily = async formData => {
-  const response = await instance.post('/water', formData);
+  const response = await instance.post('/water', {
+    ...formData,
+    timezoneOffset,
+  });
   return response.data;
 };
 
 export const editWaterRecord = async (id, day) => {
-  const { data } = await instance.patch(`/water/${id}`, day);
+  const { data } = await instance.patch(`/water/${id}`, {
+    ...day,
+    timezoneOffset,
+  });
   return data;
 };
 
@@ -17,14 +25,15 @@ export const deleteWaterRecord = async id => {
 
 export const requestWaterDaily = async date => {
   const { data } = await instance.get('/water/daily', {
-    params: { date },
+    params: { date, timezoneOffset },
   });
+  console.log(data);
   return data;
 };
 
 export const requestWaterMonthly = async ({ month, year }) => {
   const { data } = await instance.get('/water/monthly', {
-    params: { month, year },
+    params: { month, year, timezoneOffset },
   });
   return data;
 };
