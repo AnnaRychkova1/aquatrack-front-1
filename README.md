@@ -1,4 +1,3 @@
-Ось переклад вашого README файлу на англійську:
 
 ![SVG Banners](https://svg-banners.vercel.app/api?type=origin&text1=AquaTrack&text2=This%20is%20a%20modern%20web%20application%20that%20helps%20users%20track%20their%20daily%20water%20intake.%20This%20tool%20is%20designed%20to%20support%20a%20healthy%20lifestyle%20by%20providing%20a%20convenient%20interface%20for%20logging%20water%20intake,%20viewing%20statistics,%20and%20setting%20personal%20goals.%20AquaTrack%20is%20your%20personal%20assistant%20for%20maintaining%20your%20water%20balance!&width=900&height=400)
 
