@@ -2,7 +2,7 @@
   height: 106px;
   display: flex;
   flex-wrap: nowrap;
-  align-items: center;
+  align-items: baseline;
   justify-content: flex-start;
   column-gap: 0.5rem;
   overflow-x: auto;

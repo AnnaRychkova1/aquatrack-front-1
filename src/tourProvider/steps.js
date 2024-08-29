@@ -3,9 +3,6 @@ export const getSteps = t => [
     selector: '.first-step',
     content: t('guide.start'),
     position: 'right',
-    style: {
-      borderRadius: '15px',
-    },
     highlightedMaskClassName: 'highlighted-mask',
   },
   {
@@ -37,16 +34,6 @@ export const getSteps = t => [
     content: t('guide.waterRecordList'),
     position: 'bottom',
   },
-  // {
-  //   selector: '.reactour__waterEditCard',
-  //   content: `Click here to edit record`,
-  //   position: 'top',
-  // },
-  // {
-  //   selector: '.reactour__waterDeleteCard',
-  //   content: `Click here to delete record`,
-  //   position: 'bottom',
-  // },
   {
     selector: '.reactour__waterMonthInfo',
     content: t('guide.monthlyInfo'),
