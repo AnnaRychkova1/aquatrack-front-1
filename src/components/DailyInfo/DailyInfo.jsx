@@ -12,13 +12,14 @@ const DailyInfo = () => {
   // Дата зі стору
   const storeDate = useSelector(selectDate);
   let formattedDate;
+  const localStoreDate = new Date(storeDate).toLocaleString();
 
   // Якщо дата зі стору = календарній даті => Today
-  if (isSameDay(new Date(), storeDate)) {
+  if (isSameDay(new Date(), localStoreDate)) {
     formattedDate = t('trackerPage.today');
   } else {
-    formattedDate = `${getDate(storeDate)}, ${format(
-      new Date(storeDate),
+    formattedDate = `${getDate(localStoreDate)}, ${format(
+      new Date(localStoreDate),
       'MMMM'
     )}`;
   }
