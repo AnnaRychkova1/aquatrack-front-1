@@ -16,9 +16,11 @@ export const deleteWaterRecord = async id => {
 };
 
 export const requestWaterDaily = async date => {
+  console.log(date);
   const { data } = await instance.get('/water/daily', {
     params: { date },
   });
+  console.log(data);
   return data;
 };
 
