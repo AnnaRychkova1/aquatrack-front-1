@@ -1,19 +1,23 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const getLocalISOString = () => {
-  const localDate = new Date();
-  const timezoneOffset = localDate.getTimezoneOffset() * 60000;
-  const localISOTime = new Date(
-    localDate.getTime() - timezoneOffset
-  ).toISOString();
-  return localISOTime.slice(0, 19);
+// const getLocalISOString = () => {
+//   const localDate = new Date();
+//   const timezoneOffset = localDate.getTimezoneOffset() * 60000;
+//   const localISOTime = new Date(
+//     localDate.getTime() - timezoneOffset
+//   ).toISOString();
+//   return localISOTime.slice(0, 19);
+// };
+const getUTCISOString = () => {
+  const utcDate = new Date().toISOString();
+  return utcDate.slice(0, 19);
 };
 
 const dateSlice = createSlice({
   name: 'date',
   initialState: {
-    date: getLocalISOString(),
-    paginationDate: getLocalISOString(),
+    date: getUTCISOString(),
+    paginationDate: getUTCISOString(),
   },
   reducers: {
     changeDate(state, action) {

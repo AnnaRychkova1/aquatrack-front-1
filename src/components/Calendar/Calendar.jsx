@@ -35,6 +35,7 @@ const Calendar = () => {
   const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const waterPortions = useSelector(selectMonth);
+  console.log('storePaginationDate', storePaginationDate);
 
   const percent = volume => {
     if (volume) {
