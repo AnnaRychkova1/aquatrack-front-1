@@ -8,13 +8,12 @@ import { changeDate } from '../../redux/date/slice';
 const CalendarItem = ({ date, percent }) => {
   const determineDate = useSelector(selectDate);
   const dispatch = useDispatch();
-
   const handleChangeDate = data => {
     const localDate = new Date(data);
-    const localISOTime = new Date(
+    const utcDate = new Date(
       localDate.getTime() - localDate.getTimezoneOffset() * 60000
     ).toISOString();
-    dispatch(changeDate(localISOTime));
+    dispatch(changeDate(utcDate));
   };
 
   const buttonClass = isSameDay(date, determineDate)
