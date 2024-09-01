@@ -6,20 +6,13 @@ import { selectDate } from '../../redux/date/selectors';
 import { changeDate } from '../../redux/date/slice';
 
 const CalendarItem = ({ date, percent }) => {
-  console.log(date);
-  console.log(percent);
   const determineDate = useSelector(selectDate);
   const dispatch = useDispatch();
-
-  // const handleChangeDate = data => {
-  //   const localDate = new Date(data);
-  //   const localISOTime = new Date(
-  //     localDate.getTime() - localDate.getTimezoneOffset() * 60000
-  //   ).toISOString();
-  //   dispatch(changeDate(localISOTime));
-  // };
   const handleChangeDate = data => {
-    const utcDate = new Date(data).toISOString();
+    const localDate = new Date(data);
+    const utcDate = new Date(
+      localDate.getTime() - localDate.getTimezoneOffset() * 60000
+    ).toISOString();
     dispatch(changeDate(utcDate));
   };
 
