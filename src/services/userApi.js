@@ -17,6 +17,7 @@ export const requestRegister = async formData => {
 
 // SignIn
 export const requestLogin = async formData => {
+  localStorage.removeItem('token');
   const { data } = await instance.post('/users/login', formData);
   localStorage.setItem('token', data.token);
   setToken(data.token);
@@ -69,10 +70,13 @@ export const requestForgotPassword = async formData => {
 };
 
 // Password-change
-export const requestChangePassword = async (userData, token) => {
-  setToken(token);
-  localStorage.setItem('token', token);
-  const { data } = await instance.post('/users/password/update', userData);
+export const requestChangePassword = async formData => {
+  setToken(formData.token);
+  const { data } = await instance.post(
+    '/users/password/update',
+    formData.userData
+  );
+  clearToken();
   return data;
 };
 

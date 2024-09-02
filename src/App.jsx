@@ -19,6 +19,7 @@ const Tracker = lazy(() => import('./pages/Tracker'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 const RenewPasswordPage = lazy(() => import('./pages/RenewPasswordPage'));
 const ForgotPage = lazy(() => import('./pages/ForgotPage'));
+const RelocatePage = lazy(() => import('./pages/RelocatePage'));
 
 const App = () => {
   const dispatch = useDispatch();
@@ -62,6 +63,13 @@ const App = () => {
               />
             }
           />
+          <Route path="/relocate" element={<RelocatePage />} />
+          {/* <Route
+            path="/relocate"
+            element={
+              <RestrictedRoute redirectTo="/" component={<RelocarePage />} />
+            }
+          /> */}
           <Route
             path="/forgot"
             element={
