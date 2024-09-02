@@ -171,9 +171,9 @@ export const forgotPassword = createAsyncThunk(
 // Password custon update
 export const changePassword = createAsyncThunk(
   'users/password/update',
-  async (userData, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
-      const res = await requestChangePassword(userData);
+      const res = await requestChangePassword(formData);
       toast.success('Successfully created your new password', {
         ...options,
       });
