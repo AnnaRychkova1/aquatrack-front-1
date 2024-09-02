@@ -5,10 +5,8 @@ import { useTranslation } from 'react-i18next';
 import css from './WaterList.module.css';
 import WaterItem from '../WaterItem/WaterItem';
 import Loader from '../../shared/components/Loader/Loader';
-import ErrorPage from '../../pages/ErrorPage';
 import { fetchDailyWater } from '../../redux/water/operations';
 import {
-  selectErrorWater,
   selectLoadingWater,
   selectWaterPortion,
 } from '../../redux/water/selectors';
@@ -18,7 +16,6 @@ import { useMedia } from '../../hooks/useMedia';
 const WaterList = ({ selectDay }) => {
   const { t } = useTranslation();
   const loadingWater = useSelector(selectLoadingWater);
-  const isErrorWater = useSelector(selectErrorWater);
   const dispatch = useDispatch();
   const waterPortions = useSelector(selectWaterPortion);
   const { isMobile } = useMedia();
@@ -54,10 +51,6 @@ const WaterList = ({ selectDay }) => {
 
   if (loadingWater) {
     return <Loader />;
-  }
-
-  if (isErrorWater) {
-    return <ErrorPage />;
   }
 
   return (

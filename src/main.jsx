@@ -23,9 +23,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <ModalProvider>
               <GuideProvider>
                 <App />
+                <ToastContainer />
               </GuideProvider>
             </ModalProvider>
-            <ToastContainer />
           </HelmetProvider>
         </BrowserRouter>
       </PersistGate>

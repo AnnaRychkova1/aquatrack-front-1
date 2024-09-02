@@ -8,9 +8,8 @@ import { useState } from 'react';
 import css from './Form.module.css';
 import sprite from '../assets/images/svg/symbol-defs.svg';
 import { logIn } from '../redux/users/operations';
-import { selectIsError, selectIsLoading } from '../redux/users/selectors';
+import { selectIsLoading } from '../redux/users/selectors';
 import Loader from '../shared/components/Loader/Loader';
-import ErrorPage from '../pages/ErrorPage';
 
 const schema = Yup.object().shape({
   email: Yup.string()
@@ -25,7 +24,6 @@ const SignInForm = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const loading = useSelector(selectIsLoading);
-  const isError = useSelector(selectIsError);
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -52,10 +50,6 @@ const SignInForm = () => {
 
   if (loading) {
     return <Loader />;
-  }
-
-  if (isError) {
-    return <ErrorPage />;
   }
 
   return (

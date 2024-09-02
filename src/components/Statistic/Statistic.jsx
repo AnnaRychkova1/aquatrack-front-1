@@ -17,11 +17,7 @@ import Loader from '../../shared/components/Loader/Loader';
 import { paginationDate } from '../../redux/date/selectors';
 import { fetchMonthlyWater } from '../../redux/water/operations';
 
-import {
-  selectErrorWater,
-  selectLoadingWater,
-} from '../../redux/water/selectors';
-import ErrorPage from '../../pages/ErrorPage';
+import { selectLoadingWater } from '../../redux/water/selectors';
 
 const Statistic = () => {
   const { t } = useTranslation();
@@ -29,7 +25,6 @@ const Statistic = () => {
   const storePaginationDate = useMemo(() => new Date(pagination), [pagination]);
   const dispatch = useDispatch();
   const loadingWater = useSelector(selectLoadingWater);
-  const isErrorWater = useSelector(selectErrorWater);
   const [lastFetchedPeriod, setLastFetchedPeriod] = useState(null);
   const [firstMonthData, setFirstMonthData] = useState([]);
   const [secondMonthData, setSecondMonthData] = useState([]);
@@ -117,10 +112,6 @@ const Statistic = () => {
 
   if (loadingWater) {
     return <Loader />;
-  }
-
-  if (isErrorWater) {
-    return <ErrorPage />;
   }
 
   return (

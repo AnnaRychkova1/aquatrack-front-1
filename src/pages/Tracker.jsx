@@ -6,20 +6,14 @@ import Page from '../shared/style/Page/Page';
 import Loader from '../shared/components/Loader/Loader';
 import WaterMainInfo from '../components/WaterMainInfo/WaterMainInfo';
 import WaterDetailedInfo from '../components/WaterDetailedInfo/WaterDetailedInfo';
-import ErrorPage from './ErrorPage';
-import { selectIsError, selectIsLoading } from '../redux/users/selectors';
+import { selectIsLoading } from '../redux/users/selectors';
 
 const Tracker = () => {
   const { t } = useTranslation();
   const loading = useSelector(selectIsLoading);
-  const isError = useSelector(selectIsError);
 
   if (loading) {
     return <Loader />;
-  }
-
-  if (isError) {
-    return <ErrorPage />;
   }
 
   return (

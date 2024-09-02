@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
 
-import css from './MissingPages.module.css';
-import Page from '../shared/style/Page/Page';
+import css from './NotFoundPages.module.css';
+import Page from '../../shared/style/Page/Page';
 
 const NotFoundPage = () => {
   const { t } = useTranslation();

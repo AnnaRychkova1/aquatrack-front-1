@@ -35,7 +35,7 @@ export const countUsers = createAsyncThunk(
       const res = await requestCountUsers();
       return res;
     } catch (err) {
-      toast.error(err.res.data.message);
+      toast.error("Can't count people. Try later");
       return thunkAPI.rejectWithValue(err.response);
     }
   }

@@ -8,9 +8,8 @@ import { useTranslation } from 'react-i18next';
 import css from './Form.module.css';
 import { userRegister } from '../redux/users/operations';
 import sprite from '../assets/images/svg/symbol-defs.svg';
-import { selectIsError, selectIsLoading } from '../redux/users/selectors';
+import { selectIsLoading } from '../redux/users/selectors';
 import Loader from '../shared/components/Loader/Loader';
-import ErrorPage from '../pages/ErrorPage';
 
 const schema = yup.object().shape({
   email: yup
@@ -31,7 +30,6 @@ const SignUpForm = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const loading = useSelector(selectIsLoading);
-  const isError = useSelector(selectIsError);
   const [showPassword, setShowPassword] = useState(false);
 
   const formData = {
@@ -60,10 +58,6 @@ const SignUpForm = () => {
 
   if (loading) {
     return <Loader />;
-  }
-
-  if (isError) {
-    return <ErrorPage />;
   }
 
   return (

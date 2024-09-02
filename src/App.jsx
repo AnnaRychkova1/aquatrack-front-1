@@ -16,7 +16,7 @@ const HomePage = lazy(() => import('./pages/HomePage'));
 const SignInPage = lazy(() => import('./pages/SignInPage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
 const Tracker = lazy(() => import('./pages/Tracker'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 const RenewPasswordPage = lazy(() => import('./pages/RenewPasswordPage'));
 const ForgotPage = lazy(() => import('./pages/ForgotPage'));
 
