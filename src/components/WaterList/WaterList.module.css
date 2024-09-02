@@ -1,8 +1,16 @@
+.wrapperList {
+  margin-bottom: 40px;
+}
+
+.wrapperListShort {
+  margin: 0;
+}
+
 .list {
-  height: 106px;
+  height: 130px;
   display: flex;
   flex-wrap: nowrap;
-  align-items: baseline;
+  align-items: center;
   justify-content: flex-start;
   column-gap: 0.5rem;
   overflow-x: auto;
@@ -24,9 +32,6 @@
 }
 
 .emptyItem {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   text-align: center;
   width: 100%;
   padding: 1rem;
@@ -36,7 +41,7 @@
   .list {
     column-gap: 2rem;
     width: 640px;
-    height: 118px;
+    height: 142px;
   }
 }
 

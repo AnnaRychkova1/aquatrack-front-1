@@ -90,19 +90,16 @@ export const logIn = createAsyncThunk(
 );
 
 // Logout
-export const logOut = createAsyncThunk(
-  'users/logout',
-  async (token, thunkAPI) => {
-    try {
-      await requestLogout(token);
-      toast.success('Successfully logout', { ...options });
-      return;
-    } catch (err) {
-      toast.error(err.message, { ...options });
-      return thunkAPI.rejectWithValue(err.message);
-    }
+export const logOut = createAsyncThunk('users/logout', async (_, thunkAPI) => {
+  try {
+    await requestLogout();
+    toast.success('Successfully logout', { ...options });
+    return;
+  } catch (err) {
+    toast.error(err.message, { ...options });
+    return thunkAPI.rejectWithValue(err.message);
   }
-);
+});
 
 // Current
 export const currentUser = createAsyncThunk(
@@ -174,9 +171,9 @@ export const forgotPassword = createAsyncThunk(
 // Password custon update
 export const changePassword = createAsyncThunk(
   'users/password/update',
-  async ({ userData, token }, thunkAPI) => {
+  async (userData, thunkAPI) => {
     try {
-      const res = await requestChangePassword(userData, token);
+      const res = await requestChangePassword(userData);
       toast.success('Successfully created your new password', {
         ...options,
       });

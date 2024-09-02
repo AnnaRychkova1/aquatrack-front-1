@@ -40,6 +40,11 @@ export const getSteps = t => [
     position: 'top',
   },
   {
+    selector: '.reactour__today',
+    content: t('guide.today'),
+    position: 'bottom',
+  },
+  {
     selector: '.reactour__waterStatisticInfo',
     content: t('guide.viewStats'),
     position: 'left',

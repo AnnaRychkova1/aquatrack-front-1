@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import css from './WaterForm.module.css';
 import Iconsvg from '../../shared/components/Icon/Icon.jsx';
-import { selectToken } from '../../redux/users/selectors.js';
 import { selectDate } from '../../redux/date/selectors.js';
 import { useModalContext } from '../../context/useModalContext.jsx';
 
@@ -71,7 +70,6 @@ const WaterForm = ({ operationType, id, myTime, volume }) => {
 
   const timeFromInput = currentTime === undefined ? myTime : currentTime;
   const newDate = new Date(`${formattedDate}T${timeFromInput}`);
-  const token = useSelector(selectToken);
 
   const onSubmit = async () => {
     const formData = {
@@ -82,8 +80,7 @@ const WaterForm = ({ operationType, id, myTime, volume }) => {
     if (operationType === 'edit') {
       dispatch(updateWater({ id, formData }));
     } else {
-      console.log(formData);
-      dispatch(addWater({ formData, token }));
+      dispatch(addWater({ formData }));
     }
     closeModal();
   };

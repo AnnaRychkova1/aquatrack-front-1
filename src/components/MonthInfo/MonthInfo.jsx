@@ -29,7 +29,7 @@ const MonthInfo = () => {
             </h3>
             <button
               type="button"
-              className={css.todayButton}
+              className={`reactour__today ${css.todayButton}`}
               onClick={() => {
                 dispatch(changeDate(currentDate));
                 dispatch(changePaginationDate(currentDate));
