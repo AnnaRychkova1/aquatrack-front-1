@@ -15,7 +15,6 @@ import { eachDayOfInterval, format, subDays } from 'date-fns';
 import css from './Statistic.module.css';
 import Loader from '../../shared/components/Loader/Loader';
 import { paginationDate } from '../../redux/date/selectors';
-import { selectToken } from '../../redux/users/selectors';
 import { fetchMonthlyWater } from '../../redux/water/operations';
 
 import {
@@ -29,7 +28,6 @@ const Statistic = () => {
   const pagination = useSelector(paginationDate);
   const storePaginationDate = useMemo(() => new Date(pagination), [pagination]);
   const dispatch = useDispatch();
-  const token = useSelector(selectToken);
   const loadingWater = useSelector(selectLoadingWater);
   const isErrorWater = useSelector(selectErrorWater);
   const [lastFetchedPeriod, setLastFetchedPeriod] = useState(null);
@@ -67,48 +65,34 @@ const Statistic = () => {
   const endYear = endOfCurrentPeriod.getFullYear();
 
   useEffect(() => {
-    if (token) {
-      if (
-        !lastFetchedPeriod ||
-        startMonth !== lastFetchedPeriod.startMonth ||
-        startYear !== lastFetchedPeriod.startYear ||
-        endMonth !== lastFetchedPeriod.endMonth ||
-        endYear !== lastFetchedPeriod.endYear
-      ) {
+    if (
+      !lastFetchedPeriod ||
+      startMonth !== lastFetchedPeriod.startMonth ||
+      startYear !== lastFetchedPeriod.startYear ||
+      endMonth !== lastFetchedPeriod.endMonth ||
+      endYear !== lastFetchedPeriod.endYear
+    ) {
+      dispatch(
+        fetchMonthlyWater({
+          month: startMonth,
+          year: startYear,
+        })
+      ).then(response => {
+        setFirstMonthData(response.payload);
+      });
+      if (startMonth !== endMonth || startYear !== endYear) {
         dispatch(
           fetchMonthlyWater({
-            month: startMonth,
-            year: startYear,
-            token,
+            month: endMonth,
+            year: endYear,
           })
         ).then(response => {
-          setFirstMonthData(response.payload);
+          setSecondMonthData(response.payload);
         });
-
-        if (startMonth !== endMonth || startYear !== endYear) {
-          dispatch(
-            fetchMonthlyWater({
-              month: endMonth,
-              year: endYear,
-              token,
-            })
-          ).then(response => {
-            setSecondMonthData(response.payload);
-          });
-        }
-
-        setLastFetchedPeriod({ startMonth, startYear, endMonth, endYear });
       }
+      setLastFetchedPeriod({ startMonth, startYear, endMonth, endYear });
     }
-  }, [
-    dispatch,
-    token,
-    startMonth,
-    startYear,
-    endMonth,
-    endYear,
-    lastFetchedPeriod,
-  ]);
+  }, [dispatch, startMonth, startYear, endMonth, endYear, lastFetchedPeriod]);
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {

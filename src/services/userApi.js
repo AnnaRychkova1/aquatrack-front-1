@@ -24,9 +24,9 @@ export const requestLogin = async formData => {
 };
 
 // SignOut
-export const requestLogout = async token => {
+export const requestLogout = async () => {
   const { data } = await instance.post('/users/logout');
-  clearToken(token);
+  clearToken();
   localStorage.removeItem('token');
   return data;
 };
@@ -72,11 +72,7 @@ export const requestForgotPassword = async formData => {
 export const requestChangePassword = async (userData, token) => {
   setToken(token);
   localStorage.setItem('token', token);
-  const { data } = await instance.post('/users/password/update', userData, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const { data } = await instance.post('/users/password/update', userData);
   return data;
 };
 
@@ -105,6 +101,7 @@ export const requestGoogleLogin = async formData => {
 // Refresh Token
 // export const requestRefreshToken = async formData => {
 //   const { data } = await instance.get('/users/refresh', formData);
-// setAuthHeader(data.token);
+//   localStorage.setItem('token', data.token);
+//   setToken(data.token);
 //   return data;
 // };

@@ -4,28 +4,31 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ToastContainer } from 'react-toastify';
+import { PersistGate } from 'redux-persist/integration/react';
 import 'react-toastify/dist/ReactToastify.css';
 import 'modern-normalize';
 import './index.css';
 import './i18/i18n.js';
 import App from './App.jsx';
-import TranslationProvider from './tourProvider/TranslationProvider.jsx';
+import GuideProvider from './tourProvider/GuideProvider.jsx';
 import { ModalProvider } from '../src/context/ModalContext.jsx';
-import { store } from './redux/store.js';
+import { persistor, store } from './redux/store.js';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <HelmetProvider>
-          <TranslationProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
+          <HelmetProvider>
             <ModalProvider>
-              <App />
+              <GuideProvider>
+                <App />
+              </GuideProvider>
             </ModalProvider>
             <ToastContainer />
-          </TranslationProvider>
-        </HelmetProvider>
-      </BrowserRouter>
+          </HelmetProvider>
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );

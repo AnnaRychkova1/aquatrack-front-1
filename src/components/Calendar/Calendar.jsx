@@ -15,7 +15,6 @@ import Loader from '../../shared/components/Loader/Loader';
 import { selectWaterDrink } from '../../redux/users/selectors';
 import { fetchMonthlyWater } from '../../redux/water/operations';
 import { paginationDate } from '../../redux/date/selectors';
-import { selectToken } from '../../redux/users/selectors';
 import {
   selectErrorWater,
   selectLoadingWater,
@@ -32,7 +31,6 @@ const Calendar = () => {
   const loadingWater = useSelector(selectLoadingWater);
   const isErrorWater = useSelector(selectErrorWater);
   const dispatch = useDispatch();
-  const token = useSelector(selectToken);
   const waterPortions = useSelector(selectMonth);
 
   const formatDate = useMemo(() => {
@@ -60,10 +58,8 @@ const Calendar = () => {
   };
 
   useEffect(() => {
-    if (token) {
-      dispatch(fetchMonthlyWater({ month, year, token }));
-    }
-  }, [dispatch, month, year, token]);
+    dispatch(fetchMonthlyWater({ month, year }));
+  }, [dispatch, month, year]);
 
   if (loadingWater) {
     return <Loader />;

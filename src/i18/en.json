@@ -143,8 +143,9 @@
     "addWaterRecord": "Here you can add a record of water consumed",
     "addWaterRecordHere": "... and here",
     "waterRecordList": "This block contains records of water consumed during the day. Here, you can also edit and delete a record.",
+    "today": "If you're confused and don't know which date you're on in the calendar, just click the 'Today' button.",
     "monthlyInfo": "This block contains monthly information. You can view the percentage of daily norms in calendar format",
-    "viewStats": "Click here to view the percentage of daily norms in graphical format",
+    "viewStats": "Click here to view the percentage of daily norms in graphical format for a week",
     "dailyNorma": "This is your daily norm",
     "progressBar": "Progress bar showing the percentage of daily norms",
     "thanks": "Thanks for your attention and good luck!"

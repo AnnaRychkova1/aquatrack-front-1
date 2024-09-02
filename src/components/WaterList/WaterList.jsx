@@ -7,21 +7,21 @@ import WaterItem from '../WaterItem/WaterItem';
 import Loader from '../../shared/components/Loader/Loader';
 import ErrorPage from '../../pages/ErrorPage';
 import { fetchDailyWater } from '../../redux/water/operations';
-import { selectToken } from '../../redux/users/selectors';
 import {
   selectErrorWater,
   selectLoadingWater,
   selectWaterPortion,
 } from '../../redux/water/selectors';
 import { changeTotalDay } from '../../redux/water/slice';
+import { useMedia } from '../../hooks/useMedia';
 
 const WaterList = ({ selectDay }) => {
   const { t } = useTranslation();
   const loadingWater = useSelector(selectLoadingWater);
   const isErrorWater = useSelector(selectErrorWater);
   const dispatch = useDispatch();
-  const token = useSelector(selectToken);
   const waterPortions = useSelector(selectWaterPortion);
+  const { isMobile } = useMedia();
 
   const formatDate = useMemo(() => {
     const initDate = new Date(selectDay);
@@ -45,10 +45,8 @@ const WaterList = ({ selectDay }) => {
   }, [sortedWaterPortions]);
 
   useEffect(() => {
-    if (token) {
-      dispatch(fetchDailyWater({ date: formatDate, token }));
-    }
-  }, [dispatch, token, formatDate]);
+    dispatch(fetchDailyWater({ date: formatDate }));
+  }, [dispatch, formatDate]);
 
   useEffect(() => {
     dispatch(changeTotalDay(totalVolume));
@@ -63,8 +61,18 @@ const WaterList = ({ selectDay }) => {
   }
 
   return (
-    <div className="reactour__waterCardList">
-      <ul className={css.list}>
+    <div
+      className={
+        isMobile
+          ? sortedWaterPortions.length < 3
+            ? css.wrapperListShort
+            : css.wrapperList
+          : sortedWaterPortions.length < 4
+          ? css.wrapperListShort
+          : css.wrapperList
+      }
+    >
+      <ul className={`reactour__waterCardList ${css.list}`}>
         {sortedWaterPortions.length === 0 ? (
           <li className={css.emptyItem}>{t('trackerPage.noWater')}</li>
         ) : (

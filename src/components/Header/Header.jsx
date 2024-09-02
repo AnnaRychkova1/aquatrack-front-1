@@ -8,9 +8,8 @@ import { useAuth } from '../../hooks/useAuth';
 import { useModalContext } from '../../context/useModalContext';
 
 const Header = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { openModal } = useModalContext();
-  const { i18n } = useTranslation();
   const { setIsOpen } = useTour();
   const { isLoggedIn } = useAuth();
 

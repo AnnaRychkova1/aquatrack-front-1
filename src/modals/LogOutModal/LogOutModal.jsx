@@ -1,19 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import css from './LogOutModal.module.css';
-import { selectToken } from '../../redux/users/selectors';
 import { logOut } from '../../redux/users/operations';
 import { useModalContext } from '../../context/useModalContext';
 
 const LogOutModal = ({ closePopover }) => {
   const { t } = useTranslation();
-  const token = useSelector(selectToken);
   const dispatch = useDispatch();
   const { closeModal } = useModalContext();
 
   const onLogOut = () => {
-    dispatch(logOut(token));
+    dispatch(logOut());
     closeModal();
     closePopover();
   };
