@@ -9,19 +9,23 @@ import { selectDate } from '../../redux/date/selectors';
 
 const DailyInfo = () => {
   const { t } = useTranslation();
+
   // Дата зі стору
   const storeDate = useSelector(selectDate);
   let formattedDate;
   const localStoreDate = new Date(storeDate);
-  console.log('зі слайсу', storeDate);
+
+  // Отримуємо назву місяця
+  const monthNameEn = format(localStoreDate, 'MMMM');
+  const monthName = t(`monthsVidminok.${monthNameEn}`, monthNameEn);
 
   // Якщо дата зі стору = календарній даті => Today
   if (isSameDay(new Date(), localStoreDate)) {
     formattedDate = t('trackerPage.today');
   } else {
-    formattedDate = `${format(localStoreDate, 'd MMMM')}`;
+    formattedDate = `${format(localStoreDate, 'd')} ${monthName}`;
   }
-  console.log('перероблений', formattedDate);
+
   return (
     <div className={css.wrapper}>
       <div className={css.cardHeader}>

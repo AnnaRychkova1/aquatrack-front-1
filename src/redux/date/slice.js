@@ -5,7 +5,6 @@ const getISOString = () => {
   const utcDate = new Date(
     localDate.getTime() - localDate.getTimezoneOffset() * 60000
   ).toISOString();
-  console.log('slice', utcDate);
   return utcDate;
 };
 
