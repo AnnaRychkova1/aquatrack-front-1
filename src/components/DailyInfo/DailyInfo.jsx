@@ -9,12 +9,12 @@ import { selectDate } from '../../redux/date/selectors';
 
 const DailyInfo = () => {
   const { t } = useTranslation();
-  // Дата зі стору
+  // Date from store
   const storeDate = useSelector(selectDate);
   let formattedDate;
   const localStoreDate = new Date(storeDate).toLocaleString();
 
-  // Якщо дата зі стору = календарній даті => Today
+  // If date from store = calendar date => Today
   if (isSameDay(new Date(), localStoreDate)) {
     formattedDate = t('trackerPage.today');
   } else {
