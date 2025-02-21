@@ -9,12 +9,13 @@ import { selectDate } from '../../redux/date/selectors';
 
 const DailyInfo = () => {
   const { t } = useTranslation();
-  // Date from store
+
+  // Дата зі стору
   const storeDate = useSelector(selectDate);
   let formattedDate;
   const localStoreDate = new Date(storeDate);
 
-  // Get the month name
+  // Отримуємо назву місяця
   const monthNameEn = format(localStoreDate, 'MMMM');
   const monthName = t(`monthsVidminok.${monthNameEn}`, monthNameEn);
 
