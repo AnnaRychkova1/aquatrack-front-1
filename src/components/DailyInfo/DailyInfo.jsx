@@ -19,7 +19,7 @@ const DailyInfo = () => {
   const monthNameEn = format(localStoreDate, 'MMMM');
   const monthName = t(`monthsVidminok.${monthNameEn}`, monthNameEn);
 
-  // Якщо дата зі стору = календарній даті => Today
+  // If date from store = calendar date => Today
   if (isSameDay(new Date(), localStoreDate)) {
     formattedDate = t('trackerPage.today');
   } else {

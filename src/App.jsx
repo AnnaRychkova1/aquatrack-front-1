@@ -64,12 +64,6 @@ const App = () => {
             }
           />
           <Route path="/relocate" element={<RelocatePage />} />
-          {/* <Route
-            path="/relocate"
-            element={
-              <RestrictedRoute redirectTo="/" component={<RelocarePage />} />
-            }
-          /> */}
           <Route
             path="/forgot"
             element={
