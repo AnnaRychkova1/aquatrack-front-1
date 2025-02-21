@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from '../shared/components/Loader/Loader';
 import { currentUser } from '../redux/users/operations';
-import { selectIsLoading, selectUser } from '../redux/users/selectors'; // Додано селектори
+import { selectIsLoading, selectUser } from '../redux/users/selectors';
 
 const RelocatePage = () => {
   const location = useLocation();
