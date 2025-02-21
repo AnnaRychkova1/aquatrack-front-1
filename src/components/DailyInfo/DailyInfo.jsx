@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { isSameDay, format, getDate } from 'date-fns';
+import { isSameDay, format } from 'date-fns';
 
 import css from './DailyInfo.module.css';
 import AddWaterBtn from '../../shared/components/AddWaterBtn/AddWaterBtn';
@@ -12,17 +12,19 @@ const DailyInfo = () => {
   // Date from store
   const storeDate = useSelector(selectDate);
   let formattedDate;
-  const localStoreDate = new Date(storeDate).toLocaleString();
+  const localStoreDate = new Date(storeDate);
+
+  // Get the month name
+  const monthNameEn = format(localStoreDate, 'MMMM');
+  const monthName = t(`monthsVidminok.${monthNameEn}`, monthNameEn);
 
   // If date from store = calendar date => Today
   if (isSameDay(new Date(), localStoreDate)) {
     formattedDate = t('trackerPage.today');
   } else {
-    formattedDate = `${getDate(localStoreDate)}, ${format(
-      new Date(localStoreDate),
-      'MMMM'
-    )}`;
+    formattedDate = `${format(localStoreDate, 'd')} ${monthName}`;
   }
+
   return (
     <div className={css.wrapper}>
       <div className={css.cardHeader}>
