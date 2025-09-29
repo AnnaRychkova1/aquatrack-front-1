@@ -25,7 +25,6 @@ const Statistic = () => {
   const storePaginationDate = useMemo(() => new Date(pagination), [pagination]);
   const dispatch = useDispatch();
   const loadingWater = useSelector(selectLoadingWater);
-  const [lastFetchedPeriod, setLastFetchedPeriod] = useState(null);
   const [firstMonthData, setFirstMonthData] = useState([]);
   const [secondMonthData, setSecondMonthData] = useState([]);
 
@@ -38,7 +37,7 @@ const Statistic = () => {
   }).map(date => format(date, 'yyyy-MM-dd'));
 
   const combinedData = [...firstMonthData, ...secondMonthData].map(el => ({
-    date: format(new Date(el.date), 'yyyy-MM-dd'),
+    date: el.date.slice(0, 10),
     volume: el.volume / 1000,
   }));
 
@@ -54,40 +53,33 @@ const Statistic = () => {
 
   const gradientId = 'waterGradient';
 
-  const startMonth = startOfCurrentPeriod.getMonth() + 1;
-  const endMonth = endOfCurrentPeriod.getMonth() + 1;
-  const startYear = startOfCurrentPeriod.getFullYear();
-  const endYear = endOfCurrentPeriod.getFullYear();
-
   useEffect(() => {
-    if (
-      !lastFetchedPeriod ||
-      startMonth !== lastFetchedPeriod.startMonth ||
-      startYear !== lastFetchedPeriod.startYear ||
-      endMonth !== lastFetchedPeriod.endMonth ||
-      endYear !== lastFetchedPeriod.endYear
-    ) {
-      dispatch(
-        fetchMonthlyWater({
-          month: startMonth,
-          year: startYear,
-        })
-      ).then(response => {
-        setFirstMonthData(response.payload);
-      });
-      if (startMonth !== endMonth || startYear !== endYear) {
-        dispatch(
-          fetchMonthlyWater({
-            month: endMonth,
-            year: endYear,
-          })
-        ).then(response => {
-          setSecondMonthData(response.payload);
-        });
+    const fetchData = async () => {
+      const firstMonth = startOfCurrentPeriod.getMonth() + 1;
+      const firstYear = startOfCurrentPeriod.getFullYear();
+
+      const endMonth = endOfCurrentPeriod.getMonth() + 1;
+      const endYear = endOfCurrentPeriod.getFullYear();
+
+      const firstResponse = await dispatch(
+        fetchMonthlyWater({ month: firstMonth, year: firstYear })
+      ).unwrap();
+
+      setFirstMonthData(firstResponse);
+
+      if (firstMonth !== endMonth || firstYear !== endYear) {
+        const secondResponse = await dispatch(
+          fetchMonthlyWater({ month: endMonth, year: endYear })
+        ).unwrap();
+
+        setSecondMonthData(secondResponse);
+      } else {
+        setSecondMonthData([]);
       }
-      setLastFetchedPeriod({ startMonth, startYear, endMonth, endYear });
-    }
-  }, [dispatch, startMonth, startYear, endMonth, endYear, lastFetchedPeriod]);
+    };
+
+    fetchData();
+  }, [dispatch, pagination]);
 
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
@@ -102,12 +94,12 @@ const Statistic = () => {
     return null;
   };
 
-  const formatYAxis = tickItem => {
-    return tickItem === 0 ? '0' : `${tickItem} ${t('trackerPage.liter')}`;
+  const formatXAxis = tickItem => {
+    return format(new Date(tickItem + 'T00:00:00Z'), 'dd.MM');
   };
 
-  const formatXAxis = tickItem => {
-    return format(new Date(tickItem), 'dd.MM');
+  const formatYAxis = tickItem => {
+    return tickItem === 0 ? '0' : `${tickItem} ${t('trackerPage.liter')}`;
   };
 
   if (loadingWater) {
