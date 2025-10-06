@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: flex-end;
   border-radius: 30px;
-  padding: 0px 16px 8px 16px;
+  padding: 8px 16px;
   max-width: 343px;
   min-width: 288px;
   width: 100%;
@@ -12,7 +12,7 @@
 
 @media only screen and (min-width: 768px) {
   .headerContainer {
-    padding: 0px 32px 16px 32px;
+    padding: 16px 32px;
     gap: 20px;
     max-width: 100%;
     width: 704px;
